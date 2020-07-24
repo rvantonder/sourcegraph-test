@@ -1,0 +1,5 @@
+flags='-lang .go'
+
+[rule]
+match='struct {:[_]}'
+rewrite='''struct { /* all structs must go */ }'''
