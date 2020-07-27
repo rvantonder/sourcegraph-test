@@ -65,10 +65,7 @@ func TestCachedLocationResolver(t *testing.T) {
 		paths = append(paths, fmt.Sprintf("/foo/%d/bar/baz.go", i))
 	}
 
-	type resolverPair struct {
-		key      string
-		resolver *gql.GitTreeEntryResolver
-	}
+	type resolverPair struct { /* all structs must go */ }
 	resolvers := make(chan resolverPair, numRoutines*len(repositoryIDs)*len(commits)*len(paths))
 
 	var wg sync.WaitGroup

@@ -130,15 +130,8 @@ func TestExpandUsernamesToEmails(t *testing.T) {
 }
 
 func TestHighlightMatches(t *testing.T) {
-	type args struct {
-		pattern *regexp.Regexp
-		data    []byte
-	}
-	tests := []struct {
-		name string
-		args args
-		want *highlightedString
-	}{
+	type args struct { /* all structs must go */ }
+	tests := []struct { /* all structs must go */ }{
 		{
 			// https://github.com/sourcegraph/sourcegraph/issues/4512
 			name: "match at end",

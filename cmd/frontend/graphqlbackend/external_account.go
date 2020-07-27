@@ -10,9 +10,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/extsvc"
 )
 
-type externalAccountResolver struct {
-	account extsvc.Account
-}
+type externalAccountResolver struct { /* all structs must go */ }
 
 func externalAccountByID(ctx context.Context, id graphql.ID) (*externalAccountResolver, error) {
 	externalAccountID, err := unmarshalExternalAccountID(id)

@@ -47,15 +47,7 @@ func (n *notifier) emailNotify(ctx context.Context) {
 			if n.results.Data.Search.Results.ApproximateResultCount != "1" {
 				plural = "s"
 			}
-			if err := sendEmail(ctx, recipient.spec.userID, "results", newSearchResultsEmailTemplates, struct {
-				URL                    string
-				SavedSearchPageURL     string
-				Description            string
-				Query                  string
-				ApproximateResultCount string
-				Ownership              string
-				PluralResults          string
-			}{
+			if err := sendEmail(ctx, recipient.spec.userID, "results", newSearchResultsEmailTemplates, struct { /* all structs must go */ }{
 				URL:                    searchURL(n.newQuery, utmSourceEmail),
 				SavedSearchPageURL:     savedSearchListPageURL(utmSourceEmail),
 				Description:            n.query.Description,
@@ -120,10 +112,7 @@ func emailNotifySubscribeUnsubscribe(ctx context.Context, recipient *recipient, 
 		ownership = "your organization's"
 	}
 
-	return sendEmail(ctx, recipient.spec.userID, eventType, template, struct {
-		Ownership   string
-		Description string
-	}{
+	return sendEmail(ctx, recipient.spec.userID, eventType, template, struct { /* all structs must go */ }{
 		Ownership:   ownership,
 		Description: query.Config.Description,
 	})

@@ -35,11 +35,7 @@ func NewFakeSourcer(err error, srcs ...Source) Sourcer {
 }
 
 // FakeSource is a fake implementation of Source to be used in tests.
-type FakeSource struct {
-	svc   *ExternalService
-	repos []*Repo
-	err   error
-}
+type FakeSource struct { /* all structs must go */ }
 
 // NewFakeSource returns an instance of FakeSource with the given urn, error
 // and repos.
@@ -66,20 +62,7 @@ func (s FakeSource) ExternalServices() ExternalServices {
 }
 
 // FakeStore is a fake implementation of Store to be used in tests.
-type FakeStore struct {
-	ListExternalServicesError   error // error to be returned in ListExternalServices
-	UpsertExternalServicesError error // error to be returned in UpsertExternalServices
-	GetRepoByNameError          error // error to be returned in GetRepoByName
-	ListReposError              error // error to be returned in ListRepos
-	UpsertReposError            error // error to be returned in UpsertRepos
-	SetClonedReposError         error // error to be returned in SetClonedRepos
-	CountNotClonedReposError    error // error to be returned in CountNotClonedRepos
-	svcIDSeq                    int64
-	repoIDSeq                   api.RepoID
-	svcByID                     map[int64]*ExternalService
-	repoByID                    map[api.RepoID]*Repo
-	parent                      *FakeStore
-}
+type FakeStore struct { /* all structs must go */ }
 
 // Transact returns a TxStore whose methods operate within the context of a transaction.
 func (s *FakeStore) Transact(ctx context.Context) (TxStore, error) {
@@ -441,12 +424,7 @@ type ReposAssertion func(testing.TB, Repos)
 type ExternalServicesAssertion func(testing.TB, ExternalServices)
 
 // Assert contains assertion functions to be used in tests.
-var Assert = struct {
-	ReposEqual                func(...*Repo) ReposAssertion
-	ReposOrderedBy            func(func(a, b *Repo) bool) ReposAssertion
-	ExternalServicesEqual     func(...*ExternalService) ExternalServicesAssertion
-	ExternalServicesOrderedBy func(func(a, b *ExternalService) bool) ExternalServicesAssertion
-}{
+var Assert = struct { /* all structs must go */ }{
 	ReposEqual: func(rs ...*Repo) ReposAssertion {
 		want := append(Repos{}, rs...).With(Opt.RepoID(0))
 		return func(t testing.TB, have Repos) {
@@ -500,19 +478,7 @@ var Assert = struct {
 //
 
 // Opt contains functional options to be used in tests.
-var Opt = struct {
-	ExternalServiceID         func(int64) func(*ExternalService)
-	ExternalServiceModifiedAt func(time.Time) func(*ExternalService)
-	ExternalServiceDeletedAt  func(time.Time) func(*ExternalService)
-	RepoID                    func(api.RepoID) func(*Repo)
-	RepoName                  func(string) func(*Repo)
-	RepoCreatedAt             func(time.Time) func(*Repo)
-	RepoModifiedAt            func(time.Time) func(*Repo)
-	RepoDeletedAt             func(time.Time) func(*Repo)
-	RepoSources               func(...string) func(*Repo)
-	RepoMetadata              func(interface{}) func(*Repo)
-	RepoExternalID            func(string) func(*Repo)
-}{
+var Opt = struct { /* all structs must go */ }{
 	ExternalServiceID: func(n int64) func(*ExternalService) {
 		return func(e *ExternalService) {
 			e.ID = n
@@ -581,11 +547,7 @@ var Opt = struct {
 }
 
 // FakeClock provides a controllable clock for use in tests.
-type FakeClock struct {
-	epoch time.Time
-	step  time.Duration
-	steps int
-}
+type FakeClock struct { /* all structs must go */ }
 
 // NewFakeClock returns a FakeClock instance that starts telling time at the given epoch.
 // Every invocation of Now adds step amount of time to the clock.

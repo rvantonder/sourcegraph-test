@@ -161,42 +161,12 @@ func serveSearchConfiguration(w http.ResponseWriter, r *http.Request) error {
 	return err
 }
 
-type reposListServer struct {
-	// SourcegraphDotComMode is true if this instance of Sourcegraph is http://sourcegraph.com
-	SourcegraphDotComMode bool
-
-	// Repos is the subset of backend.Repos methods we use. Declared as an
-	// interface for testing.
-	Repos interface {
-		// ListDefault returns the repositories to index on Sourcegraph.com
-		ListDefault(context.Context) ([]*types.Repo, error)
-		// List returns a list of repositories
-		List(context.Context, db.ReposListOptions) ([]*types.Repo, error)
-	}
-
-	// Indexers is the subset of searchbackend.Indexers methods we
-	// use. reposListServer is used by indexed-search to get the list of
-	// repositories to index. These methods are used to return the correct
-	// subset for horizontal indexed search. Declared as an interface for
-	// testing.
-	Indexers interface {
-		// ReposSubset returns the subset of repoNames that hostname should
-		// index.
-		ReposSubset(ctx context.Context, hostname string, indexed map[string]struct{}, repoNames []string) ([]string, error)
-		// Enabled is true if horizontal indexed search is enabled.
-		Enabled() bool
-	}
-}
+type reposListServer struct { /* all structs must go */ }
 
 // serveIndex is used by zoekt to get the list of repositories for it to
 // index.
 func (h *reposListServer) serveIndex(w http.ResponseWriter, r *http.Request) error {
-	var opt struct {
-		// Hostname is used to determine the subset of repos to return
-		Hostname string
-		// Indexed is the repository names of indexed repos by Hostname.
-		Indexed []string
-	}
+	var opt struct { /* all structs must go */ }
 	if err := json.NewDecoder(r.Body).Decode(&opt); err != nil {
 		return err
 	}
@@ -236,9 +206,7 @@ func (h *reposListServer) serveIndex(w http.ResponseWriter, r *http.Request) err
 		}
 	}
 
-	data := struct {
-		RepoNames []string
-	}{
+	data := struct { /* all structs must go */ }{
 		RepoNames: names,
 	}
 
@@ -527,11 +495,7 @@ func serveGitExec(w http.ResponseWriter, r *http.Request) error {
 
 // gitServiceHandler are handlers which redirect git clone requests to the
 // gitserver for the repo.
-type gitServiceHandler struct {
-	Gitserver interface {
-		AddrForRepo(context.Context, api.RepoName) string
-	}
-}
+type gitServiceHandler struct { /* all structs must go */ }
 
 func (s *gitServiceHandler) serveInfoRefs(w http.ResponseWriter, r *http.Request) {
 	s.redirectToGitServer(w, r, "/info/refs")

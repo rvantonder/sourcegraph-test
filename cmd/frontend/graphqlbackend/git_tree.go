@@ -18,13 +18,7 @@ func (r *GitTreeEntryResolver) IsRoot() bool {
 	return path == "/" || path == "." || path == ""
 }
 
-type gitTreeEntryConnectionArgs struct {
-	graphqlutil.ConnectionArgs
-	Recursive bool
-	// If recurseSingleChild is true, we will return a flat list of every
-	// directory and file in a single-child nest.
-	RecursiveSingleChild bool
-}
+type gitTreeEntryConnectionArgs struct { /* all structs must go */ }
 
 func (r *GitTreeEntryResolver) Entries(ctx context.Context, args *gitTreeEntryConnectionArgs) ([]*GitTreeEntryResolver, error) {
 	return r.entries(ctx, args, nil)

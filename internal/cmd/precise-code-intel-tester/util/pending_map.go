@@ -5,10 +5,7 @@ import (
 	"sync"
 )
 
-type pendingMap struct {
-	sync.RWMutex
-	pending map[int]bool
-}
+type pendingMap struct { /* all structs must go */ }
 
 // newPendingMap creates a new pending map with n pending tasks.
 func newPendingMap(n int) *pendingMap {

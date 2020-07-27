@@ -16,10 +16,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/schema"
 )
 
-type gitlabAuthzProviderParams struct {
-	OAuthOp gitlab.OAuthProviderOp
-	SudoOp  gitlab.SudoProviderOp
-}
+type gitlabAuthzProviderParams struct { /* all structs must go */ }
 
 func (m gitlabAuthzProviderParams) Repos(ctx context.Context, repos []*types.Repo) (mine []*types.Repo, others []*types.Repo) {
 	panic("should never be called")
@@ -69,15 +66,7 @@ func TestAuthzProvidersFromConfig(t *testing.T) {
 
 	const bogusKey = `LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlCUEFJQkFBSkJBUEpIaWprdG1UMUlLYUd0YTVFZXAzQVo5Q2VPZUw4alBESUZUN3dRZ0tabXQzRUZxRGhCCk93bitRVUhKdUs5Zm92UkROSmVWTDJvWTVCT0l6NHJ3L0cwQ0F3RUFBUUpCQU1BK0o5Mks0d2NQVllsbWMrM28KcHU5NmlKTkNwMmp5Nm5hK1pEQlQzK0VvSUo1VFJGdnN3R2kvTHUzZThYUWwxTDNTM21ub0xPSlZNcTF0bUxOMgpIY0VDSVFEK3daeS83RlYxUEFtdmlXeWlYVklETzJnNWJOaUJlbmdKQ3hFa3Nia1VtUUloQVBOMlZaczN6UFFwCk1EVG9vTlJXcnl0RW1URERkamdiOFpzTldYL1JPRGIxQWlCZWNKblNVQ05TQllLMXJ5VTFmNURTbitoQU9ZaDkKWDFBMlVnTDE3bWhsS1FJaEFPK2JMNmRDWktpTGZORWxmVnRkTUtxQnFjNlBIK01heFU2VzlkVlFvR1dkQWlFQQptdGZ5cE9zYTFiS2hFTDg0blovaXZFYkJyaVJHalAya3lERHYzUlg0V0JrPQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo=`
 
-	tests := []struct {
-		description                  string
-		cfg                          conf.Unified
-		gitlabConnections            []*schema.GitLabConnection
-		bitbucketServerConnections   []*schema.BitbucketServerConnection
-		expAuthzAllowAccessByDefault bool
-		expAuthzProviders            func(*testing.T, []authz.Provider)
-		expSeriousProblems           []string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			description: "1 GitLab connection with authz enabled, 1 GitLab matching auth provider",
 			cfg: conf.Unified{
@@ -491,11 +480,7 @@ func asJSON(t *testing.T, v interface{}) string {
 	return string(b)
 }
 
-type fakeStore struct {
-	gitlabs          []*schema.GitLabConnection
-	githubs          []*schema.GitHubConnection
-	bitbucketServers []*schema.BitbucketServerConnection
-}
+type fakeStore struct { /* all structs must go */ }
 
 func (s fakeStore) ListGitHubConnections(context.Context) ([]*types.GitHubConnection, error) {
 	conns := make([]*types.GitHubConnection, 0, len(s.githubs))

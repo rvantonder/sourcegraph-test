@@ -21,20 +21,7 @@ import (
 
 // searchCursor represents a decoded search pagination cursor. From an API
 // consumer standpoint, it is an encoded opaque string.
-type searchCursor struct {
-	// RepositoryOffset indicates how many repositories (which are globally
-	// sorted and ordered) to offset by.
-	RepositoryOffset int32
-
-	// ResultOffset indicates how many results within the first repository we
-	// would search in to further offset by. This is so that we can paginate
-	// results within e.g. a single large repository.
-	ResultOffset int32
-
-	// Finished tells if there are more results for the query or if we've
-	// consumed them all.
-	Finished bool
-}
+type searchCursor struct { /* all structs must go */ }
 
 const searchCursorKind = "SearchCursor"
 
@@ -60,14 +47,7 @@ func unmarshalSearchCursor(cursor *string) (*searchCursor, error) {
 
 // searchPaginationInfo describes information around a paginated search
 // request.
-type searchPaginationInfo struct {
-	// cursor indicates where to resume searching from (see docstrings on
-	// searchCursor) or nil when requesting the first page of results.
-	cursor *searchCursor
-
-	// limit indicates at max how many search results to return.
-	limit int32
-}
+type searchPaginationInfo struct { /* all structs must go */ }
 
 func (r *SearchResultsResolver) PageInfo() *graphqlutil.PageInfo {
 	if r.cursor == nil || r.cursor.Finished {
@@ -295,26 +275,7 @@ func paginatedSearchFilesInRepos(ctx context.Context, args *search.TextParameter
 //
 // It does this by searching over a globally-sorted list of repositories in
 // batches.
-type repoPaginationPlan struct {
-	// pagination is the pagination request we're trying to fulfill.
-	pagination *searchPaginationInfo
-
-	// repositories is the exhaustive and complete list of sorted repositories
-	// to be searched over multiple requests.
-	repositories []*search.RepositoryRevisions
-
-	// parameters for controlling the size of batches that the executor is
-	// called to search. The final batch size is calculated as:
-	//
-	// 	batchSize = numTotalReposOnSourcegraph() / searchBucketDivisor
-	//
-	// With the additional constraint that it must be at least min and no
-	// larger than max.
-	searchBucketDivisor              int
-	searchBucketMin, searchBucketMax int
-
-	mockNumTotalRepos func() int
-}
+type repoPaginationPlan struct { /* all structs must go */ }
 
 // executor is a function which searches a batch of repositories.
 //
@@ -422,25 +383,7 @@ func (p *repoPaginationPlan) execute(ctx context.Context, exec executor) (c *sea
 	return nextCursor, sliced.results, sliced.common, nil
 }
 
-type slicedSearchResults struct {
-	// results is the new results, sliced.
-	results []SearchResultResolver
-
-	// common is the new common results structure, updated to reflect the sliced results only.
-	common *searchResultsCommon
-
-	// resultOffset indicates where the search would continue within the last
-	// repository whose results were consumed. For example:
-	//
-	// 	limit := 5
-	// 	results := [a1, a2, a3, b1, b2, b3, c1, c2, c3]
-	// 	sliceSearchResults(results, ..., limit).resultOffset = 2 // in repository B, resume at result offset 2 (b3)
-	//
-	resultOffset int32
-
-	// limitHit indicates if the limit was hit and results were truncated.
-	limitHit bool
-}
+type slicedSearchResults struct { /* all structs must go */ }
 
 // sliceSearchResults effectively slices results[offset:offset+limit] and
 // returns an updated searchResultsCommon structure to reflect that, as well as
@@ -586,11 +529,7 @@ func clamp(x, min, max int) int {
 // Since we will need to know the number of total repos on Sourcegraph for
 // every paginated search request, but the exact number doesn't matter, we
 // cache the result for a minute to avoid executing many DB count operations.
-type numTotalReposCache struct {
-	sync.RWMutex
-	lastUpdate time.Time
-	count      int
-}
+type numTotalReposCache struct { /* all structs must go */ }
 
 func (n *numTotalReposCache) get(ctx context.Context) int {
 	n.RLock()

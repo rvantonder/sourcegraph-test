@@ -9,9 +9,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/schema"
 )
 
-type provider struct {
-	c *schema.HTTPHeaderAuthProvider
-}
+type provider struct { /* all structs must go */ }
 
 // ConfigID implements providers.Provider.
 func (provider) ConfigID() providers.ConfigID {

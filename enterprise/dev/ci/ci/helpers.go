@@ -14,34 +14,7 @@ import (
 
 // Config is the set of configuration parameters that determine the structure of the CI build. These
 // parameters are extracted from the build environment (branch name, commit hash, timestamp, etc.)
-type Config struct {
-	now     time.Time
-	branch  string
-	version string
-	commit  string
-
-	// mustIncludeCommit, if non-empty, is a list of commits at least one of which must be present
-	// in the branch. If empty, then no check is enforced.
-	mustIncludeCommit []string
-
-	// changedFiles is the list of files that have changed since the
-	// merge-base with origin/master.
-	changedFiles []string
-
-	taggedRelease       bool
-	releaseBranch       bool
-	isBextReleaseBranch bool
-	isBextNightly       bool
-	isRenovateBranch    bool
-	patch               bool
-	patchNoTest         bool
-	isQuick             bool
-	isMasterDryRun      bool
-
-	// profilingEnabled, if true, tells buildkite to print timing and resource utilization information
-	// for each command
-	profilingEnabled bool
-}
+type Config struct { /* all structs must go */ }
 
 func ComputeConfig() Config {
 	now := time.Now()

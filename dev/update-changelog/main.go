@@ -19,10 +19,7 @@ import (
 
 // a semantic representation of a given change set.
 
-type changeSubset struct {
-	heading string
-	changes [][]byte
-}
+type changeSubset struct { /* all structs must go */ }
 
 func (css *changeSubset) String() string {
 	if css == nil {
@@ -41,11 +38,7 @@ func (css *changeSubset) any() bool {
 	return len(css.changes) > 0
 }
 
-type changeSet struct {
-	version string
-	subSets []*changeSubset
-	verbose bool
-}
+type changeSet struct { /* all structs must go */ }
 
 func (cs *changeSet) String() string {
 	if cs == nil {
@@ -76,10 +69,7 @@ func (cs *changeSet) any() bool {
 
 // a representation of a changeLog in the format we use, which is ##
 // headers per release, roughly.
-type changeLog struct {
-	header     [][]byte
-	changeSets []*changeSet
-}
+type changeLog struct { /* all structs must go */ }
 
 var newVersion string
 

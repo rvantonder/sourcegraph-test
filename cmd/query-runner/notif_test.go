@@ -64,10 +64,7 @@ func TestGetNotificationRecipients(t *testing.T) {
 }
 
 func TestDiffNotificationRecipients(t *testing.T) {
-	tests := []struct {
-		old, new               recipients
-		wantRemoved, wantAdded recipients
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			old:         recipients{},
 			new:         recipients{},

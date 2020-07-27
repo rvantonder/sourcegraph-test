@@ -12,19 +12,7 @@ import (
 
 // RevisionSpecifier represents either a revspec or a ref glob. At most one
 // field is set. The default branch is represented by all fields being empty.
-type RevisionSpecifier struct {
-	// RevSpec is a revision range specifier suitable for passing to git. See
-	// the manpage gitrevisions(7).
-	RevSpec string
-
-	// RefGlob is a reference glob to pass to git. See the documentation for
-	// "--glob" in git-log.
-	RefGlob string
-
-	// ExcludeRefGlob is a glob for references to exclude. See the
-	// documentation for "--exclude" in git-log.
-	ExcludeRefGlob string
-}
+type RevisionSpecifier struct { /* all structs must go */ }
 
 func (r1 RevisionSpecifier) String() string {
 	if r1.ExcludeRefGlob != "" {
@@ -54,14 +42,7 @@ func (r1 RevisionSpecifier) Less(r2 RevisionSpecifier) bool {
 // RepositoryRevisions specifies a repository and 0 or more revspecs and ref
 // globs.  If no revspecs and no ref globs are specified, then the
 // repository's default branch is used.
-type RepositoryRevisions struct {
-	Repo *types.Repo
-	Revs []RevisionSpecifier
-
-	// ListRefs is called to list all Git refs for a repository. It is intended to be mocked by
-	// tests. If nil, git.ListRefs is used.
-	ListRefs func(context.Context, gitserver.Repo) ([]git.Ref, error)
-}
+type RepositoryRevisions struct { /* all structs must go */ }
 
 func (r *RepositoryRevisions) Equal(other *RepositoryRevisions) bool {
 	return reflect.DeepEqual(r.Repo, other.Repo) && reflect.DeepEqual(r.Revs, other.Revs)

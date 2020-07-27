@@ -21,19 +21,7 @@ func (r *RepositoryResolver) MirrorInfo() *repositoryMirrorInfoResolver {
 	return &repositoryMirrorInfoResolver{repository: r}
 }
 
-type repositoryMirrorInfoResolver struct {
-	repository *RepositoryResolver
-
-	// memoize the repo-updater RepoUpdateSchedulerInfo call
-	repoUpdateSchedulerInfoOnce   sync.Once
-	repoUpdateSchedulerInfoResult *repoupdaterprotocol.RepoUpdateSchedulerInfoResult
-	repoUpdateSchedulerInfoErr    error
-
-	// memoize the gitserver RepoInfo call
-	repoInfoOnce     sync.Once
-	repoInfoResponse *protocol.RepoInfo
-	repoInfoErr      error
-}
+type repositoryMirrorInfoResolver struct { /* all structs must go */ }
 
 func (r *repositoryMirrorInfoResolver) gitserverRepoInfo(ctx context.Context) (*protocol.RepoInfo, error) {
 	r.repoInfoOnce.Do(func() {
@@ -125,9 +113,7 @@ func (r *repositoryMirrorInfoResolver) UpdateSchedule(ctx context.Context) (*upd
 	return &updateScheduleResolver{schedule: info.Schedule}, nil
 }
 
-type updateScheduleResolver struct {
-	schedule *repoupdaterprotocol.RepoScheduleState
-}
+type updateScheduleResolver struct { /* all structs must go */ }
 
 func (r *updateScheduleResolver) IntervalSeconds() int32 {
 	return int32(r.schedule.IntervalSeconds)
@@ -156,9 +142,7 @@ func (r *repositoryMirrorInfoResolver) UpdateQueue(ctx context.Context) (*update
 	return &updateQueueResolver{queue: info.Queue}, nil
 }
 
-type updateQueueResolver struct {
-	queue *repoupdaterprotocol.RepoQueueState
-}
+type updateQueueResolver struct { /* all structs must go */ }
 
 func (r *updateQueueResolver) Updating() bool {
 	return r.queue.Updating
@@ -172,10 +156,7 @@ func (r *updateQueueResolver) Total() int32 {
 	return int32(r.queue.Total)
 }
 
-func (r *schemaResolver) CheckMirrorRepositoryConnection(ctx context.Context, args *struct {
-	Repository *graphql.ID
-	Name       *string
-}) (*checkMirrorRepositoryConnectionResult, error) {
+func (r *schemaResolver) CheckMirrorRepositoryConnection(ctx context.Context, args *struct { /* all structs must go */ }) (*checkMirrorRepositoryConnectionResult, error) {
 	// 🚨 SECURITY: This is an expensive operation and the errors may contain secrets,
 	// so only site admins may run it.
 	if err := backend.CheckCurrentUserIsSiteAdmin(ctx); err != nil {
@@ -214,9 +195,7 @@ func (r *schemaResolver) CheckMirrorRepositoryConnection(ctx context.Context, ar
 	return &result, nil
 }
 
-type checkMirrorRepositoryConnectionResult struct {
-	errorMessage string
-}
+type checkMirrorRepositoryConnectionResult struct { /* all structs must go */ }
 
 func (r *checkMirrorRepositoryConnectionResult) Error() *string {
 	if r.errorMessage == "" {
@@ -225,9 +204,7 @@ func (r *checkMirrorRepositoryConnectionResult) Error() *string {
 	return &r.errorMessage
 }
 
-func (r *schemaResolver) UpdateMirrorRepository(ctx context.Context, args *struct {
-	Repository graphql.ID
-}) (*EmptyResponse, error) {
+func (r *schemaResolver) UpdateMirrorRepository(ctx context.Context, args *struct { /* all structs must go */ }) (*EmptyResponse, error) {
 	// 🚨 SECURITY: There is no reason why non-site-admins would need to run this operation.
 	if err := backend.CheckCurrentUserIsSiteAdmin(ctx); err != nil {
 		return nil, err

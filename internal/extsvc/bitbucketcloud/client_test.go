@@ -54,15 +54,7 @@ func TestClient_Repos(t *testing.T) {
 		},
 	}
 
-	for _, tc := range []struct {
-		name    string
-		ctx     context.Context
-		page    *PageToken
-		account string
-		repos   []*Repo
-		next    *PageToken
-		err     string
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{
 			name: "timeout",
 			ctx:  timeout,

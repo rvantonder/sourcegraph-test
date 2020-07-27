@@ -16,26 +16,11 @@ import (
 // An unlocked record signifies that it is not actively being processed and records in this
 // state for more than a few seconds are very likely to be stuck after the worker processing
 // them has crashed.
-type Resetter struct {
-	store    Store
-	options  ResetterOptions
-	clock    glock.Clock
-	ctx      context.Context // root context passed to the database
-	cancel   func()          // cancels the root context
-	finished chan struct{}   // signals that Start has finished
-}
+type Resetter struct { /* all structs must go */ }
 
-type ResetterOptions struct {
-	Name     string
-	Interval time.Duration
-	Metrics  ResetterMetrics
-}
+type ResetterOptions struct { /* all structs must go */ }
 
-type ResetterMetrics struct {
-	RecordResets        prometheus.Counter
-	RecordResetFailures prometheus.Counter
-	Errors              prometheus.Counter
-}
+type ResetterMetrics struct { /* all structs must go */ }
 
 func NewResetter(store Store, options ResetterOptions) *Resetter {
 	return newResetter(store, options, glock.NewRealClock())

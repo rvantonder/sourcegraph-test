@@ -10,10 +10,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/api"
 )
 
-type IndexResolver struct {
-	index            store.Index
-	locationResolver *CachedLocationResolver
-}
+type IndexResolver struct { /* all structs must go */ }
 
 func NewIndexResolver(index store.Index, locationResolver *CachedLocationResolver) gql.LSIFIndexResolver {
 	return &IndexResolver{

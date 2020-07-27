@@ -20,11 +20,7 @@ var openSearchDescription = template.Must(template.New("").Parse(`
 `))
 
 func openSearch(w http.ResponseWriter, r *http.Request) {
-	type vars struct {
-		SiteName  string
-		BaseURL   string
-		SearchURL string
-	}
+	type vars struct { /* all structs must go */ }
 	externalURL := globals.ExternalURL()
 	externalURLStr := externalURL.String()
 	data := vars{

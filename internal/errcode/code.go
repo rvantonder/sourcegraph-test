@@ -59,10 +59,7 @@ func HTTP(err error) int {
 	return http.StatusInternalServerError
 }
 
-type HTTPErr struct {
-	Status int   // HTTP status code.
-	Err    error // Optional reason for the HTTP error.
-}
+type HTTPErr struct { /* all structs must go */ }
 
 func (err *HTTPErr) Error() string {
 	if err.Err != nil {
@@ -79,13 +76,7 @@ func IsHTTPErrorCode(err error, statusCode int) bool {
 
 // Mock is a convenience error which makes it easy to satisfy the optional
 // interfaces errors implement.
-type Mock struct {
-	// Message is the return value for Error() string
-	Message string
-
-	// IsNotFound is the return value for NotFound
-	IsNotFound bool
-}
+type Mock struct { /* all structs must go */ }
 
 func (e *Mock) Error() string {
 	return e.Message

@@ -22,22 +22,11 @@ import (
 // This resolver maintains a hierarchy of caches as a way to decrease lock contention. Resolution of a
 // repository holds the top-level lock. Resolution of a commit holds a lock associated with the parent
 // repository. Similarly, resolution of a path holds a lock associated with the parent commit.
-type CachedLocationResolver struct {
-	sync.RWMutex
-	children map[api.RepoID]*cachedRepositoryResolver
-}
+type CachedLocationResolver struct { /* all structs must go */ }
 
-type cachedRepositoryResolver struct {
-	sync.RWMutex
-	resolver *gql.RepositoryResolver
-	children map[string]*cachedCommitResolver
-}
+type cachedRepositoryResolver struct { /* all structs must go */ }
 
-type cachedCommitResolver struct {
-	sync.RWMutex
-	resolver *gql.GitCommitResolver
-	children map[string]*gql.GitTreeEntryResolver
-}
+type cachedCommitResolver struct { /* all structs must go */ }
 
 // NewCachedLocationResolver creates a location resolver with an empty cache.
 func NewCachedLocationResolver() *CachedLocationResolver {

@@ -12,38 +12,7 @@ import (
 // (from the package
 // github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/bundles/client)
 // used for unit testing.
-type MockBundleClient struct {
-	// DefinitionsFunc is an instance of a mock function object controlling
-	// the behavior of the method Definitions.
-	DefinitionsFunc *BundleClientDefinitionsFunc
-	// DiagnosticsFunc is an instance of a mock function object controlling
-	// the behavior of the method Diagnostics.
-	DiagnosticsFunc *BundleClientDiagnosticsFunc
-	// ExistsFunc is an instance of a mock function object controlling the
-	// behavior of the method Exists.
-	ExistsFunc *BundleClientExistsFunc
-	// HoverFunc is an instance of a mock function object controlling the
-	// behavior of the method Hover.
-	HoverFunc *BundleClientHoverFunc
-	// IDFunc is an instance of a mock function object controlling the
-	// behavior of the method ID.
-	IDFunc *BundleClientIDFunc
-	// MonikerResultsFunc is an instance of a mock function object
-	// controlling the behavior of the method MonikerResults.
-	MonikerResultsFunc *BundleClientMonikerResultsFunc
-	// MonikersByPositionFunc is an instance of a mock function object
-	// controlling the behavior of the method MonikersByPosition.
-	MonikersByPositionFunc *BundleClientMonikersByPositionFunc
-	// PackageInformationFunc is an instance of a mock function object
-	// controlling the behavior of the method PackageInformation.
-	PackageInformationFunc *BundleClientPackageInformationFunc
-	// RangesFunc is an instance of a mock function object controlling the
-	// behavior of the method Ranges.
-	RangesFunc *BundleClientRangesFunc
-	// ReferencesFunc is an instance of a mock function object controlling
-	// the behavior of the method References.
-	ReferencesFunc *BundleClientReferencesFunc
-}
+type MockBundleClient struct { /* all structs must go */ }
 
 // NewMockBundleClient creates a new mock of the BundleClient interface. All
 // methods return zero values for all results, unless overwritten.
@@ -142,12 +111,7 @@ func NewMockBundleClientFrom(i client.BundleClient) *MockBundleClient {
 
 // BundleClientDefinitionsFunc describes the behavior when the Definitions
 // method of the parent MockBundleClient instance is invoked.
-type BundleClientDefinitionsFunc struct {
-	defaultHook func(context.Context, string, int, int) ([]client.Location, error)
-	hooks       []func(context.Context, string, int, int) ([]client.Location, error)
-	history     []BundleClientDefinitionsFuncCall
-	mutex       sync.Mutex
-}
+type BundleClientDefinitionsFunc struct { /* all structs must go */ }
 
 // Definitions delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -222,26 +186,7 @@ func (f *BundleClientDefinitionsFunc) History() []BundleClientDefinitionsFuncCal
 
 // BundleClientDefinitionsFuncCall is an object that describes an invocation
 // of method Definitions on an instance of MockBundleClient.
-type BundleClientDefinitionsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []client.Location
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type BundleClientDefinitionsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -257,12 +202,7 @@ func (c BundleClientDefinitionsFuncCall) Results() []interface{} {
 
 // BundleClientDiagnosticsFunc describes the behavior when the Diagnostics
 // method of the parent MockBundleClient instance is invoked.
-type BundleClientDiagnosticsFunc struct {
-	defaultHook func(context.Context, string, int, int) ([]client.Diagnostic, int, error)
-	hooks       []func(context.Context, string, int, int) ([]client.Diagnostic, int, error)
-	history     []BundleClientDiagnosticsFuncCall
-	mutex       sync.Mutex
-}
+type BundleClientDiagnosticsFunc struct { /* all structs must go */ }
 
 // Diagnostics delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -337,29 +277,7 @@ func (f *BundleClientDiagnosticsFunc) History() []BundleClientDiagnosticsFuncCal
 
 // BundleClientDiagnosticsFuncCall is an object that describes an invocation
 // of method Diagnostics on an instance of MockBundleClient.
-type BundleClientDiagnosticsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []client.Diagnostic
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 int
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type BundleClientDiagnosticsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -375,12 +293,7 @@ func (c BundleClientDiagnosticsFuncCall) Results() []interface{} {
 
 // BundleClientExistsFunc describes the behavior when the Exists method of
 // the parent MockBundleClient instance is invoked.
-type BundleClientExistsFunc struct {
-	defaultHook func(context.Context, string) (bool, error)
-	hooks       []func(context.Context, string) (bool, error)
-	history     []BundleClientExistsFuncCall
-	mutex       sync.Mutex
-}
+type BundleClientExistsFunc struct { /* all structs must go */ }
 
 // Exists delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -454,20 +367,7 @@ func (f *BundleClientExistsFunc) History() []BundleClientExistsFuncCall {
 
 // BundleClientExistsFuncCall is an object that describes an invocation of
 // method Exists on an instance of MockBundleClient.
-type BundleClientExistsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 bool
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type BundleClientExistsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -483,12 +383,7 @@ func (c BundleClientExistsFuncCall) Results() []interface{} {
 
 // BundleClientHoverFunc describes the behavior when the Hover method of the
 // parent MockBundleClient instance is invoked.
-type BundleClientHoverFunc struct {
-	defaultHook func(context.Context, string, int, int) (string, client.Range, bool, error)
-	hooks       []func(context.Context, string, int, int) (string, client.Range, bool, error)
-	history     []BundleClientHoverFuncCall
-	mutex       sync.Mutex
-}
+type BundleClientHoverFunc struct { /* all structs must go */ }
 
 // Hover delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -562,32 +457,7 @@ func (f *BundleClientHoverFunc) History() []BundleClientHoverFuncCall {
 
 // BundleClientHoverFuncCall is an object that describes an invocation of
 // method Hover on an instance of MockBundleClient.
-type BundleClientHoverFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 string
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 client.Range
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 bool
-	// Result3 is the value of the 4th result returned from this method
-	// invocation.
-	Result3 error
-}
+type BundleClientHoverFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -603,12 +473,7 @@ func (c BundleClientHoverFuncCall) Results() []interface{} {
 
 // BundleClientIDFunc describes the behavior when the ID method of the
 // parent MockBundleClient instance is invoked.
-type BundleClientIDFunc struct {
-	defaultHook func() int
-	hooks       []func() int
-	history     []BundleClientIDFuncCall
-	mutex       sync.Mutex
-}
+type BundleClientIDFunc struct { /* all structs must go */ }
 
 // ID delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -682,11 +547,7 @@ func (f *BundleClientIDFunc) History() []BundleClientIDFuncCall {
 
 // BundleClientIDFuncCall is an object that describes an invocation of
 // method ID on an instance of MockBundleClient.
-type BundleClientIDFuncCall struct {
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 int
-}
+type BundleClientIDFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -702,12 +563,7 @@ func (c BundleClientIDFuncCall) Results() []interface{} {
 
 // BundleClientMonikerResultsFunc describes the behavior when the
 // MonikerResults method of the parent MockBundleClient instance is invoked.
-type BundleClientMonikerResultsFunc struct {
-	defaultHook func(context.Context, string, string, string, int, int) ([]client.Location, int, error)
-	hooks       []func(context.Context, string, string, string, int, int) ([]client.Location, int, error)
-	history     []BundleClientMonikerResultsFuncCall
-	mutex       sync.Mutex
-}
+type BundleClientMonikerResultsFunc struct { /* all structs must go */ }
 
 // MonikerResults delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -782,35 +638,7 @@ func (f *BundleClientMonikerResultsFunc) History() []BundleClientMonikerResultsF
 
 // BundleClientMonikerResultsFuncCall is an object that describes an
 // invocation of method MonikerResults on an instance of MockBundleClient.
-type BundleClientMonikerResultsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 string
-	// Arg4 is the value of the 5th argument passed to this method
-	// invocation.
-	Arg4 int
-	// Arg5 is the value of the 6th argument passed to this method
-	// invocation.
-	Arg5 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []client.Location
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 int
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type BundleClientMonikerResultsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -827,12 +655,7 @@ func (c BundleClientMonikerResultsFuncCall) Results() []interface{} {
 // BundleClientMonikersByPositionFunc describes the behavior when the
 // MonikersByPosition method of the parent MockBundleClient instance is
 // invoked.
-type BundleClientMonikersByPositionFunc struct {
-	defaultHook func(context.Context, string, int, int) ([][]client.MonikerData, error)
-	hooks       []func(context.Context, string, int, int) ([][]client.MonikerData, error)
-	history     []BundleClientMonikersByPositionFuncCall
-	mutex       sync.Mutex
-}
+type BundleClientMonikersByPositionFunc struct { /* all structs must go */ }
 
 // MonikersByPosition delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -908,26 +731,7 @@ func (f *BundleClientMonikersByPositionFunc) History() []BundleClientMonikersByP
 // BundleClientMonikersByPositionFuncCall is an object that describes an
 // invocation of method MonikersByPosition on an instance of
 // MockBundleClient.
-type BundleClientMonikersByPositionFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 [][]client.MonikerData
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type BundleClientMonikersByPositionFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -944,12 +748,7 @@ func (c BundleClientMonikersByPositionFuncCall) Results() []interface{} {
 // BundleClientPackageInformationFunc describes the behavior when the
 // PackageInformation method of the parent MockBundleClient instance is
 // invoked.
-type BundleClientPackageInformationFunc struct {
-	defaultHook func(context.Context, string, string) (client.PackageInformationData, error)
-	hooks       []func(context.Context, string, string) (client.PackageInformationData, error)
-	history     []BundleClientPackageInformationFuncCall
-	mutex       sync.Mutex
-}
+type BundleClientPackageInformationFunc struct { /* all structs must go */ }
 
 // PackageInformation delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -1025,23 +824,7 @@ func (f *BundleClientPackageInformationFunc) History() []BundleClientPackageInfo
 // BundleClientPackageInformationFuncCall is an object that describes an
 // invocation of method PackageInformation on an instance of
 // MockBundleClient.
-type BundleClientPackageInformationFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 client.PackageInformationData
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type BundleClientPackageInformationFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -1057,12 +840,7 @@ func (c BundleClientPackageInformationFuncCall) Results() []interface{} {
 
 // BundleClientRangesFunc describes the behavior when the Ranges method of
 // the parent MockBundleClient instance is invoked.
-type BundleClientRangesFunc struct {
-	defaultHook func(context.Context, string, int, int) ([]client.CodeIntelligenceRange, error)
-	hooks       []func(context.Context, string, int, int) ([]client.CodeIntelligenceRange, error)
-	history     []BundleClientRangesFuncCall
-	mutex       sync.Mutex
-}
+type BundleClientRangesFunc struct { /* all structs must go */ }
 
 // Ranges delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -1136,26 +914,7 @@ func (f *BundleClientRangesFunc) History() []BundleClientRangesFuncCall {
 
 // BundleClientRangesFuncCall is an object that describes an invocation of
 // method Ranges on an instance of MockBundleClient.
-type BundleClientRangesFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []client.CodeIntelligenceRange
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type BundleClientRangesFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -1171,12 +930,7 @@ func (c BundleClientRangesFuncCall) Results() []interface{} {
 
 // BundleClientReferencesFunc describes the behavior when the References
 // method of the parent MockBundleClient instance is invoked.
-type BundleClientReferencesFunc struct {
-	defaultHook func(context.Context, string, int, int) ([]client.Location, error)
-	hooks       []func(context.Context, string, int, int) ([]client.Location, error)
-	history     []BundleClientReferencesFuncCall
-	mutex       sync.Mutex
-}
+type BundleClientReferencesFunc struct { /* all structs must go */ }
 
 // References delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -1251,26 +1005,7 @@ func (f *BundleClientReferencesFunc) History() []BundleClientReferencesFuncCall 
 
 // BundleClientReferencesFuncCall is an object that describes an invocation
 // of method References on an instance of MockBundleClient.
-type BundleClientReferencesFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []client.Location
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type BundleClientReferencesFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.

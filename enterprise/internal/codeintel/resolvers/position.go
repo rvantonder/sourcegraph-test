@@ -35,11 +35,7 @@ type PositionAdjuster interface {
 	AdjustRange(ctx context.Context, commit, path string, rx bundles.Range, reverse bool) (string, bundles.Range, bool, error)
 }
 
-type positionAdjuster struct {
-	repo      *types.Repo
-	commit    string
-	hunkCache HunkCache
-}
+type positionAdjuster struct { /* all structs must go */ }
 
 // NewPositionAdjuster creates a new PositionAdjuster with the given repository and source commit.
 func NewPositionAdjuster(repo *types.Repo, commit string, hunkCache HunkCache) PositionAdjuster {

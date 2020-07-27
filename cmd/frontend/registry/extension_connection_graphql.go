@@ -28,14 +28,7 @@ func (r *extensionRegistryResolver) Extensions(ctx context.Context, args *graphq
 }
 
 // registryExtensionConnectionResolver resolves a list of registry extensions.
-type registryExtensionConnectionResolver struct {
-	args graphqlbackend.RegistryExtensionConnectionArgs
-
-	// cache results because they are used by multiple fields
-	once               sync.Once
-	registryExtensions []graphqlbackend.RegistryExtension
-	err                error
-}
+type registryExtensionConnectionResolver struct { /* all structs must go */ }
 
 var (
 	// ListLocalRegistryExtensions lists and returns local registry extensions according to the args. If

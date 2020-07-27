@@ -21,13 +21,7 @@ import (
 
 const providerType = "openidconnect"
 
-type provider struct {
-	config schema.OpenIDConnectAuthProvider
-
-	mu         sync.Mutex
-	oidc       *oidcProvider
-	refreshErr error
-}
+type provider struct { /* all structs must go */ }
 
 // ConfigID implements providers.Provider.
 func (p *provider) ConfigID() providers.ConfigID {
@@ -98,23 +92,9 @@ func (p *provider) oauth2Config() *oauth2.Config {
 
 // oidcProvider is an OpenID Connect oidcProvider with additional claims parsed from the service oidcProvider
 // discovery response (beyond what github.com/coreos/go-oidc parses by default).
-type oidcProvider struct {
-	oidc.Provider
-	providerExtraClaims
-}
+type oidcProvider struct { /* all structs must go */ }
 
-type providerExtraClaims struct {
-	// EndSessionEndpoint is the URL of the OP's endpoint that logs the user out of the OP (provided
-	// in the "end_session_endpoint" field of the OP's service discovery response). See
-	// https://openid.net/specs/openid-connect-session-1_0.html#OPMetadata.
-	EndSessionEndpoint string `json:"end_session_endpoint,omitempty"`
-
-	// RevocationEndpoint is the URL of the OP's revocation endpoint (provided in the
-	// "revocation_endpoint" field of the OP's service discovery response). See
-	// https://openid.net/specs/openid-heart-openid-connect-1_0.html#rfc.section.3.5 and
-	// https://tools.ietf.org/html/rfc7009.
-	RevocationEndpoint string `json:"revocation_endpoint,omitempty"`
-}
+type providerExtraClaims struct { /* all structs must go */ }
 
 var mockNewProvider func(issuerURL string) (*oidcProvider, error)
 

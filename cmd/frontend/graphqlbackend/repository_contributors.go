@@ -9,16 +9,9 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/vcs/git"
 )
 
-type repositoryContributorsArgs struct {
-	RevisionRange *string
-	After         *string
-	Path          *string
-}
+type repositoryContributorsArgs struct { /* all structs must go */ }
 
-func (r *RepositoryResolver) Contributors(args *struct {
-	repositoryContributorsArgs
-	First *int32
-}) *repositoryContributorConnectionResolver {
+func (r *RepositoryResolver) Contributors(args *struct { /* all structs must go */ }) *repositoryContributorConnectionResolver {
 	return &repositoryContributorConnectionResolver{
 		args:  args.repositoryContributorsArgs,
 		first: args.First,
@@ -26,17 +19,7 @@ func (r *RepositoryResolver) Contributors(args *struct {
 	}
 }
 
-type repositoryContributorConnectionResolver struct {
-	args  repositoryContributorsArgs
-	first *int32
-
-	repo *RepositoryResolver
-
-	// cache result because it is used by multiple fields
-	once    sync.Once
-	results []*git.PersonCount
-	err     error
-}
+type repositoryContributorConnectionResolver struct { /* all structs must go */ }
 
 func (r *repositoryContributorConnectionResolver) compute(ctx context.Context) ([]*git.PersonCount, error) {
 	r.once.Do(func() {

@@ -13,17 +13,7 @@ import (
 )
 
 // An OrgInvitation is an invitation for a user to join an organization as a member.
-type OrgInvitation struct {
-	ID              int64
-	OrgID           int32
-	SenderUserID    int32 // the sender of the invitation
-	RecipientUserID int32 // the recipient of the invitation
-	CreatedAt       time.Time
-	NotifiedAt      *time.Time
-	RespondedAt     *time.Time
-	ResponseType    *bool // accepted (true), rejected (false), no response (nil)
-	RevokedAt       *time.Time
-}
+type OrgInvitation struct { /* all structs must go */ }
 
 // Pending reports whether the invitation is pending (i.e., can be responded to by the recipient
 // because it has not been revoked or responded to yet).
@@ -34,9 +24,7 @@ func (oi *OrgInvitation) Pending() bool {
 type orgInvitations struct{}
 
 // OrgInvitationNotFoundError occurs when an org invitation is not found.
-type OrgInvitationNotFoundError struct {
-	args []interface{}
-}
+type OrgInvitationNotFoundError struct { /* all structs must go */ }
 
 // NotFound implements errcode.NotFounder.
 func (err OrgInvitationNotFoundError) NotFound() bool { return true }
@@ -107,11 +95,7 @@ func (s *orgInvitations) GetPending(ctx context.Context, orgID, recipientUserID 
 }
 
 // OrgInvitationsListOptions contains options for listing org invitations.
-type OrgInvitationsListOptions struct {
-	OrgID           int32 // only list org invitations for this org
-	RecipientUserID int32 // only list org invitations with this user as the recipient
-	*LimitOffset
-}
+type OrgInvitationsListOptions struct { /* all structs must go */ }
 
 func (o OrgInvitationsListOptions) sqlConditions() []*sqlf.Query {
 	var conds []*sqlf.Query
@@ -225,8 +209,4 @@ func (*orgInvitations) Revoke(ctx context.Context, id int64) error {
 }
 
 // MockOrgInvitations mocks the org invitations store.
-type MockOrgInvitations struct {
-	Create  func(orgID, senderUserID, recipientUserID int32) (*OrgInvitation, error)
-	GetByID func(id int64) (*OrgInvitation, error)
-	Revoke  func(id int64) error
-}
+type MockOrgInvitations struct { /* all structs must go */ }

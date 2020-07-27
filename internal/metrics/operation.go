@@ -8,11 +8,7 @@ import (
 )
 
 // OperationMetrics contains three common metrics for any operation.
-type OperationMetrics struct {
-	Duration *prometheus.HistogramVec // How long did it take?
-	Count    *prometheus.CounterVec   // How many things were processed?
-	Errors   *prometheus.CounterVec   // How many errors occurred?
-}
+type OperationMetrics struct { /* all structs must go */ }
 
 // Observe registers an observation of a single operation.
 func (m *OperationMetrics) Observe(secs, count float64, err *error, lvals ...string) {
@@ -27,13 +23,7 @@ func (m *OperationMetrics) Observe(secs, count float64, err *error, lvals ...str
 	}
 }
 
-type operationMetricOptions struct {
-	subsystem    string
-	durationHelp string
-	countHelp    string
-	errorsHelp   string
-	labels       []string
-}
+type operationMetricOptions struct { /* all structs must go */ }
 
 // OperationMetricsOption alter the default behavior of NewOperationMetrics.
 type OperationMetricsOption func(o *operationMetricOptions)
@@ -120,10 +110,7 @@ func NewOperationMetrics(r prometheus.Registerer, metricPrefix string, fns ...Op
 	}
 }
 
-type SingletonOperationMetrics struct {
-	sync.Once
-	metrics *OperationMetrics
-}
+type SingletonOperationMetrics struct { /* all structs must go */ }
 
 // SingletonOperationMetrics returns an operation metrics instance. If no instance has been
 // created yet, one is constructed with the given create function. This method is safe to

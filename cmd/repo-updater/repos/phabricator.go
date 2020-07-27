@@ -18,14 +18,7 @@ import (
 
 // A PhabricatorSource yields repositories from a single Phabricator connection configured
 // in Sourcegraph via the external services configuration.
-type PhabricatorSource struct {
-	svc  *ExternalService
-	conn *schema.PhabricatorConnection
-	cf   *httpcli.Factory
-
-	mu  sync.Mutex
-	cli *phabricator.Client
-}
+type PhabricatorSource struct { /* all structs must go */ }
 
 // NewPhabricatorSource returns a new PhabricatorSource from the given external service.
 func NewPhabricatorSource(svc *ExternalService, cf *httpcli.Factory) (*PhabricatorSource, error) {
@@ -98,9 +91,7 @@ func (s *PhabricatorSource) makeRepo(repo *phabricator.Repo) (*Repo, error) {
 	}
 
 	var cloneURL string
-	for _, alt := range [...]struct {
-		protocol, identifier string
-	}{ // Ordered by priority.
+	for _, alt := range [...]struct { /* all structs must go */ }{ // Ordered by priority.
 		{"https", "shortname"},
 		{"https", "callsign"},
 		{"https", "id"},

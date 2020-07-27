@@ -22,10 +22,7 @@ import (
 // elements of the set are written to an int-keyed map. Maps have a larger overhead than slices
 // (see https://golang.org/src/runtime/map.go#L115), so we only want to pay this cost when the
 // performance of using a slice outweighs the memory savings.
-type IDSet struct {
-	s []int            // small set
-	m map[int]struct{} // large set
-}
+type IDSet struct { /* all structs must go */ }
 
 // NewIDSet creates a new empty identifier set.
 func NewIDSet() *IDSet {

@@ -25,17 +25,7 @@ func SplitRepositoryNameWithOwner(nameWithOwner string) (owner, repo string, err
 }
 
 // Repository is a GitHub repository.
-type Repository struct {
-	ID               string // ID of repository (GitHub GraphQL ID, not GitHub database ID)
-	DatabaseID       int64  // The integer database id
-	NameWithOwner    string // full name of repository ("owner/name")
-	Description      string // description of repository
-	URL              string // the web URL of this repository ("https://github.com/foo/bar")
-	IsPrivate        bool   // whether the repository is private
-	IsFork           bool   // whether the repository is a fork of another repository
-	IsArchived       bool   // whether the repository is archived on the code host
-	ViewerPermission string // ADMIN, WRITE, READ, or empty if unknown. Only the graphql api populates this. https://developer.github.com/v4/enum/repositorypermission/
-}
+type Repository struct { /* all structs must go */ }
 
 // repositoryFieldsGraphQLFragment returns a GraphQL fragment that contains the fields needed to populate the
 // Repository struct.
@@ -167,12 +157,7 @@ func init() {
 	prometheus.MustRegister(reposGitHubCacheCounter)
 }
 
-type cachedRepo struct {
-	Repository
-
-	// NotFound indicates that the GitHub API reported that the repository was not found.
-	NotFound bool
-}
+type cachedRepo struct { /* all structs must go */ }
 
 // getRepositoryFromCache attempts to get a response from the redis cache.
 // It returns nil error for cache-hit condition and non-nil error for cache-miss.
@@ -212,23 +197,9 @@ func (c *Client) addRepositoriesToCache(repos []*Repository) {
 	}
 }
 
-type restRepositoryPermissions struct {
-	Admin bool `json:"admin"`
-	Push  bool `json:"push"`
-	Pull  bool `json:"pull"`
-}
+type restRepositoryPermissions struct { /* all structs must go */ }
 
-type restRepository struct {
-	ID          string `json:"node_id"` // GraphQL ID
-	DatabaseID  int64  `json:"id"`
-	FullName    string `json:"full_name"` // same as nameWithOwner
-	Description string
-	HTMLURL     string `json:"html_url"` // web URL
-	Private     bool
-	Fork        bool
-	Archived    bool
-	Permissions restRepositoryPermissions `json:"permissions"`
-}
+type restRepository struct { /* all structs must go */ }
 
 // getRepositoryFromAPI attempts to fetch a repository from the GitHub API without use of the redis cache.
 func (c *Client) getRepositoryFromAPI(ctx context.Context, owner, name string) (*Repository, error) {
@@ -293,9 +264,7 @@ func (c *Client) getPublicRepositories(ctx context.Context, sinceRepoID int64) (
 // getRepositoryByNodeIDFromAPI attempts to fetch a repository by GraphQL node ID from the GitHub
 // API without use of the redis cache.
 func (c *Client) getRepositoryByNodeIDFromAPI(ctx context.Context, id string) (*Repository, error) {
-	var result struct {
-		Node *Repository `json:"node"`
-	}
+	var result struct { /* all structs must go */ }
 	if err := c.requestGraphQL(ctx, `
 query Repository($id: ID!) {
 	node(id: $id) {
@@ -332,9 +301,7 @@ var MaxNodeIDs = 100
 // time of writing, is 100 (if the caller does not respect this match, this method will return an
 // error). This method does not cache.
 func (c *Client) GetRepositoriesByNodeIDFromAPI(ctx context.Context, nodeIDs []string) (map[string]*Repository, error) {
-	var result struct {
-		Nodes []*Repository
-	}
+	var result struct { /* all structs must go */ }
 	err := c.requestGraphQL(ctx, `
 query Repositories($ids: [ID!]!) {
 	nodes(ids: $ids) {
@@ -489,18 +456,10 @@ func (c *Client) ListUserRepositories(ctx context.Context, user string, page int
 	return repos, len(repos) > 0, 1, err
 }
 
-type restSearchResponse struct {
-	TotalCount        int              `json:"total_count"`
-	IncompleteResults bool             `json:"incomplete_results"`
-	Items             []restRepository `json:"items"`
-}
+type restSearchResponse struct { /* all structs must go */ }
 
 // RepositoryListPage is a page of repositories returned from the GitHub Search API.
-type RepositoryListPage struct {
-	TotalCount  int
-	Repos       []*Repository
-	HasNextPage bool
-}
+type RepositoryListPage struct { /* all structs must go */ }
 
 func (c *Client) ListRepositoriesForSearch(ctx context.Context, searchString string, page int) (RepositoryListPage, error) {
 	urlValues := url.Values{
@@ -529,9 +488,7 @@ func (c *Client) ListRepositoriesForSearch(ctx context.Context, searchString str
 	}, nil
 }
 
-type restTopicsResponse struct {
-	Names []string `json:"names"`
-}
+type restTopicsResponse struct { /* all structs must go */ }
 
 // ListTopicsOnRepository lists topics on the given repository.
 func (c *Client) ListTopicsOnRepository(ctx context.Context, ownerAndName string) ([]string, error) {

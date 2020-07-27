@@ -17,11 +17,7 @@ func TestHasCommit(t *testing.T) {
 	dbtesting.SetupGlobalTestDB(t)
 	store := rawTestStore()
 
-	testCases := []struct {
-		repositoryID int
-		commit       string
-		exists       bool
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{50, makeCommit(1), true},
 		{50, makeCommit(2), false},
 		{51, makeCommit(1), false},
@@ -77,10 +73,7 @@ func TestUpdateCommits(t *testing.T) {
 	}
 	defer rows.Close()
 
-	type commitPair struct {
-		Commit       string
-		ParentCommit *string
-	}
+	type commitPair struct { /* all structs must go */ }
 
 	var commitPairs []commitPair
 	for rows.Next() {
@@ -142,10 +135,7 @@ func TestUpdateCommitsWithOverlap(t *testing.T) {
 	}
 	defer rows.Close()
 
-	type commitPair struct {
-		Commit       string
-		ParentCommit *string
-	}
+	type commitPair struct { /* all structs must go */ }
 
 	var commitPairs []commitPair
 	for rows.Next() {

@@ -17,11 +17,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/symbols/protocol"
 )
 
-type symbolsArgs struct {
-	graphqlutil.ConnectionArgs
-	Query           *string
-	IncludePatterns *[]string
-}
+type symbolsArgs struct { /* all structs must go */ }
 
 func (r *GitTreeEntryResolver) Symbols(ctx context.Context, args *symbolsArgs) (*symbolConnectionResolver, error) {
 	symbols, err := computeSymbols(ctx, r.commit, args.Query, args.First, args.IncludePatterns)
@@ -39,10 +35,7 @@ func (r *GitCommitResolver) Symbols(ctx context.Context, args *symbolsArgs) (*sy
 	return &symbolConnectionResolver{symbols: symbols, first: args.First}, nil
 }
 
-type symbolConnectionResolver struct {
-	first   *int32
-	symbols []*symbolResolver
-}
+type symbolConnectionResolver struct { /* all structs must go */ }
 
 func limitOrDefault(first *int32) int {
 	if first == nil {
@@ -238,12 +231,7 @@ func (r *symbolConnectionResolver) PageInfo(ctx context.Context) (*graphqlutil.P
 	return graphqlutil.HasNextPage(len(r.symbols) > limitOrDefault(r.first)), nil
 }
 
-type symbolResolver struct {
-	symbol   protocol.Symbol
-	language string
-	location *locationResolver
-	uri      *gituri.URI
-}
+type symbolResolver struct { /* all structs must go */ }
 
 func (r *symbolResolver) Name() string { return r.symbol.Name }
 

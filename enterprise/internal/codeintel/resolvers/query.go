@@ -11,30 +11,15 @@ import (
 
 // AdjustedLocation is similar to a codeintelapi.ResolvedLocation, but with fields denoting
 // the commit and range adjusted for the target commit (when the requested commit is not indexed).
-type AdjustedLocation struct {
-	Dump           store.Dump
-	Path           string
-	AdjustedCommit string
-	AdjustedRange  bundles.Range
-}
+type AdjustedLocation struct { /* all structs must go */ }
 
 // AdjustedDiagnostic is similar to a codeintelapi.ResolvedDiagnostic, but with fields denoting
 // the commit and range adjusted for the target commit (when the requested commit is not indexed).
-type AdjustedDiagnostic struct {
-	bundles.Diagnostic
-	Dump           store.Dump
-	AdjustedCommit string
-	AdjustedRange  bundles.Range
-}
+type AdjustedDiagnostic struct { /* all structs must go */ }
 
 // AdjustedCodeIntelligenceRange is similar to a codeintelapi.CodeIntelligenceRange,
 // but with adjusted definition and reference locations.
-type AdjustedCodeIntelligenceRange struct {
-	Range       bundles.Range
-	Definitions []AdjustedLocation
-	References  []AdjustedLocation
-	HoverText   string
-}
+type AdjustedCodeIntelligenceRange struct { /* all structs must go */ }
 
 // QueryResolver is the main interface to bundle-related operations exposed to the GraphQL API. This
 // resolver consolidates the logic for bundle operations and is not itself concerned with GraphQL/API
@@ -48,16 +33,7 @@ type QueryResolver interface {
 	Diagnostics(ctx context.Context, limit int) ([]AdjustedDiagnostic, int, error)
 }
 
-type queryResolver struct {
-	store               store.Store
-	bundleManagerClient bundles.BundleManagerClient
-	codeIntelAPI        codeintelapi.CodeIntelAPI
-	positionAdjuster    PositionAdjuster
-	repositoryID        int
-	commit              string
-	path                string
-	uploads             []store.Dump
-}
+type queryResolver struct { /* all structs must go */ }
 
 // NewQueryResolver create a new query resolver with the given services. The methods of this
 // struct return queries for the given repository, commit, and path, and will query only the

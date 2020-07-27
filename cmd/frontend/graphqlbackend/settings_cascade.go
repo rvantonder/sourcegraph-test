@@ -18,11 +18,7 @@ import (
 // - Global site settings
 // - Organization settings
 // - Current user settings
-type settingsCascade struct {
-	// At most 1 of these fields is set.
-	unauthenticatedActor bool
-	subject              *settingsSubject
-}
+type settingsCascade struct { /* all structs must go */ }
 
 var mockSettingsCascadeSubjects func() ([]*settingsSubject, error)
 

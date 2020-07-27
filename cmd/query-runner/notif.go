@@ -9,9 +9,7 @@ import (
 
 // recipientSpec identifies a recipient of a saved search notification. Exactly one of its fields is
 // nonzero.
-type recipientSpec struct {
-	userID, orgID int32
-}
+type recipientSpec struct { /* all structs must go */ }
 
 func (r recipientSpec) String() string {
 	if r.userID != 0 {
@@ -22,11 +20,7 @@ func (r recipientSpec) String() string {
 
 // recipient describes a recipient of a saved search notification and the type of notifications
 // they're configured to receive.
-type recipient struct {
-	spec  recipientSpec // the recipient's identity
-	email bool          // send an email to the recipient
-	slack bool          // post a Slack message to the recipient
-}
+type recipient struct { /* all structs must go */ }
 
 func (r *recipient) String() string {
 	return fmt.Sprintf("{%s email:%v slack:%v}", r.spec, r.email, r.slack)

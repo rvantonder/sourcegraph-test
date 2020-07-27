@@ -28,11 +28,7 @@ func TestProvider_Validate(t *testing.T) {
 		instanceURL = "https://bitbucket.sgdev.org"
 	}
 
-	for _, tc := range []struct {
-		name     string
-		client   func(*bitbucketserver.Client)
-		problems []string
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{
 			name: "no-problems-when-authenticated-as-admin",
 		},
@@ -72,13 +68,7 @@ func testProviderFetchAccount(f *fixtures, cli *bitbucketserver.Client) func(*te
 
 		h := codeHost{CodeHost: p.codeHost}
 
-		for _, tc := range []struct {
-			name string
-			ctx  context.Context
-			user *types.User
-			acct *extsvc.Account
-			err  string
-		}{
+		for _, tc := range []struct { /* all structs must go */ }{
 			{
 				name: "no user given",
 				user: nil,
@@ -134,13 +124,7 @@ func testProviderFetchUserPerms(f *fixtures, cli *bitbucketserver.Client) func(*
 			return ids
 		}
 
-		for _, tc := range []struct {
-			name string
-			ctx  context.Context
-			acct *extsvc.Account
-			ids  []extsvc.RepoID
-			err  string
-		}{
+		for _, tc := range []struct { /* all structs must go */ }{
 			{
 				name: "no account provided",
 				acct: nil,
@@ -228,13 +212,7 @@ func testProviderFetchRepoPerms(f *fixtures, cli *bitbucketserver.Client) func(*
 			return ids
 		}
 
-		for _, tc := range []struct {
-			name string
-			ctx  context.Context
-			repo *extsvc.Repository
-			ids  []extsvc.AccountID
-			err  string
-		}{
+		for _, tc := range []struct { /* all structs must go */ }{
 			{
 				name: "no repo provided",
 				repo: nil,
@@ -307,14 +285,7 @@ func marshalJSON(v interface{}) []byte {
 // of Bitbucket Server with docker, create an Application Link as per
 // https://docs.sourcegraph.com/admin/external_service/bitbucket_server, and
 // then run the tests with -update=true.
-type fixtures struct {
-	users             map[string]*bitbucketserver.User
-	groups            map[string]*bitbucketserver.Group
-	projects          map[string]*bitbucketserver.Project
-	repos             map[string]*bitbucketserver.Repo
-	groupProjectPerms []*bitbucketserver.GroupProjectPermission
-	userRepoPerms     []*bitbucketserver.UserRepoPermission
-}
+type fixtures struct { /* all structs must go */ }
 
 func (f fixtures) load(t *testing.T, cli *bitbucketserver.Client) {
 	ctx := context.Background()
@@ -459,9 +430,7 @@ func newFixtures() *fixtures {
 	}
 }
 
-type codeHost struct {
-	*extsvc.CodeHost
-}
+type codeHost struct { /* all structs must go */ }
 
 func (h codeHost) externalAccount(userID int32, u *bitbucketserver.User) *extsvc.Account {
 	bs := marshalJSON(u)

@@ -34,9 +34,7 @@ import (
 //         txBase, err := s.Store.Transact(ctx)
 //         return &SprocketStore{Store: txBase}, nil
 //     }
-type Store struct {
-	handle *TransactableHandle
-}
+type Store struct { /* all structs must go */ }
 
 // ShareableStore is implemented by stores to explicitly allow distinct store instances
 // to reference the store's underlying handle. This is used to share transactions between

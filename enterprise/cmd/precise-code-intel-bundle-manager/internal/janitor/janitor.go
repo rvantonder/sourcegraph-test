@@ -10,18 +10,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/store"
 )
 
-type Janitor struct {
-	store              store.Store
-	bundleDir          string
-	desiredPercentFree int
-	janitorInterval    time.Duration
-	maxUploadAge       time.Duration
-	maxUploadPartAge   time.Duration
-	maxDatabasePartAge time.Duration
-	metrics            JanitorMetrics
-	done               chan struct{}
-	once               sync.Once
-}
+type Janitor struct { /* all structs must go */ }
 
 func New(
 	store store.Store,

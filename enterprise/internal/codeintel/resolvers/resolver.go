@@ -26,12 +26,7 @@ type Resolver interface {
 	QueryResolver(ctx context.Context, args *gql.GitBlobLSIFDataArgs) (QueryResolver, error)
 }
 
-type resolver struct {
-	store               store.Store
-	bundleManagerClient bundles.BundleManagerClient
-	codeIntelAPI        codeintelapi.CodeIntelAPI
-	hunkCache           HunkCache
-}
+type resolver struct { /* all structs must go */ }
 
 // NewResolver creates a new resolver with the given services.
 func NewResolver(store store.Store, bundleManagerClient bundles.BundleManagerClient, codeIntelAPI codeintelapi.CodeIntelAPI, hunkCache HunkCache) Resolver {

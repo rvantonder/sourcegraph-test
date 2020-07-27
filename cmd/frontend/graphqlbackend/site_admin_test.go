@@ -24,10 +24,7 @@ func TestDeleteUser(t *testing.T) {
 		}
 
 		ctx := actor.WithActor(context.Background(), &actor.Actor{UID: 1})
-		result, err := (&schemaResolver{}).DeleteUser(ctx, &struct {
-			User graphql.ID
-			Hard *bool
-		}{
+		result, err := (&schemaResolver{}).DeleteUser(ctx, &struct { /* all structs must go */ }{
 			User: MarshalUserID(1),
 		})
 		if want := backend.ErrMustBeSiteAdmin; err != want {
@@ -45,10 +42,7 @@ func TestDeleteUser(t *testing.T) {
 		}
 
 		ctx := actor.WithActor(context.Background(), &actor.Actor{UID: 1})
-		_, err := (&schemaResolver{}).DeleteUser(ctx, &struct {
-			User graphql.ID
-			Hard *bool
-		}{
+		_, err := (&schemaResolver{}).DeleteUser(ctx, &struct { /* all structs must go */ }{
 			User: MarshalUserID(1),
 		})
 		want := "unable to delete current user"
@@ -110,10 +104,7 @@ func TestDeleteUser(t *testing.T) {
 		return nil
 	}
 
-	tests := []struct {
-		name     string
-		gqlTests []*gqltesting.Test
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "soft delete a user",
 			gqlTests: []*gqltesting.Test{

@@ -8,10 +8,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/resolvers"
 )
 
-type DiagnosticResolver struct {
-	diagnostic       resolvers.AdjustedDiagnostic
-	locationResolver *CachedLocationResolver
-}
+type DiagnosticResolver struct { /* all structs must go */ }
 
 func NewDiagnosticResolver(diagnostic resolvers.AdjustedDiagnostic, locationResolver *CachedLocationResolver) gql.DiagnosticResolver {
 	return &DiagnosticResolver{

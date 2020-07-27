@@ -6,9 +6,7 @@ import (
 	"testing"
 )
 
-type recorderTransport struct {
-	req *http.Request
-}
+type recorderTransport struct { /* all structs must go */ }
 
 func (t *recorderTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 	t.req = req

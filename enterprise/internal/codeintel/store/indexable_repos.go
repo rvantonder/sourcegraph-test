@@ -9,33 +9,14 @@ import (
 )
 
 // IndexableRepository marks a repository for eligibility to be index automatically.
-type IndexableRepository struct {
-	RepositoryID        int
-	SearchCount         int
-	PreciseCount        int
-	LastIndexEnqueuedAt *time.Time
-	Enabled             *bool
-}
+type IndexableRepository struct { /* all structs must go */ }
 
 // UpdateableIndexableRepository is a version of IndexableRepository with pointer
 // fields used to indicate which values should be updated on an upsert operation.
-type UpdateableIndexableRepository struct {
-	RepositoryID        int
-	SearchCount         *int
-	PreciseCount        *int
-	LastIndexEnqueuedAt *time.Time
-	Enabled             *bool
-}
+type UpdateableIndexableRepository struct { /* all structs must go */ }
 
 // IndexableRepositoryQueryOptions controls the result filter for IndexableRepositories.
-type IndexableRepositoryQueryOptions struct {
-	Limit                       int
-	MinimumSearchCount          int           // number of events needed to begin indexing
-	MinimumSearchRatio          float64       // ratio of search/total events needed to begin indexing
-	MinimumPreciseCount         int           // number of events needed to continue indexing
-	MinimumTimeSinceLastEnqueue time.Duration // time between enqueues
-	now                         time.Time
-}
+type IndexableRepositoryQueryOptions struct { /* all structs must go */ }
 
 // scanIndexableRepositories scans a slice of indexable repositories from the return value of `*store.query`.
 func scanIndexableRepositories(rows *sql.Rows, queryErr error) (_ []IndexableRepository, err error) {

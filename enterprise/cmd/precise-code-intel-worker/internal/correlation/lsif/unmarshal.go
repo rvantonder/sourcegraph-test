@@ -13,11 +13,7 @@ import (
 var unmarshaller = jsoniter.ConfigFastest
 
 func unmarshalElement(interner *Interner, line []byte) (_ Element, err error) {
-	var payload struct {
-		ID    json.RawMessage `json:"id"`
-		Type  string          `json:"type"`
-		Label string          `json:"label"`
-	}
+	var payload struct { /* all structs must go */ }
 	if err := unmarshaller.Unmarshal(line, &payload); err != nil {
 		return Element{}, err
 	}
@@ -45,12 +41,7 @@ func unmarshalElement(interner *Interner, line []byte) (_ Element, err error) {
 }
 
 func unmarshalEdge(interner *Interner, line []byte) (interface{}, error) {
-	var payload struct {
-		OutV     json.RawMessage   `json:"outV"`
-		InV      json.RawMessage   `json:"inV"`
-		InVs     []json.RawMessage `json:"inVs"`
-		Document json.RawMessage   `json:"document"`
-	}
+	var payload struct { /* all structs must go */ }
 	if err := unmarshaller.Unmarshal(line, &payload); err != nil {
 		return Edge{}, err
 	}
@@ -97,10 +88,7 @@ var vertexUnmarshalers = map[string]func(line []byte) (interface{}, error){
 }
 
 func unmarshalMetaData(line []byte) (interface{}, error) {
-	var payload struct {
-		Version     string `json:"version"`
-		ProjectRoot string `json:"projectRoot"`
-	}
+	var payload struct { /* all structs must go */ }
 	if err := unmarshaller.Unmarshal(line, &payload); err != nil {
 		return nil, err
 	}
@@ -112,9 +100,7 @@ func unmarshalMetaData(line []byte) (interface{}, error) {
 }
 
 func unmarshalDocument(line []byte) (interface{}, error) {
-	var payload struct {
-		URI string `json:"uri"`
-	}
+	var payload struct { /* all structs must go */ }
 	if err := unmarshaller.Unmarshal(line, &payload); err != nil {
 		return nil, err
 	}
@@ -127,14 +113,8 @@ func unmarshalDocument(line []byte) (interface{}, error) {
 }
 
 func unmarshalRange(line []byte) (interface{}, error) {
-	type _position struct {
-		Line      int `json:"line"`
-		Character int `json:"character"`
-	}
-	var payload struct {
-		Start _position `json:"start"`
-		End   _position `json:"end"`
-	}
+	type _position struct { /* all structs must go */ }
+	var payload struct { /* all structs must go */ }
 	if err := unmarshaller.Unmarshal(line, &payload); err != nil {
 		return nil, err
 	}
@@ -154,12 +134,8 @@ var (
 )
 
 func unmarshalHover(line []byte) (interface{}, error) {
-	type _hoverResult struct {
-		Contents json.RawMessage `json:"contents"`
-	}
-	var payload struct {
-		Result _hoverResult `json:"result"`
-	}
+	type _hoverResult struct { /* all structs must go */ }
+	var payload struct { /* all structs must go */ }
 	if err := unmarshaller.Unmarshal(line, &payload); err != nil {
 		return nil, err
 	}
@@ -193,10 +169,7 @@ func unmarshalHoverPart(raw json.RawMessage) ([]byte, error) {
 		return bytes.TrimSpace([]byte(strPayload)), nil
 	}
 
-	var objPayload struct {
-		Language string `json:"language"`
-		Value    string `json:"value"`
-	}
+	var objPayload struct { /* all structs must go */ }
 	if err := unmarshaller.Unmarshal(raw, &objPayload); err != nil {
 		return nil, errors.New("unrecognized hover format")
 	}
@@ -217,11 +190,7 @@ func unmarshalHoverPart(raw json.RawMessage) ([]byte, error) {
 }
 
 func unmarshalMoniker(line []byte) (interface{}, error) {
-	var payload struct {
-		Kind       string `json:"kind"`
-		Scheme     string `json:"scheme"`
-		Identifier string `json:"identifier"`
-	}
+	var payload struct { /* all structs must go */ }
 	if err := unmarshaller.Unmarshal(line, &payload); err != nil {
 		return nil, err
 	}
@@ -238,10 +207,7 @@ func unmarshalMoniker(line []byte) (interface{}, error) {
 }
 
 func unmarshalPackageInformation(line []byte) (interface{}, error) {
-	var payload struct {
-		Name    string `json:"name"`
-		Version string `json:"version"`
-	}
+	var payload struct { /* all structs must go */ }
 	if err := unmarshaller.Unmarshal(line, &payload); err != nil {
 		return nil, err
 	}
@@ -253,24 +219,10 @@ func unmarshalPackageInformation(line []byte) (interface{}, error) {
 }
 
 func unmarshalDiagnosticResult(line []byte) (interface{}, error) {
-	type _position struct {
-		Line      int `json:"line"`
-		Character int `json:"character"`
-	}
-	type _range struct {
-		Start _position `json:"start"`
-		End   _position `json:"end"`
-	}
-	type _result struct {
-		Severity int         `json:"severity"`
-		Code     StringOrInt `json:"code"`
-		Message  string      `json:"message"`
-		Source   string      `json:"source"`
-		Range    _range      `json:"range"`
-	}
-	var payload struct {
-		Results []_result `json:"result"`
-	}
+	type _position struct { /* all structs must go */ }
+	type _range struct { /* all structs must go */ }
+	type _result struct { /* all structs must go */ }
+	var payload struct { /* all structs must go */ }
 	if err := unmarshaller.Unmarshal(line, &payload); err != nil {
 		return nil, err
 	}

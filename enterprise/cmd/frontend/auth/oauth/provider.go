@@ -17,12 +17,7 @@ import (
 	"golang.org/x/oauth2"
 )
 
-type Provider struct {
-	ProviderOp
-
-	Login    http.Handler
-	Callback http.Handler
-}
+type Provider struct { /* all structs must go */ }
 
 var _ providers.Provider = (*Provider)(nil)
 
@@ -68,16 +63,7 @@ func (p *Provider) Refresh(ctx context.Context) error {
 	return nil
 }
 
-type ProviderOp struct {
-	AuthPrefix   string
-	OAuth2Config oauth2.Config
-	SourceConfig schema.AuthProviders
-	StateConfig  gologin.CookieConfig
-	ServiceID    string
-	ServiceType  string
-	Login        http.Handler
-	Callback     http.Handler
-}
+type ProviderOp struct { /* all structs must go */ }
 
 func NewProvider(op ProviderOp) *Provider {
 	return &Provider{
@@ -126,17 +112,7 @@ func stateHandler(isLogin bool, providerID string, config gologin.CookieConfig, 
 	return http.HandlerFunc(fn)
 }
 
-type LoginState struct {
-	// Redirect is the URL path to redirect to after login.
-	Redirect string
-
-	// ProviderID is the service ID of the provider that is handling the auth flow.
-	ProviderID string
-
-	// CSRF is the random string that ensures the encoded state is sufficiently random to be checked
-	// for CSRF purposes.
-	CSRF string
-}
+type LoginState struct { /* all structs must go */ }
 
 func (s LoginState) Encode() (string, error) {
 	sb, err := json.Marshal(s)

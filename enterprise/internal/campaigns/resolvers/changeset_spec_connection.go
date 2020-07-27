@@ -17,19 +17,7 @@ import (
 
 var _ graphqlbackend.ChangesetSpecConnectionResolver = &changesetSpecConnectionResolver{}
 
-type changesetSpecConnectionResolver struct {
-	store       *ee.Store
-	httpFactory *httpcli.Factory
-
-	opts ee.ListChangesetSpecsOpts
-
-	// Cache results because they are used by multiple fields
-	once           sync.Once
-	changesetSpecs []*campaigns.ChangesetSpec
-	reposByID      map[api.RepoID]*types.Repo
-	next           int64
-	err            error
-}
+type changesetSpecConnectionResolver struct { /* all structs must go */ }
 
 func (r *changesetSpecConnectionResolver) TotalCount(ctx context.Context) (int32, error) {
 	count, err := r.store.CountChangesetSpecs(ctx, ee.CountChangesetSpecsOpts{

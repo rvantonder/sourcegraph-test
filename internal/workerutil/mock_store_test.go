@@ -13,29 +13,7 @@ import (
 // MockStore is a mock implementation of the Store interface (from the
 // package github.com/sourcegraph/sourcegraph/internal/workerutil) used for
 // unit testing.
-type MockStore struct {
-	// DequeueFunc is an instance of a mock function object controlling the
-	// behavior of the method Dequeue.
-	DequeueFunc *StoreDequeueFunc
-	// DoneFunc is an instance of a mock function object controlling the
-	// behavior of the method Done.
-	DoneFunc *StoreDoneFunc
-	// HandleFunc is an instance of a mock function object controlling the
-	// behavior of the method Handle.
-	HandleFunc *StoreHandleFunc
-	// MarkCompleteFunc is an instance of a mock function object controlling
-	// the behavior of the method MarkComplete.
-	MarkCompleteFunc *StoreMarkCompleteFunc
-	// MarkErroredFunc is an instance of a mock function object controlling
-	// the behavior of the method MarkErrored.
-	MarkErroredFunc *StoreMarkErroredFunc
-	// RequeueFunc is an instance of a mock function object controlling the
-	// behavior of the method Requeue.
-	RequeueFunc *StoreRequeueFunc
-	// ResetStalledFunc is an instance of a mock function object controlling
-	// the behavior of the method ResetStalled.
-	ResetStalledFunc *StoreResetStalledFunc
-}
+type MockStore struct { /* all structs must go */ }
 
 // NewMockStore creates a new mock of the Store interface. All methods
 // return zero values for all results, unless overwritten.
@@ -109,12 +87,7 @@ func NewMockStoreFrom(i Store) *MockStore {
 
 // StoreDequeueFunc describes the behavior when the Dequeue method of the
 // parent MockStore instance is invoked.
-type StoreDequeueFunc struct {
-	defaultHook func(context.Context, []*sqlf.Query) (Record, Store, bool, error)
-	hooks       []func(context.Context, []*sqlf.Query) (Record, Store, bool, error)
-	history     []StoreDequeueFuncCall
-	mutex       sync.Mutex
-}
+type StoreDequeueFunc struct { /* all structs must go */ }
 
 // Dequeue delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -188,26 +161,7 @@ func (f *StoreDequeueFunc) History() []StoreDequeueFuncCall {
 
 // StoreDequeueFuncCall is an object that describes an invocation of method
 // Dequeue on an instance of MockStore.
-type StoreDequeueFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 []*sqlf.Query
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 Record
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 Store
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 bool
-	// Result3 is the value of the 4th result returned from this method
-	// invocation.
-	Result3 error
-}
+type StoreDequeueFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -223,12 +177,7 @@ func (c StoreDequeueFuncCall) Results() []interface{} {
 
 // StoreDoneFunc describes the behavior when the Done method of the parent
 // MockStore instance is invoked.
-type StoreDoneFunc struct {
-	defaultHook func(error) error
-	hooks       []func(error) error
-	history     []StoreDoneFuncCall
-	mutex       sync.Mutex
-}
+type StoreDoneFunc struct { /* all structs must go */ }
 
 // Done delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -302,14 +251,7 @@ func (f *StoreDoneFunc) History() []StoreDoneFuncCall {
 
 // StoreDoneFuncCall is an object that describes an invocation of method
 // Done on an instance of MockStore.
-type StoreDoneFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 error
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type StoreDoneFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -325,12 +267,7 @@ func (c StoreDoneFuncCall) Results() []interface{} {
 
 // StoreHandleFunc describes the behavior when the Handle method of the
 // parent MockStore instance is invoked.
-type StoreHandleFunc struct {
-	defaultHook func() *basestore.TransactableHandle
-	hooks       []func() *basestore.TransactableHandle
-	history     []StoreHandleFuncCall
-	mutex       sync.Mutex
-}
+type StoreHandleFunc struct { /* all structs must go */ }
 
 // Handle delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -404,11 +341,7 @@ func (f *StoreHandleFunc) History() []StoreHandleFuncCall {
 
 // StoreHandleFuncCall is an object that describes an invocation of method
 // Handle on an instance of MockStore.
-type StoreHandleFuncCall struct {
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 *basestore.TransactableHandle
-}
+type StoreHandleFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -424,12 +357,7 @@ func (c StoreHandleFuncCall) Results() []interface{} {
 
 // StoreMarkCompleteFunc describes the behavior when the MarkComplete method
 // of the parent MockStore instance is invoked.
-type StoreMarkCompleteFunc struct {
-	defaultHook func(context.Context, int) (bool, error)
-	hooks       []func(context.Context, int) (bool, error)
-	history     []StoreMarkCompleteFuncCall
-	mutex       sync.Mutex
-}
+type StoreMarkCompleteFunc struct { /* all structs must go */ }
 
 // MarkComplete delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -503,20 +431,7 @@ func (f *StoreMarkCompleteFunc) History() []StoreMarkCompleteFuncCall {
 
 // StoreMarkCompleteFuncCall is an object that describes an invocation of
 // method MarkComplete on an instance of MockStore.
-type StoreMarkCompleteFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 bool
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type StoreMarkCompleteFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -532,12 +447,7 @@ func (c StoreMarkCompleteFuncCall) Results() []interface{} {
 
 // StoreMarkErroredFunc describes the behavior when the MarkErrored method
 // of the parent MockStore instance is invoked.
-type StoreMarkErroredFunc struct {
-	defaultHook func(context.Context, int, string) (bool, error)
-	hooks       []func(context.Context, int, string) (bool, error)
-	history     []StoreMarkErroredFuncCall
-	mutex       sync.Mutex
-}
+type StoreMarkErroredFunc struct { /* all structs must go */ }
 
 // MarkErrored delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -611,23 +521,7 @@ func (f *StoreMarkErroredFunc) History() []StoreMarkErroredFuncCall {
 
 // StoreMarkErroredFuncCall is an object that describes an invocation of
 // method MarkErrored on an instance of MockStore.
-type StoreMarkErroredFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 bool
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type StoreMarkErroredFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -643,12 +537,7 @@ func (c StoreMarkErroredFuncCall) Results() []interface{} {
 
 // StoreRequeueFunc describes the behavior when the Requeue method of the
 // parent MockStore instance is invoked.
-type StoreRequeueFunc struct {
-	defaultHook func(context.Context, int, time.Time) error
-	hooks       []func(context.Context, int, time.Time) error
-	history     []StoreRequeueFuncCall
-	mutex       sync.Mutex
-}
+type StoreRequeueFunc struct { /* all structs must go */ }
 
 // Requeue delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -722,20 +611,7 @@ func (f *StoreRequeueFunc) History() []StoreRequeueFuncCall {
 
 // StoreRequeueFuncCall is an object that describes an invocation of method
 // Requeue on an instance of MockStore.
-type StoreRequeueFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 time.Time
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type StoreRequeueFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -751,12 +627,7 @@ func (c StoreRequeueFuncCall) Results() []interface{} {
 
 // StoreResetStalledFunc describes the behavior when the ResetStalled method
 // of the parent MockStore instance is invoked.
-type StoreResetStalledFunc struct {
-	defaultHook func(context.Context) ([]int, []int, error)
-	hooks       []func(context.Context) ([]int, []int, error)
-	history     []StoreResetStalledFuncCall
-	mutex       sync.Mutex
-}
+type StoreResetStalledFunc struct { /* all structs must go */ }
 
 // ResetStalled delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -830,20 +701,7 @@ func (f *StoreResetStalledFunc) History() []StoreResetStalledFuncCall {
 
 // StoreResetStalledFuncCall is an object that describes an invocation of
 // method ResetStalled on an instance of MockStore.
-type StoreResetStalledFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []int
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 []int
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type StoreResetStalledFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.

@@ -7,9 +7,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/schema"
 )
 
-type BitbucketServer struct {
-	*schema.BitbucketServerConnection
-}
+type BitbucketServer struct { /* all structs must go */ }
 
 var _ RepoSource = BitbucketServer{}
 

@@ -24,9 +24,7 @@ type clock interface {
 	add(time.Duration) time.Time
 }
 
-type testClock struct {
-	t time.Time
-}
+type testClock struct { /* all structs must go */ }
 
 func (c *testClock) now() time.Time                { return c.t }
 func (c *testClock) add(d time.Duration) time.Time { c.t = c.t.Add(d); return c.t }
@@ -207,11 +205,7 @@ func testStoreCampaigns(t *testing.T, ctx context.Context, s *Store, _ repos.Sto
 			}
 		}
 
-		filterTests := []struct {
-			name  string
-			state cmpgn.CampaignState
-			want  []*cmpgn.Campaign
-		}{
+		filterTests := []struct { /* all structs must go */ }{
 			{
 				name:  "Any",
 				state: cmpgn.CampaignStateAny,
@@ -831,10 +825,7 @@ func testStoreChangesets(t *testing.T, ctx context.Context, s *Store, reposStore
 		statePassed := cmpgn.ChangesetCheckStatePassed
 		stateFailed := cmpgn.ChangesetCheckStateFailed
 
-		filterCases := []struct {
-			opts      ListChangesetsOpts
-			wantCount int
-		}{
+		filterCases := []struct { /* all structs must go */ }{
 			{
 				opts: ListChangesetsOpts{
 					ExternalState: &stateOpen,

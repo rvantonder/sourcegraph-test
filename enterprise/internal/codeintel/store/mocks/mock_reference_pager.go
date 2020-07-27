@@ -13,14 +13,7 @@ import (
 // interface (from the package
 // github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/store)
 // used for unit testing.
-type MockReferencePager struct {
-	// DoneFunc is an instance of a mock function object controlling the
-	// behavior of the method Done.
-	DoneFunc *ReferencePagerDoneFunc
-	// PageFromOffsetFunc is an instance of a mock function object
-	// controlling the behavior of the method PageFromOffset.
-	PageFromOffsetFunc *ReferencePagerPageFromOffsetFunc
-}
+type MockReferencePager struct { /* all structs must go */ }
 
 // NewMockReferencePager creates a new mock of the ReferencePager interface.
 // All methods return zero values for all results, unless overwritten.
@@ -55,12 +48,7 @@ func NewMockReferencePagerFrom(i store.ReferencePager) *MockReferencePager {
 
 // ReferencePagerDoneFunc describes the behavior when the Done method of the
 // parent MockReferencePager instance is invoked.
-type ReferencePagerDoneFunc struct {
-	defaultHook func(error) error
-	hooks       []func(error) error
-	history     []ReferencePagerDoneFuncCall
-	mutex       sync.Mutex
-}
+type ReferencePagerDoneFunc struct { /* all structs must go */ }
 
 // Done delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -135,14 +123,7 @@ func (f *ReferencePagerDoneFunc) History() []ReferencePagerDoneFuncCall {
 
 // ReferencePagerDoneFuncCall is an object that describes an invocation of
 // method Done on an instance of MockReferencePager.
-type ReferencePagerDoneFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 error
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type ReferencePagerDoneFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -159,12 +140,7 @@ func (c ReferencePagerDoneFuncCall) Results() []interface{} {
 // ReferencePagerPageFromOffsetFunc describes the behavior when the
 // PageFromOffset method of the parent MockReferencePager instance is
 // invoked.
-type ReferencePagerPageFromOffsetFunc struct {
-	defaultHook func(context.Context, int) ([]types.PackageReference, error)
-	hooks       []func(context.Context, int) ([]types.PackageReference, error)
-	history     []ReferencePagerPageFromOffsetFuncCall
-	mutex       sync.Mutex
-}
+type ReferencePagerPageFromOffsetFunc struct { /* all structs must go */ }
 
 // PageFromOffset delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -239,20 +215,7 @@ func (f *ReferencePagerPageFromOffsetFunc) History() []ReferencePagerPageFromOff
 
 // ReferencePagerPageFromOffsetFuncCall is an object that describes an
 // invocation of method PageFromOffset on an instance of MockReferencePager.
-type ReferencePagerPageFromOffsetFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []types.PackageReference
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type ReferencePagerPageFromOffsetFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.

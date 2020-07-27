@@ -13,20 +13,7 @@ import (
 )
 
 // goImportMetaTag represents a go-import meta tag.
-type goImportMetaTag struct {
-	// ImportPrefix is the import path corresponding to the repository root.
-	// It must be a prefix or an exact match of the package being fetched with "go get".
-	// If it's not an exact match, another http request is made at the prefix to verify
-	// the <meta> tags match.
-	ImportPrefix string
-
-	// VCS is one of "git", "hg", "svn", etc.
-	VCS string
-
-	// RepoRoot is the root of the version control system containing a scheme and
-	// not containing a .vcs qualifier.
-	RepoRoot string
-}
+type goImportMetaTag struct { /* all structs must go */ }
 
 // goImportMetaTagTemplate is an HTML template for rendering a blank page with a go-import meta tag.
 var goImportMetaTagTemplate = template.Must(template.New("").Parse(`<html><head><meta name="go-import" content="{{.ImportPrefix}} {{.VCS}} {{.RepoRoot}}"></head><body></body></html>`))

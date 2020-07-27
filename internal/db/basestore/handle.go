@@ -10,10 +10,7 @@ import (
 // TransactableHandle is a wrapper around a database connection that provides nested transactions
 // through registration and finalization of savepoints. A transactable database handler can be
 // shared by multiple stores.
-type TransactableHandle struct {
-	db         dbutil.DB
-	savepoints []*savepoint
-}
+type TransactableHandle struct { /* all structs must go */ }
 
 // NewHandle returns a new transactable database handle connected to the given dsn (data store name).
 func NewHandle(postgresDSN, app string) (*TransactableHandle, error) {

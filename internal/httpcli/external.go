@@ -11,13 +11,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/schema"
 )
 
-type externalTransport struct {
-	base *http.Transport
-
-	mu        sync.RWMutex
-	config    *schema.TlsExternal
-	effective *http.Transport
-}
+type externalTransport struct { /* all structs must go */ }
 
 func (t *externalTransport) RoundTrip(r *http.Request) (*http.Response, error) {
 	t.mu.RLock()

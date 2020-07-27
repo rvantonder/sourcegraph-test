@@ -28,11 +28,7 @@ func NewPreviewRepositoryComparisonResolver(ctx context.Context, repo *Repositor
 	}, nil
 }
 
-type previewRepositoryComparisonResolver struct {
-	repo   *RepositoryResolver
-	commit *GitCommitResolver
-	patch  string
-}
+type previewRepositoryComparisonResolver struct { /* all structs must go */ }
 
 // Type guard.
 var _ RepositoryComparisonInterface = &previewRepositoryComparisonResolver{}

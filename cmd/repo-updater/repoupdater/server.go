@@ -26,42 +26,7 @@ import (
 )
 
 // Server is a repoupdater server.
-type Server struct {
-	repos.Store
-	*repos.Syncer
-	SourcegraphDotComMode bool
-	GithubDotComSource    interface {
-		GetRepo(ctx context.Context, nameWithOwner string) (*repos.Repo, error)
-	}
-	GitLabDotComSource interface {
-		GetRepo(ctx context.Context, projectWithNamespace string) (*repos.Repo, error)
-	}
-	Scheduler interface {
-		UpdateOnce(id api.RepoID, name api.RepoName, url string)
-		ScheduleInfo(id api.RepoID) *protocol.RepoUpdateSchedulerInfoResult
-	}
-	GitserverClient interface {
-		ListCloned(context.Context) ([]string, error)
-	}
-	ChangesetSyncRegistry interface {
-		// EnqueueChangesetSyncs will queue the supplied changesets to sync ASAP.
-		EnqueueChangesetSyncs(ctx context.Context, ids []int64) error
-		// HandleExternalServiceSync should be called when an external service changes so that
-		// the registry can start or stop the syncer associated with the service
-		HandleExternalServiceSync(es api.ExternalService)
-	}
-	RateLimitSyncer interface {
-		// SyncRateLimiters should be called when an external service changes so that
-		// our internal rate limiters are kept in sync
-		SyncRateLimiters(ctx context.Context) error
-	}
-	PermsSyncer interface {
-		// ScheduleUsers schedules new permissions syncing requests for given users.
-		ScheduleUsers(ctx context.Context, userIDs ...int32)
-		// ScheduleRepos schedules new permissions syncing requests for given repositories.
-		ScheduleRepos(ctx context.Context, repoIDs ...api.RepoID)
-	}
-}
+type Server struct { /* all structs must go */ }
 
 // Handler returns the http.Handler that should be used to serve requests.
 func (s *Server) Handler() http.Handler {

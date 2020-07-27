@@ -8,21 +8,9 @@ import (
 	"github.com/peterhellberg/link"
 )
 
-type User struct {
-	ID         int32      `json:"id"`
-	Name       string     `json:"name"`
-	Username   string     `json:"username"`
-	Email      string     `json:"email"`
-	State      string     `json:"state"`
-	AvatarURL  string     `json:"avatar_url"`
-	WebURL     string     `json:"web_url"`
-	Identities []Identity `json:"identities"`
-}
+type User struct { /* all structs must go */ }
 
-type Identity struct {
-	Provider  string `json:"provider"`
-	ExternUID string `json:"extern_uid"`
-}
+type Identity struct { /* all structs must go */ }
 
 func (c *Client) ListUsers(ctx context.Context, urlStr string) (users []*User, nextPageURL *string, err error) {
 	if MockListUsers != nil {

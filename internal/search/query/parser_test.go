@@ -11,13 +11,7 @@ import (
 )
 
 func TestParseParameterList(t *testing.T) {
-	cases := []struct {
-		Name       string
-		Input      string
-		Want       string
-		WantLabels labels
-		WantRange  string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			Name:       "Normal field:value",
 			Input:      `file:README.md`,
@@ -131,14 +125,8 @@ func TestParseParameterList(t *testing.T) {
 }
 
 func TestScanField(t *testing.T) {
-	type value struct {
-		Field   string
-		Advance int
-	}
-	cases := []struct {
-		Input string
-		Want  value
-	}{
+	type value struct { /* all structs must go */ }
+	cases := []struct { /* all structs must go */ }{
 		// Valid field.
 		{
 			Input: "repo:foo",
@@ -267,12 +255,7 @@ func TestParse(t *testing.T) {
 	type Spec = relation         // constructor for expected output of the grammar spec without heuristics.
 	type Diff = relation         // constructor for expected heuristic output when different to the grammar spec.
 
-	cases := []struct {
-		Name          string
-		Input         string
-		WantGrammar   relation
-		WantHeuristic relation
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			Name:          "Empty string",
 			Input:         "",
@@ -734,18 +717,9 @@ func TestParse(t *testing.T) {
 }
 
 func TestScanDelimited(t *testing.T) {
-	type result struct {
-		Value  string
-		Count  int
-		ErrMsg string
-	}
+	type result struct { /* all structs must go */ }
 
-	cases := []struct {
-		name      string
-		input     string
-		delimiter rune
-		want      result
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			input:     `""`,
 			delimiter: '"',
@@ -824,10 +798,7 @@ func TestScanDelimited(t *testing.T) {
 }
 
 func TestMergePatterns(t *testing.T) {
-	cases := []struct {
-		input string
-		want  string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			input: "foo()bar",
 			want:  `{"start":{"line":0,"column":0},"end":{"line":0,"column":8}}`,

@@ -37,10 +37,7 @@ func main() {
 `,
 	}
 
-	cases := []struct {
-		arg  protocol.RewriteSpecification
-		want string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{protocol.RewriteSpecification{
 			MatchTemplate:   "func",
 			RewriteTemplate: "derp",

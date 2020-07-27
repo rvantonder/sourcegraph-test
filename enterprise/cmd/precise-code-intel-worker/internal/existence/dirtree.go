@@ -6,15 +6,7 @@ import (
 )
 
 // DirTree node represents a single directory in a file tree.
-type DirTreeNode struct {
-	// Name is the path segment indicating the name of this directory. It does
-	// not contain any separator characters.
-	Name string
-
-	// Children represent the directory subtrees directly nested under this
-	// directory. Ordering of this slice is arbitrary.
-	Children []DirTreeNode
-}
+type DirTreeNode struct { /* all structs must go */ }
 
 // makeTree creates a file tree (excluding files, directories only) from the given
 // set of file paths. The given root is prepended to every path in the list.

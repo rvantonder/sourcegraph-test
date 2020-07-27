@@ -12,41 +12,15 @@ import (
 	"github.com/ghodss/yaml"
 )
 
-type Pipeline struct {
-	Steps []interface{} `json:"steps"`
-}
+type Pipeline struct { /* all structs must go */ }
 
-type BuildOptions struct {
-	Message  string                 `json:"message,omitempty"`
-	Commit   string                 `json:"commit,omitempty"`
-	Branch   string                 `json:"branch,omitempty"`
-	MetaData map[string]interface{} `json:"meta_data,omitempty"`
-	Env      map[string]string      `json:"env,omitempty"`
-}
+type BuildOptions struct { /* all structs must go */ }
 
-type Step struct {
-	Label            string                 `json:"label"`
-	Command          []string               `json:"command,omitempty"`
-	Trigger          string                 `json:"trigger,omitempty"`
-	Async            bool                   `json:"async,omitempty"`
-	Build            *BuildOptions          `json:"build,omitempty"`
-	Env              map[string]string      `json:"env,omitempty"`
-	Plugins          map[string]interface{} `json:"plugins,omitempty"`
-	ArtifactPaths    string                 `json:"artifact_paths,omitempty"`
-	ConcurrencyGroup string                 `json:"concurrency_group,omitempty"`
-	Concurrency      int                    `json:"concurrency,omitempty"`
-	SoftFail         bool                   `json:"soft_fail,omitempty"`
-	Retry            *RetryOptions          `json:"retry,omitempty"`
-	Agents           map[string]string      `json:"agents,omitempty"`
-}
+type Step struct { /* all structs must go */ }
 
-type RetryOptions struct {
-	Automatic *AutomaticRetryOptions `json:"automatic,omitempty"`
-}
+type RetryOptions struct { /* all structs must go */ }
 
-type AutomaticRetryOptions struct {
-	Limit int `json:"limit,omitempty"`
-}
+type AutomaticRetryOptions struct { /* all structs must go */ }
 
 var Plugins = make(map[string]interface{})
 

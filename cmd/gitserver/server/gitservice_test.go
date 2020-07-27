@@ -40,10 +40,7 @@ func TestGitServiceHandler(t *testing.T) {
 		runCmd(t, tmpDir(t), "git", "-c", "protocol.version=1", "clone", cloneURL)
 	})
 
-	cloneV2 := []struct {
-		Name string
-		Args []string
-	}{{
+	cloneV2 := []struct { /* all structs must go */ }{{
 		"clonev2",
 		[]string{},
 	}, {

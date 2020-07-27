@@ -14,12 +14,7 @@ func TestGetObject(t *testing.T) {
 		"git add f",
 		"GIT_COMMITTER_NAME=a GIT_COMMITTER_EMAIL=a@a.com GIT_COMMITTER_DATE=2006-01-02T15:04:05Z git commit -m foo --author='a <a@a.com>' --date 2006-01-02T15:04:05Z",
 	}
-	tests := map[string]struct {
-		repo           gitserver.Repo
-		objectName     string
-		wantOID        string
-		wantObjectType ObjectType
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"basic": {
 			repo:           MakeGitRepository(t, gitCommands...),
 			objectName:     "e86b31b62399cfc86199e8b6e21a35e76d0e8b5e^{tree}",

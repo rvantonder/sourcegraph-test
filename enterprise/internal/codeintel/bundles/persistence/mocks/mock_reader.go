@@ -13,29 +13,7 @@ import (
 // package
 // github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/bundles/persistence)
 // used for unit testing.
-type MockReader struct {
-	// CloseFunc is an instance of a mock function object controlling the
-	// behavior of the method Close.
-	CloseFunc *ReaderCloseFunc
-	// PathsWithPrefixFunc is an instance of a mock function object
-	// controlling the behavior of the method PathsWithPrefix.
-	PathsWithPrefixFunc *ReaderPathsWithPrefixFunc
-	// ReadDefinitionsFunc is an instance of a mock function object
-	// controlling the behavior of the method ReadDefinitions.
-	ReadDefinitionsFunc *ReaderReadDefinitionsFunc
-	// ReadDocumentFunc is an instance of a mock function object controlling
-	// the behavior of the method ReadDocument.
-	ReadDocumentFunc *ReaderReadDocumentFunc
-	// ReadMetaFunc is an instance of a mock function object controlling the
-	// behavior of the method ReadMeta.
-	ReadMetaFunc *ReaderReadMetaFunc
-	// ReadReferencesFunc is an instance of a mock function object
-	// controlling the behavior of the method ReadReferences.
-	ReadReferencesFunc *ReaderReadReferencesFunc
-	// ReadResultChunkFunc is an instance of a mock function object
-	// controlling the behavior of the method ReadResultChunk.
-	ReadResultChunkFunc *ReaderReadResultChunkFunc
-}
+type MockReader struct { /* all structs must go */ }
 
 // NewMockReader creates a new mock of the Reader interface. All methods
 // return zero values for all results, unless overwritten.
@@ -109,12 +87,7 @@ func NewMockReaderFrom(i persistence.Reader) *MockReader {
 
 // ReaderCloseFunc describes the behavior when the Close method of the
 // parent MockReader instance is invoked.
-type ReaderCloseFunc struct {
-	defaultHook func() error
-	hooks       []func() error
-	history     []ReaderCloseFuncCall
-	mutex       sync.Mutex
-}
+type ReaderCloseFunc struct { /* all structs must go */ }
 
 // Close delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -188,11 +161,7 @@ func (f *ReaderCloseFunc) History() []ReaderCloseFuncCall {
 
 // ReaderCloseFuncCall is an object that describes an invocation of method
 // Close on an instance of MockReader.
-type ReaderCloseFuncCall struct {
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type ReaderCloseFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -208,12 +177,7 @@ func (c ReaderCloseFuncCall) Results() []interface{} {
 
 // ReaderPathsWithPrefixFunc describes the behavior when the PathsWithPrefix
 // method of the parent MockReader instance is invoked.
-type ReaderPathsWithPrefixFunc struct {
-	defaultHook func(context.Context, string) ([]string, error)
-	hooks       []func(context.Context, string) ([]string, error)
-	history     []ReaderPathsWithPrefixFuncCall
-	mutex       sync.Mutex
-}
+type ReaderPathsWithPrefixFunc struct { /* all structs must go */ }
 
 // PathsWithPrefix delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -288,20 +252,7 @@ func (f *ReaderPathsWithPrefixFunc) History() []ReaderPathsWithPrefixFuncCall {
 
 // ReaderPathsWithPrefixFuncCall is an object that describes an invocation
 // of method PathsWithPrefix on an instance of MockReader.
-type ReaderPathsWithPrefixFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []string
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type ReaderPathsWithPrefixFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -317,12 +268,7 @@ func (c ReaderPathsWithPrefixFuncCall) Results() []interface{} {
 
 // ReaderReadDefinitionsFunc describes the behavior when the ReadDefinitions
 // method of the parent MockReader instance is invoked.
-type ReaderReadDefinitionsFunc struct {
-	defaultHook func(context.Context, string, string, int, int) ([]types.Location, int, error)
-	hooks       []func(context.Context, string, string, int, int) ([]types.Location, int, error)
-	history     []ReaderReadDefinitionsFuncCall
-	mutex       sync.Mutex
-}
+type ReaderReadDefinitionsFunc struct { /* all structs must go */ }
 
 // ReadDefinitions delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -397,32 +343,7 @@ func (f *ReaderReadDefinitionsFunc) History() []ReaderReadDefinitionsFuncCall {
 
 // ReaderReadDefinitionsFuncCall is an object that describes an invocation
 // of method ReadDefinitions on an instance of MockReader.
-type ReaderReadDefinitionsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 int
-	// Arg4 is the value of the 5th argument passed to this method
-	// invocation.
-	Arg4 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []types.Location
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 int
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type ReaderReadDefinitionsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -438,12 +359,7 @@ func (c ReaderReadDefinitionsFuncCall) Results() []interface{} {
 
 // ReaderReadDocumentFunc describes the behavior when the ReadDocument
 // method of the parent MockReader instance is invoked.
-type ReaderReadDocumentFunc struct {
-	defaultHook func(context.Context, string) (types.DocumentData, bool, error)
-	hooks       []func(context.Context, string) (types.DocumentData, bool, error)
-	history     []ReaderReadDocumentFuncCall
-	mutex       sync.Mutex
-}
+type ReaderReadDocumentFunc struct { /* all structs must go */ }
 
 // ReadDocument delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -517,23 +433,7 @@ func (f *ReaderReadDocumentFunc) History() []ReaderReadDocumentFuncCall {
 
 // ReaderReadDocumentFuncCall is an object that describes an invocation of
 // method ReadDocument on an instance of MockReader.
-type ReaderReadDocumentFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 types.DocumentData
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 bool
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type ReaderReadDocumentFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -549,12 +449,7 @@ func (c ReaderReadDocumentFuncCall) Results() []interface{} {
 
 // ReaderReadMetaFunc describes the behavior when the ReadMeta method of the
 // parent MockReader instance is invoked.
-type ReaderReadMetaFunc struct {
-	defaultHook func(context.Context) (types.MetaData, error)
-	hooks       []func(context.Context) (types.MetaData, error)
-	history     []ReaderReadMetaFuncCall
-	mutex       sync.Mutex
-}
+type ReaderReadMetaFunc struct { /* all structs must go */ }
 
 // ReadMeta delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -628,17 +523,7 @@ func (f *ReaderReadMetaFunc) History() []ReaderReadMetaFuncCall {
 
 // ReaderReadMetaFuncCall is an object that describes an invocation of
 // method ReadMeta on an instance of MockReader.
-type ReaderReadMetaFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 types.MetaData
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type ReaderReadMetaFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -654,12 +539,7 @@ func (c ReaderReadMetaFuncCall) Results() []interface{} {
 
 // ReaderReadReferencesFunc describes the behavior when the ReadReferences
 // method of the parent MockReader instance is invoked.
-type ReaderReadReferencesFunc struct {
-	defaultHook func(context.Context, string, string, int, int) ([]types.Location, int, error)
-	hooks       []func(context.Context, string, string, int, int) ([]types.Location, int, error)
-	history     []ReaderReadReferencesFuncCall
-	mutex       sync.Mutex
-}
+type ReaderReadReferencesFunc struct { /* all structs must go */ }
 
 // ReadReferences delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -734,32 +614,7 @@ func (f *ReaderReadReferencesFunc) History() []ReaderReadReferencesFuncCall {
 
 // ReaderReadReferencesFuncCall is an object that describes an invocation of
 // method ReadReferences on an instance of MockReader.
-type ReaderReadReferencesFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 int
-	// Arg4 is the value of the 5th argument passed to this method
-	// invocation.
-	Arg4 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []types.Location
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 int
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type ReaderReadReferencesFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -775,12 +630,7 @@ func (c ReaderReadReferencesFuncCall) Results() []interface{} {
 
 // ReaderReadResultChunkFunc describes the behavior when the ReadResultChunk
 // method of the parent MockReader instance is invoked.
-type ReaderReadResultChunkFunc struct {
-	defaultHook func(context.Context, int) (types.ResultChunkData, bool, error)
-	hooks       []func(context.Context, int) (types.ResultChunkData, bool, error)
-	history     []ReaderReadResultChunkFuncCall
-	mutex       sync.Mutex
-}
+type ReaderReadResultChunkFunc struct { /* all structs must go */ }
 
 // ReadResultChunk delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -855,23 +705,7 @@ func (f *ReaderReadResultChunkFunc) History() []ReaderReadResultChunkFuncCall {
 
 // ReaderReadResultChunkFuncCall is an object that describes an invocation
 // of method ReadResultChunk on an instance of MockReader.
-type ReaderReadResultChunkFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 types.ResultChunkData
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 bool
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type ReaderReadResultChunkFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.

@@ -26,12 +26,7 @@ func NewVirtualFileResolver(stat os.FileInfo, fileContent FileContentFunc) *virt
 	}
 }
 
-type virtualFileResolver struct {
-	fileContent FileContentFunc
-	// stat is this tree entry's file info. Its Name method must return the full path relative to
-	// the root, not the basename.
-	stat os.FileInfo
-}
+type virtualFileResolver struct { /* all structs must go */ }
 
 func (r *virtualFileResolver) Path() string      { return r.stat.Name() }
 func (r *virtualFileResolver) Name() string      { return path.Base(r.stat.Name()) }

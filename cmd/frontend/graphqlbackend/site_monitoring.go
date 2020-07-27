@@ -17,12 +17,7 @@ import (
 )
 
 // MonitoringAlert implements the GraphQL type MonitoringAlert.
-type MonitoringAlert struct {
-	TimestampValue   DateTime
-	NameValue        string
-	ServiceNameValue string
-	AverageValue     float64
-}
+type MonitoringAlert struct { /* all structs must go */ }
 
 func (r *MonitoringAlert) Timestamp() DateTime { return r.TimestampValue }
 func (r *MonitoringAlert) Name() string        { return r.NameValue }
@@ -48,9 +43,7 @@ func (a MonitoringAlerts) Swap(i, j int) {
 }
 func (a MonitoringAlerts) Len() int { return len(a) }
 
-func (r *siteResolver) MonitoringStatistics(ctx context.Context, args *struct {
-	Days *int32
-}) (*siteMonitoringStatisticsResolver, error) {
+func (r *siteResolver) MonitoringStatistics(ctx context.Context, args *struct { /* all structs must go */ }) (*siteMonitoringStatisticsResolver, error) {
 	prom, err := prometheusutil.NewPrometheusQuerier()
 	if err != nil {
 		return nil, err
@@ -61,10 +54,7 @@ func (r *siteResolver) MonitoringStatistics(ctx context.Context, args *struct {
 	}, nil
 }
 
-type siteMonitoringStatisticsResolver struct {
-	prom     prometheusutil.PrometheusQuerier
-	timespan time.Duration
-}
+type siteMonitoringStatisticsResolver struct { /* all structs must go */ }
 
 func (r *siteMonitoringStatisticsResolver) Alerts(ctx context.Context) ([]*MonitoringAlert, error) {
 	ctx, cancel := context.WithTimeout(ctx, 10*time.Second)

@@ -299,11 +299,7 @@ func TestPackageReferencePagerPages(t *testing.T) {
 		t.Errorf("unexpected dump. want=%d have=%d", 9, totalCount)
 	}
 
-	testCases := []struct {
-		offset int
-		lo     int
-		hi     int
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{0, 0, 3},
 		{1, 1, 4},
 		{2, 2, 5},

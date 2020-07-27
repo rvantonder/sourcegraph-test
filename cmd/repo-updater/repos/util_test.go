@@ -5,12 +5,7 @@ import (
 )
 
 func TestSetUserinfoBestEffort(t *testing.T) {
-	cases := []struct {
-		rawurl   string
-		username string
-		password string
-		want     string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		// no-op
 		{"https://foo.com/foo/bar", "", "", "https://foo.com/foo/bar"},
 		// invalid name is returned as is

@@ -11,18 +11,13 @@ import (
 )
 
 // see https://api.slack.com/reference/block-kit/blocks
-type slackMessage struct {
-	Blocks []slackBlock `json:"blocks"`
-}
+type slackMessage struct { /* all structs must go */ }
 
 type slackBlock map[string]interface{}
 
 const slackTextMarkdown = "mrkdwn"
 
-type slackText struct {
-	Type string `json:"type"` // just use `slackTextMarkdown` for the most part
-	Text string `json:"text"`
-}
+type slackText struct { /* all structs must go */ }
 
 func newSlackButtonRun(runID string) slackBlock {
 	return slackBlock{

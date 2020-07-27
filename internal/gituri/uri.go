@@ -29,9 +29,7 @@ import (
 // given file in a repository has any number of URIs that refer to it
 // (e.g., using the branch name vs. the commit ID, using clean
 // vs. non-clean file paths, etc.).
-type URI struct {
-	url.URL
-}
+type URI struct { /* all structs must go */ }
 
 // Parse parses uriStr to a URI. The uriStr should be an absolute URL.
 func Parse(uriStr string) (*URI, error) {

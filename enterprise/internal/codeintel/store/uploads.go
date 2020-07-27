@@ -13,26 +13,7 @@ import (
 
 // Upload is a subset of the lsif_uploads table and stores both processed and unprocessed
 // records.
-type Upload struct {
-	ID             int        `json:"id"`
-	Commit         string     `json:"commit"`
-	Root           string     `json:"root"`
-	VisibleAtTip   bool       `json:"visibleAtTip"`
-	UploadedAt     time.Time  `json:"uploadedAt"`
-	State          string     `json:"state"`
-	FailureMessage *string    `json:"failureMessage"`
-	StartedAt      *time.Time `json:"startedAt"`
-	FinishedAt     *time.Time `json:"finishedAt"`
-	ProcessAfter   *time.Time `json:"processAfter"`
-	NumResets      int        `json:"numResets"`
-	RepositoryID   int        `json:"repositoryId"`
-	RepositoryName string     `json:"repositoryName"`
-	Indexer        string     `json:"indexer"`
-	NumParts       int        `json:"numParts"`
-	UploadedParts  []int      `json:"uploadedParts"`
-	UploadSize     *int64     `json:"uploadSize"`
-	Rank           *int       `json:"placeInQueue"`
-}
+type Upload struct { /* all structs must go */ }
 
 func (u Upload) RecordID() int {
 	return u.ID
@@ -199,15 +180,7 @@ func (s *store) GetUploadByID(ctx context.Context, id int) (Upload, bool, error)
 	`, id)))
 }
 
-type GetUploadsOptions struct {
-	RepositoryID   int
-	State          string
-	Term           string
-	VisibleAtTip   bool
-	UploadedBefore *time.Time
-	Limit          int
-	Offset         int
-}
+type GetUploadsOptions struct { /* all structs must go */ }
 
 // GetUploads returns a list of uploads and the total count of records matching the given conditions.
 func (s *store) GetUploads(ctx context.Context, opts GetUploadsOptions) (_ []Upload, _ int, err error) {

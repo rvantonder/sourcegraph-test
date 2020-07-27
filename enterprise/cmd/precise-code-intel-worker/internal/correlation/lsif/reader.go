@@ -9,10 +9,7 @@ import (
 	"sync"
 )
 
-type Pair struct {
-	Element Element
-	Err     error
-}
+type Pair struct { /* all structs must go */ }
 
 // Read reads the given content as line-separated JSON objects and returns a channel of Pair values for each
 // non-empty line.

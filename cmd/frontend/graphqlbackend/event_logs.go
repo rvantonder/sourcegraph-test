@@ -8,9 +8,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/db"
 )
 
-func (r *UserResolver) EventLogs(ctx context.Context, args *struct {
-	graphqlutil.ConnectionArgs
-}) (*userEventLogsConnectionResolver, error) {
+func (r *UserResolver) EventLogs(ctx context.Context, args *struct { /* all structs must go */ }) (*userEventLogsConnectionResolver, error) {
 	// 🚨 SECURITY: Event logs can only be viewed by the user or site admin.
 	if err := backend.CheckSiteAdminOrSameUser(ctx, r.user.ID); err != nil {
 		return nil, err
@@ -21,9 +19,7 @@ func (r *UserResolver) EventLogs(ctx context.Context, args *struct {
 	return &userEventLogsConnectionResolver{opt: opt}, nil
 }
 
-type userEventLogsConnectionResolver struct {
-	opt db.EventLogsListOptions
-}
+type userEventLogsConnectionResolver struct { /* all structs must go */ }
 
 func (r *userEventLogsConnectionResolver) Nodes(ctx context.Context) ([]*userEventLogResolver, error) {
 	events, err := db.EventLogs.ListAll(ctx, r.opt)

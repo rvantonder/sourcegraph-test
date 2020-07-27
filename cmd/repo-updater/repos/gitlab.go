@@ -22,14 +22,7 @@ import (
 
 // A GitLabSource yields repositories from a single GitLab connection configured
 // in Sourcegraph via the external services configuration.
-type GitLabSource struct {
-	svc                 *ExternalService
-	config              *schema.GitLabConnection
-	exclude             excludeFunc
-	baseURL             *url.URL // URL with path /api/v4 (no trailing slash)
-	nameTransformations reposource.NameTransformations
-	client              *gitlab.Client
-}
+type GitLabSource struct { /* all structs must go */ }
 
 // NewGitLabSource returns a new GitLabSource from the given external service.
 func NewGitLabSource(svc *ExternalService, cf *httpcli.Factory) (*GitLabSource, error) {
@@ -166,10 +159,7 @@ func (s *GitLabSource) excludes(p *gitlab.Project) bool {
 }
 
 func (s *GitLabSource) listAllProjects(ctx context.Context, results chan SourceResult) {
-	type batch struct {
-		projs []*gitlab.Project
-		err   error
-	}
+	type batch struct { /* all structs must go */ }
 
 	ch := make(chan batch)
 

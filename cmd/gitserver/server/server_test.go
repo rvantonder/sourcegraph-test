@@ -22,13 +22,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/mutablelimiter"
 )
 
-type Test struct {
-	Name             string
-	Request          *http.Request
-	ExpectedCode     int
-	ExpectedBody     string
-	ExpectedTrailers http.Header
-}
+type Test struct { /* all structs must go */ }
 
 func TestRequest(t *testing.T) {
 	tests := []Test{
@@ -295,11 +289,7 @@ func BenchmarkQuickRevParseHeadQuickSymbolicRefHead_unpacked_refs(b *testing.B) 
 }
 
 func TestUrlRedactor(t *testing.T) {
-	testCases := []struct {
-		url      string
-		message  string
-		redacted string
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{
 			url:      "http://token@github.com/foo/bar/",
 			message:  "fatal: repository 'http://token@github.com/foo/bar/' not found",

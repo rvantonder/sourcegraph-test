@@ -406,14 +406,7 @@ func TestDeleteOldestDump(t *testing.T) {
 	}
 }
 
-type FindClosestDumpsTestCase struct {
-	commit              string
-	file                string
-	rootMustEnclosePath bool
-	indexer             string
-	anyOfIDs            []int
-	allOfIDs            []int
-}
+type FindClosestDumpsTestCase struct { /* all structs must go */ }
 
 func testFindClosestDumps(t *testing.T, store Store, testCases []FindClosestDumpsTestCase) {
 	for _, testCase := range testCases {
@@ -726,11 +719,7 @@ func TestDeleteOverlappingDumpsNoMatches(t *testing.T) {
 		Indexer: "lsif-go",
 	})
 
-	testCases := []struct {
-		commit  string
-		root    string
-		indexer string
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{makeCommit(2), "cmd/", "lsif-go"},
 		{makeCommit(1), "cmds/", "lsif-go"},
 		{makeCommit(1), "cmd/", "lsif-tsc"},

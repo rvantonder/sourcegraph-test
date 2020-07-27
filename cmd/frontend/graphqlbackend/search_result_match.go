@@ -1,11 +1,7 @@
 package graphqlbackend
 
 // A resolver for the GraphQL type GenericSearchMatch
-type searchResultMatchResolver struct {
-	url        string
-	body       string
-	highlights []*highlightedRange
-}
+type searchResultMatchResolver struct { /* all structs must go */ }
 
 func (m *searchResultMatchResolver) URL() string {
 	return m.url

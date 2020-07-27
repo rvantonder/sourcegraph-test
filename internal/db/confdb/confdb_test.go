@@ -44,26 +44,13 @@ func TestSiteCreate_RejectInvalidJSON(t *testing.T) {
 }
 
 func TestSiteCreateIfUpToDate(t *testing.T) {
-	type input struct {
-		lastID   int32
-		contents string
-	}
+	type input struct { /* all structs must go */ }
 
-	type output struct {
-		ID       int32
-		contents string
-		err      error
-	}
+	type output struct { /* all structs must go */ }
 
-	type pair struct {
-		input    input
-		expected output
-	}
+	type pair struct { /* all structs must go */ }
 
-	type test struct {
-		name     string
-		sequence []pair
-	}
+	type test struct { /* all structs must go */ }
 
 	for _, test := range []test{
 		{

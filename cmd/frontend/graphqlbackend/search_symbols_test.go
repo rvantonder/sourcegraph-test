@@ -29,10 +29,7 @@ func TestMakeFileMatchURIFromSymbol(t *testing.T) {
 	}
 	sr := &searchSymbolResult{symbol, baseURI, "go", commit}
 
-	tests := []struct {
-		rev  string
-		want string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{"", "git://repo#foo/bar"},
 		{"test", "git://repo?test#foo/bar"},
 	}
@@ -174,11 +171,7 @@ func TestLimitingSymbolResults(t *testing.T) {
 			}
 		})
 
-		testCases := []struct {
-			name  string
-			limit int
-			want  []*FileMatchResolver
-		}{
+		testCases := []struct { /* all structs must go */ }{
 			{
 				name: "limit 0 => no file matches",
 				want: []*FileMatchResolver{},

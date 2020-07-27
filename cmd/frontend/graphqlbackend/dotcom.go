@@ -70,47 +70,23 @@ type ProductSubscriptionInvoiceItem interface {
 	ExpiresAt() DateTime
 }
 
-type SetUserBillingArgs struct {
-	User              graphql.ID
-	BillingCustomerID *string
-}
+type SetUserBillingArgs struct { /* all structs must go */ }
 
-type CreateProductSubscriptionArgs struct {
-	AccountID graphql.ID
-}
+type CreateProductSubscriptionArgs struct { /* all structs must go */ }
 
-type SetProductSubscriptionBillingArgs struct {
-	ID                    graphql.ID
-	BillingSubscriptionID *string
-}
+type SetProductSubscriptionBillingArgs struct { /* all structs must go */ }
 
-type GenerateProductLicenseForSubscriptionArgs struct {
-	ProductSubscriptionID graphql.ID
-	License               *ProductLicenseInput
-}
+type GenerateProductLicenseForSubscriptionArgs struct { /* all structs must go */ }
 
-type CreatePaidProductSubscriptionArgs struct {
-	AccountID           graphql.ID
-	ProductSubscription ProductSubscriptionInput
-	PaymentToken        *string
-}
+type CreatePaidProductSubscriptionArgs struct { /* all structs must go */ }
 
-type UpdatePaidProductSubscriptionArgs struct {
-	SubscriptionID graphql.ID
-	Update         ProductSubscriptionInput
-	PaymentToken   *string
-}
+type UpdatePaidProductSubscriptionArgs struct { /* all structs must go */ }
 
 // ProductSubscriptionInput implements the GraphQL type ProductSubscriptionInput.
-type ProductSubscriptionInput struct {
-	BillingPlanID string
-	UserCount     int32
-}
+type ProductSubscriptionInput struct { /* all structs must go */ }
 
 // CreatePaidProductSubscriptionResult implements the GraphQL type CreatePaidProductSubscriptionResult.
-type CreatePaidProductSubscriptionResult struct {
-	ProductSubscriptionValue ProductSubscription
-}
+type CreatePaidProductSubscriptionResult struct { /* all structs must go */ }
 
 func (r *CreatePaidProductSubscriptionResult) ProductSubscription() ProductSubscription {
 	return r.ProductSubscriptionValue
@@ -118,9 +94,7 @@ func (r *CreatePaidProductSubscriptionResult) ProductSubscription() ProductSubsc
 
 // UpdatePaidProductSubscriptionResult implements the GraphQL type
 // UpdatePaidProductSubscriptionResult.
-type UpdatePaidProductSubscriptionResult struct {
-	ProductSubscriptionValue ProductSubscription
-}
+type UpdatePaidProductSubscriptionResult struct { /* all structs must go */ }
 
 func (r *UpdatePaidProductSubscriptionResult) ProductSubscription() ProductSubscription {
 	return r.ProductSubscriptionValue
@@ -128,15 +102,9 @@ func (r *UpdatePaidProductSubscriptionResult) ProductSubscription() ProductSubsc
 
 type ArchiveProductSubscriptionArgs struct{ ID graphql.ID }
 
-type ProductSubscriptionArgs struct {
-	UUID string
-}
+type ProductSubscriptionArgs struct { /* all structs must go */ }
 
-type ProductSubscriptionsArgs struct {
-	graphqlutil.ConnectionArgs
-	Account *graphql.ID
-	Query   *string
-}
+type ProductSubscriptionsArgs struct { /* all structs must go */ }
 
 // ProductSubscriptionConnection is the interface for the GraphQL type
 // ProductSubscriptionConnection.
@@ -146,11 +114,7 @@ type ProductSubscriptionConnection interface {
 	PageInfo(context.Context) (*graphqlutil.PageInfo, error)
 }
 
-type PreviewProductSubscriptionInvoiceArgs struct {
-	Account              *graphql.ID
-	SubscriptionToUpdate *graphql.ID
-	ProductSubscription  ProductSubscriptionInput
-}
+type PreviewProductSubscriptionInvoiceArgs struct { /* all structs must go */ }
 
 // ProductLicenseByID is called to look up a ProductLicense given its GraphQL ID.
 //
@@ -167,17 +131,9 @@ type ProductLicense interface {
 }
 
 // ProductLicenseInput implements the GraphQL type ProductLicenseInput.
-type ProductLicenseInput struct {
-	Tags      []string
-	UserCount int32
-	ExpiresAt int32
-}
+type ProductLicenseInput struct { /* all structs must go */ }
 
-type ProductLicensesArgs struct {
-	graphqlutil.ConnectionArgs
-	LicenseKeySubstring   *string
-	ProductSubscriptionID *graphql.ID
-}
+type ProductLicensesArgs struct { /* all structs must go */ }
 
 // ProductLicenseConnection is the interface for the GraphQL type ProductLicenseConnection.
 type ProductLicenseConnection interface {

@@ -27,20 +27,7 @@ import (
 )
 
 // Container describes a Docker container to be observed.
-type Container struct {
-	// Name of the Docker container, e.g. "syntect-server".
-	Name string
-
-	// Title of the Docker container, e.g. "Syntect Server".
-	Title string
-
-	// Description of the Docker container. It should describe what the container
-	// is responsible for, so that the impact of issues in it is clear.
-	Description string
-
-	// Groups of observable information about the container.
-	Groups []Group
-}
+type Container struct { /* all structs must go */ }
 
 func (c *Container) validate() error {
 	if !isValidUID(c.Name) {
@@ -61,22 +48,7 @@ func (c *Container) validate() error {
 }
 
 // Group describes a group of observable information about a container.
-type Group struct {
-	// Title of the group, briefly summarizing what this group is about, or
-	// "General" if the group is just about the container in general.
-	Title string
-
-	// Hidden indicates whether or not the group should be hidden by default.
-	//
-	// This should only be used when the dashboard is already full of information
-	// and the information presented in this group is unlikely to be the cause of
-	// issues and should generally only be inspected in the event that an alert
-	// for that information is firing.
-	Hidden bool
-
-	// Rows of observable metrics.
-	Rows []Row
-}
+type Group struct { /* all structs must go */ }
 
 func (g Group) validate() error {
 	if g.Title != upperFirst(g.Title) || g.Title == withPeriod(g.Title) {
@@ -125,97 +97,7 @@ const (
 )
 
 // Observable describes a metric about a container that can be observed. For example, memory usage.
-type Observable struct {
-	// Name is a short and human-readable lower_snake_case name describing what is being observed.
-	//
-	// It must be unique relative to the service name.
-	//
-	// Good examples:
-	//
-	//  github_rate_limit_remaining
-	// 	search_error_rate
-	//
-	// Bad examples:
-	//
-	//  repo_updater_github_rate_limit
-	// 	search_error_rate_over_5m
-	//
-	Name string
-
-	// Description is a human-readable description of exactly what is being observed.
-	//
-	// Good examples:
-	//
-	// 	"remaining GitHub API rate limit quota"
-	// 	"number of search errors every 5m"
-	//  "90th percentile search request duration over 5m"
-	//
-	// Bad examples:
-	//
-	// 	"GitHub rate limit"
-	// 	"search errors[5m]"
-	// 	"P90 search latency"
-	//
-	Description string
-
-	// Owner indicates the team that owns any alerts associated with this Observable.
-	Owner ObservableOwner
-
-	// Query is the actual Prometheus query that should be observed.
-	Query string
-
-	// DataMayNotExist indicates if the query may not return data until some event occurs in the
-	// future.
-	//
-	// For example, repo_updater_memory_usage should always have data present and an alert should
-	// fire if for some reason that query is not returning any data, so this would be set to false.
-	// In contrast, search_error_rate would depend on users actually performing searches and we
-	// would not want an alert to fire if no data was present, so this would be set to true.
-	DataMayNotExist bool
-
-	// DataMayBeNaN indicates whether or not the query may return NaN regularly. Most often,
-	// this should be false as NaN often indicates a mistaken divide by zero. However, for
-	// some queries NaN values may be expected, in which case you should set this to true.
-	//
-	// When false, alerts will fire if the query returns NaN.
-	DataMayBeNaN bool
-
-	// Warning and Critical alert definitions. At least a Warning alert must be present.
-	//
-	// See README.md for why it is intentionally impossible to create a dashboard to monitor
-	// something without at least a warning alert being defined.
-	Warning, Critical Alert
-
-	// PossibleSolutions is Markdown describing possible solutions in the event that the alert is
-	// firing. If there is no clear potential resolution, "none" must be explicitly stated.
-	//
-	// Contacting support should not be mentioned as part of a possible solution, as it is
-	// communicated elsewhere.
-	//
-	// To make writing the Markdown more friendly in Go, string literals like this:
-	//
-	// 	Observable{
-	// 		PossibleSolutions: `
-	// 			- Foobar 'some code'
-	// 		`
-	// 	}
-	//
-	// Becomes:
-	//
-	// 	- Foobar `some code`
-	//
-	// In other words:
-	//
-	// 1. The preceding newline is removed.
-	// 2. The indentation in the string literal is removed (based on the last line).
-	// 3. Single quotes become backticks.
-	// 4. The last line (which is all indention) is removed.
-	//
-	PossibleSolutions string
-
-	// PanelOptions describes some options for how to render the metric in the Grafana panel.
-	PanelOptions panelOptions
-}
+type Observable struct { /* all structs must go */ }
 
 func (o Observable) validate() error {
 	if strings.Contains(o.Name, " ") || strings.ToLower(o.Name) != o.Name {
@@ -250,19 +132,7 @@ func (o Observable) validate() error {
 }
 
 // Alert defines when an alert would be considered firing.
-type Alert struct {
-	// GreaterOrEqual, when non-zero, indicates the alert should fire when
-	// greater or equal to this value.
-	GreaterOrEqual float64
-
-	// LessOrEqual, when non-zero, indicates the alert should fire when less
-	// than or equal to this value.
-	LessOrEqual float64
-
-	// For indicates how long the given thresholds must be exceeded for this
-	// alert to be considered firing. Defaults to 0s.
-	For time.Duration
-}
+type Alert struct { /* all structs must go */ }
 
 func (a Alert) isEmpty() bool {
 	return a == Alert{} || (a.GreaterOrEqual == 0 && a.LessOrEqual == 0)
@@ -320,13 +190,7 @@ const (
 	BitsPerSecond UnitType = "bps"
 )
 
-type panelOptions struct {
-	min, max     *float64
-	minAuto      bool
-	legendFormat string
-	unitType     UnitType
-	interval     string
-}
+type panelOptions struct { /* all structs must go */ }
 
 // Min sets the minimum value of the Y axis on the panel. The default is zero.
 func (p panelOptions) Min(min float64) panelOptions {
@@ -804,10 +668,7 @@ for assistance.
 					fmt.Fprintf(&b, "# %s: %s\n\n", c.Name, o.Name)
 
 					fmt.Fprintf(&b, "**Descriptions:**\n")
-					for _, alert := range []struct {
-						level     string
-						threshold Alert
-					}{
+					for _, alert := range []struct { /* all structs must go */ }{
 						{level: "warning", threshold: o.Warning},
 						{level: "critical", threshold: o.Critical},
 					} {
@@ -1023,14 +884,9 @@ func deleteRemnants(filelist []string, grafanaDir, promDir string) {
 //
 // https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/
 //
-type promRulesFile struct {
-	Groups []promGroup
-}
+type promRulesFile struct { /* all structs must go */ }
 
-type promGroup struct {
-	Name  string
-	Rules []promRule
-}
+type promGroup struct { /* all structs must go */ }
 
 func (g *promGroup) AppendRow(alertQuery string, labels map[string]string, duration time.Duration) {
 	labels["alert_type"] = "builtin" // indicate alert is generated
@@ -1060,17 +916,7 @@ func (g *promGroup) AppendRow(alertQuery string, labels map[string]string, durat
 		})
 }
 
-type promRule struct {
-	// either Record or Alert
-	Record string `yaml:",omitempty"`
-	Alert  string `yaml:",omitempty"`
-
-	Labels map[string]string
-	Expr   string
-
-	// for Alert only
-	For *time.Duration `yaml:",omitempty"`
-}
+type promRule struct { /* all structs must go */ }
 
 // setPanelSize is a helper to set a panel's size.
 func setPanelSize(p *sdk.Panel, width, height int) {

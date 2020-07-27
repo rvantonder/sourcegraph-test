@@ -24,10 +24,7 @@ var ErrNoVersion = errors.New("no rows in schema_version")
 // introduced.
 type MigrationFunc func(ctx context.Context, s *store.Store, serializer serialization.Serializer) error
 
-var migrations = []struct {
-	MigrationFunc MigrationFunc
-	ShouldVacuum  bool
-}{
+var migrations = []struct { /* all structs must go */ }{
 	{v0.Migrate, false},
 	{v1.Migrate, false},
 	{v2.Migrate, false},

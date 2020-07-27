@@ -538,21 +538,8 @@ func TestRegexSearch(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	type args struct {
-		ctx                   context.Context
-		rg                    *readerGrep
-		zf                    *store.ZipFile
-		fileMatchLimit        int
-		patternMatchesContent bool
-		patternMatchesPaths   bool
-	}
-	tests := []struct {
-		name         string
-		args         args
-		wantFm       []protocol.FileMatch
-		wantLimitHit bool
-		wantErr      bool
-	}{
+	type args struct { /* all structs must go */ }
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "nil re returns a FileMatch with no LineMatches",
 			args: args{

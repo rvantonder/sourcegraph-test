@@ -9,14 +9,7 @@ import (
 )
 
 // extensionManifest implements the GraphQL type ExtensionManifest.
-type extensionManifest struct {
-	raw string
-
-	// cache result because it is used by multiple fields
-	once   sync.Once
-	result *schema.SourcegraphExtensionManifest
-	err    error
-}
+type extensionManifest struct { /* all structs must go */ }
 
 // NewExtensionManifest creates a new resolver for the GraphQL type ExtensionManifest with the given
 // raw contents of an extension manifest.

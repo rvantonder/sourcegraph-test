@@ -29,13 +29,7 @@ func TestRepository_BlameFile(t *testing.T) {
 			Message: "foo", Author: Signature{Name: "a", Email: "a@a.com", Date: MustParseTime(time.RFC3339, "2006-01-02T15:04:05Z")},
 		},
 	}
-	tests := map[string]struct {
-		repo gitserver.Repo
-		path string
-		opt  *BlameOptions
-
-		wantHunks []*Hunk
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"git cmd": {
 			repo: MakeGitRepository(t, gitCommands...),
 			path: "f",

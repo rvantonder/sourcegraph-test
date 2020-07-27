@@ -20,47 +20,11 @@ import (
 // SudoProvider is an implementation of AuthzProvider that provides repository permissions as
 // determined from a GitLab instance API. For documentation of specific fields, see the docstrings
 // of SudoProviderOp.
-type SudoProvider struct {
-	// sudoToken is the sudo-scoped access token. This is different from the Sudo parameter, which
-	// is set per client and defines which user to impersonate.
-	sudoToken string
-
-	urn               string
-	clientProvider    *gitlab.ClientProvider
-	clientURL         *url.URL
-	codeHost          *extsvc.CodeHost
-	gitlabProvider    string
-	authnConfigID     providers.ConfigID
-	useNativeUsername bool
-}
+type SudoProvider struct { /* all structs must go */ }
 
 var _ authz.Provider = (*SudoProvider)(nil)
 
-type SudoProviderOp struct {
-	// The unique resource identifier of the external service where the provider is defined.
-	URN string
-
-	// BaseURL is the URL of the GitLab instance.
-	BaseURL *url.URL
-
-	// AuthnConfigID identifies the authn provider to use to lookup users on the GitLab instance.
-	// This should be the authn provider that's used to sign into the GitLab instance.
-	AuthnConfigID providers.ConfigID
-
-	// GitLabProvider is the id of the authn provider to GitLab. It will be used in the
-	// `users?extern_uid=$uid&provider=$provider` API query.
-	GitLabProvider string
-
-	// SudoToken is an access token with sudo *and* api scope.
-	//
-	// 🚨 SECURITY: This value contains secret information that must not be shown to non-site-admins.
-	SudoToken string
-
-	// UseNativeUsername, if true, maps Sourcegraph users to GitLab users using username equivalency
-	// instead of the authn provider user ID. This is *very* insecure (Sourcegraph usernames can be
-	// changed at the user's will) and should only be used in development environments.
-	UseNativeUsername bool
-}
+type SudoProviderOp struct { /* all structs must go */ }
 
 func newSudoProvider(op SudoProviderOp, cli httpcli.Doer) *SudoProvider {
 	return &SudoProvider{

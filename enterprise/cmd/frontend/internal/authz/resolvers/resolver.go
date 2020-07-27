@@ -24,12 +24,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/repoupdater/protocol"
 )
 
-type Resolver struct {
-	store             *edb.PermsStore
-	repoupdaterClient interface {
-		SchedulePermsSync(ctx context.Context, args protocol.PermsSyncRequest) error
-	}
-}
+type Resolver struct { /* all structs must go */ }
 
 func NewResolver(db dbutil.DB, clock func() time.Time) graphqlbackend.AuthzResolver {
 	return &Resolver{
@@ -271,11 +266,7 @@ func (r *Resolver) AuthorizedUsers(ctx context.Context, args *graphqlbackend.Rep
 	}, nil
 }
 
-type permissionsInfoResolver struct {
-	perms     authz.Perms
-	syncedAt  time.Time
-	updatedAt time.Time
-}
+type permissionsInfoResolver struct { /* all structs must go */ }
 
 func (r *permissionsInfoResolver) Permissions() []string {
 	return strings.Split(strings.ToUpper(r.perms.String()), ",")

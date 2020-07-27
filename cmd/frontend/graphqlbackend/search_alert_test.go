@@ -17,11 +17,7 @@ import (
 )
 
 func TestSearchPatternForSuggestion(t *testing.T) {
-	cases := []struct {
-		Name  string
-		Alert searchAlert
-		Want  string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			Name: "with_regex_suggestion",
 			Alert: searchAlert{
@@ -65,12 +61,7 @@ func TestSearchPatternForSuggestion(t *testing.T) {
 }
 
 func TestAddQueryRegexpField(t *testing.T) {
-	tests := []struct {
-		query      string
-		addField   string
-		addPattern string
-		want       string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			query:      "",
 			addField:   "repo",
@@ -153,12 +144,7 @@ func TestAddQueryRegexpField(t *testing.T) {
 }
 
 func TestErrorToAlertStructuralSearch(t *testing.T) {
-	cases := []struct {
-		name           string
-		errors         []error
-		wantErrors     []error
-		wantAlertTitle string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			name:           "multierr_is_unaffected",
 			errors:         []error{errors.New("some error")},
@@ -231,12 +217,7 @@ func TestAlertForOverRepoLimit(t *testing.T) {
 	}
 	defer func() { mockResolveRepositories = nil }()
 
-	cases := []struct {
-		name      string
-		repoRevs  int
-		query     string
-		wantAlert *searchAlert
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			name:     "should return default alert",
 			repoRevs: 0,

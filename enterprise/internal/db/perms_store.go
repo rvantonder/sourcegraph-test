@@ -25,10 +25,7 @@ var (
 // PermsStore is the unified interface for managing permissions explicitly in the database.
 // It is concurrency-safe and maintains data consistency over the 'user_permissions',
 // 'repo_permissions', 'user_pending_permissions', and 'repo_pending_permissions' tables.
-type PermsStore struct {
-	db    dbutil.DB
-	clock func() time.Time
-}
+type PermsStore struct { /* all structs must go */ }
 
 // NewPermsStore returns a new PermsStore with given parameters.
 func NewPermsStore(db dbutil.DB, clock func() time.Time) *PermsStore {
@@ -1238,12 +1235,7 @@ func (s *PermsStore) execute(ctx context.Context, q *sqlf.Query, vs ...interface
 }
 
 // permsLoadValues contains return values of (*PermsStore).load method.
-type permsLoadValues struct {
-	id        int32           // An integer ID
-	ids       *roaring.Bitmap // Bitmap of unmarshalled IDs
-	updatedAt time.Time       // Last updated time of the row
-	syncedAt  time.Time       // Last synced time of the row
-}
+type permsLoadValues struct { /* all structs must go */ }
 
 // load is a generic method that scans three values from one database table row, these values must have
 // types and be scanned in the order of int32 (id), []byte (ids), time.Time (updatedAt) and nullable
@@ -1550,16 +1542,7 @@ func (s *PermsStore) loadIDsWithTime(ctx context.Context, q *sqlf.Query) (map[in
 }
 
 // PermsMetrics contains metrics values calculated by querying the database.
-type PermsMetrics struct {
-	// The number of users with stale permissions.
-	UsersWithStalePerms int64
-	// The seconds between users with oldest and the most up-to-date permissions.
-	UsersPermsGapSeconds float64
-	// The number of repositories with stale permissions.
-	ReposWithStalePerms int64
-	// The seconds between repositories with oldest and the most up-to-date permissions.
-	ReposPermsGapSeconds float64
-}
+type PermsMetrics struct { /* all structs must go */ }
 
 // Metrics returns calculated metrics values by querying the database. The "staleDur"
 // argument indicates how long ago was the last update to be considered as stale.

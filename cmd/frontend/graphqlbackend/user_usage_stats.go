@@ -28,9 +28,7 @@ func (r *UserResolver) UsageStatistics(ctx context.Context) (*userUsageStatistic
 	return &userUsageStatisticsResolver{stats}, nil
 }
 
-type userUsageStatisticsResolver struct {
-	userUsageStatistics *types.UserUsageStatistics
-}
+type userUsageStatisticsResolver struct { /* all structs must go */ }
 
 func (s *userUsageStatisticsResolver) PageViews() int32 { return s.userUsageStatistics.PageViews }
 
@@ -62,21 +60,12 @@ func (s *userUsageStatisticsResolver) LastActiveCodeHostIntegrationTime() *strin
 	return nil
 }
 
-func (*schemaResolver) LogUserEvent(ctx context.Context, args *struct {
-	Event        string
-	UserCookieID string
-}) (*EmptyResponse, error) {
+func (*schemaResolver) LogUserEvent(ctx context.Context, args *struct { /* all structs must go */ }) (*EmptyResponse, error) {
 	actor := actor.FromContext(ctx)
 	return nil, usagestatsdeprecated.LogActivity(actor.IsAuthenticated(), actor.UID, args.UserCookieID, args.Event)
 }
 
-func (*schemaResolver) LogEvent(ctx context.Context, args *struct {
-	Event        string
-	UserCookieID string
-	URL          string
-	Source       string
-	Argument     *string
-}) (*EmptyResponse, error) {
+func (*schemaResolver) LogEvent(ctx context.Context, args *struct { /* all structs must go */ }) (*EmptyResponse, error) {
 	if !conf.EventLoggingEnabled() {
 		return nil, nil
 	}

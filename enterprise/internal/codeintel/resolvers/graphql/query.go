@@ -24,10 +24,7 @@ var ErrIllegalBounds = errors.New("illegal bounds")
 // resolver concerns itself with GraphQL/API-specific behaviors (auth, validation, marshaling, etc.).
 // All code intel-specific behavior is delegated to the underlying resolver instance, which is defined
 // in the parent package.
-type QueryResolver struct {
-	resolver         resolvers.QueryResolver
-	locationResolver *CachedLocationResolver
-}
+type QueryResolver struct { /* all structs must go */ }
 
 // NewQueryResolver creates a new QueryResolver with the given resolver that defines all code intel-specific
 // behavior. A cached location resolver instance is also given to the query resolver, which should be used

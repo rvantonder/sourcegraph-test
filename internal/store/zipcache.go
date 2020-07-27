@@ -18,22 +18,9 @@ import (
 
 // A ZipCache is a shared data structure that provides efficient access to a collection of zip files.
 // The zero value is usable.
-type ZipCache struct {
-	// Split the cache into many parts, to minimize lock contention.
-	// This matters because, for simplicity,
-	// we sometimes hold the lock for long-running operations,
-	// such as reading a zip file from disk
-	// or waiting for all users of a zip file to finish their work.
-	// (The latter case should basically never block, since it only
-	// occurs when a file is being deleted, and files are deleted
-	// when no one has used them for a long time. Nevertheless, take care.)
-	shards [64]zipCacheShard
-}
+type ZipCache struct { /* all structs must go */ }
 
-type zipCacheShard struct {
-	mu sync.Mutex
-	m  map[string]*ZipFile // path -> zipFile
-}
+type zipCacheShard struct { /* all structs must go */ }
 
 func (c *ZipCache) shardFor(path string) *zipCacheShard {
 	h := fnv.New32()
@@ -94,15 +81,7 @@ func (c *ZipCache) delete(path string) {
 }
 
 // ZipFile provides efficient access to a single zip file.
-type ZipFile struct {
-	// Take care with the size of this struct.
-	// There are many zipFiles present during typical usage.
-	Files  []SrcFile
-	MaxLen int
-	Data   []byte
-	f      *os.File
-	wg     sync.WaitGroup // ensures underlying file is not munmap'd or closed while in use
-}
+type ZipFile struct { /* all structs must go */ }
 
 func readZipFile(path string) (*ZipFile, error) {
 	// Open zip file at path, prepare to read it.
@@ -193,16 +172,7 @@ func MockZipFile(data []byte) (*ZipFile, error) {
 }
 
 // A SrcFile is a single file inside a ZipFile.
-type SrcFile struct {
-	// Take care with the size of this struct.
-	// There will be *lots* of these in memory.
-	// This is why Len is a 32 bit int.
-	// (Note that this means that ZipCache cannot
-	// handle files inside the zip archive bigger than 2gb.)
-	Name string
-	Off  int64
-	Len  int32
-}
+type SrcFile struct { /* all structs must go */ }
 
 // Data returns the contents of s, which is a SrcFile in f.
 // The contents MUST NOT be modified.

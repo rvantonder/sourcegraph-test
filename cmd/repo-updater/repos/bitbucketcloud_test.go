@@ -34,12 +34,7 @@ func TestBitbucketCloudSource_ListRepos(t *testing.T) {
 		}
 	}
 
-	testCases := []struct {
-		name   string
-		assert ReposAssertion
-		conf   *schema.BitbucketCloudConnection
-		err    string
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{
 			name: "found",
 			assert: assertAllReposListed([]string{
@@ -121,10 +116,7 @@ func TestBitbucketCloudSource_makeRepo(t *testing.T) {
 
 	svc := ExternalService{ID: 1, Kind: extsvc.KindBitbucketCloud}
 
-	tests := []struct {
-		name   string
-		schmea *schema.BitbucketCloudConnection
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "simple",
 			schmea: &schema.BitbucketCloudConnection{
@@ -229,10 +221,7 @@ func TestBitbucketCloudSource_Exclude(t *testing.T) {
 				t.Fatal(err)
 			}
 
-			type output struct {
-				Include []string
-				Exclude []string
-			}
+			type output struct { /* all structs must go */ }
 			var got output
 			for _, r := range repos {
 				if s.excludes(r) {

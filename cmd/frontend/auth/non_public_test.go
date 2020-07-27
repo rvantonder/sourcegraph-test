@@ -30,10 +30,7 @@ func TestAllowAnonymousRequest(t *testing.T) {
 		return r
 	}
 
-	tests := []struct {
-		req  *http.Request
-		want bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{req: req("GET", "/"), want: false},
 		{req: req("POST", "/"), want: false},
 		{req: req("POST", "/-/sign-in"), want: true},
@@ -63,13 +60,7 @@ func TestNewUserRequiredAuthzMiddleware(t *testing.T) {
 		return r.WithContext(actor.WithActor(context.Background(), &actor.Actor{UID: 1}))
 	}
 
-	testcases := []struct {
-		name       string
-		req        *http.Request
-		allowed    bool
-		wantStatus int
-		location   string
-	}{
+	testcases := []struct { /* all structs must go */ }{
 		{
 			name:       "no_auth__private_route",
 			req:        httptest.NewRequest("GET", "/", nil),

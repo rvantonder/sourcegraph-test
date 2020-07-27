@@ -46,26 +46,7 @@ import (
 
 // searchResultsCommon contains fields that should be returned by all funcs
 // that contribute to the overall search result set.
-type searchResultsCommon struct {
-	limitHit bool // whether the limit on results was hit
-
-	repos    []*types.Repo             // repos that were matched by the repo-related filters
-	searched []*types.Repo             // repos that were searched
-	indexed  []*types.Repo             // repos that were searched using an index
-	cloning  []*types.Repo             // repos that could not be searched because they were still being cloned
-	missing  []*types.Repo             // repos that could not be searched because they do not exist
-	excluded excludedRepos             // repo counts of excluded repos because the search query doesn't apply to them, but that we want to know about (forks, archives)
-	partial  map[api.RepoName]struct{} // repos that were searched, but have results that were not returned due to exceeded limits
-
-	maxResultsCount, resultCount int32
-
-	// timedout usually contains repos that haven't finished being fetched yet.
-	// This should only happen for large repos and the searcher caches are
-	// purged.
-	timedout []*types.Repo
-
-	indexUnavailable bool // True if indexed search is enabled but was not available during this search.
-}
+type searchResultsCommon struct { /* all structs must go */ }
 
 func (c *searchResultsCommon) LimitHit() bool {
 	return c.limitHit || c.resultCount > c.maxResultsCount
@@ -158,16 +139,7 @@ func dedupSort(repos *types.Repos) {
 }
 
 // SearchResultsResolver is a resolver for the GraphQL type `SearchResults`
-type SearchResultsResolver struct {
-	SearchResults []SearchResultResolver
-	searchResultsCommon
-	alert *searchAlert
-	start time.Time // when the results started being computed
-
-	// cursor to return for paginated search requests, or nil if the request
-	// wasn't paginated.
-	cursor *searchCursor
-}
+type SearchResultsResolver struct { /* all structs must go */ }
 
 func (sr *SearchResultsResolver) Results() []SearchResultResolver {
 	return sr.SearchResults
@@ -200,11 +172,7 @@ func (sr *SearchResultsResolver) ElapsedMilliseconds() int32 {
 
 // commonFileFilters are common filters used. It is used by DynamicFilters to
 // propose them if they match shown results.
-var commonFileFilters = []struct {
-	regexp      *lazyregexp.Regexp
-	regexFilter string
-	globFilter  string
-}{
+var commonFileFilters = []struct { /* all structs must go */ }{
 	// Exclude go tests
 	{
 		regexp:      lazyregexp.New(`_test\.go$`),
@@ -360,24 +328,7 @@ func (sr *SearchResultsResolver) DynamicFilters(ctx context.Context) []*searchFi
 	return allFilters
 }
 
-type searchFilterResolver struct {
-	value string
-
-	// the string to be displayed in the UI
-	label string
-
-	// the number of matches in a particular repository. Only used for `repo:` filters.
-	count int32
-
-	// whether the results returned for a repository are incomplete
-	limitHit bool
-
-	// the kind of filter. Should be "repo", "file", or "lang".
-	kind string
-
-	// score is used to prioritize the order that filters appear in
-	score score
-}
+type searchFilterResolver struct { /* all structs must go */ }
 
 type score int
 
@@ -1050,16 +1001,7 @@ func roundStr(s string) string {
 	})
 }
 
-type searchResultsStats struct {
-	JApproximateResultCount string
-	JSparkline              []int32
-
-	sr *searchResolver
-
-	once   sync.Once
-	srs    *SearchResultsResolver
-	srsErr error
-}
+type searchResultsStats struct { /* all structs must go */ }
 
 func (srs *searchResultsStats) ApproximateResultCount() string { return srs.JApproximateResultCount }
 func (srs *searchResultsStats) Sparkline() []int32             { return srs.JSparkline }
@@ -1156,16 +1098,7 @@ func (r *searchResolver) Stats(ctx context.Context) (stats *searchResultsStats, 
 	return stats, nil
 }
 
-type getPatternInfoOptions struct {
-	// forceFileSearch, when true, specifies that the search query should be
-	// treated as if every default term had `file:` before it. This can be used
-	// to allow users to jump to files by just typing their name.
-	forceFileSearch         bool
-	performStructuralSearch bool
-	performLiteralSearch    bool
-
-	fileMatchLimit int32
-}
+type getPatternInfoOptions struct { /* all structs must go */ }
 
 // getPatternInfo gets the search pattern info for the query in the resolver.
 func (r *searchResolver) getPatternInfo(opts *getPatternInfoOptions) (*search.TextPatternInfo, error) {

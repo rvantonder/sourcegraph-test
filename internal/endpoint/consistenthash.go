@@ -24,13 +24,7 @@ import (
 
 type hashFn func(data []byte) uint32
 
-type hashMap struct {
-	hash     hashFn
-	replicas int
-	keys     []int // Sorted
-	hashMap  map[int]string
-	values   map[string]struct{}
-}
+type hashMap struct { /* all structs must go */ }
 
 func hashMapNew(replicas int, fn hashFn) *hashMap {
 	m := &hashMap{

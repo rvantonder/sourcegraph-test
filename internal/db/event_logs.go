@@ -23,15 +23,7 @@ const (
 type eventLogs struct{}
 
 // Event contains information needed for logging an event.
-type Event struct {
-	Name            string
-	URL             string
-	UserID          uint32
-	AnonymousUserID string
-	Argument        json.RawMessage
-	Source          string
-	Timestamp       time.Time
-}
+type Event struct { /* all structs must go */ }
 
 func (*eventLogs) Insert(ctx context.Context, e *Event) error {
 	argument := e.Argument
@@ -80,12 +72,7 @@ func (*eventLogs) getBySQL(ctx context.Context, querySuffix *sqlf.Query) ([]*typ
 }
 
 // EventLogsListOptions specifies the options for listing event logs.
-type EventLogsListOptions struct {
-	// UserID specifies the user whose events should be included.
-	UserID int32
-
-	*LimitOffset
-}
+type EventLogsListOptions struct { /* all structs must go */ }
 
 // ListAll gets all event logs in descending order of timestamp.
 func (l *eventLogs) ListAll(ctx context.Context, opt EventLogsListOptions) ([]*types.Event, error) {
@@ -153,10 +140,7 @@ func (*eventLogs) maxTimestampBySQL(ctx context.Context, querySuffix *sqlf.Query
 }
 
 // UsageValue is a single count of usage for a time period starting on a given date.
-type UsageValue struct {
-	Start time.Time
-	Count int
-}
+type UsageValue struct { /* all structs must go */ }
 
 // PeriodType is the type of period in which to count events and unique users.
 type PeriodType string
@@ -220,44 +204,18 @@ func calcEndDate(startDate time.Time, periodType PeriodType, periods int) (time.
 }
 
 // CountUniqueUsersOptions provides options for counting unique users.
-type CountUniqueUsersOptions struct {
-	// If true, only include registered users. Otherwise, include all users.
-	RegisteredOnly bool
-	// If true, only include code host integration users. Otherwise, include all users.
-	IntegrationOnly bool
-	// If set, adds additional restrictions on the event types.
-	EventFilters *EventFilterOptions
-}
+type CountUniqueUsersOptions struct { /* all structs must go */ }
 
 // EventFilterOptions provides options for filtering events.
-type EventFilterOptions struct {
-	// If set, only include events with a given prefix.
-	ByEventNamePrefix string
-	// If set, only include events with the given name.
-	ByEventName string
-	// If not empty, only include events that matche a list of given event names
-	ByEventNames []string
-	// Must be used with ByEventName
-	//
-	// If set, only include events that match a specified condition.
-	ByEventNameWithCondition *sqlf.Query
-}
+type EventFilterOptions struct { /* all structs must go */ }
 
 // EventArgumentMatch provides the options for matching an event with
 // a specific JSON value passed as an argument.
-type EventArgumentMatch struct {
-	// The name of the JSON key to match against.
-	ArgumentName string
-	// The actual value passed to the JSON key to match.
-	ArgumentValue string
-}
+type EventArgumentMatch struct { /* all structs must go */ }
 
 // PercentileValue is a slice of Nth percentile values calculated from a field of events
 // in a time period starting on a given date.
-type PercentileValue struct {
-	Start  time.Time
-	Values []float64
-}
+type PercentileValue struct { /* all structs must go */ }
 
 // CountUniqueUsersPerPeriod provides a count of unique active users in a given time span, broken up into periods of
 // a given type. The value of `now` should be the current time in UTC. Returns an array of length `periods`, with one

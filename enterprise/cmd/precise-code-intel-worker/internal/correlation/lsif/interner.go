@@ -13,10 +13,7 @@ import (
 // Assumption: The output of LSIF indexers will not generally mix types of identifiers.
 // If integers are used, they are used for all ids. If strings are used, they are used
 // for all ids.
-type Interner struct {
-	sync.RWMutex
-	m map[string]int
-}
+type Interner struct { /* all structs must go */ }
 
 // NewInterner creates a new empty interner.
 func NewInterner() *Interner {

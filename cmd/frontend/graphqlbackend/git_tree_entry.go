@@ -36,20 +36,7 @@ func init() {
 
 // GitTreeEntryResolver resolves an entry in a Git tree in a repository. The entry can be any Git
 // object type that is valid in a tree.
-type GitTreeEntryResolver struct {
-	commit *GitCommitResolver
-
-	contentOnce sync.Once
-	content     []byte
-	contentErr  error
-
-	// stat is this tree entry's file info. Its Name method must return the full path relative to
-	// the root, not the basename.
-	stat os.FileInfo
-
-	isRecursive   bool  // whether entries is populated recursively (otherwise just current level of hierarchy)
-	isSingleChild *bool // whether this is the single entry in its parent. Only set by the (&GitTreeEntryResolver) entries.
-}
+type GitTreeEntryResolver struct { /* all structs must go */ }
 
 func NewGitTreeEntryResolver(commit *GitCommitResolver, stat os.FileInfo) *GitTreeEntryResolver {
 	return &GitTreeEntryResolver{commit: commit, stat: stat}
@@ -309,11 +296,7 @@ func (r *GitTreeEntryResolver) LSIF(ctx context.Context, args *struct{ ToolName 
 	})
 }
 
-type fileInfo struct {
-	path  string
-	size  int64
-	isDir bool
-}
+type fileInfo struct { /* all structs must go */ }
 
 func (f fileInfo) Name() string { return f.path }
 func (f fileInfo) Size() int64  { return f.size }

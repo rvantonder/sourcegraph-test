@@ -385,13 +385,7 @@ func getSingleRepo(ctx context.Context, bitbucketSource *repos.BitbucketServerSo
 	return bitbucketRepo, nil
 }
 
-type webhookTestCase struct {
-	Payloads []struct {
-		PayloadType string          `json:"payload_type"`
-		Data        json.RawMessage `json:"data"`
-	} `json:"payloads"`
-	ChangesetEvents []*campaigns.ChangesetEvent `json:"changeset_events"`
-}
+type webhookTestCase struct { /* all structs must go */ }
 
 func loadWebhookTestCase(t testing.TB, path string) webhookTestCase {
 	t.Helper()

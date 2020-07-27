@@ -72,14 +72,7 @@ func (s *repos) Delete(ctx context.Context, repo api.RepoID) error {
 }
 
 // InsertRepoOp represents an operation to insert a repository.
-type InsertRepoOp struct {
-	Name         api.RepoName
-	Description  string
-	Fork         bool
-	Archived     bool
-	Cloned       bool
-	ExternalRepo api.ExternalRepoSpec
-}
+type InsertRepoOp struct { /* all structs must go */ }
 
 const upsertSQL = `
 WITH upsert AS (
@@ -336,11 +329,7 @@ func TestRepos_List_cloned(t *testing.T) {
 	mine := mustCreate(ctx, t, &types.Repo{Name: "a/r", RepoFields: &types.RepoFields{Cloned: false}})
 	yours := mustCreate(ctx, t, &types.Repo{Name: "b/r", RepoFields: &types.RepoFields{Cloned: true}})
 
-	tests := []struct {
-		name string
-		opt  ReposListOptions
-		want []*types.Repo
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{"OnlyCloned", ReposListOptions{OnlyCloned: true}, yours},
 		{"NoCloned", ReposListOptions{NoCloned: true}, mine},
 		{"NoCloned && OnlyCloned", ReposListOptions{NoCloned: true, OnlyCloned: true}, nil},
@@ -380,11 +369,7 @@ func TestRepos_List_pagination(t *testing.T) {
 		mustCreate(ctx, t, repo)
 	}
 
-	type testcase struct {
-		limit  int
-		offset int
-		exp    []api.RepoName
-	}
+	type testcase struct { /* all structs must go */ }
 	tests := []testcase{
 		{limit: 1, offset: 0, exp: []api.RepoName{"r1"}},
 		{limit: 1, offset: 1, exp: []api.RepoName{"r2"}},
@@ -432,10 +417,7 @@ func TestRepos_List_query1(t *testing.T) {
 	for _, repo := range createdRepos {
 		createRepo(ctx, t, repo)
 	}
-	tests := []struct {
-		query string
-		want  []api.RepoName
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{"def", []api.RepoName{"abc/def", "def/ghi"}},
 		{"ABC/DEF", []api.RepoName{"abc/def"}},
 		{"xyz", []api.RepoName{"github.com/abc/xyz"}},
@@ -478,10 +460,7 @@ func TestRepos_List_query2(t *testing.T) {
 	for _, repo := range createdRepos {
 		createRepo(ctx, t, repo)
 	}
-	tests := []struct {
-		query string
-		want  []api.RepoName
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{"def", []api.RepoName{"a/def", "b/def", "c/def", "def/ghi", "def/jkl", "def/mno"}},
 		{"b/def", []api.RepoName{"b/def"}},
 		{"def/", []api.RepoName{"def/ghi", "def/jkl", "def/mno"}},
@@ -524,11 +503,7 @@ func TestRepos_List_sort(t *testing.T) {
 	for _, repo := range createdRepos {
 		createRepo(ctx, t, repo)
 	}
-	tests := []struct {
-		query   string
-		orderBy RepoListOrderBy
-		want    []api.RepoName
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			query: "",
 			orderBy: RepoListOrderBy{{
@@ -595,11 +570,7 @@ func TestRepos_List_patterns(t *testing.T) {
 	for _, repo := range createdRepos {
 		createRepo(ctx, t, repo)
 	}
-	tests := []struct {
-		includePatterns []string
-		excludePattern  string
-		want            []api.RepoName
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			includePatterns: []string{"(a|c)"},
 			want:            []api.RepoName{"a/b", "c/d"},
@@ -652,11 +623,7 @@ func TestRepos_List_queryPattern(t *testing.T) {
 	for _, repo := range createdRepos {
 		createRepo(ctx, t, repo)
 	}
-	tests := []struct {
-		q    query.Q
-		want []api.RepoName
-		err  string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		// These are the same tests as TestRepos_List_patterns, but in an
 		// expression form.
 		{

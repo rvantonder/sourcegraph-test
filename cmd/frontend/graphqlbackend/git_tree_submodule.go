@@ -2,9 +2,7 @@ package graphqlbackend
 
 import "github.com/sourcegraph/sourcegraph/internal/vcs/git"
 
-type gitSubmoduleResolver struct {
-	submodule git.Submodule
-}
+type gitSubmoduleResolver struct { /* all structs must go */ }
 
 func (r *gitSubmoduleResolver) URL() string {
 	return r.submodule.URL

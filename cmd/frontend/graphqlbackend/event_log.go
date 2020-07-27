@@ -7,9 +7,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/errcode"
 )
 
-type userEventLogResolver struct {
-	event *types.Event
-}
+type userEventLogResolver struct { /* all structs must go */ }
 
 func (s *userEventLogResolver) User(ctx context.Context) (*UserResolver, error) {
 	if s.event.UserID != nil {

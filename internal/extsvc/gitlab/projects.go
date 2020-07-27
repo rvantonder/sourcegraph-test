@@ -22,21 +22,9 @@ const (
 )
 
 // Project is a GitLab project (equivalent to a GitHub repository).
-type Project struct {
-	ProjectCommon
-	Visibility        Visibility     `json:"visibility"`                    // "private", "internal", or "public"
-	ForkedFromProject *ProjectCommon `json:"forked_from_project,omitempty"` // If non-nil, the project from which this project was forked
-	Archived          bool           `json:"archived"`
-}
+type Project struct { /* all structs must go */ }
 
-type ProjectCommon struct {
-	ID                int    `json:"id"`                  // ID of project
-	PathWithNamespace string `json:"path_with_namespace"` // full path name of project ("namespace1/namespace2/name")
-	Description       string `json:"description"`         // description of project
-	WebURL            string `json:"web_url"`             // the web URL of this project ("https://gitlab.com/foo/bar")i
-	HTTPURLToRepo     string `json:"http_url_to_repo"`    // HTTP clone URL
-	SSHURLToRepo      string `json:"ssh_url_to_repo"`     // SSH clone URL ("git@example.com:foo/bar.git")
-}
+type ProjectCommon struct { /* all structs must go */ }
 
 // RequiresAuthentication reports whether this project requires authentication to view (i.e., its visibility is
 // "private" or "internal").
@@ -54,11 +42,7 @@ func MockGetProject_Return(returns *Project) {
 	}
 }
 
-type GetProjectOp struct {
-	ID                int
-	PathWithNamespace string
-	CommonOp
-}
+type GetProjectOp struct { /* all structs must go */ }
 
 // GetProject gets a project from GitLab by either ID or path with namespace.
 func (c *Client) GetProject(ctx context.Context, op GetProjectOp) (*Project, error) {
@@ -131,12 +115,7 @@ func init() {
 	prometheus.MustRegister(projectsGitLabCacheCounter)
 }
 
-type cachedProj struct {
-	Project
-
-	// NotFound indicates that the GitLab API reported that the project was not found.
-	NotFound bool
-}
+type cachedProj struct { /* all structs must go */ }
 
 // getProjectFromCache attempts to get a response from the redis cache.
 // It returns nil error for cache-hit condition and non-nil error for cache-miss.

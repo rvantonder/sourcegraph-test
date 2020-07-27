@@ -13,9 +13,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/lazyregexp"
 )
 
-type savedSearchResolver struct {
-	s types.SavedSearch
-}
+type savedSearchResolver struct { /* all structs must go */ }
 
 func marshalSavedSearchID(savedSearchID int32) graphql.ID {
 	return relay.MarshalID("SavedSearch", savedSearchID)
@@ -124,9 +122,7 @@ func (r *schemaResolver) SavedSearches(ctx context.Context) ([]*savedSearchResol
 	return savedSearches, nil
 }
 
-func (r *schemaResolver) SendSavedSearchTestNotification(ctx context.Context, args *struct {
-	ID graphql.ID
-}) (*EmptyResponse, error) {
+func (r *schemaResolver) SendSavedSearchTestNotification(ctx context.Context, args *struct { /* all structs must go */ }) (*EmptyResponse, error) {
 	// 🚨 SECURITY: Only site admins should be able to send test notifications.
 	if err := backend.CheckCurrentUserIsSiteAdmin(ctx); err != nil {
 		return nil, err
@@ -144,14 +140,7 @@ func (r *schemaResolver) SendSavedSearchTestNotification(ctx context.Context, ar
 	return &EmptyResponse{}, nil
 }
 
-func (r *schemaResolver) CreateSavedSearch(ctx context.Context, args *struct {
-	Description string
-	Query       string
-	NotifyOwner bool
-	NotifySlack bool
-	OrgID       *graphql.ID
-	UserID      *graphql.ID
-}) (*savedSearchResolver, error) {
+func (r *schemaResolver) CreateSavedSearch(ctx context.Context, args *struct { /* all structs must go */ }) (*savedSearchResolver, error) {
 	var userID, orgID *int32
 	// 🚨 SECURITY: Make sure the current user has permission to create a saved search for the specified user or org.
 	if args.UserID != nil {
@@ -195,15 +184,7 @@ func (r *schemaResolver) CreateSavedSearch(ctx context.Context, args *struct {
 	return toSavedSearchResolver(*ss), nil
 }
 
-func (r *schemaResolver) UpdateSavedSearch(ctx context.Context, args *struct {
-	ID          graphql.ID
-	Description string
-	Query       string
-	NotifyOwner bool
-	NotifySlack bool
-	OrgID       *graphql.ID
-	UserID      *graphql.ID
-}) (*savedSearchResolver, error) {
+func (r *schemaResolver) UpdateSavedSearch(ctx context.Context, args *struct { /* all structs must go */ }) (*savedSearchResolver, error) {
 	var userID, orgID *int32
 	// 🚨 SECURITY: Make sure the current user has permission to update a saved search for the specified user or org.
 	if args.UserID != nil {
@@ -253,9 +234,7 @@ func (r *schemaResolver) UpdateSavedSearch(ctx context.Context, args *struct {
 	return toSavedSearchResolver(*ss), nil
 }
 
-func (r *schemaResolver) DeleteSavedSearch(ctx context.Context, args *struct {
-	ID graphql.ID
-}) (*EmptyResponse, error) {
+func (r *schemaResolver) DeleteSavedSearch(ctx context.Context, args *struct { /* all structs must go */ }) (*EmptyResponse, error) {
 	id, err := unmarshalSavedSearchID(args.ID)
 	if err != nil {
 		return nil, err

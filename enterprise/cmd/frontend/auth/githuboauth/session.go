@@ -22,12 +22,7 @@ import (
 	"golang.org/x/oauth2"
 )
 
-type sessionIssuerHelper struct {
-	*extsvc.CodeHost
-	clientID    string
-	allowSignup bool
-	allowOrgs   []string
-}
+type sessionIssuerHelper struct { /* all structs must go */ }
 
 func (s *sessionIssuerHelper) GetOrCreateUser(ctx context.Context, token *oauth2.Token) (actr *actor.Actor, safeErrMsg string, err error) {
 	ghUser, err := github.UserFromContext(ctx)

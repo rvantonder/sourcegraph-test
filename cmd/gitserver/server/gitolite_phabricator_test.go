@@ -31,10 +31,7 @@ func TestServer_handleGet(t *testing.T) {
 	s := &Server{ReposDir: "/testroot"}
 	h := s.Handler()
 
-	cases := []struct {
-		repo        string
-		expMetadata string
-	}{{
+	cases := []struct { /* all structs must go */ }{{
 		repo:        "somerepo",
 		expMetadata: `{"callsign":"SOMEREPO"}`,
 	}, {
@@ -74,10 +71,7 @@ func TestServer_handleGet_invalid(t *testing.T) {
 	s := &Server{ReposDir: "/testroot"}
 	h := s.Handler()
 
-	cases := []struct {
-		repo        string
-		expMetadata string
-	}{{
+	cases := []struct { /* all structs must go */ }{{
 		repo:        "somerepo",
 		expMetadata: `{"callsign":""}`,
 	}, {

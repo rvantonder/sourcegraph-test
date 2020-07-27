@@ -14,10 +14,7 @@ var ErrPermsNotFound = errors.New("permissions not found")
 
 // RepoPerms contains a repo and the permissions a given user
 // has associated with it.
-type RepoPerms struct {
-	Repo  *types.Repo
-	Perms Perms
-}
+type RepoPerms struct { /* all structs must go */ }
 
 // Perms is a permission set represented as bitset.
 type Perms uint32
@@ -76,11 +73,7 @@ func (s RepoPermsSort) Less(i, j int) bool {
 // permissions are stale (e.g. the first time a user needs them and they haven't
 // been fetched yet). Callers should pass this error up to the user and show a
 // more friendly prompt message in the UI.
-type ErrStalePermissions struct {
-	UserID int32
-	Perm   Perms
-	Type   PermType
-}
+type ErrStalePermissions struct { /* all structs must go */ }
 
 // Error implements the error interface.
 func (e ErrStalePermissions) Error() string {
@@ -89,14 +82,7 @@ func (e ErrStalePermissions) Error() string {
 
 // UserPermissions are the permissions of a user to perform an action
 // on the given set of object IDs of the defined type.
-type UserPermissions struct {
-	UserID    int32           // The internal database ID of a user
-	Perm      Perms           // The permission set
-	Type      PermType        // The type of the permissions
-	IDs       *roaring.Bitmap // The object IDs
-	UpdatedAt time.Time       // The last updated time
-	SyncedAt  time.Time       // The last user-centric synced time
-}
+type UserPermissions struct { /* all structs must go */ }
 
 // Expired returns true if these UserPermissions have elapsed the given ttl.
 func (p *UserPermissions) Expired(ttl time.Duration, now time.Time) bool {
@@ -141,13 +127,7 @@ func (p *UserPermissions) TracingFields() []otlog.Field {
 }
 
 // RepoPermissions declares which users have access to a given repository
-type RepoPermissions struct {
-	RepoID    int32           // The internal database ID of a repository
-	Perm      Perms           // The permission set
-	UserIDs   *roaring.Bitmap // The user IDs
-	UpdatedAt time.Time       // The last updated time
-	SyncedAt  time.Time       // The last repo-centric synced time
-}
+type RepoPermissions struct { /* all structs must go */ }
 
 // Expired returns true if these RepoPermissions have elapsed the given ttl.
 func (p *RepoPermissions) Expired(ttl time.Duration, now time.Time) bool {
@@ -176,31 +156,7 @@ func (p *RepoPermissions) TracingFields() []otlog.Field {
 // perform on a given set of object IDs. Not-yet-created users may exist on the
 // code host but not yet in Sourcegraph. "ServiceType", "ServiceID" and "BindID"
 // are used to map this stub user to an actual user when the user is created.
-type UserPendingPermissions struct {
-	// The auto-generated internal database ID.
-	ID int32
-	// The type of the code host as if it would be used as extsvc.AccountSpec.ServiceType,
-	// e.g. "github", "gitlab", "bitbucketServer" and "sourcegraph".
-	ServiceType string
-	// The ID of the code host as if it would be used as extsvc.AccountSpec.ServiceID,
-	// e.g. "https://github.com/", "https://gitlab.com/" and "https://sourcegraph.com/".
-	ServiceID string
-	// The account ID that a code host (and its authz provider) uses to identify a user,
-	// e.g. a username (for Bitbucket Server), a GraphID ( for GitHub), or a user ID
-	// (for GitLab).
-	//
-	// When use the Sourcegraph authz provider, "BindID" can be either a username or
-	// an email based on site configuration.
-	BindID string
-	// The permissions this user has to the "IDs" of the "Type".
-	Perm Perms
-	// The type of permissions this user has.
-	Type PermType
-	// The object IDs with the "Type".
-	IDs *roaring.Bitmap
-	// The last updated time.
-	UpdatedAt time.Time
-}
+type UserPendingPermissions struct { /* all structs must go */ }
 
 // TracingFields returns tracing fields for the opentracing log.
 func (p *UserPendingPermissions) TracingFields() []otlog.Field {

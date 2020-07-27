@@ -15,9 +15,7 @@ import (
 )
 
 // HandlerMetrics encapsulates the Prometheus metrics of an http.Handler.
-type HandlerMetrics struct {
-	ServeHTTP *metrics.OperationMetrics
-}
+type HandlerMetrics struct { /* all structs must go */ }
 
 // NewHandlerMetrics returns HandlerMetrics that need to be registered
 // in a Prometheus registry.
@@ -73,11 +71,7 @@ func ObservedHandler(
 	}
 }
 
-type observedHandler struct {
-	next    http.Handler
-	log     log15.Logger
-	metrics HandlerMetrics
-}
+type observedHandler struct { /* all structs must go */ }
 
 func (h *observedHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	rr := &responseRecorder{w, http.StatusOK, 0}
@@ -110,11 +104,7 @@ func (h *observedHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	h.next.ServeHTTP(rr, r)
 }
 
-type responseRecorder struct {
-	http.ResponseWriter
-	code    int
-	written int64
-}
+type responseRecorder struct { /* all structs must go */ }
 
 // WriteHeader may not be explicitly called, so care must be taken to
 // initialize w.code to its default value of http.StatusOK.

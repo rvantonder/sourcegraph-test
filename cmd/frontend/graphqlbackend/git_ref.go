@@ -79,22 +79,11 @@ func NewGitRefResolver(repo *RepositoryResolver, name string, target GitObjectID
 	return &GitRefResolver{repo: repo, name: name, target: target}
 }
 
-type GitRefResolver struct {
-	repo *RepositoryResolver
-	name string
-
-	target GitObjectID // the target's OID, if known (otherwise computed on demand)
-
-	gitObjectResolverOnce sync.Once
-	gitObjectResolver     *gitObjectResolver
-}
+type GitRefResolver struct { /* all structs must go */ }
 
 // gitRefGQLID is a type used for marshaling and unmarshaling a Git ref's
 // GraphQL ID.
-type gitRefGQLID struct {
-	Repository graphql.ID `json:"r"`
-	Rev        string     `json:"v"`
-}
+type gitRefGQLID struct { /* all structs must go */ }
 
 func marshalGitRefID(repo graphql.ID, rev string) graphql.ID {
 	return relay.MarshalID("GitRef", gitRefGQLID{Repository: repo, Rev: rev})

@@ -35,12 +35,7 @@ func SetExternalAccountData(data *extsvc.AccountData, user *github.User, token *
 	data.SetAuthData(token)
 }
 
-type UserEmail struct {
-	Email      string `json:"email,omitempty"`
-	Primary    bool   `json:"primary,omitempty"`
-	Verified   bool   `json:"verified,omitempty"`
-	Visibility string `json:"visibility,omitempty"`
-}
+type UserEmail struct { /* all structs must go */ }
 
 var MockGetAuthenticatedUserEmails func(ctx context.Context) ([]*UserEmail, error)
 
@@ -59,9 +54,7 @@ func (c *Client) GetAuthenticatedUserEmails(ctx context.Context) ([]*UserEmail, 
 	return emails, nil
 }
 
-type Org struct {
-	Login string `json:"login,omitempty"`
-}
+type Org struct { /* all structs must go */ }
 
 var MockGetAuthenticatedUserOrgs func(ctx context.Context) ([]*Org, error)
 
@@ -81,10 +74,7 @@ func (c *Client) GetAuthenticatedUserOrgs(ctx context.Context) ([]*Org, error) {
 }
 
 // Collaborator is a collaborator of a repository.
-type Collaborator struct {
-	ID         string `json:"node_id"` // GraphQL ID
-	DatabaseID int64  `json:"id"`
-}
+type Collaborator struct { /* all structs must go */ }
 
 // ListRepositoryCollaborators lists all GitHub users that has access to the repository.
 // The page is the page of results to return, and is 1-indexed (so the first call should

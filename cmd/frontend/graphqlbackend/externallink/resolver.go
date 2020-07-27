@@ -7,10 +7,7 @@ import "fmt"
 //
 // For example, a repository might have 2 external links, one to its origin repository on GitHub.com
 // and one to the repository on Phabricator.
-type Resolver struct {
-	url         string // the URL to the resource
-	serviceType string // the type of service that the URL points to, used for showing a nice icon
-}
+type Resolver struct { /* all structs must go */ }
 
 func NewResolver(url, serviceType string) *Resolver {
 	return &Resolver{url: url, serviceType: serviceType}

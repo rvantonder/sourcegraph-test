@@ -50,14 +50,7 @@ func TestPermsSyncer_ScheduleRepos(t *testing.T) {
 	}
 }
 
-type mockProvider struct {
-	id          int64
-	serviceType string
-	serviceID   string
-
-	fetchUserPerms func(context.Context, *extsvc.Account) ([]extsvc.RepoID, error)
-	fetchRepoPerms func(ctx context.Context, repo *extsvc.Repository) ([]extsvc.AccountID, error)
-}
+type mockProvider struct { /* all structs must go */ }
 
 func (*mockProvider) FetchAccount(context.Context, *types.User, []*extsvc.Account) (*extsvc.Account, error) {
 	return nil, nil
@@ -76,9 +69,7 @@ func (p *mockProvider) FetchRepoPerms(ctx context.Context, repo *extsvc.Reposito
 	return p.fetchRepoPerms(ctx, repo)
 }
 
-type mockReposStore struct {
-	listRepos func(context.Context, repos.StoreListReposArgs) ([]*repos.Repo, error)
-}
+type mockReposStore struct { /* all structs must go */ }
 
 func (s *mockReposStore) ListExternalServices(context.Context, repos.StoreListExternalServicesArgs) ([]*repos.ExternalService, error) {
 	return nil, nil
@@ -151,11 +142,7 @@ func TestPermsSyncer_syncUserPerms(t *testing.T) {
 	permsStore := edb.NewPermsStore(nil, clock)
 	s := NewPermsSyncer(reposStore, permsStore, clock, nil)
 
-	tests := []struct {
-		name     string
-		noPerms  bool
-		fetchErr error
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:     "sync for the first time and encounter an error",
 			noPerms:  true,
@@ -354,11 +341,7 @@ func TestPermsSyncer_syncRepoPerms(t *testing.T) {
 	}
 	s := newPermsSyncer(reposStore)
 
-	tests := []struct {
-		name     string
-		noPerms  bool
-		fetchErr error
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:     "sync for the first time and encounter an error",
 			noPerms:  true,

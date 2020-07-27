@@ -12,11 +12,7 @@ import (
 func TestRequestedScopes(t *testing.T) {
 	defer envvar.MockSourcegraphDotComMode(false)
 
-	tests := []struct {
-		dotComMode bool
-		schema     *schema.GitHubAuthProvider
-		expScopes  []string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			dotComMode: false,
 			schema: &schema.GitHubAuthProvider{

@@ -28,22 +28,10 @@ func init() {
 	amconfig.MarshalSecrets = true
 }
 
-type siteEmailConfig struct {
-	SMTP    *schema.SMTPServerConfig
-	Address string
-}
+type siteEmailConfig struct { /* all structs must go */ }
 
 // subscribedSiteConfig contains fields from SiteConfiguration relevant to the siteConfigSubscriber.
-type subscribedSiteConfig struct {
-	Alerts    []*schema.ObservabilityAlerts
-	alertsSum [32]byte
-
-	Email    *siteEmailConfig
-	emailSum [32]byte
-
-	SilencedAlerts    []string
-	silencedAlertsSum [32]byte
-}
+type subscribedSiteConfig struct { /* all structs must go */ }
 
 // newSubscribedSiteConfig creates a subscribedSiteConfig with sha256 sums calculated.
 func newSubscribedSiteConfig(config schema.SiteConfiguration) *subscribedSiteConfig {
@@ -72,10 +60,7 @@ func newSubscribedSiteConfig(config schema.SiteConfiguration) *subscribedSiteCon
 	}
 }
 
-type siteConfigDiff struct {
-	Type   string
-	Change Change
-}
+type siteConfigDiff struct { /* all structs must go */ }
 
 // Diff returns a set of changes to apply.
 func (c *subscribedSiteConfig) Diff(other *subscribedSiteConfig) []siteConfigDiff {
@@ -98,14 +83,7 @@ func (c *subscribedSiteConfig) Diff(other *subscribedSiteConfig) []siteConfigDif
 
 // SiteConfigSubscriber is a sidecar service that subscribes to Sourcegraph site configuration and
 // applies relevant (subscribedSiteConfig) changes to Grafana.
-type SiteConfigSubscriber struct {
-	log          log15.Logger
-	alertmanager *amclient.Alertmanager
-
-	mux      sync.RWMutex
-	config   *subscribedSiteConfig
-	problems conf.Problems // exported by handler
-}
+type SiteConfigSubscriber struct { /* all structs must go */ }
 
 func NewSiteConfigSubscriber(logger log15.Logger, alertmanager *amclient.Alertmanager) *SiteConfigSubscriber {
 	log := logger.New("logger", "config-subscriber")

@@ -16,14 +16,7 @@ import (
 // BenchmarkSQLiteInsertion-8                    	   40417	     29440 ns/op
 // BenchmarkSQLiteInsertionInTransaction-8       	  214681	      5542 ns/op
 // BenchmarkSQLiteInsertionWithBatchInserter-8   	  324998	      3701 ns/op
-type BatchInserter struct {
-	db                Execable
-	numColumns        int
-	maxBatchSize      int
-	batch             []interface{}
-	queryPrefix       string
-	queryPlaceholders []string
-}
+type BatchInserter struct { /* all structs must go */ }
 
 // MaxNumSqliteParameters is the number of `?` placeholders that can be sent to SQLite without error.
 const MaxNumSqliteParameters = 999

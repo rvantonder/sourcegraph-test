@@ -20,9 +20,7 @@ func NewAuthzStore(db dbutil.DB, clock func() time.Time) db.AuthzStore {
 	}
 }
 
-type authzStore struct {
-	store *PermsStore
-}
+type authzStore struct { /* all structs must go */ }
 
 // GrantPendingPermissions grants pending permissions for a user, which implements the db.AuthzStore interface.
 // It uses provided arguments to retrieve information directly from the database to offload security concerns

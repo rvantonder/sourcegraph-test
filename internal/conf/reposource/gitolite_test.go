@@ -7,10 +7,7 @@ import (
 )
 
 func TestGitolite_cloneURLToRepoName(t *testing.T) {
-	tests := []struct {
-		conn schema.GitoliteConnection
-		urls []urlToRepoName
-	}{{
+	tests := []struct { /* all structs must go */ }{{
 		conn: schema.GitoliteConnection{
 			Host:   "git@gitolite.sgdev.org",
 			Prefix: "gitolite.sgdev.org/",

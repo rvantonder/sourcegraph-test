@@ -31,10 +31,7 @@ func TestDiff(t *testing.T) {
 	})
 
 	t.Run("rangeSpec calculation", func(t *testing.T) {
-		for _, tc := range []struct {
-			opts DiffOptions
-			want string
-		}{
+		for _, tc := range []struct { /* all structs must go */ }{
 			{opts: DiffOptions{Base: "foo", Head: "bar"}, want: "foo...bar"},
 		} {
 			t.Run("rangeSpec: "+tc.want, func(t *testing.T) {

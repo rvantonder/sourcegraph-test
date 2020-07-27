@@ -19,9 +19,7 @@ import (
 
 var errSilent = errors.New("silent error")
 
-type usageError struct {
-	Msg string
-}
+type usageError struct { /* all structs must go */ }
 
 func (e *usageError) Error() string {
 	return e.Msg

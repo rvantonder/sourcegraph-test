@@ -1,58 +1,21 @@
 package main
 
-type QueryResponse struct {
-	Data struct {
-		Repository struct {
-			Commit struct {
-				Blob struct {
-					LSIF struct {
-						Definitions Definitions `json:"definitions"`
-						References  References  `json:"references"`
-					} `json:"lsif"`
-				} `json:"blob"`
-			} `json:"commit"`
-		} `json:"repository"`
-	} `json:"data"`
-}
+type QueryResponse struct { /* all structs must go */ }
 
-type Definitions struct {
-	Nodes []Node `json:"nodes"`
-}
+type Definitions struct { /* all structs must go */ }
 
-type References struct {
-	Nodes    []Node   `json:"nodes"`
-	PageInfo PageInfo `json:"pageInfo"`
-}
+type References struct { /* all structs must go */ }
 
-type Node struct {
-	Resource `json:"resource"`
-	Range    `json:"range"`
-}
+type Node struct { /* all structs must go */ }
 
-type Resource struct {
-	Path       string     `json:"path"`
-	Repository Repository `json:"repository"`
-	Commit     Commit     `json:"commit"`
-}
+type Resource struct { /* all structs must go */ }
 
-type Repository struct {
-	Name string `json:"name"`
-}
+type Repository struct { /* all structs must go */ }
 
-type Commit struct {
-	Oid string `json:"oid"`
-}
+type Commit struct { /* all structs must go */ }
 
-type Range struct {
-	Start Position `json:"start"`
-	End   Position `json:"end"`
-}
+type Range struct { /* all structs must go */ }
 
-type Position struct {
-	Line      int `json:"line"`
-	Character int `json:"character"`
-}
+type Position struct { /* all structs must go */ }
 
-type PageInfo struct {
-	EndCursor string `json:"endCursor"`
-}
+type PageInfo struct { /* all structs must go */ }

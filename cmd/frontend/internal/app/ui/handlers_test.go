@@ -59,10 +59,7 @@ func TestRedirects(t *testing.T) {
 }
 
 func TestRepoShortName(t *testing.T) {
-	tests := []struct {
-		input api.RepoName
-		want  string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{input: "repo", want: "repo"},
 		{input: "github.com/foo/bar", want: "foo/bar"},
 		{input: "mycompany.com/foo", want: "foo"},
@@ -78,14 +75,7 @@ func TestRepoShortName(t *testing.T) {
 }
 
 func TestNewCommon_repo_error(t *testing.T) {
-	cases := []struct {
-		name string
-		rev  string
-		err  error
-
-		want string
-		code int
-	}{{
+	cases := []struct { /* all structs must go */ }{{
 		name: "cloning",
 		err:  &vcs.RepoNotExistError{CloneInProgress: true},
 		code: 200,
@@ -163,16 +153,7 @@ func TestNewCommon_repo_error(t *testing.T) {
 }
 
 func TestRedirectTreeOrBlob(t *testing.T) {
-	tests := []struct {
-		name          string
-		route         string
-		path          string
-		common        *Common
-		mockStat      os.FileInfo
-		expHandled    bool
-		expStatusCode int
-		expLocation   string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:          "empty commit ID, no redirect",
 			common:        &Common{},

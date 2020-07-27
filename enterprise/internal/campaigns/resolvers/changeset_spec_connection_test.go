@@ -76,12 +76,7 @@ func TestChangesetSpecConnectionResolver(t *testing.T) {
 
 	apiID := string(marshalCampaignSpecRandID(campaignSpec.RandID))
 
-	tests := []struct {
-		first int
-
-		wantTotalCount  int
-		wantHasNextPage bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{first: 1, wantTotalCount: 3, wantHasNextPage: true},
 		{first: 2, wantTotalCount: 3, wantHasNextPage: true},
 		{first: 3, wantTotalCount: 3, wantHasNextPage: false},

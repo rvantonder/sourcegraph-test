@@ -155,10 +155,7 @@ func SendUserEmailVerificationEmail(ctx context.Context, email, code string) err
 	return txemail.Send(ctx, txemail.Message{
 		To:       []string{email},
 		Template: verifyEmailTemplates,
-		Data: struct {
-			Email string
-			URL   string
-		}{
+		Data: struct { /* all structs must go */ }{
 			Email: email,
 			URL: globals.ExternalURL().ResolveReference(&url.URL{
 				Path:     verifyEmailPath.Path,

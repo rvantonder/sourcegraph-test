@@ -256,17 +256,7 @@ func TestRepositoryComparison(t *testing.T) {
 			endCursors := []string{"1", "2"}
 			totalCount := int32(testDiffFiles)
 
-			tests := []struct {
-				first int32
-				after string
-
-				wantNodeCount int
-
-				wantTotalCount *int32
-
-				wantHasNextPage bool
-				wantEndCursor   *string
-			}{
+			tests := []struct { /* all structs must go */ }{
 				{
 					first:           1,
 					after:           "",
@@ -407,9 +397,7 @@ func TestDiffHunk(t *testing.T) {
 			t.Fatal("highlighting is aborted")
 		}
 
-		wantLines := []struct {
-			kind, html string
-		}{
+		wantLines := []struct { /* all structs must go */ }{
 			{kind: "UNCHANGED", html: "B3"},
 			{kind: "UNCHANGED", html: "B4"},
 			{kind: "UNCHANGED", html: "B5"},
@@ -589,15 +577,7 @@ func TestFileDiffHighlighter(t *testing.T) {
 	}
 }
 
-type dummyFileResolver struct {
-	path, name string
-
-	richHTML     string
-	url          string
-	canonicalURL string
-
-	content func(context.Context) (string, error)
-}
+type dummyFileResolver struct { /* all structs must go */ }
 
 func (d *dummyFileResolver) Path() string      { return d.path }
 func (d *dummyFileResolver) Name() string      { return d.name }
@@ -646,9 +626,7 @@ func (d *dummyFileResolver) ToVirtualFile() (*virtualFileResolver, bool) {
 	return nil, false
 }
 
-type dummyFileHighlighter struct {
-	highlightedBase, highlightedHead []template.HTML
-}
+type dummyFileHighlighter struct { /* all structs must go */ }
 
 func (r *dummyFileHighlighter) Highlight(ctx context.Context, args *HighlightArgs) ([]template.HTML, []template.HTML, bool, error) {
 	return r.highlightedBase, r.highlightedHead, false, nil

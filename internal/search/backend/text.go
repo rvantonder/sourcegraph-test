@@ -15,19 +15,7 @@ import (
 //
 // Note: Zoekt starts up background goroutines, so call Close when done using
 // the Client.
-type Zoekt struct {
-	Client zoekt.Searcher
-
-	// DisableCache when true prevents caching of Client.List. Useful in
-	// tests.
-	DisableCache bool
-
-	mu       sync.RWMutex
-	state    int32 // 0 not running, 1 running, 2 stopped
-	set      map[string]*zoekt.Repository
-	err      error
-	disabled bool
-}
+type Zoekt struct { /* all structs must go */ }
 
 // Close will tear down the background goroutines.
 func (c *Zoekt) Close() {

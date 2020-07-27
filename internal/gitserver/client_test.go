@@ -75,11 +75,7 @@ func TestClient_Archive(t *testing.T) {
 		return []string{u.Host}
 	}
 
-	tests := map[api.RepoName]struct {
-		remote string
-		want   map[string]string
-		err    error
-	}{
+	tests := map[api.RepoName]struct { /* all structs must go */ }{
 		"simple": {
 			remote: createSimpleGitRepo(t, root),
 			want: map[string]string{

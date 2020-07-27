@@ -12,23 +12,10 @@ import (
 )
 
 // productPlan implements the GraphQL type ProductPlan.
-type productPlan struct {
-	billingPlanID       string
-	productPlanID       string
-	name                string
-	pricePerUserPerYear int32
-	minQuantity         *int32
-	maxQuantity         *int32
-	tiersMode           string
-	planTiers           []graphqlbackend.PlanTier
-}
+type productPlan struct { /* all structs must go */ }
 
 // planTier implements the GraphQL type PlanTier.
-type planTier struct {
-	unitAmount int64
-	upTo       int64
-	flatAmount int64
-}
+type planTier struct { /* all structs must go */ }
 
 func (r *productPlan) ProductPlanID() string      { return r.productPlanID }
 func (r *productPlan) BillingPlanID() string      { return r.billingPlanID }

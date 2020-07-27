@@ -17,34 +17,7 @@ import (
 
 // A Syncer periodically synchronizes available repositories from all its given Sources
 // with the stored Repositories in Sourcegraph.
-type Syncer struct {
-	Store   Store
-	Sourcer Sourcer
-
-	// FailFullSync prevents Sync from running. This should only be true for
-	// Sourcegraph.com
-	FailFullSync bool
-
-	// Synced is sent a collection of Repos that were synced by Sync (only if Synced is non-nil)
-	Synced chan Diff
-
-	// SubsetSynced is sent a collection of Repos that were synced by SubsetSync (only if SubsetSynced is non-nil)
-	SubsetSynced chan Diff
-
-	// Logger if non-nil is logged to.
-	Logger log15.Logger
-
-	// Now is time.Now. Can be set by tests to get deterministic output.
-	Now func() time.Time
-
-	// lastSyncErr contains the last error returned by the Sourcer in each
-	// Sync. It's reset with each Sync and if the sync produced no error, it's
-	// set to nil.
-	lastSyncErr   error
-	lastSyncErrMu sync.Mutex
-
-	syncSignal signal
-}
+type Syncer struct { /* all structs must go */ }
 
 // Run runs the Sync at the specified interval.
 func (s *Syncer) Run(pctx context.Context, interval func() time.Duration) error {
@@ -279,12 +252,7 @@ func (s *Syncer) initialUnmodifiedDiffFromStore(ctx context.Context) {
 
 // Diff is the difference found by a sync between what is in the store and
 // what is returned from sources.
-type Diff struct {
-	Added      Repos
-	Deleted    Repos
-	Modified   Repos
-	Unmodified Repos
-}
+type Diff struct { /* all structs must go */ }
 
 // Sort sorts all Diff elements by Repo.IDs.
 func (d *Diff) Sort() {
@@ -495,10 +463,7 @@ func (s *Syncer) observe(ctx context.Context, family, title string) (context.Con
 	}
 }
 
-type signal struct {
-	once sync.Once
-	c    chan struct{}
-}
+type signal struct { /* all structs must go */ }
 
 func (s *signal) init() {
 	s.once.Do(func() {

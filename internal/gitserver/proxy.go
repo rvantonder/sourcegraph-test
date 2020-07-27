@@ -23,12 +23,7 @@ func NewReverseProxy(transport http.RoundTripper, httpLimiter *parallel.Run) *Re
 }
 
 // ReverseProxy is a gitserver reverse proxy.
-type ReverseProxy struct {
-	Transport http.RoundTripper
-
-	// Limits concurrency of outstanding HTTP posts
-	HTTPLimiter *parallel.Run
-}
+type ReverseProxy struct { /* all structs must go */ }
 
 // ServeHTTP creates a one-shot proxy with the given director and proxies the given request
 // to gitserver. The director must rewrite the request to the correct gitserver address, which

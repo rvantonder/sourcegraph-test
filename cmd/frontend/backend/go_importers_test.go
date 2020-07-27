@@ -73,9 +73,7 @@ func TestListGoPackagesInRepoImprecise(t *testing.T) {
 	})
 }
 
-type mockRoundTripper struct {
-	response string
-}
+type mockRoundTripper struct { /* all structs must go */ }
 
 func (t mockRoundTripper) RoundTrip(req *http.Request) (*http.Response, error) {
 	return &http.Response{

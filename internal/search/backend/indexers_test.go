@@ -25,14 +25,7 @@ func TestReposSubset(t *testing.T) {
 		},
 	}
 
-	cases := []struct {
-		name     string
-		hostname string
-		indexed  map[string][]string
-		repos    []string
-		want     []string
-		errS     string
-	}{{
+	cases := []struct { /* all structs must go */ }{{
 		name:     "bad hostname",
 		hostname: "bam",
 		errS:     "hostname \"bam\" not found",
@@ -96,13 +89,7 @@ func TestReposSubset(t *testing.T) {
 }
 
 func TestFindEndpoint(t *testing.T) {
-	cases := []struct {
-		name      string
-		hostname  string
-		endpoints []string
-		want      string
-		errS      string
-	}{{
+	cases := []struct { /* all structs must go */ }{{
 		name:      "empty",
 		hostname:  "",
 		endpoints: []string{"foo.internal", "bar.internal"},

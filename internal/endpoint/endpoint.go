@@ -24,13 +24,7 @@ import (
 // Map is a consistent hash map to URLs. It uses the kubernetes API to watch
 // the endpoints for a service and update the map when they change. It can
 // also fallback to static URLs if not configured for kubernetes.
-type Map struct {
-	mu      sync.Mutex
-	init    func() (*hashMap, error)
-	err     error
-	urls    *hashMap
-	urlspec string
-}
+type Map struct { /* all structs must go */ }
 
 // New creates a new Map for the URL specifier.
 //
@@ -218,12 +212,7 @@ func endpointsToMap(u *k8sURL, eps *corev1.Endpoints) (*hashMap, error) {
 	return newConsistentHashMap(urls), nil
 }
 
-type k8sURL struct {
-	url.URL
-
-	Service   string
-	Namespace string
-}
+type k8sURL struct { /* all structs must go */ }
 
 func (u *k8sURL) endpointURL(endpoint string) string {
 	uCopy := u.URL

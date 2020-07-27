@@ -288,11 +288,7 @@ func SetRouteName(r *http.Request, routeName string) {
 	}
 }
 
-type httpErr struct {
-	status int
-	method string
-	path   string
-}
+type httpErr struct { /* all structs must go */ }
 
 func (e *httpErr) Error() string {
 	return fmt.Sprintf("HTTP status %d, %s %s", e.status, e.method, e.path)

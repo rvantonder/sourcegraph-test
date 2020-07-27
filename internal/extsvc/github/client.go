@@ -49,42 +49,11 @@ var (
 // separate instances have consistent naming prefixes so that different instances will share the
 // same Redis cache entries (provided they were computed with the same API URL and access
 // token). The cache keys are agnostic of the http.RoundTripper transport.
-type Client struct {
-	// apiURL is the base URL of a GitHub API. It must point to the base URL of the GitHub API. This
-	// is https://api.github.com for GitHub.com and http[s]://[github-enterprise-hostname]/api for
-	// GitHub Enterprise.
-	apiURL *url.URL
-
-	// githubDotCom is true if this client connects to github.com.
-	githubDotCom bool
-
-	// token is the personal access token used to authenticate requests. May be empty, in which case
-	// the default behavior is to make unauthenticated requests.
-	// 🚨 SECURITY: Should not be changed after client creation to prevent unauthorized access to the
-	// repository cache. Use `WithToken` to create a new client with a different token instead.
-	token string
-
-	// httpClient is the HTTP client used to make requests to the GitHub API.
-	httpClient httpcli.Doer
-
-	// repoCache is the repository cache associated with the token.
-	repoCache *rcache.Cache
-
-	// rateLimitMonitor is the API rate limit monitor.
-	rateLimitMonitor *ratelimit.Monitor
-
-	// rateLimit is our self imposed rate limiter
-	rateLimit *rate.Limiter
-}
+type Client struct { /* all structs must go */ }
 
 // APIError is an error type returned by Client when the GitHub API responds with
 // an error.
-type APIError struct {
-	URL              string
-	Code             int
-	Message          string
-	DocumentationURL string `json:"documentation_url"`
-}
+type APIError struct { /* all structs must go */ }
 
 func (e *APIError) Error() string {
 	return fmt.Sprintf("request to %s returned status %d: %s", e.URL, e.Code, e.Message)
@@ -229,9 +198,7 @@ func (c *Client) listRepositories(ctx context.Context, requestURI string) ([]*Re
 // ListInstallationRepositories lists repositories on which the authenticated
 // GitHub App has been installed.
 func (c *Client) ListInstallationRepositories(ctx context.Context) ([]*Repository, error) {
-	type response struct {
-		Repositories []restRepository `json:"repositories"`
-	}
+	type response struct { /* all structs must go */ }
 	var resp response
 	if err := c.requestGet(ctx, "installation/repositories", &resp); err != nil {
 		return nil, err
@@ -269,10 +236,7 @@ func (c *Client) requestGet(ctx context.Context, requestURI string, result inter
 }
 
 func (c *Client) requestGraphQL(ctx context.Context, query string, vars map[string]interface{}, result interface{}) (err error) {
-	reqBody, err := json.Marshal(struct {
-		Query     string                 `json:"query"`
-		Variables map[string]interface{} `json:"variables"`
-	}{
+	reqBody, err := json.Marshal(struct { /* all structs must go */ }{
 		Query:     query,
 		Variables: vars,
 	})
@@ -294,10 +258,7 @@ func (c *Client) requestGraphQL(ctx context.Context, query string, vars map[stri
 	// Enable Checks API
 	// https://developer.github.com/v4/previews/#checks
 	req.Header.Add("Accept", "application/vnd.github.antiope-preview+json")
-	var respBody struct {
-		Data   json.RawMessage `json:"data"`
-		Errors graphqlErrors   `json:"errors"`
-	}
+	var respBody struct { /* all structs must go */ }
 
 	cost, err := estimateGraphQLCost(query)
 	if err != nil {
@@ -355,12 +316,7 @@ func estimateGraphQLCost(query string) (int, error) {
 	return totalCost, nil
 }
 
-type limitDepth struct {
-	// The 'first' or 'last' limit
-	limit int
-	// The depth at which it was added
-	depth int
-}
+type limitDepth struct { /* all structs must go */ }
 
 func calcDefinitionCost(def ast.Node) int {
 	var cost int
@@ -505,15 +461,7 @@ func IsRateLimitExceeded(err error) bool {
 
 // graphqlErrors describes the errors in a GraphQL response. It contains at least 1 element when returned by
 // requestGraphQL. See https://graphql.github.io/graphql-spec/June2018/#sec-Errors.
-type graphqlErrors []struct {
-	Message   string        `json:"message"`
-	Type      string        `json:"type"`
-	Path      []interface{} `json:"path"`
-	Locations []struct {
-		Line   int `json:"line"`
-		Column int `json:"column"`
-	} `json:"locations,omitempty"`
-}
+type graphqlErrors []struct { /* all structs must go */ }
 
 const graphqlErrTypeNotFound = "NOT_FOUND"
 

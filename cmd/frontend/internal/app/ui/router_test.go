@@ -27,11 +27,7 @@ func init() {
 }
 
 func TestRouter(t *testing.T) {
-	tests := []struct {
-		path      string
-		wantRoute string
-		wantVars  map[string]string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		// home
 		{
 			path:      "/",
@@ -210,10 +206,7 @@ func TestRouter(t *testing.T) {
 }
 
 func TestRouter_RootPath(t *testing.T) {
-	tests := []struct {
-		repo   api.RepoName
-		exists bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			repo:   "about",
 			exists: false,

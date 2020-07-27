@@ -5,11 +5,7 @@ import (
 	"net/http"
 )
 
-type ResponseBuffer struct {
-	buf    bytes.Buffer
-	Status int
-	header http.Header
-}
+type ResponseBuffer struct { /* all structs must go */ }
 
 func (rb *ResponseBuffer) Write(p []byte) (int, error) {
 	return rb.buf.Write(p)

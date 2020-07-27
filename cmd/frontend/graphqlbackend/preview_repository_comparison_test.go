@@ -102,17 +102,7 @@ index 9bd8209..d2acfa9 100644
 		endCursors := []string{"1", "2"}
 		totalCount := int32(testDiffFiles)
 
-		tests := []struct {
-			first int32
-			after string
-
-			wantNodeCount int
-
-			wantTotalCount *int32
-
-			wantHasNextPage bool
-			wantEndCursor   *string
-		}{
+		tests := []struct { /* all structs must go */ }{
 			{
 				first:           1,
 				after:           "",
@@ -243,12 +233,7 @@ Line 10`
 }
 
 func TestApplyPatch(t *testing.T) {
-	tests := []struct {
-		file          string
-		patch         string
-		origStartLine int32
-		wantFile      string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			file: `1 some
 2

@@ -6,10 +6,7 @@ import (
 )
 
 func TestDefRouteVars(t *testing.T) {
-	tests := []struct {
-		def       DefAtRev
-		routeVars map[string]string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			DefAtRev{RepoRev: RepoRev{Repo: "r", Rev: ""}, UnitType: "t", Unit: "u", Path: "p"},
 			map[string]string{"Repo": "r", "Rev": "", "UnitType": "t", "Unit": "u", "Path": "p"},

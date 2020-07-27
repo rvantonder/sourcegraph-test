@@ -12,13 +12,7 @@ import (
 )
 
 // extensionDBResolver implements the GraphQL type RegistryExtension.
-type extensionDBResolver struct {
-	v *dbExtension
-
-	// Supplied as part of list endpoints, but
-	// calculated as part of single-extension endpoints
-	r *dbRelease
-}
+type extensionDBResolver struct { /* all structs must go */ }
 
 func (r *extensionDBResolver) ID() graphql.ID {
 	return registry.MarshalRegistryExtensionID(registry.RegistryExtensionID{LocalID: r.v.ID})

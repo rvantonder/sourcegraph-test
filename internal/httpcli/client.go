@@ -52,10 +52,7 @@ type Opt func(*http.Client) error
 // A Factory constructs an http.Client with the given functional
 // options applied, returning an aggregate error of the errors returned by
 // all those options.
-type Factory struct {
-	stack  Middleware
-	common []Opt
-}
+type Factory struct { /* all structs must go */ }
 
 // NewExternalHTTPClientFactory returns an httpcli.Factory with common options
 // and middleware pre-set for communicating to external services.

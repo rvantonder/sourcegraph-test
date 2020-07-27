@@ -12,17 +12,9 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/jsonc"
 )
 
-type savedQuery struct {
-	Key         string
-	Description string
-	Query       string
-	Notify      bool
-	NotifySlack bool
-}
+type savedQuery struct { /* all structs must go */ }
 
-type savedQueryField struct {
-	SavedQueries []savedQuery `json:"search.savedQueries"`
-}
+type savedQueryField struct { /* all structs must go */ }
 
 // MigrateSavedQueriesAndSlackWebhookURLsFromSettingsToDatabase migrates saved searches from the `search.SavedQueries` value in
 // site settings into the `saved_searches` PostgreSQL table, and migrates organization Slack webhook URLs from the
@@ -118,13 +110,9 @@ func insertSavedQueryIntoDB(ctx context.Context, s *api.Settings, sq *savedQuery
 	return nil
 }
 
-type notificationsSlackField struct {
-	NotificationsSlack webhookURL `json:"notifications.slack"`
-}
+type notificationsSlackField struct { /* all structs must go */ }
 
-type webhookURL struct {
-	WebhookURL string `json:"webhookURL"`
-}
+type webhookURL struct { /* all structs must go */ }
 
 // migrateSlackWebhookUrlsToSavedSearches migrates Slack webhook URLs from site settings into the
 // slack_webhook_url column of the saved_searches database table. As a result, Slack webhook URLs

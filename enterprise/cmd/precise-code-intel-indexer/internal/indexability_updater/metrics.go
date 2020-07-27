@@ -4,9 +4,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 )
 
-type UpdaterMetrics struct {
-	Errors prometheus.Counter
-}
+type UpdaterMetrics struct { /* all structs must go */ }
 
 func NewUpdaterMetrics(r prometheus.Registerer) UpdaterMetrics {
 	errors := prometheus.NewCounter(prometheus.CounterOpts{

@@ -8,17 +8,13 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/search/query/types"
 )
 
-type ExpectedOperand struct {
-	Msg string
-}
+type ExpectedOperand struct { /* all structs must go */ }
 
 func (e *ExpectedOperand) Error() string {
 	return e.Msg
 }
 
-type UnsupportedError struct {
-	Msg string
-}
+type UnsupportedError struct { /* all structs must go */ }
 
 func (e *UnsupportedError) Error() string {
 	return e.Msg
@@ -47,15 +43,10 @@ type QueryInfo interface {
 }
 
 // An ordinary query (not containing and/or expressions).
-type OrdinaryQuery struct {
-	Query     *Query           // the validated search query
-	parseTree syntax.ParseTree // the parsed search query
-}
+type OrdinaryQuery struct { /* all structs must go */ }
 
 // A query containing and/or expressions.
-type AndOrQuery struct {
-	Query []Node
-}
+type AndOrQuery struct { /* all structs must go */ }
 
 func (q OrdinaryQuery) RegexpPatterns(field string) (values, negatedValues []string) {
 	return q.Query.RegexpPatterns(field)

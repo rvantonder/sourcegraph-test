@@ -27,9 +27,7 @@ func init() {
 	prometheus.MustRegister(requestDuration)
 }
 
-type meteredConn struct {
-	gonduit.Conn
-}
+type meteredConn struct { /* all structs must go */ }
 
 func (mc *meteredConn) CallContext(
 	ctx context.Context,
@@ -50,9 +48,7 @@ func (mc *meteredConn) CallContext(
 }
 
 // A Client provides high level methods to a Phabricator Conduit API.
-type Client struct {
-	conn *meteredConn
-}
+type Client struct { /* all structs must go */ }
 
 // NewClient returns an authenticated Client, using the given URL and
 // token. If provided, cli will be used to perform the underlying HTTP requests.
@@ -75,98 +71,32 @@ func NewClient(ctx context.Context, phabUrl, token string, cli httpcli.Doer) (*C
 }
 
 // Repo represents a single code repository.
-type Repo struct {
-	ID           uint64
-	PHID         string
-	Name         string
-	VCS          string
-	Callsign     string
-	Shortname    string
-	Status       string
-	DateCreated  time.Time
-	DateModified time.Time
-	ViewPolicy   string
-	EditPolicy   string
-	URIs         []*URI
-}
+type Repo struct { /* all structs must go */ }
 
 // URI of a Repository
-type URI struct {
-	ID   string
-	PHID string
-
-	Display    string
-	Effective  string
-	Normalized string
-
-	Disabled bool
-
-	BuiltinProtocol   string
-	BuiltinIdentifier string
-
-	DateCreated  time.Time
-	DateModified time.Time
-}
+type URI struct { /* all structs must go */ }
 
 //
 // Marshaling types
 //
 
-type apiRepo struct {
-	ID          *uint64            `json:"id"`
-	PHID        *string            `json:"phid"`
-	Fields      apiRepoFields      `json:"fields"`
-	Attachments apiRepoAttachments `json:"attachments"`
-}
+type apiRepo struct { /* all structs must go */ }
 
-type apiRepoFields struct {
-	Name         *string       `json:"name"`
-	VCS          *string       `json:"vcs"`
-	Callsign     *string       `json:"callsign"`
-	Shortname    *string       `json:"shortname"`
-	Status       *string       `json:"status"`
-	Policy       apiRepoPolicy `json:"policy"`
-	DateCreated  unixTime      `json:"dateCreated"`
-	DateModified unixTime      `json:"dateModified"`
-}
+type apiRepoFields struct { /* all structs must go */ }
 
-type apiRepoPolicy struct {
-	View *string `json:"view"`
-	Edit *string `json:"edit"`
-}
+type apiRepoPolicy struct { /* all structs must go */ }
 
-type apiRepoAttachments struct {
-	URIs apiURIsContainer `json:"uris"`
-}
+type apiRepoAttachments struct { /* all structs must go */ }
 
-type apiURIsContainer struct {
-	URIs *[]apiURI `json:"uris"`
-}
+type apiURIsContainer struct { /* all structs must go */ }
 
-type apiURI struct {
-	ID     string       `json:"id"`
-	PHID   string       `json:"phid"`
-	Fields apiURIFields `json:"fields"`
-}
+type apiURI struct { /* all structs must go */ }
 
-type apiURIFields struct {
-	URI          apiURIs      `json:"uri"`
-	Builtin      apiURIBultin `json:"builtin"`
-	Disabled     bool         `json:"disabled"`
-	DateCreated  unixTime     `json:"dateCreated"`
-	DateModified unixTime     `json:"dateModified"`
-}
+type apiURIFields struct { /* all structs must go */ }
 
-type apiURIs struct {
-	Display    string `json:"display"`
-	Effective  string `json:"effective"`
-	Normalized string `json:"normalized"`
-}
+type apiURIs struct { /* all structs must go */ }
 
-type apiURIBultin struct {
-	Protocol   string `json:"protocol"`
-	Identifier string `json:"identifier"`
-}
+type apiURIBultin struct { /* all structs must go */ }
 
 // UnmarshalJSON implements the json.Unmarshaler interface.
 func (r *Repo) UnmarshalJSON(data []byte) error {
@@ -223,28 +153,15 @@ func (r *Repo) UnmarshalJSON(data []byte) error {
 }
 
 // Cursor represents the pagination cursor on many responses.
-type Cursor struct {
-	Limit  uint64 `json:"limit,omitempty"`
-	After  string `json:"after,omitempty"`
-	Before string `json:"before,omitempty"`
-	Order  string `json:"order,omitempty"`
-}
+type Cursor struct { /* all structs must go */ }
 
 // ListReposArgs defines the constraints to be satisfied
 // by the ListRepos method.
-type ListReposArgs struct {
-	*Cursor
-}
+type ListReposArgs struct { /* all structs must go */ }
 
 // ListRepos lists all repositories matching the given arguments.
 func (c *Client) ListRepos(ctx context.Context, args ListReposArgs) ([]*Repo, *Cursor, error) {
-	var req struct {
-		requests.Request
-		ListReposArgs
-		Attachments struct {
-			URIs bool `json:"uris"`
-		} `json:"attachments"`
-	}
+	var req struct { /* all structs must go */ }
 
 	req.ListReposArgs = args
 	req.Attachments.URIs = true
@@ -261,10 +178,7 @@ func (c *Client) ListRepos(ctx context.Context, args ListReposArgs) ([]*Repo, *C
 		req.Cursor.Limit = 100
 	}
 
-	var res struct {
-		Data   []*Repo `json:"data"`
-		Cursor Cursor  `json:"cursor"`
-	}
+	var res struct { /* all structs must go */ }
 
 	err := c.conn.CallContext(ctx, "diffusion.repository.search", &req, &res)
 	if err != nil {
@@ -276,10 +190,7 @@ func (c *Client) ListRepos(ctx context.Context, args ListReposArgs) ([]*Repo, *C
 
 // GetRawDiff retrieves the raw diff of the diff with the given id.
 func (c *Client) GetRawDiff(ctx context.Context, diffID int) (diff string, err error) {
-	type request struct {
-		requests.Request
-		DiffID int `json:"diffID"`
-	}
+	type request struct { /* all structs must go */ }
 
 	req := request{DiffID: diffID}
 	err = c.conn.CallContext(ctx, "differential.getrawdiff", &req, &diff)
@@ -291,20 +202,11 @@ func (c *Client) GetRawDiff(ctx context.Context, diffID int) (diff string, err e
 }
 
 // DiffInfo contains information for a diff such as the author
-type DiffInfo struct {
-	Message     string    `json:"description"`
-	AuthorName  string    `json:"authorName"`
-	AuthorEmail string    `json:"authorEmail"`
-	DateCreated string    `json:"dateCreated"`
-	Date        time.Time `json:"omitempty"`
-}
+type DiffInfo struct { /* all structs must go */ }
 
 // GetDiffInfo retrieves the DiffInfo of the diff with the given id.
 func (c *Client) GetDiffInfo(ctx context.Context, diffID int) (*DiffInfo, error) {
-	type request struct {
-		requests.Request
-		IDs []int `json:"ids"`
-	}
+	type request struct { /* all structs must go */ }
 
 	req := request{IDs: []int{diffID}}
 

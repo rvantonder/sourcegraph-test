@@ -31,11 +31,7 @@ func TestValidate(t *testing.T) {
 }
 
 func TestValidateCustom(t *testing.T) {
-	tests := map[string]struct {
-		raw         string
-		wantProblem string
-		wantErr     string
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"unrecognized auth.providers": {
 			raw:     `{"auth.providers":[{"type":"asdf"}]}`,
 			wantErr: "tagged union type must have a",

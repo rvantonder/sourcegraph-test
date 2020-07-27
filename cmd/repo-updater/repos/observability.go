@@ -28,16 +28,10 @@ func ObservedSource(l logging.ErrorLogger, m SourceMetrics) func(Source) Source 
 
 // An observedSource wraps another Source with error logging,
 // Prometheus metrics and tracing.
-type observedSource struct {
-	Source
-	metrics SourceMetrics
-	log     logging.ErrorLogger
-}
+type observedSource struct { /* all structs must go */ }
 
 // SourceMetrics encapsulates the Prometheus metrics of a Source.
-type SourceMetrics struct {
-	ListRepos *metrics.OperationMetrics
-}
+type SourceMetrics struct { /* all structs must go */ }
 
 // MustRegister registers all metrics in SourceMetrics in the given
 // prometheus.Registerer. It panics in case of failure.
@@ -115,26 +109,10 @@ func NewObservedStore(
 
 // An ObservedStore wraps another Store with error logging,
 // Prometheus metrics and tracing.
-type ObservedStore struct {
-	store   Store
-	log     logging.ErrorLogger
-	metrics StoreMetrics
-	tracer  trace.Tracer
-	txtrace *trace.Trace
-	txctx   context.Context
-}
+type ObservedStore struct { /* all structs must go */ }
 
 // StoreMetrics encapsulates the Prometheus metrics of a Store.
-type StoreMetrics struct {
-	Transact               *metrics.OperationMetrics
-	Done                   *metrics.OperationMetrics
-	UpsertRepos            *metrics.OperationMetrics
-	ListRepos              *metrics.OperationMetrics
-	UpsertExternalServices *metrics.OperationMetrics
-	ListExternalServices   *metrics.OperationMetrics
-	SetClonedRepos         *metrics.OperationMetrics
-	CountNotClonedRepos    *metrics.OperationMetrics
-}
+type StoreMetrics struct { /* all structs must go */ }
 
 // MustRegister registers all metrics in StoreMetrics in the given
 // prometheus.Registerer. It panics in case of failure.

@@ -21,10 +21,7 @@ func init() {
 	})
 }
 
-type cloneURLResolver struct {
-	from *regexp.Regexp
-	to   string
-}
+type cloneURLResolver struct { /* all structs must go */ }
 
 // cloneURLResolvers is the list of clone-URL-to-repo-URI mappings, derived
 // from the site config

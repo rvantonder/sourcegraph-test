@@ -35,31 +35,14 @@ func ParseWebhookEvent(eventType string, payload []byte) (e interface{}, err err
 
 type PingEvent struct{}
 
-type PullRequestActivityEvent struct {
-	Date        time.Time      `json:"date"`
-	Actor       User           `json:"actor"`
-	PullRequest PullRequest    `json:"pullRequest"`
-	Action      ActivityAction `json:"action"`
-	Activity    *Activity      `json:"activity"`
-}
+type PullRequestActivityEvent struct { /* all structs must go */ }
 
-type PullRequestParticipantStatusEvent struct {
-	*ParticipantStatusEvent
-	PullRequest PullRequest `json:"pullRequest"`
-}
+type PullRequestParticipantStatusEvent struct { /* all structs must go */ }
 
-type ParticipantStatusEvent struct {
-	CreatedDate int            `json:"createdDate"`
-	User        User           `json:"user"`
-	Action      ActivityAction `json:"action"`
-}
+type ParticipantStatusEvent struct { /* all structs must go */ }
 
 func (a *ParticipantStatusEvent) Key() string {
 	return fmt.Sprintf("%s:%d:%d", a.Action, a.User.ID, a.CreatedDate)
 }
 
-type BuildStatusEvent struct {
-	Commit       string        `json:"commit"`
-	Status       BuildStatus   `json:"status"`
-	PullRequests []PullRequest `json:"pullRequests"`
-}
+type BuildStatusEvent struct { /* all structs must go */ }

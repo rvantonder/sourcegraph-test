@@ -9,88 +9,31 @@ import (
 //
 // The following types are used during marshalling
 
-type SerializingTaggedValue struct {
-	Type  string      `json:"type"`
-	Value interface{} `json:"value"`
-}
+type SerializingTaggedValue struct { /* all structs must go */ }
 
-type SerializingRange struct {
-	StartLine          int                    `json:"startLine"`
-	StartCharacter     int                    `json:"startCharacter"`
-	EndLine            int                    `json:"endLine"`
-	EndCharacter       int                    `json:"endCharacter"`
-	DefinitionResultID types.ID               `json:"definitionResultId"`
-	ReferenceResultID  types.ID               `json:"referenceResultId"`
-	HoverResultID      types.ID               `json:"hoverResultId"`
-	MonikerIDs         SerializingTaggedValue `json:"monikerIds"`
-}
+type SerializingRange struct { /* all structs must go */ }
 
-type SerializingDocument struct {
-	Ranges             SerializingTaggedValue `json:"ranges"`
-	HoverResults       SerializingTaggedValue `json:"hoverResults"`
-	Monikers           SerializingTaggedValue `json:"monikers"`
-	PackageInformation SerializingTaggedValue `json:"packageInformation"`
-}
+type SerializingDocument struct { /* all structs must go */ }
 
-type SerializingResultChunk struct {
-	DocumentPaths      SerializingTaggedValue `json:"documentPaths"`
-	DocumentIDRangeIDs SerializingTaggedValue `json:"documentIdRangeIds"`
-}
+type SerializingResultChunk struct { /* all structs must go */ }
 
-type SerializingLocation struct {
-	URI            string `json:"uri"`
-	StartLine      int    `json:"startLine"`
-	StartCharacter int    `json:"startCharacter"`
-	EndLine        int    `json:"endLine"`
-	EndCharacter   int    `json:"endCharacter"`
-}
+type SerializingLocation struct { /* all structs must go */ }
 
 //
 // The following types are used during unmarshalling
 
-type SerializedTaggedValue struct {
-	Type  string            `json:"type"`
-	Value []json.RawMessage `json:"value"`
-}
+type SerializedTaggedValue struct { /* all structs must go */ }
 
-type SerializedRange struct {
-	StartLine          int                   `json:"startLine"`
-	StartCharacter     int                   `json:"startCharacter"`
-	EndLine            int                   `json:"endLine"`
-	EndCharacter       int                   `json:"endCharacter"`
-	DefinitionResultID ID                    `json:"definitionResultId"`
-	ReferenceResultID  ID                    `json:"referenceResultId"`
-	HoverResultID      ID                    `json:"hoverResultId"`
-	MonikerIDs         SerializedTaggedValue `json:"monikerIds"`
-}
+type SerializedRange struct { /* all structs must go */ }
 
-type SerializedDocument struct {
-	Ranges             SerializedTaggedValue `json:"ranges"`
-	HoverResults       SerializedTaggedValue `json:"hoverResults"`
-	Monikers           SerializedTaggedValue `json:"monikers"`
-	PackageInformation SerializedTaggedValue `json:"packageInformation"`
-}
+type SerializedDocument struct { /* all structs must go */ }
 
-type SerializedResultChunk struct {
-	DocumentPaths      SerializedTaggedValue `json:"documentPaths"`
-	DocumentIDRangeIDs SerializedTaggedValue `json:"documentIdRangeIds"`
-}
+type SerializedResultChunk struct { /* all structs must go */ }
 
 type SerializedLocation = SerializingLocation
 
-type SerializedMoniker struct {
-	Kind                 string `json:"kind"`
-	Scheme               string `json:"scheme"`
-	Identifier           string `json:"identifier"`
-	PackageInformationID ID     `json:"packageInformationId"`
-}
+type SerializedMoniker struct { /* all structs must go */ }
 
-type SerializedPackageInformation struct {
-	Name    string `json:"name"`
-	Version string `json:"version"`
-}
+type SerializedPackageInformation struct { /* all structs must go */ }
 
-type SerializedDocumentIDRangeID struct {
-	DocumentID ID `json:"documentId"`
-	RangeID    ID `json:"rangeId"`
-}
+type SerializedDocumentIDRangeID struct { /* all structs must go */ }

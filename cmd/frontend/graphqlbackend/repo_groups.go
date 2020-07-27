@@ -6,10 +6,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/api"
 )
 
-type repoGroup struct {
-	name         string
-	repositories []api.RepoName
-}
+type repoGroup struct { /* all structs must go */ }
 
 func (g repoGroup) Name() string { return g.name }
 

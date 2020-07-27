@@ -15,157 +15,7 @@ import (
 // package
 // github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/store)
 // used for unit testing.
-type MockStore struct {
-	// AddUploadPartFunc is an instance of a mock function object
-	// controlling the behavior of the method AddUploadPart.
-	AddUploadPartFunc *StoreAddUploadPartFunc
-	// DeleteIndexByIDFunc is an instance of a mock function object
-	// controlling the behavior of the method DeleteIndexByID.
-	DeleteIndexByIDFunc *StoreDeleteIndexByIDFunc
-	// DeleteIndexesWithoutRepositoryFunc is an instance of a mock function
-	// object controlling the behavior of the method
-	// DeleteIndexesWithoutRepository.
-	DeleteIndexesWithoutRepositoryFunc *StoreDeleteIndexesWithoutRepositoryFunc
-	// DeleteOldestDumpFunc is an instance of a mock function object
-	// controlling the behavior of the method DeleteOldestDump.
-	DeleteOldestDumpFunc *StoreDeleteOldestDumpFunc
-	// DeleteOverlappingDumpsFunc is an instance of a mock function object
-	// controlling the behavior of the method DeleteOverlappingDumps.
-	DeleteOverlappingDumpsFunc *StoreDeleteOverlappingDumpsFunc
-	// DeleteUploadByIDFunc is an instance of a mock function object
-	// controlling the behavior of the method DeleteUploadByID.
-	DeleteUploadByIDFunc *StoreDeleteUploadByIDFunc
-	// DeleteUploadsWithoutRepositoryFunc is an instance of a mock function
-	// object controlling the behavior of the method
-	// DeleteUploadsWithoutRepository.
-	DeleteUploadsWithoutRepositoryFunc *StoreDeleteUploadsWithoutRepositoryFunc
-	// DequeueFunc is an instance of a mock function object controlling the
-	// behavior of the method Dequeue.
-	DequeueFunc *StoreDequeueFunc
-	// DequeueIndexFunc is an instance of a mock function object controlling
-	// the behavior of the method DequeueIndex.
-	DequeueIndexFunc *StoreDequeueIndexFunc
-	// DoneFunc is an instance of a mock function object controlling the
-	// behavior of the method Done.
-	DoneFunc *StoreDoneFunc
-	// FindClosestDumpsFunc is an instance of a mock function object
-	// controlling the behavior of the method FindClosestDumps.
-	FindClosestDumpsFunc *StoreFindClosestDumpsFunc
-	// GetDumpByIDFunc is an instance of a mock function object controlling
-	// the behavior of the method GetDumpByID.
-	GetDumpByIDFunc *StoreGetDumpByIDFunc
-	// GetIndexByIDFunc is an instance of a mock function object controlling
-	// the behavior of the method GetIndexByID.
-	GetIndexByIDFunc *StoreGetIndexByIDFunc
-	// GetIndexesFunc is an instance of a mock function object controlling
-	// the behavior of the method GetIndexes.
-	GetIndexesFunc *StoreGetIndexesFunc
-	// GetPackageFunc is an instance of a mock function object controlling
-	// the behavior of the method GetPackage.
-	GetPackageFunc *StoreGetPackageFunc
-	// GetStatesFunc is an instance of a mock function object controlling
-	// the behavior of the method GetStates.
-	GetStatesFunc *StoreGetStatesFunc
-	// GetUploadByIDFunc is an instance of a mock function object
-	// controlling the behavior of the method GetUploadByID.
-	GetUploadByIDFunc *StoreGetUploadByIDFunc
-	// GetUploadsFunc is an instance of a mock function object controlling
-	// the behavior of the method GetUploads.
-	GetUploadsFunc *StoreGetUploadsFunc
-	// HandleFunc is an instance of a mock function object controlling the
-	// behavior of the method Handle.
-	HandleFunc *StoreHandleFunc
-	// HasCommitFunc is an instance of a mock function object controlling
-	// the behavior of the method HasCommit.
-	HasCommitFunc *StoreHasCommitFunc
-	// IndexQueueSizeFunc is an instance of a mock function object
-	// controlling the behavior of the method IndexQueueSize.
-	IndexQueueSizeFunc *StoreIndexQueueSizeFunc
-	// IndexableRepositoriesFunc is an instance of a mock function object
-	// controlling the behavior of the method IndexableRepositories.
-	IndexableRepositoriesFunc *StoreIndexableRepositoriesFunc
-	// InsertIndexFunc is an instance of a mock function object controlling
-	// the behavior of the method InsertIndex.
-	InsertIndexFunc *StoreInsertIndexFunc
-	// InsertUploadFunc is an instance of a mock function object controlling
-	// the behavior of the method InsertUpload.
-	InsertUploadFunc *StoreInsertUploadFunc
-	// IsQueuedFunc is an instance of a mock function object controlling the
-	// behavior of the method IsQueued.
-	IsQueuedFunc *StoreIsQueuedFunc
-	// LockFunc is an instance of a mock function object controlling the
-	// behavior of the method Lock.
-	LockFunc *StoreLockFunc
-	// MarkCompleteFunc is an instance of a mock function object controlling
-	// the behavior of the method MarkComplete.
-	MarkCompleteFunc *StoreMarkCompleteFunc
-	// MarkErroredFunc is an instance of a mock function object controlling
-	// the behavior of the method MarkErrored.
-	MarkErroredFunc *StoreMarkErroredFunc
-	// MarkIndexCompleteFunc is an instance of a mock function object
-	// controlling the behavior of the method MarkIndexComplete.
-	MarkIndexCompleteFunc *StoreMarkIndexCompleteFunc
-	// MarkIndexErroredFunc is an instance of a mock function object
-	// controlling the behavior of the method MarkIndexErrored.
-	MarkIndexErroredFunc *StoreMarkIndexErroredFunc
-	// MarkQueuedFunc is an instance of a mock function object controlling
-	// the behavior of the method MarkQueued.
-	MarkQueuedFunc *StoreMarkQueuedFunc
-	// PackageReferencePagerFunc is an instance of a mock function object
-	// controlling the behavior of the method PackageReferencePager.
-	PackageReferencePagerFunc *StorePackageReferencePagerFunc
-	// QueueSizeFunc is an instance of a mock function object controlling
-	// the behavior of the method QueueSize.
-	QueueSizeFunc *StoreQueueSizeFunc
-	// RepoNameFunc is an instance of a mock function object controlling the
-	// behavior of the method RepoName.
-	RepoNameFunc *StoreRepoNameFunc
-	// RepoUsageStatisticsFunc is an instance of a mock function object
-	// controlling the behavior of the method RepoUsageStatistics.
-	RepoUsageStatisticsFunc *StoreRepoUsageStatisticsFunc
-	// RequeueFunc is an instance of a mock function object controlling the
-	// behavior of the method Requeue.
-	RequeueFunc *StoreRequeueFunc
-	// RequeueIndexFunc is an instance of a mock function object controlling
-	// the behavior of the method RequeueIndex.
-	RequeueIndexFunc *StoreRequeueIndexFunc
-	// ResetIndexableRepositoriesFunc is an instance of a mock function
-	// object controlling the behavior of the method
-	// ResetIndexableRepositories.
-	ResetIndexableRepositoriesFunc *StoreResetIndexableRepositoriesFunc
-	// ResetStalledFunc is an instance of a mock function object controlling
-	// the behavior of the method ResetStalled.
-	ResetStalledFunc *StoreResetStalledFunc
-	// ResetStalledIndexesFunc is an instance of a mock function object
-	// controlling the behavior of the method ResetStalledIndexes.
-	ResetStalledIndexesFunc *StoreResetStalledIndexesFunc
-	// SameRepoPagerFunc is an instance of a mock function object
-	// controlling the behavior of the method SameRepoPager.
-	SameRepoPagerFunc *StoreSameRepoPagerFunc
-	// TransactFunc is an instance of a mock function object controlling the
-	// behavior of the method Transact.
-	TransactFunc *StoreTransactFunc
-	// UpdateCommitsFunc is an instance of a mock function object
-	// controlling the behavior of the method UpdateCommits.
-	UpdateCommitsFunc *StoreUpdateCommitsFunc
-	// UpdateDumpsVisibleFromTipFunc is an instance of a mock function
-	// object controlling the behavior of the method
-	// UpdateDumpsVisibleFromTip.
-	UpdateDumpsVisibleFromTipFunc *StoreUpdateDumpsVisibleFromTipFunc
-	// UpdateIndexableRepositoryFunc is an instance of a mock function
-	// object controlling the behavior of the method
-	// UpdateIndexableRepository.
-	UpdateIndexableRepositoryFunc *StoreUpdateIndexableRepositoryFunc
-	// UpdatePackageReferencesFunc is an instance of a mock function object
-	// controlling the behavior of the method UpdatePackageReferences.
-	UpdatePackageReferencesFunc *StoreUpdatePackageReferencesFunc
-	// UpdatePackagesFunc is an instance of a mock function object
-	// controlling the behavior of the method UpdatePackages.
-	UpdatePackagesFunc *StoreUpdatePackagesFunc
-	// WithFunc is an instance of a mock function object controlling the
-	// behavior of the method With.
-	WithFunc *StoreWithFunc
-}
+type MockStore struct { /* all structs must go */ }
 
 // NewMockStore creates a new mock of the Store interface. All methods
 // return zero values for all results, unless overwritten.
@@ -567,12 +417,7 @@ func NewMockStoreFrom(i store.Store) *MockStore {
 
 // StoreAddUploadPartFunc describes the behavior when the AddUploadPart
 // method of the parent MockStore instance is invoked.
-type StoreAddUploadPartFunc struct {
-	defaultHook func(context.Context, int, int) error
-	hooks       []func(context.Context, int, int) error
-	history     []StoreAddUploadPartFuncCall
-	mutex       sync.Mutex
-}
+type StoreAddUploadPartFunc struct { /* all structs must go */ }
 
 // AddUploadPart delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -646,20 +491,7 @@ func (f *StoreAddUploadPartFunc) History() []StoreAddUploadPartFuncCall {
 
 // StoreAddUploadPartFuncCall is an object that describes an invocation of
 // method AddUploadPart on an instance of MockStore.
-type StoreAddUploadPartFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type StoreAddUploadPartFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -675,12 +507,7 @@ func (c StoreAddUploadPartFuncCall) Results() []interface{} {
 
 // StoreDeleteIndexByIDFunc describes the behavior when the DeleteIndexByID
 // method of the parent MockStore instance is invoked.
-type StoreDeleteIndexByIDFunc struct {
-	defaultHook func(context.Context, int) (bool, error)
-	hooks       []func(context.Context, int) (bool, error)
-	history     []StoreDeleteIndexByIDFuncCall
-	mutex       sync.Mutex
-}
+type StoreDeleteIndexByIDFunc struct { /* all structs must go */ }
 
 // DeleteIndexByID delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -755,20 +582,7 @@ func (f *StoreDeleteIndexByIDFunc) History() []StoreDeleteIndexByIDFuncCall {
 
 // StoreDeleteIndexByIDFuncCall is an object that describes an invocation of
 // method DeleteIndexByID on an instance of MockStore.
-type StoreDeleteIndexByIDFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 bool
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type StoreDeleteIndexByIDFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -785,12 +599,7 @@ func (c StoreDeleteIndexByIDFuncCall) Results() []interface{} {
 // StoreDeleteIndexesWithoutRepositoryFunc describes the behavior when the
 // DeleteIndexesWithoutRepository method of the parent MockStore instance is
 // invoked.
-type StoreDeleteIndexesWithoutRepositoryFunc struct {
-	defaultHook func(context.Context, time.Time) (map[int]int, error)
-	hooks       []func(context.Context, time.Time) (map[int]int, error)
-	history     []StoreDeleteIndexesWithoutRepositoryFuncCall
-	mutex       sync.Mutex
-}
+type StoreDeleteIndexesWithoutRepositoryFunc struct { /* all structs must go */ }
 
 // DeleteIndexesWithoutRepository delegates to the next hook function in the
 // queue and stores the parameter and result values of this invocation.
@@ -867,20 +676,7 @@ func (f *StoreDeleteIndexesWithoutRepositoryFunc) History() []StoreDeleteIndexes
 // StoreDeleteIndexesWithoutRepositoryFuncCall is an object that describes
 // an invocation of method DeleteIndexesWithoutRepository on an instance of
 // MockStore.
-type StoreDeleteIndexesWithoutRepositoryFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 time.Time
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 map[int]int
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type StoreDeleteIndexesWithoutRepositoryFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -896,12 +692,7 @@ func (c StoreDeleteIndexesWithoutRepositoryFuncCall) Results() []interface{} {
 
 // StoreDeleteOldestDumpFunc describes the behavior when the
 // DeleteOldestDump method of the parent MockStore instance is invoked.
-type StoreDeleteOldestDumpFunc struct {
-	defaultHook func(context.Context) (int, bool, error)
-	hooks       []func(context.Context) (int, bool, error)
-	history     []StoreDeleteOldestDumpFuncCall
-	mutex       sync.Mutex
-}
+type StoreDeleteOldestDumpFunc struct { /* all structs must go */ }
 
 // DeleteOldestDump delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -976,20 +767,7 @@ func (f *StoreDeleteOldestDumpFunc) History() []StoreDeleteOldestDumpFuncCall {
 
 // StoreDeleteOldestDumpFuncCall is an object that describes an invocation
 // of method DeleteOldestDump on an instance of MockStore.
-type StoreDeleteOldestDumpFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 int
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 bool
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type StoreDeleteOldestDumpFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -1006,12 +784,7 @@ func (c StoreDeleteOldestDumpFuncCall) Results() []interface{} {
 // StoreDeleteOverlappingDumpsFunc describes the behavior when the
 // DeleteOverlappingDumps method of the parent MockStore instance is
 // invoked.
-type StoreDeleteOverlappingDumpsFunc struct {
-	defaultHook func(context.Context, int, string, string, string) error
-	hooks       []func(context.Context, int, string, string, string) error
-	history     []StoreDeleteOverlappingDumpsFuncCall
-	mutex       sync.Mutex
-}
+type StoreDeleteOverlappingDumpsFunc struct { /* all structs must go */ }
 
 // DeleteOverlappingDumps delegates to the next hook function in the queue
 // and stores the parameter and result values of this invocation.
@@ -1086,26 +859,7 @@ func (f *StoreDeleteOverlappingDumpsFunc) History() []StoreDeleteOverlappingDump
 
 // StoreDeleteOverlappingDumpsFuncCall is an object that describes an
 // invocation of method DeleteOverlappingDumps on an instance of MockStore.
-type StoreDeleteOverlappingDumpsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 string
-	// Arg4 is the value of the 5th argument passed to this method
-	// invocation.
-	Arg4 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type StoreDeleteOverlappingDumpsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -1121,12 +875,7 @@ func (c StoreDeleteOverlappingDumpsFuncCall) Results() []interface{} {
 
 // StoreDeleteUploadByIDFunc describes the behavior when the
 // DeleteUploadByID method of the parent MockStore instance is invoked.
-type StoreDeleteUploadByIDFunc struct {
-	defaultHook func(context.Context, int, store.GetTipCommitFunc) (bool, error)
-	hooks       []func(context.Context, int, store.GetTipCommitFunc) (bool, error)
-	history     []StoreDeleteUploadByIDFuncCall
-	mutex       sync.Mutex
-}
+type StoreDeleteUploadByIDFunc struct { /* all structs must go */ }
 
 // DeleteUploadByID delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -1201,23 +950,7 @@ func (f *StoreDeleteUploadByIDFunc) History() []StoreDeleteUploadByIDFuncCall {
 
 // StoreDeleteUploadByIDFuncCall is an object that describes an invocation
 // of method DeleteUploadByID on an instance of MockStore.
-type StoreDeleteUploadByIDFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 store.GetTipCommitFunc
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 bool
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type StoreDeleteUploadByIDFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -1234,12 +967,7 @@ func (c StoreDeleteUploadByIDFuncCall) Results() []interface{} {
 // StoreDeleteUploadsWithoutRepositoryFunc describes the behavior when the
 // DeleteUploadsWithoutRepository method of the parent MockStore instance is
 // invoked.
-type StoreDeleteUploadsWithoutRepositoryFunc struct {
-	defaultHook func(context.Context, time.Time) (map[int]int, error)
-	hooks       []func(context.Context, time.Time) (map[int]int, error)
-	history     []StoreDeleteUploadsWithoutRepositoryFuncCall
-	mutex       sync.Mutex
-}
+type StoreDeleteUploadsWithoutRepositoryFunc struct { /* all structs must go */ }
 
 // DeleteUploadsWithoutRepository delegates to the next hook function in the
 // queue and stores the parameter and result values of this invocation.
@@ -1316,20 +1044,7 @@ func (f *StoreDeleteUploadsWithoutRepositoryFunc) History() []StoreDeleteUploads
 // StoreDeleteUploadsWithoutRepositoryFuncCall is an object that describes
 // an invocation of method DeleteUploadsWithoutRepository on an instance of
 // MockStore.
-type StoreDeleteUploadsWithoutRepositoryFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 time.Time
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 map[int]int
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type StoreDeleteUploadsWithoutRepositoryFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -1345,12 +1060,7 @@ func (c StoreDeleteUploadsWithoutRepositoryFuncCall) Results() []interface{} {
 
 // StoreDequeueFunc describes the behavior when the Dequeue method of the
 // parent MockStore instance is invoked.
-type StoreDequeueFunc struct {
-	defaultHook func(context.Context, int64) (store.Upload, store.Store, bool, error)
-	hooks       []func(context.Context, int64) (store.Upload, store.Store, bool, error)
-	history     []StoreDequeueFuncCall
-	mutex       sync.Mutex
-}
+type StoreDequeueFunc struct { /* all structs must go */ }
 
 // Dequeue delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -1424,26 +1134,7 @@ func (f *StoreDequeueFunc) History() []StoreDequeueFuncCall {
 
 // StoreDequeueFuncCall is an object that describes an invocation of method
 // Dequeue on an instance of MockStore.
-type StoreDequeueFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int64
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 store.Upload
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 store.Store
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 bool
-	// Result3 is the value of the 4th result returned from this method
-	// invocation.
-	Result3 error
-}
+type StoreDequeueFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -1459,12 +1150,7 @@ func (c StoreDequeueFuncCall) Results() []interface{} {
 
 // StoreDequeueIndexFunc describes the behavior when the DequeueIndex method
 // of the parent MockStore instance is invoked.
-type StoreDequeueIndexFunc struct {
-	defaultHook func(context.Context) (store.Index, store.Store, bool, error)
-	hooks       []func(context.Context) (store.Index, store.Store, bool, error)
-	history     []StoreDequeueIndexFuncCall
-	mutex       sync.Mutex
-}
+type StoreDequeueIndexFunc struct { /* all structs must go */ }
 
 // DequeueIndex delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -1538,23 +1224,7 @@ func (f *StoreDequeueIndexFunc) History() []StoreDequeueIndexFuncCall {
 
 // StoreDequeueIndexFuncCall is an object that describes an invocation of
 // method DequeueIndex on an instance of MockStore.
-type StoreDequeueIndexFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 store.Index
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 store.Store
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 bool
-	// Result3 is the value of the 4th result returned from this method
-	// invocation.
-	Result3 error
-}
+type StoreDequeueIndexFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -1570,12 +1240,7 @@ func (c StoreDequeueIndexFuncCall) Results() []interface{} {
 
 // StoreDoneFunc describes the behavior when the Done method of the parent
 // MockStore instance is invoked.
-type StoreDoneFunc struct {
-	defaultHook func(error) error
-	hooks       []func(error) error
-	history     []StoreDoneFuncCall
-	mutex       sync.Mutex
-}
+type StoreDoneFunc struct { /* all structs must go */ }
 
 // Done delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -1649,14 +1314,7 @@ func (f *StoreDoneFunc) History() []StoreDoneFuncCall {
 
 // StoreDoneFuncCall is an object that describes an invocation of method
 // Done on an instance of MockStore.
-type StoreDoneFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 error
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type StoreDoneFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -1672,12 +1330,7 @@ func (c StoreDoneFuncCall) Results() []interface{} {
 
 // StoreFindClosestDumpsFunc describes the behavior when the
 // FindClosestDumps method of the parent MockStore instance is invoked.
-type StoreFindClosestDumpsFunc struct {
-	defaultHook func(context.Context, int, string, string, bool, string) ([]store.Dump, error)
-	hooks       []func(context.Context, int, string, string, bool, string) ([]store.Dump, error)
-	history     []StoreFindClosestDumpsFuncCall
-	mutex       sync.Mutex
-}
+type StoreFindClosestDumpsFunc struct { /* all structs must go */ }
 
 // FindClosestDumps delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -1752,32 +1405,7 @@ func (f *StoreFindClosestDumpsFunc) History() []StoreFindClosestDumpsFuncCall {
 
 // StoreFindClosestDumpsFuncCall is an object that describes an invocation
 // of method FindClosestDumps on an instance of MockStore.
-type StoreFindClosestDumpsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 string
-	// Arg4 is the value of the 5th argument passed to this method
-	// invocation.
-	Arg4 bool
-	// Arg5 is the value of the 6th argument passed to this method
-	// invocation.
-	Arg5 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []store.Dump
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type StoreFindClosestDumpsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -1793,12 +1421,7 @@ func (c StoreFindClosestDumpsFuncCall) Results() []interface{} {
 
 // StoreGetDumpByIDFunc describes the behavior when the GetDumpByID method
 // of the parent MockStore instance is invoked.
-type StoreGetDumpByIDFunc struct {
-	defaultHook func(context.Context, int) (store.Dump, bool, error)
-	hooks       []func(context.Context, int) (store.Dump, bool, error)
-	history     []StoreGetDumpByIDFuncCall
-	mutex       sync.Mutex
-}
+type StoreGetDumpByIDFunc struct { /* all structs must go */ }
 
 // GetDumpByID delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -1872,23 +1495,7 @@ func (f *StoreGetDumpByIDFunc) History() []StoreGetDumpByIDFuncCall {
 
 // StoreGetDumpByIDFuncCall is an object that describes an invocation of
 // method GetDumpByID on an instance of MockStore.
-type StoreGetDumpByIDFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 store.Dump
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 bool
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type StoreGetDumpByIDFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -1904,12 +1511,7 @@ func (c StoreGetDumpByIDFuncCall) Results() []interface{} {
 
 // StoreGetIndexByIDFunc describes the behavior when the GetIndexByID method
 // of the parent MockStore instance is invoked.
-type StoreGetIndexByIDFunc struct {
-	defaultHook func(context.Context, int) (store.Index, bool, error)
-	hooks       []func(context.Context, int) (store.Index, bool, error)
-	history     []StoreGetIndexByIDFuncCall
-	mutex       sync.Mutex
-}
+type StoreGetIndexByIDFunc struct { /* all structs must go */ }
 
 // GetIndexByID delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -1983,23 +1585,7 @@ func (f *StoreGetIndexByIDFunc) History() []StoreGetIndexByIDFuncCall {
 
 // StoreGetIndexByIDFuncCall is an object that describes an invocation of
 // method GetIndexByID on an instance of MockStore.
-type StoreGetIndexByIDFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 store.Index
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 bool
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type StoreGetIndexByIDFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -2015,12 +1601,7 @@ func (c StoreGetIndexByIDFuncCall) Results() []interface{} {
 
 // StoreGetIndexesFunc describes the behavior when the GetIndexes method of
 // the parent MockStore instance is invoked.
-type StoreGetIndexesFunc struct {
-	defaultHook func(context.Context, store.GetIndexesOptions) ([]store.Index, int, error)
-	hooks       []func(context.Context, store.GetIndexesOptions) ([]store.Index, int, error)
-	history     []StoreGetIndexesFuncCall
-	mutex       sync.Mutex
-}
+type StoreGetIndexesFunc struct { /* all structs must go */ }
 
 // GetIndexes delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -2094,23 +1675,7 @@ func (f *StoreGetIndexesFunc) History() []StoreGetIndexesFuncCall {
 
 // StoreGetIndexesFuncCall is an object that describes an invocation of
 // method GetIndexes on an instance of MockStore.
-type StoreGetIndexesFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 store.GetIndexesOptions
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []store.Index
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 int
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type StoreGetIndexesFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -2126,12 +1691,7 @@ func (c StoreGetIndexesFuncCall) Results() []interface{} {
 
 // StoreGetPackageFunc describes the behavior when the GetPackage method of
 // the parent MockStore instance is invoked.
-type StoreGetPackageFunc struct {
-	defaultHook func(context.Context, string, string, string) (store.Dump, bool, error)
-	hooks       []func(context.Context, string, string, string) (store.Dump, bool, error)
-	history     []StoreGetPackageFuncCall
-	mutex       sync.Mutex
-}
+type StoreGetPackageFunc struct { /* all structs must go */ }
 
 // GetPackage delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -2205,29 +1765,7 @@ func (f *StoreGetPackageFunc) History() []StoreGetPackageFuncCall {
 
 // StoreGetPackageFuncCall is an object that describes an invocation of
 // method GetPackage on an instance of MockStore.
-type StoreGetPackageFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 store.Dump
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 bool
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type StoreGetPackageFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -2243,12 +1781,7 @@ func (c StoreGetPackageFuncCall) Results() []interface{} {
 
 // StoreGetStatesFunc describes the behavior when the GetStates method of
 // the parent MockStore instance is invoked.
-type StoreGetStatesFunc struct {
-	defaultHook func(context.Context, []int) (map[int]string, error)
-	hooks       []func(context.Context, []int) (map[int]string, error)
-	history     []StoreGetStatesFuncCall
-	mutex       sync.Mutex
-}
+type StoreGetStatesFunc struct { /* all structs must go */ }
 
 // GetStates delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -2322,20 +1855,7 @@ func (f *StoreGetStatesFunc) History() []StoreGetStatesFuncCall {
 
 // StoreGetStatesFuncCall is an object that describes an invocation of
 // method GetStates on an instance of MockStore.
-type StoreGetStatesFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 []int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 map[int]string
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type StoreGetStatesFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -2351,12 +1871,7 @@ func (c StoreGetStatesFuncCall) Results() []interface{} {
 
 // StoreGetUploadByIDFunc describes the behavior when the GetUploadByID
 // method of the parent MockStore instance is invoked.
-type StoreGetUploadByIDFunc struct {
-	defaultHook func(context.Context, int) (store.Upload, bool, error)
-	hooks       []func(context.Context, int) (store.Upload, bool, error)
-	history     []StoreGetUploadByIDFuncCall
-	mutex       sync.Mutex
-}
+type StoreGetUploadByIDFunc struct { /* all structs must go */ }
 
 // GetUploadByID delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -2430,23 +1945,7 @@ func (f *StoreGetUploadByIDFunc) History() []StoreGetUploadByIDFuncCall {
 
 // StoreGetUploadByIDFuncCall is an object that describes an invocation of
 // method GetUploadByID on an instance of MockStore.
-type StoreGetUploadByIDFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 store.Upload
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 bool
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type StoreGetUploadByIDFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -2462,12 +1961,7 @@ func (c StoreGetUploadByIDFuncCall) Results() []interface{} {
 
 // StoreGetUploadsFunc describes the behavior when the GetUploads method of
 // the parent MockStore instance is invoked.
-type StoreGetUploadsFunc struct {
-	defaultHook func(context.Context, store.GetUploadsOptions) ([]store.Upload, int, error)
-	hooks       []func(context.Context, store.GetUploadsOptions) ([]store.Upload, int, error)
-	history     []StoreGetUploadsFuncCall
-	mutex       sync.Mutex
-}
+type StoreGetUploadsFunc struct { /* all structs must go */ }
 
 // GetUploads delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -2541,23 +2035,7 @@ func (f *StoreGetUploadsFunc) History() []StoreGetUploadsFuncCall {
 
 // StoreGetUploadsFuncCall is an object that describes an invocation of
 // method GetUploads on an instance of MockStore.
-type StoreGetUploadsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 store.GetUploadsOptions
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []store.Upload
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 int
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type StoreGetUploadsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -2573,12 +2051,7 @@ func (c StoreGetUploadsFuncCall) Results() []interface{} {
 
 // StoreHandleFunc describes the behavior when the Handle method of the
 // parent MockStore instance is invoked.
-type StoreHandleFunc struct {
-	defaultHook func() *basestore.TransactableHandle
-	hooks       []func() *basestore.TransactableHandle
-	history     []StoreHandleFuncCall
-	mutex       sync.Mutex
-}
+type StoreHandleFunc struct { /* all structs must go */ }
 
 // Handle delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -2652,11 +2125,7 @@ func (f *StoreHandleFunc) History() []StoreHandleFuncCall {
 
 // StoreHandleFuncCall is an object that describes an invocation of method
 // Handle on an instance of MockStore.
-type StoreHandleFuncCall struct {
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 *basestore.TransactableHandle
-}
+type StoreHandleFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -2672,12 +2141,7 @@ func (c StoreHandleFuncCall) Results() []interface{} {
 
 // StoreHasCommitFunc describes the behavior when the HasCommit method of
 // the parent MockStore instance is invoked.
-type StoreHasCommitFunc struct {
-	defaultHook func(context.Context, int, string) (bool, error)
-	hooks       []func(context.Context, int, string) (bool, error)
-	history     []StoreHasCommitFuncCall
-	mutex       sync.Mutex
-}
+type StoreHasCommitFunc struct { /* all structs must go */ }
 
 // HasCommit delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -2751,23 +2215,7 @@ func (f *StoreHasCommitFunc) History() []StoreHasCommitFuncCall {
 
 // StoreHasCommitFuncCall is an object that describes an invocation of
 // method HasCommit on an instance of MockStore.
-type StoreHasCommitFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 bool
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type StoreHasCommitFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -2783,12 +2231,7 @@ func (c StoreHasCommitFuncCall) Results() []interface{} {
 
 // StoreIndexQueueSizeFunc describes the behavior when the IndexQueueSize
 // method of the parent MockStore instance is invoked.
-type StoreIndexQueueSizeFunc struct {
-	defaultHook func(context.Context) (int, error)
-	hooks       []func(context.Context) (int, error)
-	history     []StoreIndexQueueSizeFuncCall
-	mutex       sync.Mutex
-}
+type StoreIndexQueueSizeFunc struct { /* all structs must go */ }
 
 // IndexQueueSize delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -2863,17 +2306,7 @@ func (f *StoreIndexQueueSizeFunc) History() []StoreIndexQueueSizeFuncCall {
 
 // StoreIndexQueueSizeFuncCall is an object that describes an invocation of
 // method IndexQueueSize on an instance of MockStore.
-type StoreIndexQueueSizeFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 int
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type StoreIndexQueueSizeFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -2889,12 +2322,7 @@ func (c StoreIndexQueueSizeFuncCall) Results() []interface{} {
 
 // StoreIndexableRepositoriesFunc describes the behavior when the
 // IndexableRepositories method of the parent MockStore instance is invoked.
-type StoreIndexableRepositoriesFunc struct {
-	defaultHook func(context.Context, store.IndexableRepositoryQueryOptions) ([]store.IndexableRepository, error)
-	hooks       []func(context.Context, store.IndexableRepositoryQueryOptions) ([]store.IndexableRepository, error)
-	history     []StoreIndexableRepositoriesFuncCall
-	mutex       sync.Mutex
-}
+type StoreIndexableRepositoriesFunc struct { /* all structs must go */ }
 
 // IndexableRepositories delegates to the next hook function in the queue
 // and stores the parameter and result values of this invocation.
@@ -2969,20 +2397,7 @@ func (f *StoreIndexableRepositoriesFunc) History() []StoreIndexableRepositoriesF
 
 // StoreIndexableRepositoriesFuncCall is an object that describes an
 // invocation of method IndexableRepositories on an instance of MockStore.
-type StoreIndexableRepositoriesFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 store.IndexableRepositoryQueryOptions
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []store.IndexableRepository
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type StoreIndexableRepositoriesFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -2998,12 +2413,7 @@ func (c StoreIndexableRepositoriesFuncCall) Results() []interface{} {
 
 // StoreInsertIndexFunc describes the behavior when the InsertIndex method
 // of the parent MockStore instance is invoked.
-type StoreInsertIndexFunc struct {
-	defaultHook func(context.Context, store.Index) (int, error)
-	hooks       []func(context.Context, store.Index) (int, error)
-	history     []StoreInsertIndexFuncCall
-	mutex       sync.Mutex
-}
+type StoreInsertIndexFunc struct { /* all structs must go */ }
 
 // InsertIndex delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -3077,20 +2487,7 @@ func (f *StoreInsertIndexFunc) History() []StoreInsertIndexFuncCall {
 
 // StoreInsertIndexFuncCall is an object that describes an invocation of
 // method InsertIndex on an instance of MockStore.
-type StoreInsertIndexFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 store.Index
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 int
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type StoreInsertIndexFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -3106,12 +2503,7 @@ func (c StoreInsertIndexFuncCall) Results() []interface{} {
 
 // StoreInsertUploadFunc describes the behavior when the InsertUpload method
 // of the parent MockStore instance is invoked.
-type StoreInsertUploadFunc struct {
-	defaultHook func(context.Context, store.Upload) (int, error)
-	hooks       []func(context.Context, store.Upload) (int, error)
-	history     []StoreInsertUploadFuncCall
-	mutex       sync.Mutex
-}
+type StoreInsertUploadFunc struct { /* all structs must go */ }
 
 // InsertUpload delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -3185,20 +2577,7 @@ func (f *StoreInsertUploadFunc) History() []StoreInsertUploadFuncCall {
 
 // StoreInsertUploadFuncCall is an object that describes an invocation of
 // method InsertUpload on an instance of MockStore.
-type StoreInsertUploadFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 store.Upload
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 int
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type StoreInsertUploadFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -3214,12 +2593,7 @@ func (c StoreInsertUploadFuncCall) Results() []interface{} {
 
 // StoreIsQueuedFunc describes the behavior when the IsQueued method of the
 // parent MockStore instance is invoked.
-type StoreIsQueuedFunc struct {
-	defaultHook func(context.Context, int, string) (bool, error)
-	hooks       []func(context.Context, int, string) (bool, error)
-	history     []StoreIsQueuedFuncCall
-	mutex       sync.Mutex
-}
+type StoreIsQueuedFunc struct { /* all structs must go */ }
 
 // IsQueued delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -3293,23 +2667,7 @@ func (f *StoreIsQueuedFunc) History() []StoreIsQueuedFuncCall {
 
 // StoreIsQueuedFuncCall is an object that describes an invocation of method
 // IsQueued on an instance of MockStore.
-type StoreIsQueuedFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 bool
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type StoreIsQueuedFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -3325,12 +2683,7 @@ func (c StoreIsQueuedFuncCall) Results() []interface{} {
 
 // StoreLockFunc describes the behavior when the Lock method of the parent
 // MockStore instance is invoked.
-type StoreLockFunc struct {
-	defaultHook func(context.Context, int, bool) (bool, store.UnlockFunc, error)
-	hooks       []func(context.Context, int, bool) (bool, store.UnlockFunc, error)
-	history     []StoreLockFuncCall
-	mutex       sync.Mutex
-}
+type StoreLockFunc struct { /* all structs must go */ }
 
 // Lock delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -3404,26 +2757,7 @@ func (f *StoreLockFunc) History() []StoreLockFuncCall {
 
 // StoreLockFuncCall is an object that describes an invocation of method
 // Lock on an instance of MockStore.
-type StoreLockFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 bool
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 bool
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 store.UnlockFunc
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type StoreLockFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -3439,12 +2773,7 @@ func (c StoreLockFuncCall) Results() []interface{} {
 
 // StoreMarkCompleteFunc describes the behavior when the MarkComplete method
 // of the parent MockStore instance is invoked.
-type StoreMarkCompleteFunc struct {
-	defaultHook func(context.Context, int) error
-	hooks       []func(context.Context, int) error
-	history     []StoreMarkCompleteFuncCall
-	mutex       sync.Mutex
-}
+type StoreMarkCompleteFunc struct { /* all structs must go */ }
 
 // MarkComplete delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -3518,17 +2847,7 @@ func (f *StoreMarkCompleteFunc) History() []StoreMarkCompleteFuncCall {
 
 // StoreMarkCompleteFuncCall is an object that describes an invocation of
 // method MarkComplete on an instance of MockStore.
-type StoreMarkCompleteFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type StoreMarkCompleteFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -3544,12 +2863,7 @@ func (c StoreMarkCompleteFuncCall) Results() []interface{} {
 
 // StoreMarkErroredFunc describes the behavior when the MarkErrored method
 // of the parent MockStore instance is invoked.
-type StoreMarkErroredFunc struct {
-	defaultHook func(context.Context, int, string) error
-	hooks       []func(context.Context, int, string) error
-	history     []StoreMarkErroredFuncCall
-	mutex       sync.Mutex
-}
+type StoreMarkErroredFunc struct { /* all structs must go */ }
 
 // MarkErrored delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -3623,20 +2937,7 @@ func (f *StoreMarkErroredFunc) History() []StoreMarkErroredFuncCall {
 
 // StoreMarkErroredFuncCall is an object that describes an invocation of
 // method MarkErrored on an instance of MockStore.
-type StoreMarkErroredFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type StoreMarkErroredFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -3652,12 +2953,7 @@ func (c StoreMarkErroredFuncCall) Results() []interface{} {
 
 // StoreMarkIndexCompleteFunc describes the behavior when the
 // MarkIndexComplete method of the parent MockStore instance is invoked.
-type StoreMarkIndexCompleteFunc struct {
-	defaultHook func(context.Context, int) error
-	hooks       []func(context.Context, int) error
-	history     []StoreMarkIndexCompleteFuncCall
-	mutex       sync.Mutex
-}
+type StoreMarkIndexCompleteFunc struct { /* all structs must go */ }
 
 // MarkIndexComplete delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -3732,17 +3028,7 @@ func (f *StoreMarkIndexCompleteFunc) History() []StoreMarkIndexCompleteFuncCall 
 
 // StoreMarkIndexCompleteFuncCall is an object that describes an invocation
 // of method MarkIndexComplete on an instance of MockStore.
-type StoreMarkIndexCompleteFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type StoreMarkIndexCompleteFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -3758,12 +3044,7 @@ func (c StoreMarkIndexCompleteFuncCall) Results() []interface{} {
 
 // StoreMarkIndexErroredFunc describes the behavior when the
 // MarkIndexErrored method of the parent MockStore instance is invoked.
-type StoreMarkIndexErroredFunc struct {
-	defaultHook func(context.Context, int, string) error
-	hooks       []func(context.Context, int, string) error
-	history     []StoreMarkIndexErroredFuncCall
-	mutex       sync.Mutex
-}
+type StoreMarkIndexErroredFunc struct { /* all structs must go */ }
 
 // MarkIndexErrored delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -3838,20 +3119,7 @@ func (f *StoreMarkIndexErroredFunc) History() []StoreMarkIndexErroredFuncCall {
 
 // StoreMarkIndexErroredFuncCall is an object that describes an invocation
 // of method MarkIndexErrored on an instance of MockStore.
-type StoreMarkIndexErroredFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type StoreMarkIndexErroredFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -3867,12 +3135,7 @@ func (c StoreMarkIndexErroredFuncCall) Results() []interface{} {
 
 // StoreMarkQueuedFunc describes the behavior when the MarkQueued method of
 // the parent MockStore instance is invoked.
-type StoreMarkQueuedFunc struct {
-	defaultHook func(context.Context, int, *int) error
-	hooks       []func(context.Context, int, *int) error
-	history     []StoreMarkQueuedFuncCall
-	mutex       sync.Mutex
-}
+type StoreMarkQueuedFunc struct { /* all structs must go */ }
 
 // MarkQueued delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -3946,20 +3209,7 @@ func (f *StoreMarkQueuedFunc) History() []StoreMarkQueuedFuncCall {
 
 // StoreMarkQueuedFuncCall is an object that describes an invocation of
 // method MarkQueued on an instance of MockStore.
-type StoreMarkQueuedFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 *int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type StoreMarkQueuedFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -3975,12 +3225,7 @@ func (c StoreMarkQueuedFuncCall) Results() []interface{} {
 
 // StorePackageReferencePagerFunc describes the behavior when the
 // PackageReferencePager method of the parent MockStore instance is invoked.
-type StorePackageReferencePagerFunc struct {
-	defaultHook func(context.Context, string, string, string, int, int) (int, store.ReferencePager, error)
-	hooks       []func(context.Context, string, string, string, int, int) (int, store.ReferencePager, error)
-	history     []StorePackageReferencePagerFuncCall
-	mutex       sync.Mutex
-}
+type StorePackageReferencePagerFunc struct { /* all structs must go */ }
 
 // PackageReferencePager delegates to the next hook function in the queue
 // and stores the parameter and result values of this invocation.
@@ -4055,35 +3300,7 @@ func (f *StorePackageReferencePagerFunc) History() []StorePackageReferencePagerF
 
 // StorePackageReferencePagerFuncCall is an object that describes an
 // invocation of method PackageReferencePager on an instance of MockStore.
-type StorePackageReferencePagerFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 string
-	// Arg4 is the value of the 5th argument passed to this method
-	// invocation.
-	Arg4 int
-	// Arg5 is the value of the 6th argument passed to this method
-	// invocation.
-	Arg5 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 int
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 store.ReferencePager
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type StorePackageReferencePagerFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -4099,12 +3316,7 @@ func (c StorePackageReferencePagerFuncCall) Results() []interface{} {
 
 // StoreQueueSizeFunc describes the behavior when the QueueSize method of
 // the parent MockStore instance is invoked.
-type StoreQueueSizeFunc struct {
-	defaultHook func(context.Context) (int, error)
-	hooks       []func(context.Context) (int, error)
-	history     []StoreQueueSizeFuncCall
-	mutex       sync.Mutex
-}
+type StoreQueueSizeFunc struct { /* all structs must go */ }
 
 // QueueSize delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -4178,17 +3390,7 @@ func (f *StoreQueueSizeFunc) History() []StoreQueueSizeFuncCall {
 
 // StoreQueueSizeFuncCall is an object that describes an invocation of
 // method QueueSize on an instance of MockStore.
-type StoreQueueSizeFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 int
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type StoreQueueSizeFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -4204,12 +3406,7 @@ func (c StoreQueueSizeFuncCall) Results() []interface{} {
 
 // StoreRepoNameFunc describes the behavior when the RepoName method of the
 // parent MockStore instance is invoked.
-type StoreRepoNameFunc struct {
-	defaultHook func(context.Context, int) (string, error)
-	hooks       []func(context.Context, int) (string, error)
-	history     []StoreRepoNameFuncCall
-	mutex       sync.Mutex
-}
+type StoreRepoNameFunc struct { /* all structs must go */ }
 
 // RepoName delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -4283,20 +3480,7 @@ func (f *StoreRepoNameFunc) History() []StoreRepoNameFuncCall {
 
 // StoreRepoNameFuncCall is an object that describes an invocation of method
 // RepoName on an instance of MockStore.
-type StoreRepoNameFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 string
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type StoreRepoNameFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -4312,12 +3496,7 @@ func (c StoreRepoNameFuncCall) Results() []interface{} {
 
 // StoreRepoUsageStatisticsFunc describes the behavior when the
 // RepoUsageStatistics method of the parent MockStore instance is invoked.
-type StoreRepoUsageStatisticsFunc struct {
-	defaultHook func(context.Context) ([]store.RepoUsageStatistics, error)
-	hooks       []func(context.Context) ([]store.RepoUsageStatistics, error)
-	history     []StoreRepoUsageStatisticsFuncCall
-	mutex       sync.Mutex
-}
+type StoreRepoUsageStatisticsFunc struct { /* all structs must go */ }
 
 // RepoUsageStatistics delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -4392,17 +3571,7 @@ func (f *StoreRepoUsageStatisticsFunc) History() []StoreRepoUsageStatisticsFuncC
 
 // StoreRepoUsageStatisticsFuncCall is an object that describes an
 // invocation of method RepoUsageStatistics on an instance of MockStore.
-type StoreRepoUsageStatisticsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []store.RepoUsageStatistics
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type StoreRepoUsageStatisticsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -4418,12 +3587,7 @@ func (c StoreRepoUsageStatisticsFuncCall) Results() []interface{} {
 
 // StoreRequeueFunc describes the behavior when the Requeue method of the
 // parent MockStore instance is invoked.
-type StoreRequeueFunc struct {
-	defaultHook func(context.Context, int, time.Time) error
-	hooks       []func(context.Context, int, time.Time) error
-	history     []StoreRequeueFuncCall
-	mutex       sync.Mutex
-}
+type StoreRequeueFunc struct { /* all structs must go */ }
 
 // Requeue delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -4497,20 +3661,7 @@ func (f *StoreRequeueFunc) History() []StoreRequeueFuncCall {
 
 // StoreRequeueFuncCall is an object that describes an invocation of method
 // Requeue on an instance of MockStore.
-type StoreRequeueFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 time.Time
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type StoreRequeueFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -4526,12 +3677,7 @@ func (c StoreRequeueFuncCall) Results() []interface{} {
 
 // StoreRequeueIndexFunc describes the behavior when the RequeueIndex method
 // of the parent MockStore instance is invoked.
-type StoreRequeueIndexFunc struct {
-	defaultHook func(context.Context, int, time.Time) error
-	hooks       []func(context.Context, int, time.Time) error
-	history     []StoreRequeueIndexFuncCall
-	mutex       sync.Mutex
-}
+type StoreRequeueIndexFunc struct { /* all structs must go */ }
 
 // RequeueIndex delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -4605,20 +3751,7 @@ func (f *StoreRequeueIndexFunc) History() []StoreRequeueIndexFuncCall {
 
 // StoreRequeueIndexFuncCall is an object that describes an invocation of
 // method RequeueIndex on an instance of MockStore.
-type StoreRequeueIndexFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 time.Time
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type StoreRequeueIndexFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -4635,12 +3768,7 @@ func (c StoreRequeueIndexFuncCall) Results() []interface{} {
 // StoreResetIndexableRepositoriesFunc describes the behavior when the
 // ResetIndexableRepositories method of the parent MockStore instance is
 // invoked.
-type StoreResetIndexableRepositoriesFunc struct {
-	defaultHook func(context.Context, time.Time) error
-	hooks       []func(context.Context, time.Time) error
-	history     []StoreResetIndexableRepositoriesFuncCall
-	mutex       sync.Mutex
-}
+type StoreResetIndexableRepositoriesFunc struct { /* all structs must go */ }
 
 // ResetIndexableRepositories delegates to the next hook function in the
 // queue and stores the parameter and result values of this invocation.
@@ -4717,17 +3845,7 @@ func (f *StoreResetIndexableRepositoriesFunc) History() []StoreResetIndexableRep
 // StoreResetIndexableRepositoriesFuncCall is an object that describes an
 // invocation of method ResetIndexableRepositories on an instance of
 // MockStore.
-type StoreResetIndexableRepositoriesFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 time.Time
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type StoreResetIndexableRepositoriesFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -4743,12 +3861,7 @@ func (c StoreResetIndexableRepositoriesFuncCall) Results() []interface{} {
 
 // StoreResetStalledFunc describes the behavior when the ResetStalled method
 // of the parent MockStore instance is invoked.
-type StoreResetStalledFunc struct {
-	defaultHook func(context.Context, time.Time) ([]int, []int, error)
-	hooks       []func(context.Context, time.Time) ([]int, []int, error)
-	history     []StoreResetStalledFuncCall
-	mutex       sync.Mutex
-}
+type StoreResetStalledFunc struct { /* all structs must go */ }
 
 // ResetStalled delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -4822,23 +3935,7 @@ func (f *StoreResetStalledFunc) History() []StoreResetStalledFuncCall {
 
 // StoreResetStalledFuncCall is an object that describes an invocation of
 // method ResetStalled on an instance of MockStore.
-type StoreResetStalledFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 time.Time
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []int
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 []int
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type StoreResetStalledFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -4854,12 +3951,7 @@ func (c StoreResetStalledFuncCall) Results() []interface{} {
 
 // StoreResetStalledIndexesFunc describes the behavior when the
 // ResetStalledIndexes method of the parent MockStore instance is invoked.
-type StoreResetStalledIndexesFunc struct {
-	defaultHook func(context.Context, time.Time) ([]int, []int, error)
-	hooks       []func(context.Context, time.Time) ([]int, []int, error)
-	history     []StoreResetStalledIndexesFuncCall
-	mutex       sync.Mutex
-}
+type StoreResetStalledIndexesFunc struct { /* all structs must go */ }
 
 // ResetStalledIndexes delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -4934,23 +4026,7 @@ func (f *StoreResetStalledIndexesFunc) History() []StoreResetStalledIndexesFuncC
 
 // StoreResetStalledIndexesFuncCall is an object that describes an
 // invocation of method ResetStalledIndexes on an instance of MockStore.
-type StoreResetStalledIndexesFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 time.Time
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []int
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 []int
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type StoreResetStalledIndexesFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -4966,12 +4042,7 @@ func (c StoreResetStalledIndexesFuncCall) Results() []interface{} {
 
 // StoreSameRepoPagerFunc describes the behavior when the SameRepoPager
 // method of the parent MockStore instance is invoked.
-type StoreSameRepoPagerFunc struct {
-	defaultHook func(context.Context, int, string, string, string, string, int) (int, store.ReferencePager, error)
-	hooks       []func(context.Context, int, string, string, string, string, int) (int, store.ReferencePager, error)
-	history     []StoreSameRepoPagerFuncCall
-	mutex       sync.Mutex
-}
+type StoreSameRepoPagerFunc struct { /* all structs must go */ }
 
 // SameRepoPager delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -5045,38 +4116,7 @@ func (f *StoreSameRepoPagerFunc) History() []StoreSameRepoPagerFuncCall {
 
 // StoreSameRepoPagerFuncCall is an object that describes an invocation of
 // method SameRepoPager on an instance of MockStore.
-type StoreSameRepoPagerFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 string
-	// Arg4 is the value of the 5th argument passed to this method
-	// invocation.
-	Arg4 string
-	// Arg5 is the value of the 6th argument passed to this method
-	// invocation.
-	Arg5 string
-	// Arg6 is the value of the 7th argument passed to this method
-	// invocation.
-	Arg6 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 int
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 store.ReferencePager
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type StoreSameRepoPagerFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -5092,12 +4132,7 @@ func (c StoreSameRepoPagerFuncCall) Results() []interface{} {
 
 // StoreTransactFunc describes the behavior when the Transact method of the
 // parent MockStore instance is invoked.
-type StoreTransactFunc struct {
-	defaultHook func(context.Context) (store.Store, error)
-	hooks       []func(context.Context) (store.Store, error)
-	history     []StoreTransactFuncCall
-	mutex       sync.Mutex
-}
+type StoreTransactFunc struct { /* all structs must go */ }
 
 // Transact delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -5171,17 +4206,7 @@ func (f *StoreTransactFunc) History() []StoreTransactFuncCall {
 
 // StoreTransactFuncCall is an object that describes an invocation of method
 // Transact on an instance of MockStore.
-type StoreTransactFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 store.Store
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type StoreTransactFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -5197,12 +4222,7 @@ func (c StoreTransactFuncCall) Results() []interface{} {
 
 // StoreUpdateCommitsFunc describes the behavior when the UpdateCommits
 // method of the parent MockStore instance is invoked.
-type StoreUpdateCommitsFunc struct {
-	defaultHook func(context.Context, int, map[string][]string) error
-	hooks       []func(context.Context, int, map[string][]string) error
-	history     []StoreUpdateCommitsFuncCall
-	mutex       sync.Mutex
-}
+type StoreUpdateCommitsFunc struct { /* all structs must go */ }
 
 // UpdateCommits delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -5276,20 +4296,7 @@ func (f *StoreUpdateCommitsFunc) History() []StoreUpdateCommitsFuncCall {
 
 // StoreUpdateCommitsFuncCall is an object that describes an invocation of
 // method UpdateCommits on an instance of MockStore.
-type StoreUpdateCommitsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 map[string][]string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type StoreUpdateCommitsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -5306,12 +4313,7 @@ func (c StoreUpdateCommitsFuncCall) Results() []interface{} {
 // StoreUpdateDumpsVisibleFromTipFunc describes the behavior when the
 // UpdateDumpsVisibleFromTip method of the parent MockStore instance is
 // invoked.
-type StoreUpdateDumpsVisibleFromTipFunc struct {
-	defaultHook func(context.Context, int, string) error
-	hooks       []func(context.Context, int, string) error
-	history     []StoreUpdateDumpsVisibleFromTipFuncCall
-	mutex       sync.Mutex
-}
+type StoreUpdateDumpsVisibleFromTipFunc struct { /* all structs must go */ }
 
 // UpdateDumpsVisibleFromTip delegates to the next hook function in the
 // queue and stores the parameter and result values of this invocation.
@@ -5387,20 +4389,7 @@ func (f *StoreUpdateDumpsVisibleFromTipFunc) History() []StoreUpdateDumpsVisible
 // StoreUpdateDumpsVisibleFromTipFuncCall is an object that describes an
 // invocation of method UpdateDumpsVisibleFromTip on an instance of
 // MockStore.
-type StoreUpdateDumpsVisibleFromTipFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type StoreUpdateDumpsVisibleFromTipFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -5417,12 +4406,7 @@ func (c StoreUpdateDumpsVisibleFromTipFuncCall) Results() []interface{} {
 // StoreUpdateIndexableRepositoryFunc describes the behavior when the
 // UpdateIndexableRepository method of the parent MockStore instance is
 // invoked.
-type StoreUpdateIndexableRepositoryFunc struct {
-	defaultHook func(context.Context, store.UpdateableIndexableRepository, time.Time) error
-	hooks       []func(context.Context, store.UpdateableIndexableRepository, time.Time) error
-	history     []StoreUpdateIndexableRepositoryFuncCall
-	mutex       sync.Mutex
-}
+type StoreUpdateIndexableRepositoryFunc struct { /* all structs must go */ }
 
 // UpdateIndexableRepository delegates to the next hook function in the
 // queue and stores the parameter and result values of this invocation.
@@ -5498,20 +4482,7 @@ func (f *StoreUpdateIndexableRepositoryFunc) History() []StoreUpdateIndexableRep
 // StoreUpdateIndexableRepositoryFuncCall is an object that describes an
 // invocation of method UpdateIndexableRepository on an instance of
 // MockStore.
-type StoreUpdateIndexableRepositoryFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 store.UpdateableIndexableRepository
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 time.Time
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type StoreUpdateIndexableRepositoryFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -5528,12 +4499,7 @@ func (c StoreUpdateIndexableRepositoryFuncCall) Results() []interface{} {
 // StoreUpdatePackageReferencesFunc describes the behavior when the
 // UpdatePackageReferences method of the parent MockStore instance is
 // invoked.
-type StoreUpdatePackageReferencesFunc struct {
-	defaultHook func(context.Context, []types.PackageReference) error
-	hooks       []func(context.Context, []types.PackageReference) error
-	history     []StoreUpdatePackageReferencesFuncCall
-	mutex       sync.Mutex
-}
+type StoreUpdatePackageReferencesFunc struct { /* all structs must go */ }
 
 // UpdatePackageReferences delegates to the next hook function in the queue
 // and stores the parameter and result values of this invocation.
@@ -5608,17 +4574,7 @@ func (f *StoreUpdatePackageReferencesFunc) History() []StoreUpdatePackageReferen
 
 // StoreUpdatePackageReferencesFuncCall is an object that describes an
 // invocation of method UpdatePackageReferences on an instance of MockStore.
-type StoreUpdatePackageReferencesFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 []types.PackageReference
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type StoreUpdatePackageReferencesFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -5634,12 +4590,7 @@ func (c StoreUpdatePackageReferencesFuncCall) Results() []interface{} {
 
 // StoreUpdatePackagesFunc describes the behavior when the UpdatePackages
 // method of the parent MockStore instance is invoked.
-type StoreUpdatePackagesFunc struct {
-	defaultHook func(context.Context, []types.Package) error
-	hooks       []func(context.Context, []types.Package) error
-	history     []StoreUpdatePackagesFuncCall
-	mutex       sync.Mutex
-}
+type StoreUpdatePackagesFunc struct { /* all structs must go */ }
 
 // UpdatePackages delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -5714,17 +4665,7 @@ func (f *StoreUpdatePackagesFunc) History() []StoreUpdatePackagesFuncCall {
 
 // StoreUpdatePackagesFuncCall is an object that describes an invocation of
 // method UpdatePackages on an instance of MockStore.
-type StoreUpdatePackagesFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 []types.Package
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type StoreUpdatePackagesFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -5740,12 +4681,7 @@ func (c StoreUpdatePackagesFuncCall) Results() []interface{} {
 
 // StoreWithFunc describes the behavior when the With method of the parent
 // MockStore instance is invoked.
-type StoreWithFunc struct {
-	defaultHook func(basestore.ShareableStore) store.Store
-	hooks       []func(basestore.ShareableStore) store.Store
-	history     []StoreWithFuncCall
-	mutex       sync.Mutex
-}
+type StoreWithFunc struct { /* all structs must go */ }
 
 // With delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -5819,14 +4755,7 @@ func (f *StoreWithFunc) History() []StoreWithFuncCall {
 
 // StoreWithFuncCall is an object that describes an invocation of method
 // With on an instance of MockStore.
-type StoreWithFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 basestore.ShareableStore
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 store.Store
-}
+type StoreWithFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.

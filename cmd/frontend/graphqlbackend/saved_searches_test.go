@@ -60,14 +60,7 @@ func TestCreateSavedSearch(t *testing.T) {
 		return &types.User{SiteAdmin: true, ID: key}, nil
 	}
 	userID := MarshalUserID(key)
-	savedSearches, err := (&schemaResolver{}).CreateSavedSearch(ctx, &struct {
-		Description string
-		Query       string
-		NotifyOwner bool
-		NotifySlack bool
-		OrgID       *graphql.ID
-		UserID      *graphql.ID
-	}{Description: "test query", Query: "test type:diff patternType:regexp", NotifyOwner: true, NotifySlack: false, OrgID: nil, UserID: &userID})
+	savedSearches, err := (&schemaResolver{}).CreateSavedSearch(ctx, &struct { /* all structs must go */ }{Description: "test query", Query: "test type:diff patternType:regexp", NotifyOwner: true, NotifySlack: false, OrgID: nil, UserID: &userID})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -90,14 +83,7 @@ func TestCreateSavedSearch(t *testing.T) {
 	}
 
 	// Ensure create saved search errors when patternType is not provided in the query.
-	_, err = (&schemaResolver{}).CreateSavedSearch(ctx, &struct {
-		Description string
-		Query       string
-		NotifyOwner bool
-		NotifySlack bool
-		OrgID       *graphql.ID
-		UserID      *graphql.ID
-	}{Description: "test query", Query: "test type:diff", NotifyOwner: true, NotifySlack: false, OrgID: nil, UserID: &userID})
+	_, err = (&schemaResolver{}).CreateSavedSearch(ctx, &struct { /* all structs must go */ }{Description: "test query", Query: "test type:diff", NotifyOwner: true, NotifySlack: false, OrgID: nil, UserID: &userID})
 	if err == nil {
 		t.Error("Expected error for createSavedSearch when query does not provide a patternType: field.")
 	}
@@ -118,15 +104,7 @@ func TestUpdateSavedSearch(t *testing.T) {
 		return &types.SavedSearch{ID: key, Description: savedSearch.Description, Query: savedSearch.Query, Notify: savedSearch.Notify, NotifySlack: savedSearch.NotifySlack, UserID: savedSearch.UserID, OrgID: savedSearch.OrgID}, nil
 	}
 	userID := MarshalUserID(key)
-	savedSearches, err := (&schemaResolver{}).UpdateSavedSearch(ctx, &struct {
-		ID          graphql.ID
-		Description string
-		Query       string
-		NotifyOwner bool
-		NotifySlack bool
-		OrgID       *graphql.ID
-		UserID      *graphql.ID
-	}{ID: marshalSavedSearchID(key), Description: "updated query description", Query: "test type:diff patternType:regexp", NotifyOwner: true, NotifySlack: false, OrgID: nil, UserID: &userID})
+	savedSearches, err := (&schemaResolver{}).UpdateSavedSearch(ctx, &struct { /* all structs must go */ }{ID: marshalSavedSearchID(key), Description: "updated query description", Query: "test type:diff patternType:regexp", NotifyOwner: true, NotifySlack: false, OrgID: nil, UserID: &userID})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -150,15 +128,7 @@ func TestUpdateSavedSearch(t *testing.T) {
 	}
 
 	// Ensure update saved search errors when patternType is not provided in the query.
-	_, err = (&schemaResolver{}).UpdateSavedSearch(ctx, &struct {
-		ID          graphql.ID
-		Description string
-		Query       string
-		NotifyOwner bool
-		NotifySlack bool
-		OrgID       *graphql.ID
-		UserID      *graphql.ID
-	}{ID: marshalSavedSearchID(key), Description: "updated query description", Query: "test type:diff", NotifyOwner: true, NotifySlack: false, OrgID: nil, UserID: &userID})
+	_, err = (&schemaResolver{}).UpdateSavedSearch(ctx, &struct { /* all structs must go */ }{ID: marshalSavedSearchID(key), Description: "updated query description", Query: "test type:diff", NotifyOwner: true, NotifySlack: false, OrgID: nil, UserID: &userID})
 	if err == nil {
 		t.Error("Expected error for updateSavedSearch when query does not provide a patternType: field.")
 	}
@@ -184,9 +154,7 @@ func TestDeleteSavedSearch(t *testing.T) {
 	}
 
 	firstSavedSearchGraphqlID := graphql.ID("U2F2ZWRTZWFyY2g6NTI=")
-	_, err := (&schemaResolver{}).DeleteSavedSearch(ctx, &struct {
-		ID graphql.ID
-	}{ID: firstSavedSearchGraphqlID})
+	_, err := (&schemaResolver{}).DeleteSavedSearch(ctx, &struct { /* all structs must go */ }{ID: firstSavedSearchGraphqlID})
 	if err != nil {
 		t.Fatal(err)
 	}

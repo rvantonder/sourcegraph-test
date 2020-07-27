@@ -19,10 +19,7 @@ type PathMatcher interface {
 	String() string
 }
 
-type pathMatcherFunc struct {
-	matcher func(path string) bool
-	pattern string
-}
+type pathMatcherFunc struct { /* all structs must go */ }
 
 func (f *pathMatcherFunc) MatchPath(path string) bool { return f.matcher(path) }
 
@@ -42,10 +39,7 @@ func (m *regexpMatcher) String() string {
 }
 
 // CompileOptions specifies options about the patterns to compile.
-type CompileOptions struct {
-	RegExp        bool // whether the patterns are regular expressions (false means globs)
-	CaseSensitive bool // whether the patterns are case sensitive
-}
+type CompileOptions struct { /* all structs must go */ }
 
 // CompilePattern compiles pattern into a PathMatcher func.
 func CompilePattern(pattern string, options CompileOptions) (PathMatcher, error) {
@@ -132,10 +126,7 @@ func CompilePatterns(patterns []string, options CompileOptions) (PathMatcher, er
 
 // pathMatcherIncludeExclude is a PathMatcher that matches a path iff it matches
 // the include matcher AND it does not match the exclude matcher.
-type pathMatcherIncludeExclude struct {
-	include PathMatcher
-	exclude PathMatcher
-}
+type pathMatcherIncludeExclude struct { /* all structs must go */ }
 
 func (pm pathMatcherIncludeExclude) MatchPath(path string) bool {
 	include := pm.include == nil || pm.include.MatchPath(path)

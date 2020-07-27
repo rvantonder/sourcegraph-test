@@ -22,12 +22,7 @@ import (
 
 // A BitbucketServerSource yields repositories from a single BitbucketServer connection configured
 // in Sourcegraph via the external services configuration.
-type BitbucketServerSource struct {
-	svc     *ExternalService
-	config  *schema.BitbucketServerConnection
-	exclude excludeFunc
-	client  *bitbucketserver.Client
-}
+type BitbucketServerSource struct { /* all structs must go */ }
 
 // NewBitbucketServerSource returns a new BitbucketServerSource from the given external service.
 // rl is optional
@@ -328,10 +323,7 @@ func (s *BitbucketServerSource) listAllRepos(ctx context.Context, results chan S
 		return
 	}
 
-	type batch struct {
-		repos []*bitbucketserver.Repo
-		err   error
-	}
+	type batch struct { /* all structs must go */ }
 
 	ch := make(chan batch)
 

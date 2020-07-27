@@ -8,10 +8,7 @@ import (
 )
 
 func TestOtherCloneURLToRepoName(t *testing.T) {
-	tests := []struct {
-		conn schema.OtherExternalServiceConnection
-		urls []urlToRepoNameErr
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			conn: schema.OtherExternalServiceConnection{
 				Url:                   "https://github.com",

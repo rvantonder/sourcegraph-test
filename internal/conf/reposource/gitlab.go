@@ -7,9 +7,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/schema"
 )
 
-type GitLab struct {
-	*schema.GitLabConnection
-}
+type GitLab struct { /* all structs must go */ }
 
 var _ RepoSource = GitLab{}
 

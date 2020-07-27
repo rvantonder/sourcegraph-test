@@ -2,15 +2,9 @@ package query
 
 import "encoding/json"
 
-type position struct {
-	Line   int `json:"line"`
-	Column int `json:"column"`
-}
+type position struct { /* all structs must go */ }
 
-type Range struct {
-	Start position `json:"start"`
-	End   position `json:"end"`
-}
+type Range struct { /* all structs must go */ }
 
 // Returns a new range that assumes the string happens on one line.
 // Column positions are in the interval [start, end].

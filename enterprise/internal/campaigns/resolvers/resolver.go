@@ -23,10 +23,7 @@ import (
 var ErrIDIsZero = errors.New("invalid node id")
 
 // Resolver is the GraphQL resolver of all things related to Campaigns.
-type Resolver struct {
-	store       *ee.Store
-	httpFactory *httpcli.Factory
-}
+type Resolver struct { /* all structs must go */ }
 
 // NewResolver returns a new Resolver whose store uses the given db
 func NewResolver(db *sql.DB) graphqlbackend.CampaignsResolver {

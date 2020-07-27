@@ -36,18 +36,11 @@ func (c *Client) baseContactURL(email string) *url.URL {
 }
 
 // ContactProperties represent HubSpot user properties
-type ContactProperties struct {
-	UserID        string `json:"user_id"`
-	IsServerAdmin bool   `json:"is_server_admin"`
-	LatestPing    int64  `json:"latest_ping"`
-}
+type ContactProperties struct { /* all structs must go */ }
 
 // ContactResponse represents HubSpot user properties returned
 // after a CreateOrUpdate API call
-type ContactResponse struct {
-	VID   int32 `json:"vid"`
-	IsNew bool  `json:"isNew"`
-}
+type ContactResponse struct { /* all structs must go */ }
 
 // newAPIValues converts a ContactProperties struct to a HubSpot API-compliant
 // array of key-value pairs
@@ -60,14 +53,9 @@ func newAPIValues(h *ContactProperties) *apiProperties {
 }
 
 // apiProperties represents a list of HubSpot API-compliant key-value pairs
-type apiProperties struct {
-	Properties []*apiProperty `json:"properties"`
-}
+type apiProperties struct { /* all structs must go */ }
 
-type apiProperty struct {
-	Property string `json:"property"`
-	Value    string `json:"value"`
-}
+type apiProperty struct { /* all structs must go */ }
 
 func (h *apiProperties) set(property string, value interface{}) {
 	if h.Properties == nil {

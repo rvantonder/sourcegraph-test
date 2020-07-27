@@ -21,12 +21,7 @@ import (
 var update = flag.Bool("update", false, "update testdata")
 
 func TestParseQueryStrings(t *testing.T) {
-	for _, tc := range []struct {
-		name string
-		qs   []string
-		vals url.Values
-		err  string
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{
 			name: "ignores query separator",
 			qs:   []string{"?foo=bar&baz=boo"},
@@ -62,11 +57,7 @@ func TestParseQueryStrings(t *testing.T) {
 }
 
 func TestUserFilters(t *testing.T) {
-	for _, tc := range []struct {
-		name string
-		fs   UserFilters
-		qry  url.Values
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{
 			name: "last one wins",
 			fs: UserFilters{
@@ -150,15 +141,7 @@ func TestClient_Users(t *testing.T) {
 		},
 	}
 
-	for _, tc := range []struct {
-		name    string
-		ctx     context.Context
-		page    *PageToken
-		filters []UserFilter
-		users   []*User
-		next    *PageToken
-		err     string
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{
 			name: "timeout",
 			ctx:  timeout,
@@ -333,12 +316,7 @@ func TestClient_LoadPullRequest(t *testing.T) {
 	pr.ToRef.Repository.Slug = "vegeta"
 	pr.ToRef.Repository.Project.Key = "SOUR"
 
-	for _, tc := range []struct {
-		name string
-		ctx  context.Context
-		pr   func() *PullRequest
-		err  string
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{
 			name: "timeout",
 			pr:   func() *PullRequest { return pr },
@@ -433,12 +411,7 @@ func TestClient_CreatePullRequest(t *testing.T) {
 	pr.FromRef.Repository.Project.Key = "SOUR"
 	pr.FromRef.ID = "refs/heads/test-pr-bbs-1"
 
-	for _, tc := range []struct {
-		name string
-		ctx  context.Context
-		pr   func() *PullRequest
-		err  string
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{
 			name: "timeout",
 			pr:   func() *PullRequest { return pr },
@@ -570,12 +543,7 @@ func TestClient_DeclinePullRequest(t *testing.T) {
 	pr.ToRef.Repository.Slug = "automation-testing"
 	pr.ToRef.Repository.Project.Key = "SOUR"
 
-	for _, tc := range []struct {
-		name string
-		ctx  context.Context
-		pr   func() *PullRequest
-		err  string
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{
 			name: "timeout",
 			pr:   func() *PullRequest { return pr },
@@ -657,12 +625,7 @@ func TestClient_LoadPullRequestActivities(t *testing.T) {
 	pr.ToRef.Repository.Slug = "vegeta"
 	pr.ToRef.Repository.Project.Key = "SOUR"
 
-	for _, tc := range []struct {
-		name string
-		ctx  context.Context
-		pr   func() *PullRequest
-		err  string
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{
 			name: "timeout",
 			pr:   func() *PullRequest { return pr },

@@ -50,10 +50,7 @@ const (
 )
 
 // Service is the search service. It is an http.Handler.
-type Service struct {
-	Store *store.Store
-	Log   log15.Logger
-}
+type Service struct { /* all structs must go */ }
 
 var decoder = schema.NewDecoder()
 

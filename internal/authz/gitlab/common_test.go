@@ -31,65 +31,9 @@ func init() {
 //
 // We prefer to do it this way, instead of defining an interface for the GitLab client, because this
 // preserves the ability to jump-to-def around the actual implementation.
-type mockGitLab struct {
-	t *testing.T
+type mockGitLab struct { /* all structs must go */ }
 
-	// projs is a map of all projects on the instance, keyed by project ID
-	projs map[int]*gitlab.Project
-
-	// users is a list of all users
-	users []*gitlab.User
-
-	// privateGuest is a map from GitLab user ID to list of metadata-accessible private project IDs on GitLab
-	privateGuest map[int32][]int
-
-	// privateRepo is a map from GitLab user ID to list of repo-content-accessible private project IDs on GitLab.
-	// Projects in each list are also metadata-accessible.
-	privateRepo map[int32][]int
-
-	// oauthToks is a map from OAuth token to GitLab user account ID
-	oauthToks map[string]int32
-
-	// sudoTok is the sudo token, if there is one
-	sudoTok string
-
-	// madeGetProject records what GetProject calls have been made. It's a map from oauth token -> GetProjectOp -> count.
-	madeGetProject map[string]map[gitlab.GetProjectOp]int
-
-	// madeListProjects records what ListProjects calls have been made. It's a map from oauth token -> string (urlStr) -> count.
-	madeListProjects map[string]map[string]int
-
-	// madeListTree records what ListTree calls have been made. It's a map from oauth token -> ListTreeOp -> count.
-	madeListTree map[string]map[gitlab.ListTreeOp]int
-
-	// madeUsers records what ListUsers calls have been made. It's a map from oauth token -> URL string -> count
-	madeUsers map[string]map[string]int
-}
-
-type mockGitLabOp struct {
-	t *testing.T
-
-	// users is a list of users on the GitLab instance
-	users []*gitlab.User
-
-	// publicProjs is the list of public project IDs
-	publicProjs []int
-
-	// internalProjs is the list of internal project IDs
-	internalProjs []int
-
-	// privateProjs is a map from { privateProjectID -> [ guestUserIDs, contentUserIDs ] } It
-	// determines the structure of private project permissions. A "guest" user can access private
-	// project metadata, but not project repository contents. A "content" user can access both.
-	privateProjs map[int][2][]int32
-
-	// oauthToks is a map from OAuth tokens to the corresponding GitLab user ID
-	oauthToks map[string]int32
-
-	// sudoTok, if non-empty, is the personal access token accepted with sudo permissions on this
-	// instance. The mock implementation only supports having one such token value.
-	sudoTok string
-}
+type mockGitLabOp struct { /* all structs must go */ }
 
 // newMockGitLab returns a new mockGitLab instance
 func newMockGitLab(op mockGitLabOp) mockGitLab {
@@ -351,10 +295,7 @@ func (m mockCache) Delete(key string) {
 	delete(m, key)
 }
 
-type mockAuthnProvider struct {
-	configID  providers.ConfigID
-	serviceID string
-}
+type mockAuthnProvider struct { /* all structs must go */ }
 
 func (m mockAuthnProvider) ConfigID() providers.ConfigID {
 	return m.configID

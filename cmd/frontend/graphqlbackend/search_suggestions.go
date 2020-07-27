@@ -23,9 +23,7 @@ import (
 
 const maxSearchSuggestions = 100
 
-type searchSuggestionsArgs struct {
-	First *int32
-}
+type searchSuggestionsArgs struct { /* all structs must go */ }
 
 func (a *searchSuggestionsArgs) applyDefaultsAndConstraints() {
 	if a.First == nil || *a.First < 0 || *a.First > maxSearchSuggestions {
@@ -325,13 +323,7 @@ func (r *searchResolver) Suggestions(ctx context.Context, args *searchSuggestion
 	}
 
 	// Eliminate duplicates.
-	type key struct {
-		repoName api.RepoName
-		repoRev  string
-		file     string
-		symbol   string
-		lang     string
-	}
+	type key struct { /* all structs must go */ }
 	seen := make(map[key]struct{}, len(allSuggestions))
 	uniqueSuggestions := allSuggestions[:0]
 	for _, s := range allSuggestions {
@@ -389,8 +381,6 @@ func allEmptyStrings(ss1, ss2 []string) bool {
 	return true
 }
 
-type languageResolver struct {
-	name string
-}
+type languageResolver struct { /* all structs must go */ }
 
 func (r *languageResolver) Name() string { return r.name }

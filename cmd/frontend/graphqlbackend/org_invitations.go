@@ -45,18 +45,12 @@ func getUserToInviteToOrganization(ctx context.Context, username string, orgID i
 	return userToInvite, userEmailAddress, nil
 }
 
-type inviteUserToOrganizationResult struct {
-	sentInvitationEmail bool
-	invitationURL       string
-}
+type inviteUserToOrganizationResult struct { /* all structs must go */ }
 
 func (r *inviteUserToOrganizationResult) SentInvitationEmail() bool { return r.sentInvitationEmail }
 func (r *inviteUserToOrganizationResult) InvitationURL() string     { return r.invitationURL }
 
-func (*schemaResolver) InviteUserToOrganization(ctx context.Context, args *struct {
-	Organization graphql.ID
-	Username     string
-}) (*inviteUserToOrganizationResult, error) {
+func (*schemaResolver) InviteUserToOrganization(ctx context.Context, args *struct { /* all structs must go */ }) (*inviteUserToOrganizationResult, error) {
 	var orgID int32
 	if err := relay.UnmarshalSpec(args.Organization, &orgID); err != nil {
 		return nil, err
@@ -99,10 +93,7 @@ func (*schemaResolver) InviteUserToOrganization(ctx context.Context, args *struc
 	return result, nil
 }
 
-func (*schemaResolver) RespondToOrganizationInvitation(ctx context.Context, args *struct {
-	OrganizationInvitation graphql.ID
-	ResponseType           string
-}) (*EmptyResponse, error) {
+func (*schemaResolver) RespondToOrganizationInvitation(ctx context.Context, args *struct { /* all structs must go */ }) (*EmptyResponse, error) {
 	currentUser, err := CurrentUser(ctx)
 	if err != nil {
 		return nil, err
@@ -143,9 +134,7 @@ func (*schemaResolver) RespondToOrganizationInvitation(ctx context.Context, args
 	return &EmptyResponse{}, nil
 }
 
-func (*schemaResolver) ResendOrganizationInvitationNotification(ctx context.Context, args *struct {
-	OrganizationInvitation graphql.ID
-}) (*EmptyResponse, error) {
+func (*schemaResolver) ResendOrganizationInvitationNotification(ctx context.Context, args *struct { /* all structs must go */ }) (*EmptyResponse, error) {
 	orgInvitation, err := orgInvitationByID(ctx, args.OrganizationInvitation)
 	if err != nil {
 		return nil, err
@@ -190,9 +179,7 @@ func (*schemaResolver) ResendOrganizationInvitationNotification(ctx context.Cont
 	return &EmptyResponse{}, nil
 }
 
-func (*schemaResolver) RevokeOrganizationInvitation(ctx context.Context, args *struct {
-	OrganizationInvitation graphql.ID
-}) (*EmptyResponse, error) {
+func (*schemaResolver) RevokeOrganizationInvitation(ctx context.Context, args *struct { /* all structs must go */ }) (*EmptyResponse, error) {
 	orgInvitation, err := orgInvitationByID(ctx, args.OrganizationInvitation)
 	if err != nil {
 		return nil, err
@@ -248,11 +235,7 @@ func sendOrgInvitationNotification(ctx context.Context, org *types.Org, sender *
 	return txemail.Send(ctx, txemail.Message{
 		To:       []string{recipientEmail},
 		Template: emailTemplates,
-		Data: struct {
-			FromName string
-			OrgName  string
-			URL      string
-		}{
+		Data: struct { /* all structs must go */ }{
 			FromName: fromName,
 			OrgName:  org.Name,
 			URL:      globals.ExternalURL().ResolveReference(orgInvitationURL(org)).String(),

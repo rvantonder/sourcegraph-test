@@ -19,9 +19,7 @@ func init() {
 	prometheus.MustRegister(requestDuration)
 }
 
-type meteredSearcher struct {
-	zoekt.Searcher
-}
+type meteredSearcher struct { /* all structs must go */ }
 
 func NewMeteredSearcher(z zoekt.Searcher) zoekt.Searcher {
 	return &meteredSearcher{z}

@@ -26,11 +26,7 @@ var registerer = prometheus.DefaultRegisterer
 
 // RequestMeter wraps a Prometheus request meter (counter + duration histogram) updated by requests made by derived
 // http.RoundTrippers.
-type RequestMeter struct {
-	counter   *prometheus.CounterVec
-	duration  *prometheus.HistogramVec
-	subsystem string
-}
+type RequestMeter struct { /* all structs must go */ }
 
 // NewRequestMeter creates a new request meter.
 func NewRequestMeter(subsystem, help string) *RequestMeter {
@@ -78,12 +74,7 @@ func (rm *RequestMeter) Doer(cli httpcli.Doer, categoryFunc func(*url.URL) strin
 	}
 }
 
-type requestCounterMiddleware struct {
-	meter        *RequestMeter
-	cli          httpcli.Doer
-	transport    http.RoundTripper
-	categoryFunc func(*url.URL) string
-}
+type requestCounterMiddleware struct { /* all structs must go */ }
 
 func (t *requestCounterMiddleware) RoundTrip(r *http.Request) (resp *http.Response, err error) {
 	start := time.Now()

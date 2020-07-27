@@ -13,23 +13,7 @@ import (
 // (from the package
 // github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/resolvers)
 // used for unit testing.
-type MockQueryResolver struct {
-	// DefinitionsFunc is an instance of a mock function object controlling
-	// the behavior of the method Definitions.
-	DefinitionsFunc *QueryResolverDefinitionsFunc
-	// DiagnosticsFunc is an instance of a mock function object controlling
-	// the behavior of the method Diagnostics.
-	DiagnosticsFunc *QueryResolverDiagnosticsFunc
-	// HoverFunc is an instance of a mock function object controlling the
-	// behavior of the method Hover.
-	HoverFunc *QueryResolverHoverFunc
-	// RangesFunc is an instance of a mock function object controlling the
-	// behavior of the method Ranges.
-	RangesFunc *QueryResolverRangesFunc
-	// ReferencesFunc is an instance of a mock function object controlling
-	// the behavior of the method References.
-	ReferencesFunc *QueryResolverReferencesFunc
-}
+type MockQueryResolver struct { /* all structs must go */ }
 
 // NewMockQueryResolver creates a new mock of the QueryResolver interface.
 // All methods return zero values for all results, unless overwritten.
@@ -88,12 +72,7 @@ func NewMockQueryResolverFrom(i resolvers.QueryResolver) *MockQueryResolver {
 
 // QueryResolverDefinitionsFunc describes the behavior when the Definitions
 // method of the parent MockQueryResolver instance is invoked.
-type QueryResolverDefinitionsFunc struct {
-	defaultHook func(context.Context, int, int) ([]resolvers.AdjustedLocation, error)
-	hooks       []func(context.Context, int, int) ([]resolvers.AdjustedLocation, error)
-	history     []QueryResolverDefinitionsFuncCall
-	mutex       sync.Mutex
-}
+type QueryResolverDefinitionsFunc struct { /* all structs must go */ }
 
 // Definitions delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -168,23 +147,7 @@ func (f *QueryResolverDefinitionsFunc) History() []QueryResolverDefinitionsFuncC
 
 // QueryResolverDefinitionsFuncCall is an object that describes an
 // invocation of method Definitions on an instance of MockQueryResolver.
-type QueryResolverDefinitionsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []resolvers.AdjustedLocation
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type QueryResolverDefinitionsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -200,12 +163,7 @@ func (c QueryResolverDefinitionsFuncCall) Results() []interface{} {
 
 // QueryResolverDiagnosticsFunc describes the behavior when the Diagnostics
 // method of the parent MockQueryResolver instance is invoked.
-type QueryResolverDiagnosticsFunc struct {
-	defaultHook func(context.Context, int) ([]resolvers.AdjustedDiagnostic, int, error)
-	hooks       []func(context.Context, int) ([]resolvers.AdjustedDiagnostic, int, error)
-	history     []QueryResolverDiagnosticsFuncCall
-	mutex       sync.Mutex
-}
+type QueryResolverDiagnosticsFunc struct { /* all structs must go */ }
 
 // Diagnostics delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -280,23 +238,7 @@ func (f *QueryResolverDiagnosticsFunc) History() []QueryResolverDiagnosticsFuncC
 
 // QueryResolverDiagnosticsFuncCall is an object that describes an
 // invocation of method Diagnostics on an instance of MockQueryResolver.
-type QueryResolverDiagnosticsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []resolvers.AdjustedDiagnostic
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 int
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type QueryResolverDiagnosticsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -312,12 +254,7 @@ func (c QueryResolverDiagnosticsFuncCall) Results() []interface{} {
 
 // QueryResolverHoverFunc describes the behavior when the Hover method of
 // the parent MockQueryResolver instance is invoked.
-type QueryResolverHoverFunc struct {
-	defaultHook func(context.Context, int, int) (string, client.Range, bool, error)
-	hooks       []func(context.Context, int, int) (string, client.Range, bool, error)
-	history     []QueryResolverHoverFuncCall
-	mutex       sync.Mutex
-}
+type QueryResolverHoverFunc struct { /* all structs must go */ }
 
 // Hover delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -391,29 +328,7 @@ func (f *QueryResolverHoverFunc) History() []QueryResolverHoverFuncCall {
 
 // QueryResolverHoverFuncCall is an object that describes an invocation of
 // method Hover on an instance of MockQueryResolver.
-type QueryResolverHoverFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 string
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 client.Range
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 bool
-	// Result3 is the value of the 4th result returned from this method
-	// invocation.
-	Result3 error
-}
+type QueryResolverHoverFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -429,12 +344,7 @@ func (c QueryResolverHoverFuncCall) Results() []interface{} {
 
 // QueryResolverRangesFunc describes the behavior when the Ranges method of
 // the parent MockQueryResolver instance is invoked.
-type QueryResolverRangesFunc struct {
-	defaultHook func(context.Context, int, int) ([]resolvers.AdjustedCodeIntelligenceRange, error)
-	hooks       []func(context.Context, int, int) ([]resolvers.AdjustedCodeIntelligenceRange, error)
-	history     []QueryResolverRangesFuncCall
-	mutex       sync.Mutex
-}
+type QueryResolverRangesFunc struct { /* all structs must go */ }
 
 // Ranges delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -508,23 +418,7 @@ func (f *QueryResolverRangesFunc) History() []QueryResolverRangesFuncCall {
 
 // QueryResolverRangesFuncCall is an object that describes an invocation of
 // method Ranges on an instance of MockQueryResolver.
-type QueryResolverRangesFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []resolvers.AdjustedCodeIntelligenceRange
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type QueryResolverRangesFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -540,12 +434,7 @@ func (c QueryResolverRangesFuncCall) Results() []interface{} {
 
 // QueryResolverReferencesFunc describes the behavior when the References
 // method of the parent MockQueryResolver instance is invoked.
-type QueryResolverReferencesFunc struct {
-	defaultHook func(context.Context, int, int, int, string) ([]resolvers.AdjustedLocation, string, error)
-	hooks       []func(context.Context, int, int, int, string) ([]resolvers.AdjustedLocation, string, error)
-	history     []QueryResolverReferencesFuncCall
-	mutex       sync.Mutex
-}
+type QueryResolverReferencesFunc struct { /* all structs must go */ }
 
 // References delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -620,32 +509,7 @@ func (f *QueryResolverReferencesFunc) History() []QueryResolverReferencesFuncCal
 
 // QueryResolverReferencesFuncCall is an object that describes an invocation
 // of method References on an instance of MockQueryResolver.
-type QueryResolverReferencesFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 int
-	// Arg4 is the value of the 5th argument passed to this method
-	// invocation.
-	Arg4 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []resolvers.AdjustedLocation
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 string
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type QueryResolverReferencesFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.

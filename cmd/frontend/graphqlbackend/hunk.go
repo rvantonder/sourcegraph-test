@@ -7,10 +7,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/vcs/git"
 )
 
-type hunkResolver struct {
-	repo *RepositoryResolver
-	hunk *git.Hunk
-}
+type hunkResolver struct { /* all structs must go */ }
 
 func (r *hunkResolver) Author() signatureResolver {
 	return signatureResolver{

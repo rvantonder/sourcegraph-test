@@ -14,24 +14,9 @@ import (
 )
 
 // Worker is a generic consumer of records from the workerutil store.
-type Worker struct {
-	store            Store
-	options          WorkerOptions
-	clock            glock.Clock
-	handlerSemaphore chan struct{}   // tracks available handler slots
-	ctx              context.Context // root context passed to the handler
-	cancel           func()          // cancels the root context
-	wg               sync.WaitGroup  // tracks active handler routines
-	finished         chan struct{}   // signals that Start has finished
-}
+type Worker struct { /* all structs must go */ }
 
-type WorkerOptions struct {
-	Name        string
-	Handler     Handler
-	NumHandlers int
-	Interval    time.Duration
-	Metrics     WorkerMetrics
-}
+type WorkerOptions struct { /* all structs must go */ }
 
 // Handler is the configurable consumer within a worker. Types that conform to this
 // interface may also optionally conform to the PreDequeuer, PreHandler, and PostHandler
@@ -90,9 +75,7 @@ func (f HandlerFunc) Handle(ctx context.Context, store Store, record Record) err
 	return f(ctx, store, record)
 }
 
-type WorkerMetrics struct {
-	HandleOperation *observation.Operation
-}
+type WorkerMetrics struct { /* all structs must go */ }
 
 func NewWorker(ctx context.Context, store Store, options WorkerOptions) *Worker {
 	return newWorker(ctx, store, options, glock.NewRealClock())

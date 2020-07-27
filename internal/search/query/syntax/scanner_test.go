@@ -6,10 +6,7 @@ import (
 )
 
 func TestScanner(t *testing.T) {
-	tests := map[string]struct {
-		wantTypes  []TokenType /* + implicit TokenEOF */
-		wantValues []string
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"":                  {wantTypes: []TokenType{}},
 		" ":                 {wantTypes: []TokenType{}},
 		"\n":                {wantTypes: []TokenType{}},

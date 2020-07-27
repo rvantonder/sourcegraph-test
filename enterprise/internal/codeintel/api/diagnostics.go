@@ -10,10 +10,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/store"
 )
 
-type ResolvedDiagnostic struct {
-	Dump       store.Dump
-	Diagnostic bundles.Diagnostic
-}
+type ResolvedDiagnostic struct { /* all structs must go */ }
 
 // Diagnostics returns the diagnostics for documents with the given path prefix.
 func (api *codeIntelAPI) Diagnostics(ctx context.Context, prefix string, uploadID, limit, offset int) ([]ResolvedDiagnostic, int, error) {

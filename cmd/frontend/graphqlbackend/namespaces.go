@@ -36,9 +36,7 @@ func NamespaceByID(ctx context.Context, id graphql.ID) (Namespace, error) {
 }
 
 // NamespaceResolver resolves the GraphQL Namespace interface to a type.
-type NamespaceResolver struct {
-	Namespace
-}
+type NamespaceResolver struct { /* all structs must go */ }
 
 func (r NamespaceResolver) ToOrg() (*OrgResolver, bool) {
 	n, ok := r.Namespace.(*OrgResolver)

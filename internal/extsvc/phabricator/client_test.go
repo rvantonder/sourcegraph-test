@@ -31,13 +31,7 @@ func TestClient_ListRepos(t *testing.T) {
 	timeout, cancel := context.WithDeadline(context.Background(), time.Now().Add(-time.Second))
 	defer cancel()
 
-	for _, tc := range []struct {
-		name   string
-		ctx    context.Context
-		args   phabricator.ListReposArgs
-		cursor *phabricator.Cursor
-		err    string
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{
 			name:   "repos-listed",
 			args:   phabricator.ListReposArgs{Cursor: &phabricator.Cursor{Limit: 5}},
@@ -121,12 +115,7 @@ func TestClient_GetRawDiff(t *testing.T) {
 	timeout, cancel := context.WithDeadline(context.Background(), time.Now().Add(-time.Second))
 	defer cancel()
 
-	for _, tc := range []struct {
-		name string
-		ctx  context.Context
-		id   int
-		err  string
-	}{{
+	for _, tc := range []struct { /* all structs must go */ }{{
 		name: "diff not found",
 		id:   0xdeadbeef,
 		err:  "ERR_NOT_FOUND: Diff not found.",
@@ -185,13 +174,7 @@ func TestClient_GetDiffInfo(t *testing.T) {
 	timeout, cancel := context.WithDeadline(context.Background(), time.Now().Add(-time.Second))
 	defer cancel()
 
-	for _, tc := range []struct {
-		name string
-		ctx  context.Context
-		id   int
-		info *phabricator.DiffInfo
-		err  string
-	}{{
+	for _, tc := range []struct { /* all structs must go */ }{{
 		name: "diff not found",
 		id:   0xdeadbeef,
 		err:  "phabricator error: no diff info found for diff 3735928559",

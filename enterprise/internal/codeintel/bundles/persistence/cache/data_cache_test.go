@@ -4,10 +4,7 @@ import (
 	"testing"
 )
 
-type dataCacheTestCase struct {
-	key   string
-	value interface{}
-}
+type dataCacheTestCase struct { /* all structs must go */ }
 
 func TestDataCache(t *testing.T) {
 	cache, err := NewDataCache(10)

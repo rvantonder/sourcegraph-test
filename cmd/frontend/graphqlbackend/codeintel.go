@@ -80,18 +80,9 @@ func (r *schemaResolver) DeleteLSIFIndex(ctx context.Context, args *struct{ ID g
 	return r.CodeIntelResolver.DeleteLSIFIndex(ctx, args.ID)
 }
 
-type LSIFUploadsQueryArgs struct {
-	graphqlutil.ConnectionArgs
-	Query           *string
-	State           *string
-	IsLatestForRepo *bool
-	After           *string
-}
+type LSIFUploadsQueryArgs struct { /* all structs must go */ }
 
-type LSIFRepositoryUploadsQueryArgs struct {
-	*LSIFUploadsQueryArgs
-	RepositoryID graphql.ID
-}
+type LSIFRepositoryUploadsQueryArgs struct { /* all structs must go */ }
 
 type LSIFUploadResolver interface {
 	ID() graphql.ID
@@ -114,17 +105,9 @@ type LSIFUploadConnectionResolver interface {
 	PageInfo(ctx context.Context) (*graphqlutil.PageInfo, error)
 }
 
-type LSIFIndexesQueryArgs struct {
-	graphqlutil.ConnectionArgs
-	Query *string
-	State *string
-	After *string
-}
+type LSIFIndexesQueryArgs struct { /* all structs must go */ }
 
-type LSIFRepositoryIndexesQueryArgs struct {
-	*LSIFIndexesQueryArgs
-	RepositoryID graphql.ID
-}
+type LSIFRepositoryIndexesQueryArgs struct { /* all structs must go */ }
 
 type LSIFIndexResolver interface {
 	ID() graphql.ID
@@ -159,33 +142,15 @@ type GitBlobLSIFDataResolver interface {
 	Hover(ctx context.Context, args *LSIFQueryPositionArgs) (HoverResolver, error)
 }
 
-type GitBlobLSIFDataArgs struct {
-	Repo      *types.Repo
-	Commit    api.CommitID
-	Path      string
-	ExactPath bool
-	ToolName  string
-}
+type GitBlobLSIFDataArgs struct { /* all structs must go */ }
 
-type LSIFRangesArgs struct {
-	StartLine int32
-	EndLine   int32
-}
+type LSIFRangesArgs struct { /* all structs must go */ }
 
-type LSIFQueryPositionArgs struct {
-	Line      int32
-	Character int32
-}
+type LSIFQueryPositionArgs struct { /* all structs must go */ }
 
-type LSIFPagedQueryPositionArgs struct {
-	LSIFQueryPositionArgs
-	graphqlutil.ConnectionArgs
-	After *string
-}
+type LSIFPagedQueryPositionArgs struct { /* all structs must go */ }
 
-type LSIFDiagnosticsArgs struct {
-	graphqlutil.ConnectionArgs
-}
+type LSIFDiagnosticsArgs struct { /* all structs must go */ }
 
 type CodeIntelligenceRangeConnectionResolver interface {
 	Nodes(ctx context.Context) ([]CodeIntelligenceRangeResolver, error)

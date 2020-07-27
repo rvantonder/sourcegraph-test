@@ -21,10 +21,7 @@ import (
 
 var frontendInternal = env.Get("SRC_FRONTEND_INTERNAL", "sourcegraph-frontend-internal", "HTTP address for internal frontend HTTP API.")
 
-type internalClient struct {
-	// URL is the root to the internal API frontend server.
-	URL string
-}
+type internalClient struct { /* all structs must go */ }
 
 var InternalClient = &internalClient{URL: "http://" + frontendInternal}
 
@@ -82,23 +79,11 @@ func (c *internalClient) WaitForFrontend(ctx context.Context) error {
 	return nil
 }
 
-type SavedQueryIDSpec struct {
-	Subject SettingsSubject
-	Key     string
-}
+type SavedQueryIDSpec struct { /* all structs must go */ }
 
 // ConfigSavedQuery is the JSON shape of a saved query entry in the JSON configuration
 // (i.e., an entry in the {"search.savedQueries": [...]} array).
-type ConfigSavedQuery struct {
-	Key             string  `json:"key,omitempty"`
-	Description     string  `json:"description"`
-	Query           string  `json:"query"`
-	Notify          bool    `json:"notify,omitempty"`
-	NotifySlack     bool    `json:"notifySlack,omitempty"`
-	UserID          *int32  `json:"userID"`
-	OrgID           *int32  `json:"orgID"`
-	SlackWebhookURL *string `json:"slackWebhookURL"`
-}
+type ConfigSavedQuery struct { /* all structs must go */ }
 
 func (sq ConfigSavedQuery) Equals(other ConfigSavedQuery) bool {
 	a, _ := json.Marshal(sq)
@@ -108,15 +93,10 @@ func (sq ConfigSavedQuery) Equals(other ConfigSavedQuery) bool {
 
 // PartialConfigSavedQueries is the JSON configuration shape, including only the
 // search.savedQueries section.
-type PartialConfigSavedQueries struct {
-	SavedQueries []ConfigSavedQuery `json:"search.savedQueries"`
-}
+type PartialConfigSavedQueries struct { /* all structs must go */ }
 
 // SavedQuerySpecAndConfig represents a saved query configuration its unique ID.
-type SavedQuerySpecAndConfig struct {
-	Spec   SavedQueryIDSpec
-	Config ConfigSavedQuery
-}
+type SavedQuerySpecAndConfig struct { /* all structs must go */ }
 
 // SavedQueriesListAll lists all saved queries, from every user, org, etc.
 func (c *internalClient) SavedQueriesListAll(ctx context.Context) (map[SavedQueryIDSpec]ConfigSavedQuery, error) {
@@ -133,22 +113,7 @@ func (c *internalClient) SavedQueriesListAll(ctx context.Context) (map[SavedQuer
 }
 
 // SavedQueryInfo represents information about a saved query that was executed.
-type SavedQueryInfo struct {
-	// Query is the search query in question.
-	Query string
-
-	// LastExecuted is the timestamp of the last time that the search query was
-	// executed.
-	LastExecuted time.Time
-
-	// LatestResult is the timestamp of the latest-known result for the search
-	// query. Therefore, searching `after:<LatestResult>` will return the new
-	// search results not yet seen.
-	LatestResult time.Time
-
-	// ExecDuration is the amount of time it took for the query to execute.
-	ExecDuration time.Duration
-}
+type SavedQueryInfo struct { /* all structs must go */ }
 
 // SavedQueriesGetInfo gets the info from the DB for the given saved query. nil
 // is returned if there is no existing info for the saved query.

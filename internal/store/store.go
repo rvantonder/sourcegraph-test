@@ -50,33 +50,7 @@ const maxFileSize = 1 << 20 // 1MB; match https://sourcegraph.com/search?q=repo:
 // filter which files we cache, so we need a format that supports streaming
 // (tar). We want to be able to support random concurrent access for reading,
 // so we store as a zip.
-type Store struct {
-	// FetchTar returns an io.ReadCloser to a tar archive of a repository at the specified Git
-	// remote URL and commit ID. If the error implements "BadRequest() bool", it will be used to
-	// determine if the error is a bad request (eg invalid repo).
-	FetchTar func(ctx context.Context, repo gitserver.Repo, commit api.CommitID) (io.ReadCloser, error)
-
-	// Path is the directory to store the cache
-	Path string
-
-	// MaxCacheSizeBytes is the maximum size of the cache in bytes. Note:
-	// We can temporarily be larger than MaxCacheSizeBytes. When we go
-	// over MaxCacheSizeBytes we trigger delete files until we get below
-	// MaxCacheSizeBytes.
-	MaxCacheSizeBytes int64
-
-	// once protects Start
-	once sync.Once
-
-	// cache is the disk backed cache.
-	cache *diskcache.Store
-
-	// fetchLimiter limits concurrent calls to FetchTar.
-	fetchLimiter *mutablelimiter.Limiter
-
-	// ZipCache provides efficient access to repo zip files.
-	ZipCache ZipCache
-}
+type Store struct { /* all structs must go */ }
 
 // SetMaxConcurrentFetchTar sets the maximum number of concurrent calls allowed
 // to FetchTar. It defaults to 15.
@@ -142,10 +116,7 @@ func (s *Store) PrepareZip(ctx context.Context, repo gitserver.Repo, commit api.
 
 	// Our fetch can take a long time, and the frontend aggressively cancels
 	// requests. So we open in the background to give it extra time.
-	type result struct {
-		path string
-		err  error
-	}
+	type result struct { /* all structs must go */ }
 	resC := make(chan result, 1)
 	go func() {
 		// TODO: consider adding a cache method that doesn't actually bother opening the file,
@@ -399,9 +370,7 @@ var (
 // temporaryError wraps an error but adds the Temporary method. It does not
 // implement Cause so that errors.Cause() returns an error which implements
 // Temporary.
-type temporaryError struct {
-	error
-}
+type temporaryError struct { /* all structs must go */ }
 
 func (temporaryError) Temporary() bool {
 	return true

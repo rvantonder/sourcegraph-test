@@ -12,11 +12,7 @@ import (
 )
 
 // TelemetryRequest represents a request to log telemetry.
-type TelemetryRequest struct {
-	UserID    int32
-	EventName string
-	Argument  json.RawMessage
-}
+type TelemetryRequest struct { /* all structs must go */ }
 
 // LogEvent sends a payload representing an event to the api/telemetry endpoint.
 //

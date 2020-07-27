@@ -6,10 +6,7 @@ import (
 )
 
 func TestCreateFilter(t *testing.T) {
-	testCases := []struct {
-		includeFile  string
-		excludeFiles []string
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{includeFile: "lorem-ipsum", excludeFiles: []string{"corporate-ipsum", "emojis"}},
 		{includeFile: "corporate-ipsum", excludeFiles: []string{"lorem-ipsum", "emojis"}},
 		{includeFile: "emojis", excludeFiles: []string{"lorem-ipsum", "corporate-ipsum"}},
@@ -47,11 +44,7 @@ func TestCreateFilter(t *testing.T) {
 }
 
 func TestTestTypeScriptGeneratedBloomFilters(t *testing.T) {
-	testCases := []struct {
-		filterFile  string
-		includeFile string
-		excludeFile string
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{filterFile: "64kb-16", includeFile: "lorem-ipsum", excludeFile: "corporate-ipsum"},
 		{filterFile: "64kb-08", includeFile: "lorem-ipsum", excludeFile: "corporate-ipsum"},
 		{filterFile: "64kb-24", includeFile: "lorem-ipsum", excludeFile: "corporate-ipsum"},

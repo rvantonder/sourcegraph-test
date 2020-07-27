@@ -6,10 +6,7 @@ import (
 )
 
 func TestFromURL(t *testing.T) {
-	tests := []struct {
-		currentURL *url.URL
-		want       *url.URL
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{&url.URL{RawQuery: "utm_source=3"}, &url.URL{RawQuery: ""}},
 		{&url.URL{RawQuery: "foo=3"}, &url.URL{RawQuery: "foo=3"}},
 		{&url.URL{RawQuery: "foo=3&utm_source=4"}, &url.URL{RawQuery: "foo=3"}},

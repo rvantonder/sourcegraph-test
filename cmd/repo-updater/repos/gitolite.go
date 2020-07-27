@@ -21,14 +21,7 @@ import (
 
 // A GitoliteSource yields repositories from a single Gitolite connection configured
 // in Sourcegraph via the external services configuration.
-type GitoliteSource struct {
-	svc  *ExternalService
-	conn *schema.GitoliteConnection
-	// We ask gitserver to talk to gitolite because it holds the ssh keys
-	// required for authentication.
-	cli     *gitserver.Client
-	exclude excludeFunc
-}
+type GitoliteSource struct { /* all structs must go */ }
 
 // NewGitoliteSource returns a new GitoliteSource from the given external service.
 func NewGitoliteSource(svc *ExternalService, cf *httpcli.Factory) (*GitoliteSource, error) {
@@ -120,11 +113,7 @@ func (s GitoliteSource) makeRepo(repo *gitolite.Repo) *Repo {
 // repo links can still be the built-in Phabricator ones, as is usually expected by customers that rely on code
 // intelligence. With a Phabricator integration similar to all other code hosts, we could remove all of the special code
 // paths for Phabricator everywhere as well as the `phabricator_repo` table.
-type GitolitePhabricatorMetadataSyncer struct {
-	sem     *semaphore.Weighted // Only one sync at a time, like it was done before.
-	counter int64               // Only sync every 10th time, like it was done before.
-	store   Store               // Use to load the external services that yielded a given repo.
-}
+type GitolitePhabricatorMetadataSyncer struct { /* all structs must go */ }
 
 // NewGitolitePhabricatorMetadataSyncer returns a GitolitePhabricatorMetadataSyncer with
 // the given parameters.

@@ -27,30 +27,8 @@ func init() {
 // 🚨 SECURITY: This guarantees the integrity of the identity resolution process (ensuring that new
 // external accounts are linked to the appropriate user account)
 func TestGetAndSaveUser(t *testing.T) {
-	type innerCase struct {
-		description string
-		actorUID    int32
-		op          GetAndSaveUserOp
-
-		// if true, then will expect same output if op.CreateIfNotExist is true or false
-		createIfNotExistIrrelevant bool
-
-		// expected return values
-		expUserID  int32
-		expSafeErr string
-		expErr     error
-
-		// expected side effects
-		expSavedExtAccts                 map[int32][]extsvc.AccountSpec
-		expUpdatedUsers                  map[int32][]db.UserUpdate
-		expCreatedUsers                  map[int32]db.NewUser
-		expCalledGrantPendingPermissions bool
-	}
-	type outerCase struct {
-		description string
-		mock        mockParams
-		innerCases  []innerCase
-	}
+	type innerCase struct { /* all structs must go */ }
+	type outerCase struct { /* all structs must go */ }
 
 	unexpectedErr := errors.New("unexpected err")
 
@@ -393,11 +371,7 @@ func TestGetAndSaveUser(t *testing.T) {
 						op := c.op
 						op.CreateIfNotExist = createIfNotExist
 						userID, safeErr, err := GetAndSaveUser(ctx, op)
-						for _, v := range []struct {
-							label string
-							got   interface{}
-							want  interface{}
-						}{
+						for _, v := range []struct { /* all structs must go */ }{
 							{"userID", userID, c.expUserID},
 							{"safeErr", safeErr, c.expSafeErr},
 							{"err", err, c.expErr},
@@ -422,11 +396,7 @@ func TestGetAndSaveUser(t *testing.T) {
 	}
 }
 
-type userInfo struct {
-	user     types.User
-	extAccts []extsvc.AccountSpec
-	emails   []string
-}
+type userInfo struct { /* all structs must go */ }
 
 func newMocks(t *testing.T, m mockParams) *mocks {
 	// validation
@@ -469,16 +439,7 @@ func newMocks(t *testing.T, m mockParams) *mocks {
 	}
 }
 
-type mockParams struct {
-	userInfos               []userInfo
-	lookupUserAndSaveErr    error
-	createUserAndSaveErr    error
-	associateUserAndSaveErr error
-	getByVerifiedEmailErr   error
-	getByUsernameErr        error //nolint:structcheck
-	getByIDErr              error
-	updateErr               error
-}
+type mockParams struct { /* all structs must go */ }
 
 func (m *mocks) apply() {
 	db.Mocks.ExternalAccounts = db.MockExternalAccounts{
@@ -506,25 +467,7 @@ func (m *mocks) reset() {
 // mocks provide mocking. It should only be used for one call of auth.GetAndSaveUser, because saves
 // are recorded in the mock struct but will not be reflected in the return values of the mocked
 // methods.
-type mocks struct {
-	mockParams
-	t *testing.T
-
-	// savedExtAccts tracks all ext acct "saves" for a given user ID
-	savedExtAccts map[int32][]extsvc.AccountSpec
-
-	// createdUsers tracks user creations by user ID
-	createdUsers map[int32]db.NewUser
-
-	// updatedUsers tracks all user updates for a given user ID
-	updatedUsers map[int32][]db.UserUpdate
-
-	// nextUserID is the user ID of the next created user.
-	nextUserID int32
-
-	// calledGrantPendingPermissions tracks if db.Authz.GrantPendingPermissions method is called.
-	calledGrantPendingPermissions bool
-}
+type mocks struct { /* all structs must go */ }
 
 // LookupUserAndSave mocks db.ExternalAccounts.LookupUserAndSave
 func (m *mocks) LookupUserAndSave(spec extsvc.AccountSpec, data extsvc.AccountData) (userID int32, err error) {

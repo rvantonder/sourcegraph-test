@@ -10,13 +10,7 @@ import (
 )
 
 // Repo is the repository metadata returned by the Gitolite API.
-type Repo struct {
-	// Name is the name of the repository as it is returned by `ssh git@GITOLITE_HOST info`
-	Name string
-
-	// URL is the clone URL of the repository.
-	URL string
-}
+type Repo struct { /* all structs must go */ }
 
 // Client is a client for the Gitolite API.
 //
@@ -26,9 +20,7 @@ type Repo struct {
 //
 // Impl note: To change the above, remove the invocation of the `ssh` binary and replace it
 // with use of the `ssh` package, reading arguments from config.
-type Client struct {
-	Host string
-}
+type Client struct { /* all structs must go */ }
 
 func NewClient(host string) *Client {
 	return &Client{Host: host}

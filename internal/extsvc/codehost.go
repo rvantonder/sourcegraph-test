@@ -7,11 +7,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/api"
 )
 
-type CodeHost struct {
-	ServiceID   string
-	ServiceType string
-	BaseURL     *url.URL
-}
+type CodeHost struct { /* all structs must go */ }
 
 // Known public code hosts and their URLs
 var (

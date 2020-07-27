@@ -39,15 +39,9 @@ import (
 	"github.com/gorilla/schema"
 )
 
-type Service struct {
-	Store *store.Store
-	Log   log15.Logger
-}
+type Service struct { /* all structs must go */ }
 
-type ExternalTool struct {
-	Name       string
-	BinaryPath string
-}
+type ExternalTool struct { /* all structs must go */ }
 
 // Configure the command line options and return the command to execute using an external tool
 func (t *ExternalTool) command(ctx context.Context, spec *protocol.RewriteSpecification, zipPath string) (cmd *exec.Cmd, err error) {

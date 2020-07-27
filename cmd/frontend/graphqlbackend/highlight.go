@@ -8,20 +8,13 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/vcs/git"
 )
 
-type highlightedRange struct {
-	line      int32
-	character int32
-	length    int32
-}
+type highlightedRange struct { /* all structs must go */ }
 
 func (h *highlightedRange) Line() int32      { return h.line }
 func (h *highlightedRange) Character() int32 { return h.character }
 func (h *highlightedRange) Length() int32    { return h.length }
 
-type highlightedString struct {
-	value      string
-	highlights []*highlightedRange
-}
+type highlightedString struct { /* all structs must go */ }
 
 func (s *highlightedString) Value() string                   { return s.value }
 func (s *highlightedString) Highlights() []*highlightedRange { return s.highlights }
@@ -38,16 +31,9 @@ func fromVCSHighlights(vcsHighlights []git.Highlight) []*highlightedRange {
 	return highlights
 }
 
-type HighlightArgs struct {
-	DisableTimeout     bool
-	IsLightTheme       bool
-	HighlightLongLines bool
-}
+type HighlightArgs struct { /* all structs must go */ }
 
-type highlightedFileResolver struct {
-	aborted bool
-	html    string
-}
+type highlightedFileResolver struct { /* all structs must go */ }
 
 func (h *highlightedFileResolver) Aborted() bool { return h.aborted }
 func (h *highlightedFileResolver) HTML() string  { return h.html }

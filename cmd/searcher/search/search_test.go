@@ -47,10 +47,7 @@ func main() {
 		"milton.png": string(miltonPNG),
 	}
 
-	cases := []struct {
-		arg  protocol.PatternInfo
-		want string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{protocol.PatternInfo{Pattern: "foo"}, ""},
 
 		{protocol.PatternInfo{Pattern: "World", IsCaseSensitive: true}, `

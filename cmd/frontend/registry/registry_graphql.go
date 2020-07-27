@@ -26,14 +26,7 @@ var ExtensionRegistry extensionRegistryResolver
 //
 // Some methods are only implemented if there is a local extension registry. For these methods, the
 // implementation (if one exists) is set on the XyzFunc struct field.
-type extensionRegistryResolver struct {
-	ViewerPublishersFunc func(context.Context) ([]graphqlbackend.RegistryPublisher, error)
-	PublishersFunc       func(context.Context, *graphqlutil.ConnectionArgs) (graphqlbackend.RegistryPublisherConnection, error)
-	CreateExtensionFunc  func(context.Context, *graphqlbackend.ExtensionRegistryCreateExtensionArgs) (graphqlbackend.ExtensionRegistryMutationResult, error)
-	UpdateExtensionFunc  func(context.Context, *graphqlbackend.ExtensionRegistryUpdateExtensionArgs) (graphqlbackend.ExtensionRegistryMutationResult, error)
-	PublishExtensionFunc func(context.Context, *graphqlbackend.ExtensionRegistryPublishExtensionArgs) (graphqlbackend.ExtensionRegistryMutationResult, error)
-	DeleteExtensionFunc  func(context.Context, *graphqlbackend.ExtensionRegistryDeleteExtensionArgs) (*graphqlbackend.EmptyResponse, error)
-}
+type extensionRegistryResolver struct { /* all structs must go */ }
 
 var errNoLocalExtensionRegistry = errors.New("no local extension registry exists")
 
@@ -120,9 +113,7 @@ func (r *extensionRegistryResolver) FilterRemoteExtensions(ids []string) []strin
 	return keep
 }
 
-type ExtensionRegistryMutationResult struct {
-	ID int32 // this is only used for local extensions, so it's OK that this only accepts a local extension ID
-}
+type ExtensionRegistryMutationResult struct { /* all structs must go */ }
 
 func (r *ExtensionRegistryMutationResult) Extension(ctx context.Context) (graphqlbackend.RegistryExtension, error) {
 	return RegistryExtensionByIDInt32(ctx, r.ID)

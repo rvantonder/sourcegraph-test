@@ -15,10 +15,7 @@ type LocationResolver interface {
 	CanonicalURL() (string, error)
 }
 
-type locationResolver struct {
-	resource *GitTreeEntryResolver
-	lspRange *lsp.Range
-}
+type locationResolver struct { /* all structs must go */ }
 
 var _ LocationResolver = &locationResolver{}
 

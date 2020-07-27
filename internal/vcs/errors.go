@@ -3,15 +3,7 @@ package vcs
 import "github.com/sourcegraph/sourcegraph/internal/api"
 
 // RepoNotExistError is an error that reports a repository doesn't exist.
-type RepoNotExistError struct {
-	Repo api.RepoName
-
-	// CloneInProgress reports whether the repository is in process of being cloned.
-	CloneInProgress bool
-
-	// CloneProgress is a progress message from the running clone command.
-	CloneProgress string
-}
+type RepoNotExistError struct { /* all structs must go */ }
 
 func (RepoNotExistError) NotFound() bool { return true }
 

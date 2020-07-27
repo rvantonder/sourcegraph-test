@@ -8,23 +8,13 @@ import (
 )
 
 // urlToRepoName represents a cloneURL and expected corresponding repo name
-type urlToRepoName struct {
-	cloneURL string
-	repoName string
-}
+type urlToRepoName struct { /* all structs must go */ }
 
 // urlToRepoNameErr is similar to urlToRepoName, but with an expected error value
-type urlToRepoNameErr struct {
-	cloneURL string
-	repoName string
-	err      error
-}
+type urlToRepoNameErr struct { /* all structs must go */ }
 
 func TestParseCloneURL(t *testing.T) {
-	tests := []struct {
-		input  string
-		output *url.URL
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			input: "git@github.com:gorilla/mux.git",
 			output: &url.URL{
@@ -175,10 +165,7 @@ func TestNameTransformations(t *testing.T) {
 		nts[i] = nt
 	}
 
-	tests := []struct {
-		input  string
-		output string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{"path/to.d/repo-git", "path/to/repo"},
 		{"path/to.d/repo-git.git", "path/to/repo-git.git"},
 		{"path/to.de/repo-git.git", "path/to.de/repo-git.git"},

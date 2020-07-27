@@ -13,32 +13,7 @@ import (
 // BundleManagerClient interface (from the package
 // github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/bundles/client)
 // used for unit testing.
-type MockBundleManagerClient struct {
-	// BundleClientFunc is an instance of a mock function object controlling
-	// the behavior of the method BundleClient.
-	BundleClientFunc *BundleManagerClientBundleClientFunc
-	// DeleteUploadFunc is an instance of a mock function object controlling
-	// the behavior of the method DeleteUpload.
-	DeleteUploadFunc *BundleManagerClientDeleteUploadFunc
-	// ExistsFunc is an instance of a mock function object controlling the
-	// behavior of the method Exists.
-	ExistsFunc *BundleManagerClientExistsFunc
-	// GetUploadFunc is an instance of a mock function object controlling
-	// the behavior of the method GetUpload.
-	GetUploadFunc *BundleManagerClientGetUploadFunc
-	// SendDBFunc is an instance of a mock function object controlling the
-	// behavior of the method SendDB.
-	SendDBFunc *BundleManagerClientSendDBFunc
-	// SendUploadFunc is an instance of a mock function object controlling
-	// the behavior of the method SendUpload.
-	SendUploadFunc *BundleManagerClientSendUploadFunc
-	// SendUploadPartFunc is an instance of a mock function object
-	// controlling the behavior of the method SendUploadPart.
-	SendUploadPartFunc *BundleManagerClientSendUploadPartFunc
-	// StitchPartsFunc is an instance of a mock function object controlling
-	// the behavior of the method StitchParts.
-	StitchPartsFunc *BundleManagerClientStitchPartsFunc
-}
+type MockBundleManagerClient struct { /* all structs must go */ }
 
 // NewMockBundleManagerClient creates a new mock of the BundleManagerClient
 // interface. All methods return zero values for all results, unless
@@ -123,12 +98,7 @@ func NewMockBundleManagerClientFrom(i client.BundleManagerClient) *MockBundleMan
 // BundleManagerClientBundleClientFunc describes the behavior when the
 // BundleClient method of the parent MockBundleManagerClient instance is
 // invoked.
-type BundleManagerClientBundleClientFunc struct {
-	defaultHook func(int) client.BundleClient
-	hooks       []func(int) client.BundleClient
-	history     []BundleManagerClientBundleClientFuncCall
-	mutex       sync.Mutex
-}
+type BundleManagerClientBundleClientFunc struct { /* all structs must go */ }
 
 // BundleClient delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -205,14 +175,7 @@ func (f *BundleManagerClientBundleClientFunc) History() []BundleManagerClientBun
 // BundleManagerClientBundleClientFuncCall is an object that describes an
 // invocation of method BundleClient on an instance of
 // MockBundleManagerClient.
-type BundleManagerClientBundleClientFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 client.BundleClient
-}
+type BundleManagerClientBundleClientFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -229,12 +192,7 @@ func (c BundleManagerClientBundleClientFuncCall) Results() []interface{} {
 // BundleManagerClientDeleteUploadFunc describes the behavior when the
 // DeleteUpload method of the parent MockBundleManagerClient instance is
 // invoked.
-type BundleManagerClientDeleteUploadFunc struct {
-	defaultHook func(context.Context, int) error
-	hooks       []func(context.Context, int) error
-	history     []BundleManagerClientDeleteUploadFuncCall
-	mutex       sync.Mutex
-}
+type BundleManagerClientDeleteUploadFunc struct { /* all structs must go */ }
 
 // DeleteUpload delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -311,17 +269,7 @@ func (f *BundleManagerClientDeleteUploadFunc) History() []BundleManagerClientDel
 // BundleManagerClientDeleteUploadFuncCall is an object that describes an
 // invocation of method DeleteUpload on an instance of
 // MockBundleManagerClient.
-type BundleManagerClientDeleteUploadFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type BundleManagerClientDeleteUploadFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -337,12 +285,7 @@ func (c BundleManagerClientDeleteUploadFuncCall) Results() []interface{} {
 
 // BundleManagerClientExistsFunc describes the behavior when the Exists
 // method of the parent MockBundleManagerClient instance is invoked.
-type BundleManagerClientExistsFunc struct {
-	defaultHook func(context.Context, []int) (map[int]bool, error)
-	hooks       []func(context.Context, []int) (map[int]bool, error)
-	history     []BundleManagerClientExistsFuncCall
-	mutex       sync.Mutex
-}
+type BundleManagerClientExistsFunc struct { /* all structs must go */ }
 
 // Exists delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -417,20 +360,7 @@ func (f *BundleManagerClientExistsFunc) History() []BundleManagerClientExistsFun
 
 // BundleManagerClientExistsFuncCall is an object that describes an
 // invocation of method Exists on an instance of MockBundleManagerClient.
-type BundleManagerClientExistsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 []int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 map[int]bool
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type BundleManagerClientExistsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -447,12 +377,7 @@ func (c BundleManagerClientExistsFuncCall) Results() []interface{} {
 // BundleManagerClientGetUploadFunc describes the behavior when the
 // GetUpload method of the parent MockBundleManagerClient instance is
 // invoked.
-type BundleManagerClientGetUploadFunc struct {
-	defaultHook func(context.Context, int) (io.ReadCloser, error)
-	hooks       []func(context.Context, int) (io.ReadCloser, error)
-	history     []BundleManagerClientGetUploadFuncCall
-	mutex       sync.Mutex
-}
+type BundleManagerClientGetUploadFunc struct { /* all structs must go */ }
 
 // GetUpload delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -527,20 +452,7 @@ func (f *BundleManagerClientGetUploadFunc) History() []BundleManagerClientGetUpl
 
 // BundleManagerClientGetUploadFuncCall is an object that describes an
 // invocation of method GetUpload on an instance of MockBundleManagerClient.
-type BundleManagerClientGetUploadFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 io.ReadCloser
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type BundleManagerClientGetUploadFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -556,12 +468,7 @@ func (c BundleManagerClientGetUploadFuncCall) Results() []interface{} {
 
 // BundleManagerClientSendDBFunc describes the behavior when the SendDB
 // method of the parent MockBundleManagerClient instance is invoked.
-type BundleManagerClientSendDBFunc struct {
-	defaultHook func(context.Context, int, string) error
-	hooks       []func(context.Context, int, string) error
-	history     []BundleManagerClientSendDBFuncCall
-	mutex       sync.Mutex
-}
+type BundleManagerClientSendDBFunc struct { /* all structs must go */ }
 
 // SendDB delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -636,20 +543,7 @@ func (f *BundleManagerClientSendDBFunc) History() []BundleManagerClientSendDBFun
 
 // BundleManagerClientSendDBFuncCall is an object that describes an
 // invocation of method SendDB on an instance of MockBundleManagerClient.
-type BundleManagerClientSendDBFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type BundleManagerClientSendDBFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -666,12 +560,7 @@ func (c BundleManagerClientSendDBFuncCall) Results() []interface{} {
 // BundleManagerClientSendUploadFunc describes the behavior when the
 // SendUpload method of the parent MockBundleManagerClient instance is
 // invoked.
-type BundleManagerClientSendUploadFunc struct {
-	defaultHook func(context.Context, int, io.Reader) (int, error)
-	hooks       []func(context.Context, int, io.Reader) (int, error)
-	history     []BundleManagerClientSendUploadFuncCall
-	mutex       sync.Mutex
-}
+type BundleManagerClientSendUploadFunc struct { /* all structs must go */ }
 
 // SendUpload delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -747,23 +636,7 @@ func (f *BundleManagerClientSendUploadFunc) History() []BundleManagerClientSendU
 // BundleManagerClientSendUploadFuncCall is an object that describes an
 // invocation of method SendUpload on an instance of
 // MockBundleManagerClient.
-type BundleManagerClientSendUploadFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 io.Reader
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 int
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type BundleManagerClientSendUploadFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -780,12 +653,7 @@ func (c BundleManagerClientSendUploadFuncCall) Results() []interface{} {
 // BundleManagerClientSendUploadPartFunc describes the behavior when the
 // SendUploadPart method of the parent MockBundleManagerClient instance is
 // invoked.
-type BundleManagerClientSendUploadPartFunc struct {
-	defaultHook func(context.Context, int, int, io.Reader) error
-	hooks       []func(context.Context, int, int, io.Reader) error
-	history     []BundleManagerClientSendUploadPartFuncCall
-	mutex       sync.Mutex
-}
+type BundleManagerClientSendUploadPartFunc struct { /* all structs must go */ }
 
 // SendUploadPart delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -862,23 +730,7 @@ func (f *BundleManagerClientSendUploadPartFunc) History() []BundleManagerClientS
 // BundleManagerClientSendUploadPartFuncCall is an object that describes an
 // invocation of method SendUploadPart on an instance of
 // MockBundleManagerClient.
-type BundleManagerClientSendUploadPartFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 io.Reader
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type BundleManagerClientSendUploadPartFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -895,12 +747,7 @@ func (c BundleManagerClientSendUploadPartFuncCall) Results() []interface{} {
 // BundleManagerClientStitchPartsFunc describes the behavior when the
 // StitchParts method of the parent MockBundleManagerClient instance is
 // invoked.
-type BundleManagerClientStitchPartsFunc struct {
-	defaultHook func(context.Context, int) (int, error)
-	hooks       []func(context.Context, int) (int, error)
-	history     []BundleManagerClientStitchPartsFuncCall
-	mutex       sync.Mutex
-}
+type BundleManagerClientStitchPartsFunc struct { /* all structs must go */ }
 
 // StitchParts delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -976,20 +823,7 @@ func (f *BundleManagerClientStitchPartsFunc) History() []BundleManagerClientStit
 // BundleManagerClientStitchPartsFuncCall is an object that describes an
 // invocation of method StitchParts on an instance of
 // MockBundleManagerClient.
-type BundleManagerClientStitchPartsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 int
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type BundleManagerClientStitchPartsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.

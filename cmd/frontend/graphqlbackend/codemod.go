@@ -28,26 +28,12 @@ import (
 	"golang.org/x/net/context/ctxhttp"
 )
 
-type rawCodemodResult struct {
-	URI  string `json:"uri"`
-	Diff string
-}
+type rawCodemodResult struct { /* all structs must go */ }
 
-type args struct {
-	matchTemplate     string
-	rewriteTemplate   string
-	includeFileFilter string
-	excludeFileFilter string
-}
+type args struct { /* all structs must go */ }
 
 // codemodResultResolver is a resolver for the GraphQL type `CodemodResult`
-type codemodResultResolver struct {
-	commit  *GitCommitResolver
-	path    string
-	fileURL string
-	diff    string
-	matches []*searchResultMatchResolver
-}
+type codemodResultResolver struct { /* all structs must go */ }
 
 func (r *codemodResultResolver) ToRepository() (*RepositoryResolver, bool) { return nil, false }
 func (r *codemodResultResolver) ToFileMatch() (*FileMatchResolver, bool)   { return nil, false }

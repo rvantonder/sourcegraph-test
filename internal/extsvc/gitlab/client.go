@@ -58,23 +58,9 @@ func trace(msg string, ctx ...interface{}) {
 // ClientProvider creates GitLab API clients. Each client has separate authentication creds and a
 // separate cache, but they share an underlying HTTP client and rate limiter. Callers who want a simple
 // unauthenticated API client should use `NewClientProvider(baseURL, transport).GetClient()`.
-type ClientProvider struct {
-	// baseURL is the base URL of GitLab; e.g., https://gitlab.com or https://gitlab.example.com
-	baseURL *url.URL
+type ClientProvider struct { /* all structs must go */ }
 
-	// httpClient is the underlying the HTTP client to use
-	httpClient httpcli.Doer
-
-	gitlabClients   map[string]*Client
-	gitlabClientsMu sync.Mutex
-
-	rateLimitMonitor *ratelimit.Monitor // the API rate limit monitor
-}
-
-type CommonOp struct {
-	// NoCache, if true, will bypass any caching done in this package
-	NoCache bool
-}
+type CommonOp struct { /* all structs must go */ }
 
 func NewClientProvider(baseURL *url.URL, cli httpcli.Doer) *ClientProvider {
 	if cli == nil {
@@ -119,11 +105,7 @@ func (p *ClientProvider) GetClient() *Client {
 	return p.getClient(getClientOp{})
 }
 
-type getClientOp struct {
-	personalAccessToken string
-	oauthToken          string
-	sudo                string
-}
+type getClientOp struct { /* all structs must go */ }
 
 func (p *ClientProvider) getClient(op getClientOp) *Client {
 	if op.personalAccessToken != "" && op.oauthToken != "" {
@@ -158,16 +140,7 @@ func (p *ClientProvider) getClient(op getClientOp) *Client {
 // token belong to the same user and there are two corresponding Client instances, those Client
 // instances will NOT share the same cache. However, two Client instances sharing the exact same
 // values for those fields WILL share a cache.
-type Client struct {
-	baseURL             *url.URL
-	httpClient          httpcli.Doer
-	projCache           *rcache.Cache
-	PersonalAccessToken string // a personal access token to authenticate requests, if set
-	OAuthToken          string // an OAuth bearer token, if set
-	Sudo                string // Sudo user value, if set
-	RateLimitMonitor    *ratelimit.Monitor
-	RateLimiter         *rate.Limiter // Our internal rate limiter
-}
+type Client struct { /* all structs must go */ }
 
 // newClient creates a new GitLab API client with an optional personal access token to authenticate requests.
 //

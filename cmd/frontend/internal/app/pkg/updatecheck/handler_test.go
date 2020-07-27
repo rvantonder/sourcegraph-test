@@ -64,14 +64,7 @@ func TestLatestDockerComposeOrPureDockerVersionPushed(t *testing.T) {
 }
 
 func TestCanUpdate(t *testing.T) {
-	tests := []struct {
-		name                string
-		now                 time.Time
-		clientVersionString string
-		latestReleaseBuild  build
-		hasUpdate           bool
-		err                 error
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:                "no version update",
 			clientVersionString: "v1.2.3",

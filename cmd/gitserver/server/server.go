@@ -102,48 +102,9 @@ func runCommand(ctx context.Context, cmd *exec.Cmd) (exitCode int, err error) {
 }
 
 // Server is a gitserver server.
-type Server struct {
-	// ReposDir is the path to the base directory for gitserver storage.
-	ReposDir string
+type Server struct { /* all structs must go */ }
 
-	// DeleteStaleRepositories when true will delete old repositories when the
-	// Janitor job runs.
-	DeleteStaleRepositories bool
-
-	// DesiredPercentFree is the desired percentage of disk space to keep free.
-	DesiredPercentFree int
-
-	// DiskSizer tells how much disk is free and how large the disk is.
-	DiskSizer DiskSizer
-
-	// skipCloneForTests is set by tests to avoid clones.
-	skipCloneForTests bool
-
-	// ctx is the context we use for all background jobs. It is done when the
-	// server is stopped. Do not directly call this, rather call
-	// Server.context()
-	ctx      context.Context
-	cancel   context.CancelFunc // used to shutdown background jobs
-	cancelMu sync.Mutex         // protects canceled
-	canceled bool
-	wg       sync.WaitGroup // tracks running background jobs
-
-	locker *RepositoryLocker
-
-	// cloneLimiter and cloneableLimiter limits the number of concurrent
-	// clones and ls-remotes respectively. Use s.acquireCloneLimiter() and
-	// s.acquireClonableLimiter() instead of using these directly.
-	cloneLimiter     *mutablelimiter.Limiter
-	cloneableLimiter *mutablelimiter.Limiter
-
-	repoUpdateLocksMu sync.Mutex // protects the map below and also updates to locks.once
-	repoUpdateLocks   map[api.RepoName]*locks
-}
-
-type locks struct {
-	once *sync.Once  // consolidates multiple waiting updates
-	mu   *sync.Mutex // prevents updates running in parallel
-}
+type locks struct { /* all structs must go */ }
 
 // shortGitCommandTimeout returns the timeout for git commands that should not
 // take a long time. Some commands such as "git archive" are allowed more time
@@ -734,16 +695,7 @@ func setGitAttributes(dir GitDir) error {
 }
 
 // cloneOptions specify optional behaviour for the cloneRepo function.
-type cloneOptions struct {
-	// Block will wait for the clone to finish before returning. If the clone
-	// fails, the error will be returned. The passed in context is
-	// respected. When not blocking the clone is done with a server background
-	// context.
-	Block bool
-
-	// Overwrite will overwrite the existing clone.
-	Overwrite bool
-}
+type cloneOptions struct { /* all structs must go */ }
 
 // cloneRepo issues a git clone command for the given repo. It is
 // non-blocking by default.
@@ -925,11 +877,7 @@ func readCloneProgress(redactor *urlRedactor, lock *RepositoryLock, pr io.Reader
 }
 
 // urlRedactor redacts all sensitive strings from a message.
-type urlRedactor struct {
-	// sensitive are sensitive strings to be redacted.
-	// The strings should not be empty.
-	sensitive []string
-}
+type urlRedactor struct { /* all structs must go */ }
 
 // newURLRedactor returns a new urlRedactor that redacts
 // credentials found in rawurl, and the rawurl itself.

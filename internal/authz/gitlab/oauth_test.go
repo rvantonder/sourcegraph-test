@@ -15,9 +15,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/rcache"
 )
 
-type mockDoer struct {
-	do func(*http.Request) (*http.Response, error)
-}
+type mockDoer struct { /* all structs must go */ }
 
 func (c *mockDoer) Do(r *http.Request) (*http.Response, error) {
 	return c.do(r)

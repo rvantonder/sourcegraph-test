@@ -27,10 +27,7 @@ func DeleteOldCacheData(c redis.Conn) error {
 }
 
 // Cache implements httpcache.Cache
-type Cache struct {
-	keyPrefix  string
-	ttlSeconds int
-}
+type Cache struct { /* all structs must go */ }
 
 // New creates a redis backed Cache
 func New(keyPrefix string) *Cache {

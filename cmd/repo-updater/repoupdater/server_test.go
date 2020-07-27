@@ -220,21 +220,11 @@ func TestServer_SetRepoEnabled(t *testing.T) {
 		},
 	}).With(repos.Opt.RepoSources(bitbucketServerService.URN()))
 
-	type testCase struct {
-		name  string
-		svcs  repos.ExternalServices // stored services
-		repos repos.Repos            // stored repos
-		kind  string
-		res   *protocol.ExcludeRepoResponse
-		err   string
-	}
+	type testCase struct { /* all structs must go */ }
 
 	var testCases []testCase
 
-	for _, k := range []struct {
-		svc  *repos.ExternalService
-		repo *repos.Repo
-	}{
+	for _, k := range []struct { /* all structs must go */ }{
 		{githubService, githubRepo},
 		{bitbucketServerService, bitbucketServerRepo},
 		{gitlabService, gitlabRepo},
@@ -350,13 +340,7 @@ func TestServer_EnqueueRepoUpdate(t *testing.T) {
 
 	ctx := context.Background()
 
-	type testCase struct {
-		name  string
-		store repos.Store
-		repo  gitserver.Repo
-		res   *protocol.RepoUpdateResponse
-		err   string
-	}
+	type testCase struct { /* all structs must go */ }
 
 	var testCases []testCase
 	testCases = append(testCases,
@@ -501,12 +485,7 @@ func TestServer_RepoExternalServices(t *testing.T) {
 	must(store.UpsertExternalServices(ctx, service1, service2))
 	must(store.UpsertRepos(ctx, repoNoSources, repoSources))
 
-	testCases := []struct {
-		name   string
-		repoID api.RepoID
-		svcs   []api.ExternalService
-		err    string
-	}{{
+	testCases := []struct { /* all structs must go */ }{{
 		name:   "repo no sources",
 		repoID: repoNoSources.ID,
 		svcs:   nil,
@@ -549,15 +528,7 @@ func TestServer_StatusMessages(t *testing.T) {
 		DisplayName: "github.com - test",
 	}
 
-	testCases := []struct {
-		name            string
-		stored          repos.Repos
-		gitserverCloned []string
-		sourcerErr      error
-		listRepoErr     error
-		res             *protocol.StatusMessagesResponse
-		err             string
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{
 			name:            "all cloned",
 			gitserverCloned: []string{"foobar"},
@@ -854,16 +825,7 @@ func TestRepoLookup(t *testing.T) {
 		},
 	}
 
-	testCases := []struct {
-		name               string
-		args               protocol.RepoLookupArgs
-		stored             repos.Repos
-		result             *protocol.RepoLookupResult
-		githubDotComSource *fakeRepoSource
-		gitlabDotComSource *fakeRepoSource
-		assert             repos.ReposAssertion
-		err                string
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{
 			name: "not found",
 			args: protocol.RepoLookupArgs{
@@ -1134,10 +1096,7 @@ func TestRepoLookup(t *testing.T) {
 	}
 }
 
-type fakeRepoSource struct {
-	repo *repos.Repo
-	err  error
-}
+type fakeRepoSource struct { /* all structs must go */ }
 
 func (s *fakeRepoSource) GetRepo(context.Context, string) (*repos.Repo, error) {
 	return s.repo.Clone(), s.err
@@ -1150,9 +1109,7 @@ func (s *fakeScheduler) ScheduleInfo(id api.RepoID) *protocol.RepoUpdateSchedule
 	return &protocol.RepoUpdateSchedulerInfoResult{}
 }
 
-type fakeGitserverClient struct {
-	listClonedResponse []string
-}
+type fakeGitserverClient struct { /* all structs must go */ }
 
 func (g *fakeGitserverClient) ListCloned(ctx context.Context) ([]string, error) {
 	return g.listClonedResponse, nil
@@ -1167,13 +1124,7 @@ func (*fakePermsSyncer) ScheduleRepos(ctx context.Context, repoIDs ...api.RepoID
 }
 
 func TestServer_handleSchedulePermsSync(t *testing.T) {
-	tests := []struct {
-		name           string
-		permsSyncer    *fakePermsSyncer
-		body           string
-		wantStatusCode int
-		wantBody       string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:           "PermsSyncer not available",
 			wantStatusCode: http.StatusForbidden,

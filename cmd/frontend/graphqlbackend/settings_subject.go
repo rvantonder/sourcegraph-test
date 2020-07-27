@@ -21,13 +21,7 @@ func (r *schemaResolver) SettingsSubject(ctx context.Context, args *struct{ ID g
 
 var errUnknownSettingsSubject = errors.New("unknown settings subject")
 
-type settingsSubject struct {
-	// Exactly 1 of these fields must be set.
-	defaultSettings *defaultSettingsResolver
-	site            *siteResolver
-	org             *OrgResolver
-	user            *UserResolver
-}
+type settingsSubject struct { /* all structs must go */ }
 
 // settingsSubjectForNode fetches the settings subject for the given Node. If
 // the node is not a valid settings subject, an error is returned.

@@ -12,10 +12,7 @@ import (
 // forms compliant you will have to submit the token via the X-Csrf-Token header, which is made
 // available in the client-side context.
 func CSRFMiddleware(next http.Handler, isSecure func() bool) http.Handler {
-	type handler struct {
-		secure bool
-		http.Handler
-	}
+	type handler struct { /* all structs must go */ }
 
 	newHandler := func(secure bool) handler {
 

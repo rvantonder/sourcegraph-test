@@ -6,11 +6,7 @@ import (
 )
 
 func TestParseAuthorizationHeader(t *testing.T) {
-	tests := map[string]struct {
-		token    string
-		sudoUser string
-		err      bool
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"token tok":                              {token: "tok"},
 		"token tok==":                            {token: "tok=="},
 		`token token=tok`:                        {token: "tok"},
@@ -43,12 +39,7 @@ func TestParseAuthorizationHeader(t *testing.T) {
 }
 
 func TestParseHTTPCredentials(t *testing.T) {
-	tests := map[string]struct {
-		scheme  string
-		token68 string
-		params  map[string]string
-		err     bool
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"scheme v1":                 {scheme: "scheme", token68: "v1"},
 		"scheme v1==":               {scheme: "scheme", token68: "v1=="},
 		`scheme k1="v1"`:            {scheme: "scheme", params: map[string]string{"k1": "v1"}},

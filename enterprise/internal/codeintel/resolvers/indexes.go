@@ -9,16 +9,7 @@ import (
 
 // IndexesResolver wraps store.GetIndexes so that the underlying function can be
 // invoked lazily and its results memoized.
-type IndexesResolver struct {
-	store store.Store
-	opts  store.GetIndexesOptions
-	once  sync.Once
-	//
-	Indexes    []store.Index
-	TotalCount int
-	NextOffset *int
-	err        error
-}
+type IndexesResolver struct { /* all structs must go */ }
 
 // NewIndexesResolver creates a new IndexesResolver which wil invoke store.GetIndexes
 // with the given options.

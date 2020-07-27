@@ -12,10 +12,7 @@ import (
 )
 
 func TestHumanReadableBranchName(t *testing.T) {
-	for _, tc := range []struct {
-		text string
-		want string
-	}{{
+	for _, tc := range []struct { /* all structs must go */ }{{
 		// Respect word boundaries when cutting length
 		text: "Change coördination mechanisms of fungible automation processes in place",
 		want: "change-coordination-mechanisms-of-fungible-automation",
@@ -43,10 +40,7 @@ func TestRepository_ListBranches(t *testing.T) {
 		"git checkout -b b0",
 		"git checkout -b b1",
 	}
-	tests := map[string]struct {
-		repo         gitserver.Repo
-		wantBranches []*Branch
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"git cmd": {
 			repo:         MakeGitRepository(t, gitCommands...),
 			wantBranches: []*Branch{{Name: "b0", Head: "ea167fe3d76b1e5fd3ed8ca44cbd2fe3897684f8"}, {Name: "b1", Head: "ea167fe3d76b1e5fd3ed8ca44cbd2fe3897684f8"}, {Name: "master", Head: "ea167fe3d76b1e5fd3ed8ca44cbd2fe3897684f8"}},
@@ -97,10 +91,7 @@ func TestRepository_Branches_MergedInto(t *testing.T) {
 		},
 	}
 
-	for label, test := range map[string]struct {
-		repo         gitserver.Repo
-		wantBranches map[string][]*Branch
-	}{
+	for label, test := range map[string]struct { /* all structs must go */ }{
 		"git cmd": {
 			repo:         MakeGitRepository(t, gitCommands...),
 			wantBranches: gitBranches,
@@ -136,10 +127,7 @@ func TestRepository_Branches_ContainsCommit(t *testing.T) {
 		"2816a72df28f699722156e545d038a5203b959de": {{Name: "branch2", Head: "920c0e9d7b287b030ac9770fd7ba3ee9dc1760d9"}, {Name: "master", Head: "1224d334dfe08f4693968ea618ad63ae86ec16ca"}},
 	}
 
-	tests := map[string]struct {
-		repo                 gitserver.Repo
-		commitToWantBranches map[string][]*Branch
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"git cmd": {
 			repo:                 MakeGitRepository(t, gitCommands...),
 			commitToWantBranches: gitWantBranches,
@@ -187,10 +175,7 @@ func TestRepository_Branches_BehindAheadCounts(t *testing.T) {
 	}
 	sort.Sort(Branches(gitBranches))
 
-	tests := map[string]struct {
-		repo         gitserver.Repo
-		wantBranches []*Branch
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"git cmd": {
 			repo:         MakeGitRepository(t, gitCommands...),
 			wantBranches: gitBranches,
@@ -242,10 +227,7 @@ func TestRepository_Branches_IncludeCommit(t *testing.T) {
 		},
 	}
 
-	tests := map[string]struct {
-		repo         gitserver.Repo
-		wantBranches []*Branch
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"git cmd": {
 			repo:         MakeGitRepository(t, gitCommands...),
 			wantBranches: wantBranchesGit,
@@ -276,10 +258,7 @@ func TestRepository_ListTags(t *testing.T) {
 		"git tag t1",
 		dateEnv + " git tag --annotate -m foo t2",
 	}
-	tests := map[string]struct {
-		repo     gitserver.Repo
-		wantTags []*Tag
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"git cmd": {
 			repo: MakeGitRepository(t, gitCommands...),
 			wantTags: []*Tag{
@@ -306,11 +285,7 @@ func TestRepository_ListTags(t *testing.T) {
 }
 
 func TestValidateBranchName(t *testing.T) {
-	for _, tc := range []struct {
-		name   string
-		branch string
-		valid  bool
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{name: "Valid branch", branch: "valid-branch", valid: true},
 		{name: "Valid branch with slash", branch: "rgs/valid-branch", valid: true},
 		{name: "Valid branch with @", branch: "valid@branch", valid: true},

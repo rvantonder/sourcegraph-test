@@ -47,11 +47,7 @@ func TestSearchRepositories(t *testing.T) {
 		}
 	}
 
-	cases := []struct {
-		name string
-		q    string
-		want []string
-	}{{
+	cases := []struct { /* all structs must go */ }{{
 		name: "all",
 		q:    "type:repo",
 		want: []string{"bar/one", "foo/no-match", "foo/one"},

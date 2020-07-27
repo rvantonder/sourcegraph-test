@@ -19,13 +19,7 @@ index a29bdeb434d874c9b1d8969c40c42161b03fafdc..c0d0fb45c382919737f8d0c20aaf57cf
  line1
 +line2
 `
-	tests := map[string]struct {
-		rawDiff        string
-		query          string
-		paths          PathOptions
-		want           string
-		wantHighlights []Highlight
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"no matches": {
 			rawDiff:        sampleRawDiff,
 			query:          "line3",
@@ -79,13 +73,7 @@ index a29bdeb434d874c9b1d8969c40c42161b03fafdc..c0d0fb45c382919737f8d0c20aaf57cf
 }
 
 func TestSplitHunkMatches(t *testing.T) {
-	tests := []struct {
-		hunks             string
-		query             string
-		matchContextLines int
-		maxLinesPerHunk   int
-		want              string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			hunks: `@@ -1,2 +1,3 @@ mysection
  line1

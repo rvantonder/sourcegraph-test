@@ -29,12 +29,7 @@ func TestGetIndexOptions(t *testing.T) {
 		return c
 	}
 
-	type caseT struct {
-		name string
-		conf schema.SiteConfiguration
-		repo string
-		want zoektIndexOptions
-	}
+	type caseT struct { /* all structs must go */ }
 
 	cases := []caseT{{
 		name: "default",
@@ -199,12 +194,7 @@ func TestGetIndexOptions_getVersion(t *testing.T) {
 	}
 
 	boom := errors.New("boom")
-	cases := []struct {
-		name    string
-		f       func(string) (string, error)
-		want    []zoekt.RepositoryBranch
-		wantErr error
-	}{{
+	cases := []struct { /* all structs must go */ }{{
 		name: "error",
 		f: func(_ string) (string, error) {
 			return "", boom

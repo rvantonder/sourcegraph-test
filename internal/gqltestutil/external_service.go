@@ -4,11 +4,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-type AddExternalServiceInput struct {
-	Kind        string `json:"kind"`
-	DisplayName string `json:"displayName"`
-	Config      string `json:"config"`
-}
+type AddExternalServiceInput struct { /* all structs must go */ }
 
 // AddExternalService adds a new external service with given input.
 // It returns GraphQL node ID of newly created external service.
@@ -26,14 +22,7 @@ mutation AddExternalService($input: AddExternalServiceInput!) {
 	variables := map[string]interface{}{
 		"input": input,
 	}
-	var resp struct {
-		Data struct {
-			AddExternalService struct {
-				ID      string `json:"id"`
-				Warning string `json:"warning"`
-			} `json:"addExternalService"`
-		} `json:"data"`
-	}
+	var resp struct { /* all structs must go */ }
 	err := c.GraphQL("", query, variables, &resp)
 	if err != nil {
 		return "", errors.Wrap(err, "request GraphQL")

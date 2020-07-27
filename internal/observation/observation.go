@@ -65,27 +65,13 @@ import (
 // Context carries context about where to send logs, trace spans, and register
 // metrics. It should be created once on service startup, and passed around to
 // any location that wants to use it for observing operations.
-type Context struct {
-	Logger     logging.ErrorLogger
-	Tracer     *trace.Tracer
-	Registerer prometheus.Registerer
-}
+type Context struct { /* all structs must go */ }
 
 // TestContext is a behaviorless Context usable for unit tests.
 var TestContext = Context{Registerer: metrics.TestRegisterer}
 
 // Op configures an Operation instance.
-type Op struct {
-	Metrics *metrics.OperationMetrics
-	// Name configures the trace and error log names. This string should be of the
-	// format {GroupName}.{OperationName}, where both sections are title cased
-	// (e.g. Store.GetRepoByID).
-	Name string
-	// MetricLabels that apply for every invocation of this operation.
-	MetricLabels []string
-	// LogFields that apply for for every invocation of this operation.
-	LogFields []log.Field
-}
+type Op struct { /* all structs must go */ }
 
 // Operation combines the state of the parent context to create a new operation. This value
 // should be owned and used by the code that performs the operation it represents.
@@ -101,26 +87,14 @@ func (c *Context) Operation(args Op) *Operation {
 }
 
 // Operation represents an interesting section of code that can be invoked.
-type Operation struct {
-	context      *Context
-	metrics      *metrics.OperationMetrics
-	name         string
-	kebabName    string
-	metricLabels []string
-	logFields    []log.Field
-}
+type Operation struct { /* all structs must go */ }
 
 // FinishFunc is the shape of the function returned by With and should be invoked within
 // a defer directly before the observed function returns.
 type FinishFunc func(count float64, args Args)
 
 // Args configures the observation behavior of an invocation of an operation.
-type Args struct {
-	// MetricLabels that apply only to this invocation of the operation.
-	MetricLabels []string
-	// LogFields that apply only to this invocation of the operation.
-	LogFields []log.Field
-}
+type Args struct { /* all structs must go */ }
 
 // With prepares the necessary timers, loggers, and metrics to observe the invocation of
 // an operation.

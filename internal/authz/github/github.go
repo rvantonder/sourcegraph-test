@@ -16,11 +16,7 @@ import (
 )
 
 // Provider implements authz.Provider for GitHub repository permissions.
-type Provider struct {
-	urn      string
-	client   client
-	codeHost *extsvc.CodeHost
-}
+type Provider struct { /* all structs must go */ }
 
 func NewProvider(urn string, githubURL *url.URL, baseToken string, client *github.Client) *Provider {
 	if client == nil {

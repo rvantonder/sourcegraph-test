@@ -14,29 +14,7 @@ import (
 // package
 // github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/resolvers)
 // used for unit testing.
-type MockResolver struct {
-	// DeleteIndexByIDFunc is an instance of a mock function object
-	// controlling the behavior of the method DeleteIndexByID.
-	DeleteIndexByIDFunc *ResolverDeleteIndexByIDFunc
-	// DeleteUploadByIDFunc is an instance of a mock function object
-	// controlling the behavior of the method DeleteUploadByID.
-	DeleteUploadByIDFunc *ResolverDeleteUploadByIDFunc
-	// GetIndexByIDFunc is an instance of a mock function object controlling
-	// the behavior of the method GetIndexByID.
-	GetIndexByIDFunc *ResolverGetIndexByIDFunc
-	// GetUploadByIDFunc is an instance of a mock function object
-	// controlling the behavior of the method GetUploadByID.
-	GetUploadByIDFunc *ResolverGetUploadByIDFunc
-	// IndexConnectionResolverFunc is an instance of a mock function object
-	// controlling the behavior of the method IndexConnectionResolver.
-	IndexConnectionResolverFunc *ResolverIndexConnectionResolverFunc
-	// QueryResolverFunc is an instance of a mock function object
-	// controlling the behavior of the method QueryResolver.
-	QueryResolverFunc *ResolverQueryResolverFunc
-	// UploadConnectionResolverFunc is an instance of a mock function object
-	// controlling the behavior of the method UploadConnectionResolver.
-	UploadConnectionResolverFunc *ResolverUploadConnectionResolverFunc
-}
+type MockResolver struct { /* all structs must go */ }
 
 // NewMockResolver creates a new mock of the Resolver interface. All methods
 // return zero values for all results, unless overwritten.
@@ -110,12 +88,7 @@ func NewMockResolverFrom(i resolvers.Resolver) *MockResolver {
 
 // ResolverDeleteIndexByIDFunc describes the behavior when the
 // DeleteIndexByID method of the parent MockResolver instance is invoked.
-type ResolverDeleteIndexByIDFunc struct {
-	defaultHook func(context.Context, int) error
-	hooks       []func(context.Context, int) error
-	history     []ResolverDeleteIndexByIDFuncCall
-	mutex       sync.Mutex
-}
+type ResolverDeleteIndexByIDFunc struct { /* all structs must go */ }
 
 // DeleteIndexByID delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -190,17 +163,7 @@ func (f *ResolverDeleteIndexByIDFunc) History() []ResolverDeleteIndexByIDFuncCal
 
 // ResolverDeleteIndexByIDFuncCall is an object that describes an invocation
 // of method DeleteIndexByID on an instance of MockResolver.
-type ResolverDeleteIndexByIDFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type ResolverDeleteIndexByIDFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -216,12 +179,7 @@ func (c ResolverDeleteIndexByIDFuncCall) Results() []interface{} {
 
 // ResolverDeleteUploadByIDFunc describes the behavior when the
 // DeleteUploadByID method of the parent MockResolver instance is invoked.
-type ResolverDeleteUploadByIDFunc struct {
-	defaultHook func(context.Context, int) error
-	hooks       []func(context.Context, int) error
-	history     []ResolverDeleteUploadByIDFuncCall
-	mutex       sync.Mutex
-}
+type ResolverDeleteUploadByIDFunc struct { /* all structs must go */ }
 
 // DeleteUploadByID delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -296,17 +254,7 @@ func (f *ResolverDeleteUploadByIDFunc) History() []ResolverDeleteUploadByIDFuncC
 
 // ResolverDeleteUploadByIDFuncCall is an object that describes an
 // invocation of method DeleteUploadByID on an instance of MockResolver.
-type ResolverDeleteUploadByIDFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type ResolverDeleteUploadByIDFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -322,12 +270,7 @@ func (c ResolverDeleteUploadByIDFuncCall) Results() []interface{} {
 
 // ResolverGetIndexByIDFunc describes the behavior when the GetIndexByID
 // method of the parent MockResolver instance is invoked.
-type ResolverGetIndexByIDFunc struct {
-	defaultHook func(context.Context, int) (store.Index, bool, error)
-	hooks       []func(context.Context, int) (store.Index, bool, error)
-	history     []ResolverGetIndexByIDFuncCall
-	mutex       sync.Mutex
-}
+type ResolverGetIndexByIDFunc struct { /* all structs must go */ }
 
 // GetIndexByID delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -402,23 +345,7 @@ func (f *ResolverGetIndexByIDFunc) History() []ResolverGetIndexByIDFuncCall {
 
 // ResolverGetIndexByIDFuncCall is an object that describes an invocation of
 // method GetIndexByID on an instance of MockResolver.
-type ResolverGetIndexByIDFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 store.Index
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 bool
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type ResolverGetIndexByIDFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -434,12 +361,7 @@ func (c ResolverGetIndexByIDFuncCall) Results() []interface{} {
 
 // ResolverGetUploadByIDFunc describes the behavior when the GetUploadByID
 // method of the parent MockResolver instance is invoked.
-type ResolverGetUploadByIDFunc struct {
-	defaultHook func(context.Context, int) (store.Upload, bool, error)
-	hooks       []func(context.Context, int) (store.Upload, bool, error)
-	history     []ResolverGetUploadByIDFuncCall
-	mutex       sync.Mutex
-}
+type ResolverGetUploadByIDFunc struct { /* all structs must go */ }
 
 // GetUploadByID delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -514,23 +436,7 @@ func (f *ResolverGetUploadByIDFunc) History() []ResolverGetUploadByIDFuncCall {
 
 // ResolverGetUploadByIDFuncCall is an object that describes an invocation
 // of method GetUploadByID on an instance of MockResolver.
-type ResolverGetUploadByIDFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 store.Upload
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 bool
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type ResolverGetUploadByIDFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -547,12 +453,7 @@ func (c ResolverGetUploadByIDFuncCall) Results() []interface{} {
 // ResolverIndexConnectionResolverFunc describes the behavior when the
 // IndexConnectionResolver method of the parent MockResolver instance is
 // invoked.
-type ResolverIndexConnectionResolverFunc struct {
-	defaultHook func(store.GetIndexesOptions) *resolvers.IndexesResolver
-	hooks       []func(store.GetIndexesOptions) *resolvers.IndexesResolver
-	history     []ResolverIndexConnectionResolverFuncCall
-	mutex       sync.Mutex
-}
+type ResolverIndexConnectionResolverFunc struct { /* all structs must go */ }
 
 // IndexConnectionResolver delegates to the next hook function in the queue
 // and stores the parameter and result values of this invocation.
@@ -629,14 +530,7 @@ func (f *ResolverIndexConnectionResolverFunc) History() []ResolverIndexConnectio
 // ResolverIndexConnectionResolverFuncCall is an object that describes an
 // invocation of method IndexConnectionResolver on an instance of
 // MockResolver.
-type ResolverIndexConnectionResolverFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 store.GetIndexesOptions
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 *resolvers.IndexesResolver
-}
+type ResolverIndexConnectionResolverFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -652,12 +546,7 @@ func (c ResolverIndexConnectionResolverFuncCall) Results() []interface{} {
 
 // ResolverQueryResolverFunc describes the behavior when the QueryResolver
 // method of the parent MockResolver instance is invoked.
-type ResolverQueryResolverFunc struct {
-	defaultHook func(context.Context, *graphqlbackend.GitBlobLSIFDataArgs) (resolvers.QueryResolver, error)
-	hooks       []func(context.Context, *graphqlbackend.GitBlobLSIFDataArgs) (resolvers.QueryResolver, error)
-	history     []ResolverQueryResolverFuncCall
-	mutex       sync.Mutex
-}
+type ResolverQueryResolverFunc struct { /* all structs must go */ }
 
 // QueryResolver delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -732,20 +621,7 @@ func (f *ResolverQueryResolverFunc) History() []ResolverQueryResolverFuncCall {
 
 // ResolverQueryResolverFuncCall is an object that describes an invocation
 // of method QueryResolver on an instance of MockResolver.
-type ResolverQueryResolverFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 *graphqlbackend.GitBlobLSIFDataArgs
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 resolvers.QueryResolver
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type ResolverQueryResolverFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -762,12 +638,7 @@ func (c ResolverQueryResolverFuncCall) Results() []interface{} {
 // ResolverUploadConnectionResolverFunc describes the behavior when the
 // UploadConnectionResolver method of the parent MockResolver instance is
 // invoked.
-type ResolverUploadConnectionResolverFunc struct {
-	defaultHook func(store.GetUploadsOptions) *resolvers.UploadsResolver
-	hooks       []func(store.GetUploadsOptions) *resolvers.UploadsResolver
-	history     []ResolverUploadConnectionResolverFuncCall
-	mutex       sync.Mutex
-}
+type ResolverUploadConnectionResolverFunc struct { /* all structs must go */ }
 
 // UploadConnectionResolver delegates to the next hook function in the queue
 // and stores the parameter and result values of this invocation.
@@ -844,14 +715,7 @@ func (f *ResolverUploadConnectionResolverFunc) History() []ResolverUploadConnect
 // ResolverUploadConnectionResolverFuncCall is an object that describes an
 // invocation of method UploadConnectionResolver on an instance of
 // MockResolver.
-type ResolverUploadConnectionResolverFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 store.GetUploadsOptions
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 *resolvers.UploadsResolver
-}
+type ResolverUploadConnectionResolverFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.

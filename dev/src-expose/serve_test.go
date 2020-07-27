@@ -22,10 +22,7 @@ const testAddress = "test.local:3939"
 var discardLogger = log.New(ioutil.Discard, "", log.LstdFlags)
 
 func TestReposHandler(t *testing.T) {
-	cases := []struct {
-		name  string
-		repos []string
-	}{{
+	cases := []struct { /* all structs must go */ }{{
 		name: "empty",
 	}, {
 		name:  "simple",
@@ -201,9 +198,7 @@ func testLogger(t *testing.T) *log.Logger {
 	return log.New(testWriter{t}, "testLogger ", log.LstdFlags)
 }
 
-type testWriter struct {
-	*testing.T
-}
+type testWriter struct { /* all structs must go */ }
 
 func (tw testWriter) Write(p []byte) (n int, err error) {
 	tw.T.Log(string(p))

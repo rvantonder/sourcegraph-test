@@ -15,13 +15,7 @@ import (
 //
 // The main use of RepositoryLocker is to prevent concurrent clones. However,
 // it is also used during maintenance tasks such as recloning/migrating/etc.
-type RepositoryLocker struct {
-	// mu protects status
-	mu sync.Mutex
-	// status tracks directories that are locked. The value is the status. If
-	// a directory is in status, the directory is locked.
-	status map[GitDir]string
-}
+type RepositoryLocker struct { /* all structs must go */ }
 
 // TryAcquire acquires the lock for dir. If it is already held, ok is false
 // and lock is nil. Otherwise a non-nil lock is returned and true. When
@@ -58,13 +52,7 @@ func (rl *RepositoryLocker) Status(dir GitDir) (status string, locked bool) {
 
 // RepositoryLock is returned by RepositoryLocker.TryAcquire. It allows
 // updating the status of a directory lock, as well as releasing the lock.
-type RepositoryLock struct {
-	locker *RepositoryLocker
-	dir    GitDir
-
-	// done is protected by locker.mu
-	done bool
-}
+type RepositoryLock struct { /* all structs must go */ }
 
 // SetStatus updates the status for the lock. If the lock has been released,
 // this is a noop.

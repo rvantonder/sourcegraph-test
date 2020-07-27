@@ -18,18 +18,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/search"
 )
 
-func (r *schemaResolver) Repositories(args *struct {
-	graphqlutil.ConnectionArgs
-	Query           *string
-	Names           *[]string
-	Cloned          bool
-	CloneInProgress bool
-	NotCloned       bool
-	Indexed         bool
-	NotIndexed      bool
-	OrderBy         string
-	Descending      bool
-}) (*repositoryConnectionResolver, error) {
+func (r *schemaResolver) Repositories(args *struct { /* all structs must go */ }) (*repositoryConnectionResolver, error) {
 	opt := db.ReposListOptions{
 		OrderBy: db.RepoListOrderBy{{
 			Field:      toDBRepoListColumn(args.OrderBy),
@@ -53,9 +42,7 @@ func (r *schemaResolver) Repositories(args *struct {
 	}, nil
 }
 
-type TotalCountArgs struct {
-	Precise bool
-}
+type TotalCountArgs struct { /* all structs must go */ }
 
 type RepositoryConnectionResolver interface {
 	Nodes(ctx context.Context) ([]*RepositoryResolver, error)
@@ -65,19 +52,7 @@ type RepositoryConnectionResolver interface {
 
 var _ RepositoryConnectionResolver = &repositoryConnectionResolver{}
 
-type repositoryConnectionResolver struct {
-	opt             db.ReposListOptions
-	cloned          bool
-	cloneInProgress bool
-	notCloned       bool
-	indexed         bool
-	notIndexed      bool
-
-	// cache results because they are used by multiple fields
-	once  sync.Once
-	repos []*types.Repo
-	err   error
-}
+type repositoryConnectionResolver struct { /* all structs must go */ }
 
 func (r *repositoryConnectionResolver) compute(ctx context.Context) ([]*types.Repo, error) {
 	r.once.Do(func() {
@@ -223,10 +198,7 @@ func (r *repositoryConnectionResolver) PageInfo(ctx context.Context) (*graphqlut
 	return graphqlutil.HasNextPage(r.opt.LimitOffset != nil && len(repos) >= r.opt.Limit), nil
 }
 
-func (r *schemaResolver) SetRepositoryEnabled(ctx context.Context, args *struct {
-	Repository graphql.ID
-	Enabled    bool
-}) (*EmptyResponse, error) {
+func (r *schemaResolver) SetRepositoryEnabled(ctx context.Context, args *struct { /* all structs must go */ }) (*EmptyResponse, error) {
 	// 🚨 SECURITY: Only site admins can enable/disable repositories, because it's a site-wide
 	// and semi-destructive action.
 	if err := backend.CheckCurrentUserIsSiteAdmin(ctx); err != nil {

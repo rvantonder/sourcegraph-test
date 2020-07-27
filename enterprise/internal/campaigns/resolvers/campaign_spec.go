@@ -24,12 +24,7 @@ func unmarshalCampaignSpecID(id graphql.ID) (campaignSpecRandID string, err erro
 
 var _ graphqlbackend.CampaignSpecResolver = &campaignSpecResolver{}
 
-type campaignSpecResolver struct {
-	store       *ee.Store
-	httpFactory *httpcli.Factory
-
-	campaignSpec *campaigns.CampaignSpec
-}
+type campaignSpecResolver struct { /* all structs must go */ }
 
 func (r *campaignSpecResolver) ID() graphql.ID {
 	// 🚨 SECURITY: This needs to be the RandID! We can't expose the
@@ -111,9 +106,7 @@ func (r *campaignSpecResolver) ViewerCanAdminister(ctx context.Context) (bool, e
 	return checkSiteAdminOrSameUser(ctx, r.campaignSpec.UserID)
 }
 
-type campaignDescriptionResolver struct {
-	name, description string
-}
+type campaignDescriptionResolver struct { /* all structs must go */ }
 
 func (r *campaignDescriptionResolver) Name() string {
 	return r.name

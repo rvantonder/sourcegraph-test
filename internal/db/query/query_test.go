@@ -67,10 +67,7 @@ func ExampleEval_types() {
 }
 
 func TestEval_cornercase(t *testing.T) {
-	cases := []struct {
-		q    query.Q
-		want string
-	}{{
+	cases := []struct { /* all structs must go */ }{{
 		q:    query.And(),
 		want: "TRUE",
 	}, {

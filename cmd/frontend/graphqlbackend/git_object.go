@@ -49,11 +49,7 @@ func (id *GitObjectID) UnmarshalGraphQL(input interface{}) error {
 	return errors.New("GitObjectID: expected 40-character string (SHA-1 hash)")
 }
 
-type gitObject struct {
-	repo *RepositoryResolver
-	oid  GitObjectID
-	typ  gitObjectType
-}
+type gitObject struct { /* all structs must go */ }
 
 func (o *gitObject) OID(ctx context.Context) (GitObjectID, error) { return o.oid, nil }
 func (o *gitObject) AbbreviatedOID(ctx context.Context) (string, error) {
@@ -65,15 +61,7 @@ func (o *gitObject) Commit(ctx context.Context) (*GitCommitResolver, error) {
 }
 func (o *gitObject) Type(context.Context) (gitObjectType, error) { return o.typ, nil }
 
-type gitObjectResolver struct {
-	repo    *RepositoryResolver
-	revspec string
-
-	once sync.Once
-	oid  GitObjectID
-	typ  gitObjectType
-	err  error
-}
+type gitObjectResolver struct { /* all structs must go */ }
 
 func (o *gitObjectResolver) resolve(ctx context.Context) (GitObjectID, gitObjectType, error) {
 	o.once.Do(func() {

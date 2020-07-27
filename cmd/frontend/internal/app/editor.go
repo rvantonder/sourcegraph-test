@@ -51,53 +51,13 @@ func editorRev(ctx context.Context, repoName api.RepoName, rev string, beExplici
 }
 
 // editorRequest represents the parameters to a Sourcegraph "open file", "search", etc. editor request.
-type editorRequest struct {
-	// Fields that are required in all requests.
-	editor  string // editor name, e.g. "Atom", "Sublime", etc.
-	version string // editor extension version
-
-	// Fields that are optional in all requests.
-	utmProductName    string // Editor product name. Only present in JetBrains today (e.g. "IntelliJ", "GoLand")
-	utmProductVersion string // Editor product version. Only present in JetBrains today.
-
-	// openFileRequest is non-nil if this is an "open file on Sourcegraph" request.
-	openFileRequest *editorOpenFileRequest
-
-	// searchRequest is non-nil if this is a "search on Sourcegraph" request.
-	searchRequest *editorSearchRequest
-}
+type editorRequest struct { /* all structs must go */ }
 
 // editorSearchRequest represents parameters for "open file on Sourcegraph" editor requests.
-type editorOpenFileRequest struct {
-	remoteURL         string            // Git repository remote URL.
-	hostnameToPattern map[string]string // Map of Git remote URL hostnames to patterns describing how they map to Sourcegraph repositories
-	branch            string            // Git branch name.
-	revision          string            // Git revision.
-	file              string            // Unix filepath relative to repository root.
-
-	// Zero-based cursor selection parameters. Required.
-	startRow, endRow int
-	startCol, endCol int
-}
+type editorOpenFileRequest struct { /* all structs must go */ }
 
 // editorSearchRequest represents parameters for "search on Sourcegraph" editor requests.
-type editorSearchRequest struct {
-	query string // The literal search query
-
-	// Optional git repository remote URL. When present, the search will be performed just
-	// in the repository (not globally).
-	remoteURL         string
-	hostnameToPattern map[string]string // Map of Git remote URL hostnames to patterns describing how they map to Sourcegraph repositories
-
-	// Optional git repository branch name and revision. When one is present and remoteURL
-	// is present, the search will be performed just at this branch/revision.
-	branch   string
-	revision string
-
-	// Optional unix filepath relative to the repository root. When present, the search
-	// will be performed with a file: search filter.
-	file string
-}
+type editorSearchRequest struct { /* all structs must go */ }
 
 // addTracking adds the tracking ?utm_... parameters to the given query values.
 func (r *editorRequest) addTracking(q url.Values) {

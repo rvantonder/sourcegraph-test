@@ -22,9 +22,7 @@ func init() {
 }
 
 // productLicense implements the GraphQL type ProductLicense.
-type productLicense struct {
-	v *dbLicense
-}
+type productLicense struct { /* all structs must go */ }
 
 // productLicenseByID looks up and returns the ProductLicense with the given GraphQL ID. If no such
 // ProductLicense exists, it returns a non-nil error.
@@ -152,14 +150,7 @@ func (ProductSubscriptionLicensingResolver) ProductLicenses(ctx context.Context,
 //
 // 🚨 SECURITY: When instantiating a productLicenseConnection value, the caller MUST
 // check permissions.
-type productLicenseConnection struct {
-	opt dbLicensesListOptions
-
-	// cache results because they are used by multiple fields
-	once    sync.Once
-	results []*dbLicense
-	err     error
-}
+type productLicenseConnection struct { /* all structs must go */ }
 
 func (r *productLicenseConnection) compute(ctx context.Context) ([]*dbLicense, error) {
 	r.once.Do(func() {

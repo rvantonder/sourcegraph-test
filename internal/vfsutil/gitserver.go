@@ -56,19 +56,7 @@ const (
 )
 
 // ArchiveOpts describes options for fetching a repository archive.
-type ArchiveOpts struct {
-	// Repo is the repository whose contents should be fetched.
-	Repo api.RepoName
-
-	// Commit is the commit whose contents should be fetched.
-	Commit api.CommitID
-
-	// Format indicates the desired archive format.
-	Format ArchiveFormat
-
-	// RelativePath indicates the path of the repository that should be archived.
-	RelativePath string
-}
+type ArchiveOpts struct { /* all structs must go */ }
 
 func (opts *ArchiveOpts) cacheKey() string {
 	return fmt.Sprintf("%s@%s/-/%s.%s", opts.Repo, opts.Commit, opts.RelativePath, opts.Format)

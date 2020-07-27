@@ -24,10 +24,7 @@ import (
 
 // ErrRepoSeeOther indicates that the repo does not exist on this server but might exist on an external Sourcegraph
 // server.
-type ErrRepoSeeOther struct {
-	// RedirectURL is the base URL for the repository at an external location.
-	RedirectURL string
-}
+type ErrRepoSeeOther struct { /* all structs must go */ }
 
 func (e ErrRepoSeeOther) Error() string {
 	return fmt.Sprintf("repo not found at this location, but might exist at %s", e.RedirectURL)

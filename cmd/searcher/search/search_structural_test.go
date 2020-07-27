@@ -32,11 +32,7 @@ func foo(go string) {}
 		IncludePatterns: []string{"file_without_extension"},
 	}
 
-	cases := []struct {
-		Name      string
-		Languages []string
-		Want      []string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			Name:      "Language test for no language",
 			Languages: []string{},
@@ -134,12 +130,7 @@ func foo(real string) {}
 }
 
 func TestRecordMetrics(t *testing.T) {
-	cases := []struct {
-		name            string
-		matcher         string
-		includePatterns *[]string
-		want            string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			name:            "Empty values",
 			matcher:         "",
@@ -287,11 +278,7 @@ func TestRule(t *testing.T) {
 }
 
 func TestHighlightMultipleLines(t *testing.T) {
-	cases := []struct {
-		Name  string
-		Match *comby.Match
-		Want  []protocol.LineMatch
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			Name: "Single line",
 			Match: &comby.Match{

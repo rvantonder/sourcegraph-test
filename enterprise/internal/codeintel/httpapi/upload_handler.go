@@ -22,11 +22,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/vcs"
 )
 
-type UploadHandler struct {
-	store               store.Store
-	bundleManagerClient bundles.BundleManagerClient
-	internal            bool
-}
+type UploadHandler struct { /* all structs must go */ }
 
 func NewUploadHandler(store store.Store, bundleManagerClient bundles.BundleManagerClient, internal bool) http.Handler {
 	handler := &UploadHandler{
@@ -88,16 +84,9 @@ func (h *UploadHandler) handleEnqueue(w http.ResponseWriter, r *http.Request) {
 
 // UploadArgs are common arguments required to enqueue an upload for both
 // single-payload and multipart uploads.
-type UploadArgs struct {
-	Commit       string
-	Root         string
-	RepositoryID int
-	Indexer      string
-}
+type UploadArgs struct { /* all structs must go */ }
 
-type enqueuePayload struct {
-	ID string `json:"id"`
-}
+type enqueuePayload struct { /* all structs must go */ }
 
 // handleEnqueueErr dispatches to the correct handler function based on query args. Running the
 // `src lsif upload` command will cause one of two sequences of requests to occur. For uploads that

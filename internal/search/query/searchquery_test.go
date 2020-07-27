@@ -133,12 +133,7 @@ func TestQuery_StringValues(t *testing.T) {
 }
 
 func TestQuery_Validate(t *testing.T) {
-	cases := []struct {
-		Name       string
-		Query      string
-		SearchType SearchType
-		Want       string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			Name:       `Structural search validates`,
 			Query:      `patterntype:structural ":[_]"`,

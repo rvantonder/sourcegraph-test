@@ -2,9 +2,7 @@ package httpapi
 
 import "fmt"
 
-type ClientError struct {
-	err error
-}
+type ClientError struct { /* all structs must go */ }
 
 func (e *ClientError) Error() string {
 	return e.err.Error()

@@ -21,9 +21,7 @@ type ExecableDB interface {
 }
 
 // Store wraps a SQLite connection.
-type Store struct {
-	db ExecableDB
-}
+type Store struct { /* all structs must go */ }
 
 var _ sqliteutil.Execable = &Store{}
 

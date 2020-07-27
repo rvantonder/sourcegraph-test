@@ -26,10 +26,7 @@ func main() {
 	}
 }
 
-type constModTimeFS struct {
-	modTime time.Time
-	http.FileSystem
-}
+type constModTimeFS struct { /* all structs must go */ }
 
 func (f constModTimeFS) Open(name string) (http.File, error) {
 	file, err := f.FileSystem.Open(name)
@@ -39,10 +36,7 @@ func (f constModTimeFS) Open(name string) (http.File, error) {
 	return constModTimeFile{File: file, modTime: f.modTime}, err
 }
 
-type constModTimeFile struct {
-	modTime time.Time
-	http.File
-}
+type constModTimeFile struct { /* all structs must go */ }
 
 func (f constModTimeFile) Readdir(count int) ([]os.FileInfo, error) {
 	fi, err := f.File.Readdir(count)
@@ -64,10 +58,7 @@ func (f constModTimeFile) Stat() (os.FileInfo, error) {
 	return constModTimeFileInfo{FileInfo: fi, modTime: f.modTime}, err
 }
 
-type constModTimeFileInfo struct {
-	modTime time.Time
-	os.FileInfo
-}
+type constModTimeFileInfo struct { /* all structs must go */ }
 
 func (f constModTimeFileInfo) ModTime() time.Time {
 	return f.modTime

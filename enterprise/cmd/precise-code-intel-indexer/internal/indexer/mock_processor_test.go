@@ -12,11 +12,7 @@ import (
 // the package
 // github.com/sourcegraph/sourcegraph/enterprise/cmd/precise-code-intel-indexer/internal/indexer)
 // used for unit testing.
-type MockProcessor struct {
-	// ProcessFunc is an instance of a mock function object controlling the
-	// behavior of the method Process.
-	ProcessFunc *ProcessorProcessFunc
-}
+type MockProcessor struct { /* all structs must go */ }
 
 // NewMockProcessor creates a new mock of the Processor interface. All
 // methods return zero values for all results, unless overwritten.
@@ -42,12 +38,7 @@ func NewMockProcessorFrom(i Processor) *MockProcessor {
 
 // ProcessorProcessFunc describes the behavior when the Process method of
 // the parent MockProcessor instance is invoked.
-type ProcessorProcessFunc struct {
-	defaultHook func(context.Context, store.Index) error
-	hooks       []func(context.Context, store.Index) error
-	history     []ProcessorProcessFuncCall
-	mutex       sync.Mutex
-}
+type ProcessorProcessFunc struct { /* all structs must go */ }
 
 // Process delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -121,17 +112,7 @@ func (f *ProcessorProcessFunc) History() []ProcessorProcessFuncCall {
 
 // ProcessorProcessFuncCall is an object that describes an invocation of
 // method Process on an instance of MockProcessor.
-type ProcessorProcessFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 store.Index
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type ProcessorProcessFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.

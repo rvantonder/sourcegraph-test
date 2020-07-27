@@ -32,10 +32,7 @@ func (t testTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 }
 
 func TestResolveImportPath(t *testing.T) {
-	tests := []struct {
-		importPath string
-		dir        *Directory
-	}{
+	tests := []struct { /* all structs must go */ }{
 		// static
 		{"fmt", &Directory{
 			ImportPath:  "fmt",

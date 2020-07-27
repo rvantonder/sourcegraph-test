@@ -28,20 +28,7 @@ import (
 // permissions up-to-date for users and repositories.
 //
 // It is meant to be running in the background.
-type PermsSyncer struct {
-	// The priority queue to maintain the permissions syncing requests.
-	queue *requestQueue
-	// The database interface for any repos and external services operations.
-	reposStore repos.Store
-	// The database interface for any permissions operations.
-	permsStore *edb.PermsStore
-	// The mockable function to return the current time.
-	clock func() time.Time
-	// The rate limit registry for code hosts.
-	rateLimiterRegistry *ratelimit.Registry
-	// The time duration of how often to re-compute schedule for users and repositories.
-	scheduleInterval time.Duration
-}
+type PermsSyncer struct { /* all structs must go */ }
 
 // NewPermsSyncer returns a new permissions syncing manager.
 func NewPermsSyncer(
@@ -527,32 +514,13 @@ func (s *PermsSyncer) scheduleReposWithOldestPerms(ctx context.Context, limit in
 }
 
 // schedule contains information for scheduling users and repositories.
-type schedule struct {
-	Users []scheduledUser
-	Repos []scheduledRepo
-}
+type schedule struct { /* all structs must go */ }
 
 // scheduledUser contains information for scheduling a user.
-type scheduledUser struct {
-	priority   priority
-	userID     int32
-	nextSyncAt time.Time
-
-	// Whether the user has no permissions when scheduled. Currently used to
-	// accept partial results from authz provider in case of error.
-	noPerms bool
-}
+type scheduledUser struct { /* all structs must go */ }
 
 // scheduledRepo contains for scheduling a repository.
-type scheduledRepo struct {
-	priority   priority
-	repoID     api.RepoID
-	nextSyncAt time.Time
-
-	// Whether the repository has no permissions when scheduled. Currently used
-	// to accept partial results from authz provider in case of error.
-	noPerms bool
-}
+type scheduledRepo struct { /* all structs must go */ }
 
 // schedule computes schedule four lists in the following order:
 //   1. Users with no permissions, because they can't do anything meaningful (e.g. not able to search).
@@ -636,15 +604,8 @@ func (s *PermsSyncer) runSchedule(ctx context.Context) {
 
 // DebugDump returns the state of the permissions syncer for debugging.
 func (s *PermsSyncer) DebugDump() interface{} {
-	type requestInfo struct {
-		Meta     *requestMeta
-		Acquired bool
-	}
-	data := struct {
-		Name  string
-		Size  int
-		Queue []*requestInfo
-	}{
+	type requestInfo struct { /* all structs must go */ }
+	data := struct { /* all structs must go */ }{
 		Name: "permissions",
 	}
 

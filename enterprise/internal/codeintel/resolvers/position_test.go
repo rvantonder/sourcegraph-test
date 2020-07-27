@@ -235,14 +235,7 @@ func TestAdjustRangeReverse(t *testing.T) {
 	}
 }
 
-type adjustPositionTestCase struct {
-	diff         string // The git diff output
-	diffName     string // The git diff output name
-	description  string // The description of the test
-	line         int    // The target line (one-indexed)
-	expectedOk   bool   // Whether the operation should succeed
-	expectedLine int    // The expected adjusted line (one-indexed)
-}
+type adjustPositionTestCase struct { /* all structs must go */ }
 
 // hugoDiff is a diff from github.com/gohugoio/hugo generated via the following command.
 // git diff 8947c3fa0beec021e14b3f8040857335e1ecd473 3e9db2ad951dbb1000cd0f8f25e4a95445046679 -- resources/image.go

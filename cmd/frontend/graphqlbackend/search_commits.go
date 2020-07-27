@@ -25,18 +25,7 @@ import (
 )
 
 // commitSearchResultResolver is a resolver for the GraphQL type `CommitSearchResult`
-type commitSearchResultResolver struct {
-	commit         *GitCommitResolver
-	refs           []*GitRefResolver
-	sourceRefs     []*GitRefResolver
-	messagePreview *highlightedString
-	diffPreview    *highlightedString
-	icon           string
-	label          string
-	url            string
-	detail         string
-	matches        []*searchResultMatchResolver
-}
+type commitSearchResultResolver struct { /* all structs must go */ }
 
 func (r *commitSearchResultResolver) Commit() *GitCommitResolver         { return r.commit }
 func (r *commitSearchResultResolver) Refs() []*GitRefResolver            { return r.refs }

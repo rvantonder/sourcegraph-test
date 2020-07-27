@@ -8,9 +8,7 @@ import (
 )
 
 // PlatformConfiguration contains site configuration for the Sourcegraph platform.
-type PlatformConfiguration struct {
-	RemoteRegistryURL string
-}
+type PlatformConfiguration struct { /* all structs must go */ }
 
 // DefaultRemoteRegistry is the default value for the site configuration property
 // "extensions"."remoteRegistry".

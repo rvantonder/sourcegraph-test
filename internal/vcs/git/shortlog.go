@@ -13,18 +13,10 @@ import (
 )
 
 // ShortLogOptions contains options for (Repository).ShortLog.
-type ShortLogOptions struct {
-	Range string // the range for which stats will be fetched
-	After string // the date after which to collect commits
-	Path  string // compute stats for commits that touch this path
-}
+type ShortLogOptions struct { /* all structs must go */ }
 
 // A PersonCount is a contributor to a repository.
-type PersonCount struct {
-	Name  string
-	Email string
-	Count int32
-}
+type PersonCount struct { /* all structs must go */ }
 
 func (p *PersonCount) String() string {
 	return fmt.Sprintf("%d %s <%s>", p.Count, p.Name, p.Email)

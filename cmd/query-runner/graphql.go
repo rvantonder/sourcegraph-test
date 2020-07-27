@@ -17,10 +17,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-type graphQLQuery struct {
-	Query     string      `json:"query"`
-	Variables interface{} `json:"variables"`
-}
+type graphQLQuery struct { /* all structs must go */ }
 
 const gqlSearchQuery = `query Search(
 	$query: String!,
@@ -104,23 +101,9 @@ const gqlSearchQuery = `query Search(
 	}
 }`
 
-type gqlSearchVars struct {
-	Query string `json:"query"`
-}
+type gqlSearchVars struct { /* all structs must go */ }
 
-type gqlSearchResponse struct {
-	Data struct {
-		Search struct {
-			Results struct {
-				ApproximateResultCount string
-				Cloning                []*api.Repo
-				Timedout               []*api.Repo
-				Results                []interface{}
-			}
-		}
-	}
-	Errors []interface{}
-}
+type gqlSearchResponse struct { /* all structs must go */ }
 
 func search(ctx context.Context, query string) (*gqlSearchResponse, error) {
 	var buf bytes.Buffer

@@ -10,55 +10,25 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/campaigns"
 )
 
-type CreateCampaignArgs struct {
-	CampaignSpec graphql.ID
-}
+type CreateCampaignArgs struct { /* all structs must go */ }
 
-type ApplyCampaignArgs struct {
-	CampaignSpec   graphql.ID
-	EnsureCampaign *graphql.ID
-}
+type ApplyCampaignArgs struct { /* all structs must go */ }
 
-type MoveCampaignArgs struct {
-	Campaign     graphql.ID
-	NewName      *string
-	NewNamespace *graphql.ID
-}
+type MoveCampaignArgs struct { /* all structs must go */ }
 
-type ListCampaignArgs struct {
-	First               *int32
-	State               *string
-	ViewerCanAdminister *bool
-}
+type ListCampaignArgs struct { /* all structs must go */ }
 
-type CloseCampaignArgs struct {
-	Campaign        graphql.ID
-	CloseChangesets bool
-}
+type CloseCampaignArgs struct { /* all structs must go */ }
 
-type DeleteCampaignArgs struct {
-	Campaign graphql.ID
-}
+type DeleteCampaignArgs struct { /* all structs must go */ }
 
-type SyncChangesetArgs struct {
-	Changeset graphql.ID
-}
+type SyncChangesetArgs struct { /* all structs must go */ }
 
-type CreateChangesetSpecArgs struct {
-	ChangesetSpec string
-}
+type CreateChangesetSpecArgs struct { /* all structs must go */ }
 
-type CreateCampaignSpecArgs struct {
-	Namespace graphql.ID
+type CreateCampaignSpecArgs struct { /* all structs must go */ }
 
-	CampaignSpec   string
-	ChangesetSpecs []graphql.ID
-}
-
-type ChangesetSpecsConnectionArgs struct {
-	First *int32
-	After *string
-}
+type ChangesetSpecsConnectionArgs struct { /* all structs must go */ }
 
 type CampaignsResolver interface {
 	// Mutations
@@ -165,18 +135,9 @@ type GitCommitDescriptionResolver interface {
 	Diff() string
 }
 
-type ChangesetCountsArgs struct {
-	From *DateTime
-	To   *DateTime
-}
+type ChangesetCountsArgs struct { /* all structs must go */ }
 
-type ListChangesetsArgs struct {
-	First         *int32
-	State         *campaigns.ChangesetState
-	ExternalState *campaigns.ChangesetExternalState
-	ReviewState   *campaigns.ChangesetReviewState
-	CheckState    *campaigns.ChangesetCheckState
-}
+type ListChangesetsArgs struct { /* all structs must go */ }
 
 type CampaignResolver interface {
 	ID() graphql.ID

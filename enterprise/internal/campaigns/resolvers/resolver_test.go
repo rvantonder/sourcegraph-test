@@ -58,11 +58,7 @@ func TestCampaigns(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	var users struct {
-		Admin, User struct {
-			apitest.User `json:"user"`
-		}
-	}
+	var users struct { /* all structs must go */ }
 
 	apitest.MustExec(ctx, t, s, nil, &users, `
 		fragment u on User { id, databaseID, siteAdmin }
@@ -80,9 +76,7 @@ func TestCampaigns(t *testing.T) {
 		t.Fatal("admin must be a site-admin, since it was the first user created")
 	}
 
-	var orgs struct {
-		ACME apitest.Org
-	}
+	var orgs struct { /* all structs must go */ }
 
 	ctx = actor.WithActor(ctx, actor.FromUser(users.Admin.DatabaseID))
 	apitest.MustExec(ctx, t, s, nil, &orgs, `

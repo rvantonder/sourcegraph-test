@@ -17,10 +17,7 @@ func TestUpdateServiceVersion(t *testing.T) {
 	dbtesting.SetupGlobalTestDB(t)
 
 	ctx := context.Background()
-	for _, tc := range []struct {
-		version string
-		err     error
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{"0.0.0", nil},
 		{"0.0.1", nil},
 		{"0.1.0", nil},
@@ -57,12 +54,7 @@ func TestUpdateServiceVersion(t *testing.T) {
 }
 
 func TestIsValidUpgrade(t *testing.T) {
-	for _, tc := range []struct {
-		name     string
-		previous string
-		latest   string
-		want     bool
-	}{{
+	for _, tc := range []struct { /* all structs must go */ }{{
 		name:     "no versions",
 		previous: "",
 		latest:   "",

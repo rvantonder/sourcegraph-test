@@ -127,10 +127,7 @@ func TestRepository_FileSystem(t *testing.T) {
 		"git rm 'dir1/file1' 'file 2'",
 		"GIT_COMMITTER_NAME=a GIT_COMMITTER_EMAIL=a@a.com GIT_COMMITTER_DATE=2018-05-06T19:20:21Z git commit -m commit3 --author='a <a@a.com>' --date 2018-05-06T19:20:21Z",
 	}
-	tests := map[string]struct {
-		repo                 gitserver.Repo
-		first, second, third api.CommitID
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"git cmd": {
 			repo:   MakeGitRepository(t, gitCommands...),
 			first:  "b6602ca96bdc0ab647278577a3c6edcb8fe18fb0",
@@ -317,9 +314,7 @@ func TestRepository_FileSystem_quoteChars(t *testing.T) {
 		`git add ⊗.txt '".txt' \\.txt`,
 		"GIT_COMMITTER_NAME=a GIT_COMMITTER_EMAIL=a@a.com GIT_COMMITTER_DATE=2006-01-02T15:04:05Z git commit -m commit1 --author='a <a@a.com>' --date 2006-01-02T15:04:05Z",
 	}
-	tests := map[string]struct {
-		repo gitserver.Repo
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"git cmd (quotepath=on)": {
 			repo: MakeGitRepository(t, append([]string{"git config core.quotepath on"}, gitCommands...)...),
 		},
@@ -378,9 +373,7 @@ func TestRepository_FileSystem_gitSubmodules(t *testing.T) {
 		"git submodule add " + filepath.ToSlash(submodDir) + " submod",
 		"GIT_COMMITTER_NAME=a GIT_COMMITTER_EMAIL=a@a.com GIT_COMMITTER_DATE=2006-01-02T15:04:05Z git commit -m 'add submodule' --author='a <a@a.com>' --date 2006-01-02T15:04:05Z",
 	}
-	tests := map[string]struct {
-		repo gitserver.Repo
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"git cmd": {
 			repo: MakeGitRepository(t, gitCommands...),
 		},

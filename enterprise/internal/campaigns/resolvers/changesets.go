@@ -26,9 +26,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/vcs/git"
 )
 
-type changesetsConnectionStatsResolver struct {
-	unpublished, open, merged, closed, total int32
-}
+type changesetsConnectionStatsResolver struct { /* all structs must go */ }
 
 func (r *changesetsConnectionStatsResolver) Unpublished() int32 {
 	return r.unpublished
@@ -46,24 +44,7 @@ func (r *changesetsConnectionStatsResolver) Total() int32 {
 	return r.total
 }
 
-type changesetsConnectionResolver struct {
-	store       *ee.Store
-	httpFactory *httpcli.Factory
-
-	opts ee.ListChangesetsOpts
-	// 🚨 SECURITY: If the given opts do not reveal hidden information about a
-	// changeset by including the changeset in the result set, this should be
-	// set to true.
-	optsSafe bool
-
-	// cache results because they are used by multiple fields
-	once           sync.Once
-	changesets     []*campaigns.Changeset
-	scheduledSyncs map[int64]time.Time
-	reposByID      map[api.RepoID]*types.Repo
-	next           int64
-	err            error
-}
+type changesetsConnectionResolver struct { /* all structs must go */ }
 
 func (r *changesetsConnectionResolver) Nodes(ctx context.Context) ([]graphqlbackend.ChangesetResolver, error) {
 	changesets, reposByID, _, err := r.compute(ctx)
@@ -186,36 +167,7 @@ func (r *changesetsConnectionResolver) Stats(ctx context.Context) (graphqlbacken
 	return &changesetsConnectionStatsResolver{}, nil
 }
 
-type changesetResolver struct {
-	store       *ee.Store
-	httpFactory *httpcli.Factory
-
-	changeset *campaigns.Changeset
-
-	attemptedPreloadRepo bool
-	preloadedRepo        *types.Repo
-
-	// cache repo because it's called more than once
-	repoOnce sync.Once
-	repo     *graphqlbackend.RepositoryResolver
-	repoErr  error
-	// The context with which we try to load the repository if it's not
-	// preloaded. We need an extra field for that, because the
-	// ToExternalChangeset/ToHiddenExternalChangeset methods cannot take a
-	// context.Context without graphql-go panic'ing.
-	repoCtx context.Context
-
-	// cache changeset events as they are used more than once
-	eventsOnce sync.Once
-	events     ee.ChangesetEvents
-	eventsErr  error
-
-	// When the next sync is scheduled
-	preloadedNextSyncAt *time.Time
-	nextSyncAtOnce      sync.Once
-	nextSyncAt          time.Time
-	nextSyncAtErr       error
-}
+type changesetResolver struct { /* all structs must go */ }
 
 const changesetIDKind = "Changeset"
 
@@ -460,9 +412,7 @@ func (r *changesetResolver) Labels(ctx context.Context) ([]graphqlbackend.Change
 	return resolvers, nil
 }
 
-func (r *changesetResolver) Events(ctx context.Context, args *struct {
-	graphqlutil.ConnectionArgs
-}) (graphqlbackend.ChangesetEventsConnectionResolver, error) {
+func (r *changesetResolver) Events(ctx context.Context, args *struct { /* all structs must go */ }) (graphqlbackend.ChangesetEventsConnectionResolver, error) {
 	// TODO: We already need to fetch all events for ReviewState and Labels
 	// perhaps we can use the cached data here
 	return &changesetEventsConnectionResolver{
@@ -624,9 +574,7 @@ func (r *changesetResolver) commitID(ctx context.Context, repo *graphqlbackend.R
 	return git.ResolveRevision(ctx, *grepo, nil, refName, git.ResolveRevisionOptions{})
 }
 
-type changesetLabelResolver struct {
-	label campaigns.ChangesetLabel
-}
+type changesetLabelResolver struct { /* all structs must go */ }
 
 func (r *changesetLabelResolver) Text() string {
 	return r.label.Name

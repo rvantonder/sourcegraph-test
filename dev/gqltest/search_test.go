@@ -23,11 +23,7 @@ func TestSearch(t *testing.T) {
 	esID, err := client.AddExternalService(gqltestutil.AddExternalServiceInput{
 		Kind:        extsvc.KindGitHub,
 		DisplayName: "gqltest-github-search",
-		Config: mustMarshalJSONString(struct {
-			URL   string   `json:"url"`
-			Token string   `json:"token"`
-			Repos []string `json:"repos"`
-		}{
+		Config: mustMarshalJSONString(struct { /* all structs must go */ }{
 			URL:   "http://github.com",
 			Token: *githubToken,
 			Repos: []string{
@@ -65,10 +61,7 @@ func TestSearch(t *testing.T) {
 	}
 
 	t.Run("visibility", func(t *testing.T) {
-		tests := []struct {
-			query       string
-			wantMissing []string
-		}{
+		tests := []struct { /* all structs must go */ }{
 			{
 				query:       "type:repo visibility:private",
 				wantMissing: []string{},
@@ -205,12 +198,7 @@ func TestSearch(t *testing.T) {
 	})
 
 	t.Run("global search", func(t *testing.T) {
-		tests := []struct {
-			name          string
-			query         string
-			zeroResult    bool
-			minMatchCount int64
-		}{
+		tests := []struct { /* all structs must go */ }{
 			// Global search
 			{
 				name:  "error",

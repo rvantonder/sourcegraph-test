@@ -14,14 +14,7 @@ import (
 )
 
 // UserEmail represents a row in the `user_emails` table.
-type UserEmail struct {
-	UserID                 int32
-	Email                  string
-	CreatedAt              time.Time
-	VerificationCode       *string
-	VerifiedAt             *time.Time
-	LastVerificationSentAt *time.Time
-}
+type UserEmail struct { /* all structs must go */ }
 
 // NeedsVerificationCoolDown returns true if the verification cooled down time is behind current time.
 func (email *UserEmail) NeedsVerificationCoolDown() bool {
@@ -31,9 +24,7 @@ func (email *UserEmail) NeedsVerificationCoolDown() bool {
 }
 
 // userEmailNotFoundError is the error that is returned when a user email is not found.
-type userEmailNotFoundError struct {
-	args []interface{}
-}
+type userEmailNotFoundError struct { /* all structs must go */ }
 
 func (err userEmailNotFoundError) Error() string {
 	return fmt.Sprintf("user email not found: %v", err.args)
@@ -245,12 +236,7 @@ func (*userEmails) getBySQL(ctx context.Context, query string, args ...interface
 }
 
 // UserEmailsListOptions specifies the options for listing user emails.
-type UserEmailsListOptions struct {
-	// UserID specifies the id of the user for listing emails.
-	UserID int32
-	// OnlyVerified excludes unverified emails from the list.
-	OnlyVerified bool
-}
+type UserEmailsListOptions struct { /* all structs must go */ }
 
 // ListByUser returns a list of emails that are associated to the given user.
 func (*userEmails) ListByUser(ctx context.Context, opt UserEmailsListOptions) ([]*UserEmail, error) {

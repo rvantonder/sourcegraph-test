@@ -16,38 +16,10 @@ import (
 
 // archiveReader is like zip.ReadCloser, but it allows us to use a custom
 // closer.
-type archiveReader struct {
-	*zip.Reader
-	io.Closer
-	Evicter
-
-	// StripTopLevelDir specifies whether or not to strip the top level
-	// directory in the zip archive (e.g. GitHub archives always have 1 top
-	// level directory "{repobasename}-{sha}/").
-	StripTopLevelDir bool
-
-	// prefix is the name of the directory that was stripped from the archive
-	// (or "" if nothing was stripped).
-	prefix string
-}
+type archiveReader struct { /* all structs must go */ }
 
 // ArchiveFS is a ctxvfs.FileSystem backed by an Archiver.
-type ArchiveFS struct {
-	fetch func(context.Context) (*archiveReader, error)
-
-	// EvictOnClose when true will evict the underlying archive from the
-	// archive cache when closed.
-	EvictOnClose bool
-
-	once sync.Once
-	err  error // the error encountered during the fetch call (if any)
-	ar   *archiveReader
-	fs   vfs.FileSystem // the zipfs virtual file system
-
-	// We have a mutex for closed to prevent Close and fetch racing.
-	closedMu sync.Mutex
-	closed   bool
-}
+type ArchiveFS struct { /* all structs must go */ }
 
 // fetchOrWait initiates the fetch if it has not yet
 // started. Otherwise it waits for it to finish.

@@ -9,10 +9,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/vcs/git"
 )
 
-type gitRevSpecExpr struct {
-	expr string
-	repo *RepositoryResolver
-}
+type gitRevSpecExpr struct { /* all structs must go */ }
 
 func (r *gitRevSpecExpr) Expr() string { return r.expr }
 
@@ -31,21 +28,13 @@ func (r *gitRevSpecExpr) Object(ctx context.Context) (*gitObject, error) {
 	}, nil
 }
 
-type gitRevSpec struct {
-	ref    *GitRefResolver
-	expr   *gitRevSpecExpr
-	object *gitObject
-}
+type gitRevSpec struct { /* all structs must go */ }
 
 func (r *gitRevSpec) ToGitRef() (*GitRefResolver, bool)         { return r.ref, r.ref != nil }
 func (r *gitRevSpec) ToGitRevSpecExpr() (*gitRevSpecExpr, bool) { return r.expr, r.expr != nil }
 func (r *gitRevSpec) ToGitObject() (*gitObject, bool)           { return r.object, r.object != nil }
 
-type gitRevisionRange struct {
-	expr       string
-	base, head *gitRevSpec
-	mergeBase  *gitObject
-}
+type gitRevisionRange struct { /* all structs must go */ }
 
 func (r *gitRevisionRange) Expr() string      { return r.expr }
 func (r *gitRevisionRange) Base() *gitRevSpec { return r.base }

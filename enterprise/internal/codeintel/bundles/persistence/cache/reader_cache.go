@@ -32,12 +32,7 @@ type ReaderOpener func(key string) (persistence.Reader, error)
 // locks the given reader argument so that it is not closed while in use.
 type HandlerFunc func(reader persistence.Reader) error
 
-type readerCache struct {
-	opener ReaderOpener
-
-	m       sync.RWMutex
-	readers map[string]*readerCacheEntry
-}
+type readerCache struct { /* all structs must go */ }
 
 // NewReaderCache creates a new reader cache with the given reader opener.
 func NewReaderCache(opener ReaderOpener) ReaderCache {
@@ -163,19 +158,7 @@ func makeInitChannel(entry *readerCacheEntry) <-chan struct{} {
 }
 
 // readerCacheEntry wraps a reader with its initialization state and its ref count.
-type readerCacheEntry struct {
-	m           *sync.Mutex        // protects all fields
-	reader      persistence.Reader // shared reader instance
-	err         error              // construction error
-	initialized bool               // set when reader/err fields are set
-	disposed    bool               // set when entry is no longer usable
-	refCount    uint32             // number of references to entry
-
-	// cond wraps the entry's mutex and broadcasts to waiting
-	// goroutines when initialized is first set to true and when
-	// refCount is decremented.
-	cond *sync.Cond
-}
+type readerCacheEntry struct { /* all structs must go */ }
 
 // newReaderCacheEntry creates a new cache entry with a refcount of one.
 func newReaderCacheEntry() *readerCacheEntry {

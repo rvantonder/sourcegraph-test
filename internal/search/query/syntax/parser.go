@@ -5,25 +5,16 @@ import (
 )
 
 // ParseError describes an error in query parsing.
-type ParseError struct {
-	Pos int    // the character position where the error occurred
-	Msg string // description of the error
-}
+type ParseError struct { /* all structs must go */ }
 
 func (e *ParseError) Error() string {
 	return fmt.Sprintf("parse error at character %d: %s", e.Pos, e.Msg)
 }
 
-type parser struct {
-	tokens      []Token
-	pos         int
-	allowErrors bool
-}
+type parser struct { /* all structs must go */ }
 
 // context holds settings active within a given scope during parsing.
-type context struct {
-	field string // name of the field currently in scope (or "")
-}
+type context struct { /* all structs must go */ }
 
 // Parse parses the input string and returns its parse tree. Returned errors are of
 // type *ParseError, which includes the error position and message.

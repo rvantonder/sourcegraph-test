@@ -52,10 +52,7 @@ func (r *schemaResolver) SearchFilterSuggestions(ctx context.Context) (*searchFi
 }
 
 // searchFilterSuggestions holds suggestions of search filters and their default values.
-type searchFilterSuggestions struct {
-	repogroups []string
-	repos      []string
-}
+type searchFilterSuggestions struct { /* all structs must go */ }
 
 // Repogroup returns all repository groups defined in the settings.
 func (s *searchFilterSuggestions) Repogroup() []string {

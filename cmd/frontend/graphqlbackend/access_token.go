@@ -18,9 +18,7 @@ import (
 // UI does not provide any additional functionality. In contrast, GitHub and
 // other services likely allow user accounts to do more than what access tokens
 // alone can via the API.
-type accessTokenResolver struct {
-	accessToken db.AccessToken
-}
+type accessTokenResolver struct { /* all structs must go */ }
 
 func accessTokenByID(ctx context.Context, id graphql.ID) (*accessTokenResolver, error) {
 	accessTokenID, err := unmarshalAccessTokenID(id)

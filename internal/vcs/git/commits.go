@@ -15,44 +15,12 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/trace/ot"
 )
 
-type Commit struct {
-	ID        api.CommitID `json:"ID,omitempty"`
-	Author    Signature    `json:"Author"`
-	Committer *Signature   `json:"Committer,omitempty"`
-	Message   string       `json:"Message,omitempty"`
-	// Parents are the commit IDs of this commit's parent commits.
-	Parents []api.CommitID `json:"Parents,omitempty"`
-}
+type Commit struct { /* all structs must go */ }
 
-type Signature struct {
-	Name  string    `json:"Name,omitempty"`
-	Email string    `json:"Email,omitempty"`
-	Date  time.Time `json:"Date"`
-}
+type Signature struct { /* all structs must go */ }
 
 // CommitsOptions specifies options for (Repository).Commits (Repository).CommitCount.
-type CommitsOptions struct {
-	Range string // commit range (revspec, "A..B", "A...B", etc.)
-
-	N    uint // limit the number of returned commits to this many (0 means no limit)
-	Skip uint // skip this many commits at the beginning
-
-	MessageQuery string // include only commits whose commit message contains this substring
-
-	Author string // include only commits whose author matches this
-	After  string // include only commits after this date
-
-	Path string // only commits modifying the given path are selected (optional)
-
-	// RemoteURLFunc is called to get the Git remote URL if it's not set in
-	// repo and if it is needed. The Git remote URL is only required if the
-	// gitserver doesn't already contain a clone of the repository or if the
-	// commit must be fetched from the remote.
-	RemoteURLFunc func() (string, error)
-
-	// When true we opt out of attempting to fetch missing revisions
-	NoEnsureRevision bool
-}
+type CommitsOptions struct { /* all structs must go */ }
 
 // logEntryPattern is the regexp pattern that matches entries in the output of the `git shortlog
 // -sne` command.
@@ -329,10 +297,7 @@ func parseCommitFromLog(data []byte) (commit *Commit, refs []string, rest []byte
 
 // onelineCommit contains (a subset of the) information about a commit returned
 // by `git log --oneline --source`.
-type onelineCommit struct {
-	sha1      string // sha1 commit ID
-	sourceRef string // `git log --source` source ref
-}
+type onelineCommit struct { /* all structs must go */ }
 
 // parseCommitsFromOnelineLog parses the commits from the output of:
 //

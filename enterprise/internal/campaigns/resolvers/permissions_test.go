@@ -130,12 +130,7 @@ func TestPermissionLevels(t *testing.T) {
 		userCampaignSpec := createCampaignSpec(t, store, userID)
 
 		t.Run("CampaignByID", func(t *testing.T) {
-			tests := []struct {
-				name                    string
-				currentUser             int32
-				campaign                int64
-				wantViewerCanAdminister bool
-			}{
+			tests := []struct { /* all structs must go */ }{
 				{
 					name:                    "site-admin viewing own campaign",
 					currentUser:             adminID,
@@ -189,12 +184,7 @@ func TestPermissionLevels(t *testing.T) {
 		})
 
 		t.Run("CampaignSpecByID", func(t *testing.T) {
-			tests := []struct {
-				name                    string
-				currentUser             int32
-				campaignSpec            string
-				wantViewerCanAdminister bool
-			}{
+			tests := []struct { /* all structs must go */ }{
 				{
 					name:                    "site-admin viewing own campaign spec",
 					currentUser:             adminID,
@@ -248,12 +238,7 @@ func TestPermissionLevels(t *testing.T) {
 		})
 
 		t.Run("Campaigns", func(t *testing.T) {
-			tests := []struct {
-				name                string
-				currentUser         int32
-				viewerCanAdminister bool
-				wantCampaigns       []int64
-			}{
+			tests := []struct { /* all structs must go */ }{
 				{
 					name:                "admin listing viewerCanAdminister: true",
 					currentUser:         adminID,
@@ -298,10 +283,7 @@ func TestPermissionLevels(t *testing.T) {
 						}
 					}
 					}`, tc.viewerCanAdminister, marshalChangesetID(changeset.ID), tc.viewerCanAdminister)
-					var res struct {
-						Campaigns apitest.CampaignConnection
-						Node      apitest.Changeset
-					}
+					var res struct { /* all structs must go */ }
 					apitest.MustExec(actorCtx, t, s, nil, &res, query)
 					for _, conn := range []apitest.CampaignConnection{res.Campaigns, res.Node.Campaigns} {
 						if have, want := conn.TotalCount, len(tc.wantCampaigns); have != want {
@@ -322,10 +304,7 @@ func TestPermissionLevels(t *testing.T) {
 	})
 
 	t.Run("mutations", func(t *testing.T) {
-		mutations := []struct {
-			name         string
-			mutationFunc func(campaignID, changesetID, campaignSpecID string) string
-		}{
+		mutations := []struct { /* all structs must go */ }{
 			{
 				name: "closeCampaign",
 				mutationFunc: func(campaignID, changesetID, campaignSpecID string) string {
@@ -360,12 +339,7 @@ func TestPermissionLevels(t *testing.T) {
 
 		for _, m := range mutations {
 			t.Run(m.name, func(t *testing.T) {
-				tests := []struct {
-					name           string
-					currentUser    int32
-					campaignAuthor int32
-					wantAuthErr    bool
-				}{
+				tests := []struct { /* all structs must go */ }{
 					{
 						name:           "unauthorized",
 						currentUser:    userID,
@@ -669,11 +643,7 @@ func TestRepositoryPermissions(t *testing.T) {
 	})
 }
 
-type wantCampaignResponse struct {
-	changesetTypes   map[string]int
-	changesetsCount  int
-	campaignDiffStat apitest.DiffStat
-}
+type wantCampaignResponse struct { /* all structs must go */ }
 
 func testCampaignResponse(t *testing.T, s *graphql.Schema, ctx context.Context, in map[string]interface{}, w wantCampaignResponse) {
 	t.Helper()
@@ -803,10 +773,7 @@ query {
 }
 `
 
-type wantCampaignSpecResponse struct {
-	changesetSpecTypes  map[string]int
-	changesetSpecsCount int
-}
+type wantCampaignSpecResponse struct { /* all structs must go */ }
 
 func testCampaignSpecResponse(t *testing.T, s *graphql.Schema, ctx context.Context, campaignSpecRandID string, w wantCampaignSpecResponse) {
 	t.Helper()

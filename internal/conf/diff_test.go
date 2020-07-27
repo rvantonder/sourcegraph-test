@@ -9,11 +9,7 @@ import (
 )
 
 func TestDiff(t *testing.T) {
-	tests := []struct {
-		name          string
-		before, after *Unified
-		want          []string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:   "diff",
 			before: &Unified{SiteConfiguration: schema.SiteConfiguration{ExternalURL: "a"}},

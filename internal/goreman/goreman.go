@@ -14,15 +14,7 @@ import (
 )
 
 // -- process information structure.
-type procInfo struct {
-	proc    string
-	cmdline string
-	stopped bool // true if we stopped it
-	cmd     *exec.Cmd
-	mu      sync.Mutex
-	cond    *sync.Cond
-	waitErr error
-}
+type procInfo struct { /* all structs must go */ }
 
 // process informations named with proc.
 var procs map[string]*procInfo
@@ -75,13 +67,7 @@ const (
 // everywhere \o/
 var procDiedAction ProcDiedAction
 
-type Options struct {
-	// RPCAddr is the address to listen for Goreman RPCs.
-	RPCAddr string
-
-	// ProcDiedAction specifies the behaviour to take when a process dies.
-	ProcDiedAction ProcDiedAction
-}
+type Options struct { /* all structs must go */ }
 
 // Start starts up the Procfile.
 func Start(contents []byte, opts Options) error {

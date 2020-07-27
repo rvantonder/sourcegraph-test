@@ -52,14 +52,7 @@ func maxReposToSearch() int {
 	}
 }
 
-type SearchArgs struct {
-	Version        string
-	PatternType    *string
-	Query          string
-	After          *string
-	First          *int32
-	VersionContext *string
-}
+type SearchArgs struct { /* all structs must go */ }
 
 type SearchImplementer interface {
 	Results(context.Context) (*SearchResultsResolver, error)
@@ -279,23 +272,7 @@ func getBoolPtr(b *bool, def bool) bool {
 }
 
 // searchResolver is a resolver for the GraphQL type `Search`
-type searchResolver struct {
-	query          query.QueryInfo       // the query, either containing and/or expressions or otherwise ordinary
-	originalQuery  string                // the raw string of the original search query
-	pagination     *searchPaginationInfo // pagination information, or nil if the request is not paginated.
-	patternType    query.SearchType
-	versionContext *string
-
-	// Cached resolveRepositories results.
-	reposMu                   sync.Mutex
-	repoRevs, missingRepoRevs []*search.RepositoryRevisions
-	excludedRepos             *excludedRepos
-	repoOverLimit             bool
-	repoErr                   error
-
-	zoekt        *searchbackend.Zoekt
-	searcherURLs *endpoint.Map
-}
+type searchResolver struct { /* all structs must go */ }
 
 // rawQuery returns the original query string input.
 func (r *searchResolver) rawQuery() string {
@@ -411,10 +388,7 @@ func exactlyOneRepo(repoFilters []string) bool {
 }
 
 // A type that counts how many repos with a certain label were excluded from search results.
-type excludedRepos struct {
-	forks    int
-	archived int
-}
+type excludedRepos struct { /* all structs must go */ }
 
 // computeExcludedRepositories returns a list of excluded repositories (forks or
 // archives) based on the search query.
@@ -554,10 +528,7 @@ func (r *searchResolver) resolveRepositories(ctx context.Context, effectiveRepoF
 // a patternRevspec maps an include pattern to a list of revisions
 // for repos matching that pattern. "map" in this case does not mean
 // an actual map, because we want regexp matches, not identity matches.
-type patternRevspec struct {
-	includePattern *regexp.Regexp
-	revs           []search.RevisionSpecifier
-}
+type patternRevspec struct { /* all structs must go */ }
 
 // given a repo name, determine whether it matched any patterns for which we have
 // revspecs (or ref globs), and if so, return the matching/allowed ones.
@@ -644,20 +615,7 @@ func findPatternRevs(includePatterns []string) (includePatternRevs []patternRevs
 	return
 }
 
-type resolveRepoOp struct {
-	repoFilters        []string
-	minusRepoFilters   []string
-	repoGroupFilters   []string
-	versionContextName string
-	noForks            bool
-	onlyForks          bool
-	noArchived         bool
-	onlyArchived       bool
-	commitAfter        string
-	onlyPrivate        bool
-	onlyPublic         bool
-	query              query.QueryInfo
-}
+type resolveRepoOp struct { /* all structs must go */ }
 
 func resolveRepositories(ctx context.Context, op resolveRepoOp) (repoRevisions, missingRepoRevisions []*search.RepositoryRevisions, overLimit bool, excludedRepos *excludedRepos, err error) {
 	tr, ctx := trace.New(ctx, "resolveRepositories", fmt.Sprintf("%+v", op))
@@ -1006,9 +964,7 @@ func unionRegExps(patterns []string) string {
 	return strings.Join(patterns2, "|")
 }
 
-type badRequestError struct {
-	err error
-}
+type badRequestError struct { /* all structs must go */ }
 
 func (e *badRequestError) BadRequest() bool {
 	return true
@@ -1023,16 +979,7 @@ func (e *badRequestError) Cause() error {
 }
 
 // searchSuggestionResolver is a resolver for the GraphQL union type `SearchSuggestion`
-type searchSuggestionResolver struct {
-	// result is either a RepositoryResolver or a GitTreeEntryResolver
-	result interface{}
-	// score defines how well this item matches the query for sorting purposes
-	score int
-	// length holds the length of the item name as a second sorting criterium
-	length int
-	// label to sort alphabetically by when all else is equal.
-	label string
-}
+type searchSuggestionResolver struct { /* all structs must go */ }
 
 func (r *searchSuggestionResolver) ToRepository() (*RepositoryResolver, bool) {
 	res, ok := r.result.(*RepositoryResolver)

@@ -28,10 +28,7 @@ func TestSearchFilterSuggestions(t *testing.T) {
 	}
 	defer func() { db.Mocks.Repos.List = nil }()
 
-	tests := []struct {
-		want     *searchFilterSuggestions
-		globbing bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{want: &searchFilterSuggestions{
 			repogroups: []string{"repogroup1", "repogroup2"},
 			repos:      []string{"^bar-repo$", `^github\.com/foo/repo$`}},

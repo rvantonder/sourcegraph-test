@@ -116,12 +116,7 @@ func TestServicePermissionLevels(t *testing.T) {
 		}
 	}
 
-	tests := []struct {
-		name           string
-		campaignAuthor int32
-		currentUser    int32
-		assertFunc     func(t *testing.T, err error)
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:           "unauthorized user",
 			campaignAuthor: user.ID,

@@ -21,10 +21,7 @@ func init() {
 }
 
 // A LoggedTransport prints URLs and timings for each HTTP request.
-type LoggedTransport struct {
-	io.Writer                   // destination of output
-	Transport http.RoundTripper // underlying transport (or default if nil)
-}
+type LoggedTransport struct { /* all structs must go */ }
 
 func (t *LoggedTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 	var u http.RoundTripper

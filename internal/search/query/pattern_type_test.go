@@ -6,10 +6,7 @@ import (
 )
 
 func TestConvertToLiteral(t *testing.T) {
-	tests := []struct {
-		input string
-		want  string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{"", ""},
 		{" ", ""},
 		{"  ", ""},
@@ -61,10 +58,7 @@ func TestConvertToLiteral(t *testing.T) {
 }
 
 func TestTokenize(t *testing.T) {
-	tests := []struct {
-		input string
-		want  []string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{"", nil},
 		{" ", []string{" "}},
 		{"a", []string{"a"}},

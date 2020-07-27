@@ -10,12 +10,7 @@ import (
 type excludeFunc func(string) bool
 
 // excludeBuilder builds an excludeFunc.
-type excludeBuilder struct {
-	exact    map[string]struct{}
-	patterns []*regexp.Regexp
-
-	err error
-}
+type excludeBuilder struct { /* all structs must go */ }
 
 // Exact will case-insensitively exclude the string name.
 func (e *excludeBuilder) Exact(name string) {

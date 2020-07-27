@@ -97,10 +97,7 @@ func fsync(path string) error {
 	return err
 }
 
-type gzipReadCloser struct {
-	f *os.File
-	r *gzip.Reader
-}
+type gzipReadCloser struct { /* all structs must go */ }
 
 func (z *gzipReadCloser) Read(p []byte) (int, error) {
 	return z.r.Read(p)

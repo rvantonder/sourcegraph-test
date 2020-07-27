@@ -120,10 +120,7 @@ func TestSyncSearchers(t *testing.T) {
 	var endpoints atomicMap
 	endpoints.Store(prefixMap{"a"})
 
-	type mock struct {
-		mockSearcher
-		dialNum int
-	}
+	type mock struct { /* all structs must go */ }
 
 	dialNumCounter := 0
 	searcher := &HorizontalSearcher{
@@ -170,11 +167,7 @@ func TestDedupper(t *testing.T) {
 		}
 		return fms
 	}
-	cases := []struct {
-		name    string
-		matches []string
-		want    string
-	}{{
+	cases := []struct { /* all structs must go */ }{{
 		name: "empty",
 		matches: []string{
 			"",
@@ -299,12 +292,7 @@ func backgroundSearch(searcher zoekt.Searcher) func(t *testing.T) {
 	}
 }
 
-type mockSearcher struct {
-	searchResult *zoekt.SearchResult
-	searchError  error
-	listResult   *zoekt.RepoList
-	listError    error
-}
+type mockSearcher struct { /* all structs must go */ }
 
 func (s *mockSearcher) Search(context.Context, query.Q, *zoekt.SearchOptions) (*zoekt.SearchResult, error) {
 	res := s.searchResult
@@ -327,9 +315,7 @@ func (*mockSearcher) String() string {
 	return "mockSearcher"
 }
 
-type atomicMap struct {
-	atomic.Value
-}
+type atomicMap struct { /* all structs must go */ }
 
 func (m *atomicMap) Endpoints() (map[string]struct{}, error) {
 	return m.Value.Load().(EndpointMap).Endpoints()

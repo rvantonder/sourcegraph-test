@@ -23,12 +23,7 @@ import (
 func TestExternalService_Exclude(t *testing.T) {
 	now := time.Now()
 
-	type testCase struct {
-		name   string
-		svcs   ExternalServices
-		repos  Repos
-		assert ExternalServicesAssertion
-	}
+	type testCase struct { /* all structs must go */ }
 
 	githubService := ExternalService{
 		Kind:        extsvc.KindGitHub,
@@ -515,11 +510,7 @@ func TestSyncRateLimiters(t *testing.T) {
 
 	baseURL := "http://gitlab.com/"
 
-	type limitOptions struct {
-		includeLimit bool
-		enabled      bool
-		perHour      float64
-	}
+	type limitOptions struct { /* all structs must go */ }
 
 	makeLister := func(options ...limitOptions) *MockExternalServicesLister {
 		services := make([]*ExternalService, 0, len(options))
@@ -555,11 +546,7 @@ func TestSyncRateLimiters(t *testing.T) {
 		}
 	}
 
-	for _, tc := range []struct {
-		name    string
-		options []limitOptions
-		want    rate.Limit
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{
 			name:    "No limiters defined",
 			options: []limitOptions{},
@@ -691,9 +678,7 @@ func TestSyncRateLimiters(t *testing.T) {
 	}
 }
 
-type MockExternalServicesLister struct {
-	listExternalServices func(context.Context, StoreListExternalServicesArgs) ([]*ExternalService, error)
-}
+type MockExternalServicesLister struct { /* all structs must go */ }
 
 func (m MockExternalServicesLister) ListExternalServices(ctx context.Context, args StoreListExternalServicesArgs) ([]*ExternalService, error) {
 	return m.listExternalServices(ctx, args)

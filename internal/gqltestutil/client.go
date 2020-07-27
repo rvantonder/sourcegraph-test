@@ -90,14 +90,7 @@ func extractCSRFToken(body string) string {
 // Client is an authenticated client for a Sourcegraph user for doing e2e testing.
 // The user may or may not be a site admin depends on how the client is instantiated.
 // It works by simulating how the browser would send HTTP requests to the server.
-type Client struct {
-	baseURL       string
-	csrfToken     string
-	csrfCookie    *http.Cookie
-	sessionCookie *http.Cookie
-
-	userID string
-}
+type Client struct { /* all structs must go */ }
 
 // newClient instantiates a new client by performing a GET request then obtains the
 // CSRF token and cookie from its response.
@@ -196,13 +189,7 @@ func (c *Client) CurrentUserID(token string) (string, error) {
 		}
 	}
 `
-	var resp struct {
-		Data struct {
-			CurrentUser struct {
-				ID string `json:"id"`
-			} `json:"currentUser"`
-		} `json:"data"`
-	}
+	var resp struct { /* all structs must go */ }
 	err := c.GraphQL(token, query, nil, &resp)
 	if err != nil {
 		return "", errors.Wrap(err, "request GraphQL")
@@ -256,11 +243,7 @@ func (c *Client) GraphQL(token, query string, variables map[string]interface{}, 
 	// Check if the response format should be JSON
 	if strings.Contains(resp.Header.Get("Content-Type"), "application/json") {
 		// Try and see unmarshalling to errors
-		var errResp struct {
-			Errors []struct {
-				Message string `json:"message"`
-			} `json:"errors"`
-		}
+		var errResp struct { /* all structs must go */ }
 		err = jsoniter.Unmarshal(body, &errResp)
 		if err != nil {
 			return errors.Wrap(err, "unmarshal response body to errors")

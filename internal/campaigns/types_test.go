@@ -84,11 +84,7 @@ func TestChangesetMetadata(t *testing.T) {
 }
 
 func TestChangesetEvents(t *testing.T) {
-	type testCase struct {
-		name      string
-		changeset Changeset
-		events    []*ChangesetEvent
-	}
+	type testCase struct { /* all structs must go */ }
 
 	var cases []testCase
 
@@ -358,10 +354,7 @@ func TestChangesetDiffStat(t *testing.T) {
 		deleted int32 = 99
 	)
 
-	for name, tc := range map[string]struct {
-		c    Changeset
-		want *diff.Stat
-	}{
+	for name, tc := range map[string]struct { /* all structs must go */ }{
 		"added missing": {
 			c: Changeset{
 				DiffStatAdded:   nil,
@@ -412,10 +405,7 @@ func TestChangesetDiffStat(t *testing.T) {
 	}
 }
 
-type changesetSyncStateTestCase struct {
-	state [2]ChangesetSyncState
-	want  bool
-}
+type changesetSyncStateTestCase struct { /* all structs must go */ }
 
 func TestChangesetSyncStateEquals(t *testing.T) {
 	testCases := make(map[string]changesetSyncStateTestCase)
@@ -464,10 +454,7 @@ func TestChangesetSyncStateEquals(t *testing.T) {
 }
 
 func TestChangeset_SetMetadata(t *testing.T) {
-	for name, tc := range map[string]struct {
-		meta interface{}
-		want *Changeset
-	}{
+	for name, tc := range map[string]struct { /* all structs must go */ }{
 		"bitbucketserver": {
 			meta: &bitbucketserver.PullRequest{
 				ID:          12345,
@@ -620,10 +607,7 @@ func TestChangeset_Body(t *testing.T) {
 }
 
 func TestChangeset_externalState(t *testing.T) {
-	for name, tc := range map[string]struct {
-		meta interface{}
-		want ChangesetExternalState
-	}{
+	for name, tc := range map[string]struct { /* all structs must go */ }{
 		"bitbucketserver: declined": {
 			meta: &bitbucketserver.PullRequest{
 				State: "DECLINED",
@@ -711,14 +695,8 @@ func TestChangeset_URL(t *testing.T) {
 	want := "foo"
 	for name, meta := range map[string]interface{}{
 		"bitbucketserver": &bitbucketserver.PullRequest{
-			Links: struct {
-				Self []struct {
-					Href string `json:"href"`
-				} `json:"self"`
-			}{
-				Self: []struct {
-					Href string `json:"href"`
-				}{{Href: want}},
+			Links: struct { /* all structs must go */ }{
+				Self: []struct { /* all structs must go */ }{{Href: want}},
 			},
 		},
 		"GitHub": &github.PullRequest{
@@ -749,10 +727,7 @@ func TestChangeset_URL(t *testing.T) {
 }
 
 func TestChangeset_HeadRefOid(t *testing.T) {
-	for name, tc := range map[string]struct {
-		meta interface{}
-		want string
-	}{
+	for name, tc := range map[string]struct { /* all structs must go */ }{
 		"bitbucketserver": {
 			meta: &bitbucketserver.PullRequest{},
 			want: "",
@@ -789,10 +764,7 @@ func TestChangeset_HeadRefOid(t *testing.T) {
 }
 
 func TestChangeset_HeadRef(t *testing.T) {
-	for name, tc := range map[string]struct {
-		meta interface{}
-		want string
-	}{
+	for name, tc := range map[string]struct { /* all structs must go */ }{
 		"bitbucketserver": {
 			meta: &bitbucketserver.PullRequest{
 				FromRef: bitbucketserver.Ref{ID: "foo"},
@@ -831,10 +803,7 @@ func TestChangeset_HeadRef(t *testing.T) {
 }
 
 func TestChangeset_BaseRefOid(t *testing.T) {
-	for name, tc := range map[string]struct {
-		meta interface{}
-		want string
-	}{
+	for name, tc := range map[string]struct { /* all structs must go */ }{
 		"bitbucketserver": {
 			meta: &bitbucketserver.PullRequest{},
 			want: "",
@@ -871,10 +840,7 @@ func TestChangeset_BaseRefOid(t *testing.T) {
 }
 
 func TestChangeset_BaseRef(t *testing.T) {
-	for name, tc := range map[string]struct {
-		meta interface{}
-		want string
-	}{
+	for name, tc := range map[string]struct { /* all structs must go */ }{
 		"bitbucketserver": {
 			meta: &bitbucketserver.PullRequest{
 				ToRef: bitbucketserver.Ref{ID: "foo"},
@@ -913,10 +879,7 @@ func TestChangeset_BaseRef(t *testing.T) {
 }
 
 func TestChangeset_Labels(t *testing.T) {
-	for name, tc := range map[string]struct {
-		meta interface{}
-		want []ChangesetLabel
-	}{
+	for name, tc := range map[string]struct { /* all structs must go */ }{
 		"bitbucketserver": {
 			meta: &bitbucketserver.PullRequest{},
 			want: []ChangesetLabel{},
@@ -971,11 +934,7 @@ func TestChangeset_Labels(t *testing.T) {
 }
 
 func TestChangesetSpecUnmarshalValidate(t *testing.T) {
-	tests := []struct {
-		name    string
-		rawSpec string
-		err     string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "valid ExistingChangesetReference",
 			rawSpec: `{
@@ -1081,11 +1040,7 @@ func TestChangesetSpecUnmarshalValidate(t *testing.T) {
 }
 
 func TestCampaignSpecUnmarshalValidate(t *testing.T) {
-	tests := []struct {
-		name    string
-		rawSpec string
-		err     string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "valid",
 			rawSpec: `{

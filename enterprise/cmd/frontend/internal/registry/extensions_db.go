@@ -20,44 +20,12 @@ import (
 // It is the internal form of github.com/sourcegraph/sourcegraph/internal/registry.Extension (which is
 // the external API type). These types should generally be kept in sync, but registry.Extension
 // updates require backcompat.
-type dbExtension struct {
-	ID        int32
-	UUID      string
-	Publisher dbPublisher
-	Name      string
-	CreatedAt time.Time
-	UpdatedAt time.Time
-
-	// NonCanonicalExtensionID is the denormalized fully qualified extension ID
-	// ("[registry/]publisher/name" format), using the username/name of the extension's publisher
-	// (joined from another table) as of when the query executed. Do not persist this, because the
-	// (denormalized) registry and publisher names can change.
-	//
-	// If this value is obtained directly from a method on RegistryExtensions, this field will never
-	// contain the registry name prefix (which is necessary to distinguish local extensions from
-	// remote extensions). Call prefixLocalExtensionID to add it. The recommended way to apply this
-	// automatically (when needed) is to use registry.GetExtensionByExtensionID instead of
-	// (dbExtensions).GetByExtensionID.
-	NonCanonicalExtensionID string
-
-	// NonCanonicalRegistry is the denormalized registry name (as of when this field was set). This
-	// field is only set by prefixLocalExtensionID and is always empty if this value is obtained
-	// directly from a method on RegistryExtensions. Do not persist this value, because the
-	// (denormalized) registry name can change.
-	NonCanonicalRegistry string
-
-	// NonCanonicalIsWorkInProgress is whether this extension was marked as a WIP extension when it
-	// was fetched. This information comes from a separate table (registry_extension_releases, not
-	// registry_extensions), so it is not canonical.
-	NonCanonicalIsWorkInProgress bool
-}
+type dbExtension struct { /* all structs must go */ }
 
 type dbExtensions struct{}
 
 // extensionNotFoundError occurs when an extension is not found in the extension registry.
-type extensionNotFoundError struct {
-	args []interface{}
-}
+type extensionNotFoundError struct { /* all structs must go */ }
 
 // NotFound implements errcode.NotFounder.
 func (err extensionNotFoundError) NotFound() bool { return true }
@@ -180,14 +148,7 @@ func (s dbExtensions) GetByExtensionID(ctx context.Context, extensionID string) 
 }
 
 // dbExtensionsListOptions contains options for listing registry extensions.
-type dbExtensionsListOptions struct {
-	Publisher              dbPublisher
-	Query                  string // matches the extension ID and latest release's manifest's title
-	Category               string // matches the latest release's manifest's categories array
-	Tag                    string // matches the latest release's manifest's tags array
-	PrioritizeExtensionIDs []string
-	*db.LimitOffset
-}
+type dbExtensionsListOptions struct { /* all structs must go */ }
 
 // extensionIsWIPExpr is the SQL expression for whether the extension is a WIP extension.
 //
@@ -364,11 +325,4 @@ func (dbExtensions) Delete(ctx context.Context, id int32) error {
 }
 
 // mockExtensions mocks the registry extensions store.
-type mockExtensions struct {
-	Create           func(publisherUserID, publisherOrgID int32, name string) (int32, error)
-	GetByID          func(id int32) (*dbExtension, error)
-	GetByUUID        func(uuid string) (*dbExtension, error)
-	GetByExtensionID func(extensionID string) (*dbExtension, error)
-	Update           func(id int32, name *string) error
-	Delete           func(id int32) error
-}
+type mockExtensions struct { /* all structs must go */ }

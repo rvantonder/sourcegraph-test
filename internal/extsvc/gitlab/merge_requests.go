@@ -23,38 +23,9 @@ const (
 	MergeRequestStateMerged MergeRequestState = "merged"
 )
 
-type MergeRequest struct {
-	ID           ID                `json:"id"`
-	IID          ID                `json:"iid"`
-	ProjectID    ID                `json:"project_id"`
-	Title        string            `json:"title"`
-	Description  string            `json:"description"`
-	State        MergeRequestState `json:"state"`
-	CreatedAt    time.Time         `json:"created_at"`
-	UpdatedAt    time.Time         `json:"updated_at"`
-	MergedAt     *time.Time        `json:"merged_at"`
-	ClosedAt     *time.Time        `json:"closed_at"`
-	HeadPipeline *Pipeline         `json:"head_pipeline"`
-	Labels       []string          `json:"labels"`
-	SourceBranch string            `json:"source_branch"`
-	TargetBranch string            `json:"target_branch"`
-	WebURL       string            `json:"web_url"`
+type MergeRequest struct { /* all structs must go */ }
 
-	DiffRefs DiffRefs `json:"diff_refs"`
-
-	// The fields below are computed from other REST API requests when getting a
-	// Merge Request. Once our minimum version is GitLab 12.0, we can use the
-	// GraphQL API to retrieve all of this data at once, but until then, we have
-	// to do it the old fashioned way with lots of REST requests.
-	Notes     []*Note
-	Pipelines []*Pipeline
-}
-
-type DiffRefs struct {
-	BaseSHA  string `json:"base_sha"`
-	HeadSHA  string `json:"head_sha"`
-	StartSHA string `json:"start_sha"`
-}
+type DiffRefs struct { /* all structs must go */ }
 
 var (
 	ErrMergeRequestAlreadyExists = errors.New("merge request already exists")
@@ -62,14 +33,7 @@ var (
 	ErrTooManyMergeRequests      = errors.New("retrieved too many merge requests")
 )
 
-type CreateMergeRequestOpts struct {
-	SourceBranch string `json:"source_branch"`
-	TargetBranch string `json:"target_branch"`
-	Title        string `json:"title"`
-	Description  string `json:"description,omitempty"`
-	// TODO: other fields at
-	// https://docs.gitlab.com/ee/api/merge_requests.html#create-mr as needed.
-}
+type CreateMergeRequestOpts struct { /* all structs must go */ }
 
 func (c *Client) CreateMergeRequest(ctx context.Context, project *Project, opts CreateMergeRequestOpts) (*MergeRequest, error) {
 	if MockCreateMergeRequest != nil {
@@ -158,12 +122,7 @@ func (c *Client) GetOpenMergeRequestByRefs(ctx context.Context, project *Project
 	return c.GetMergeRequest(ctx, project, resp[0].IID)
 }
 
-type UpdateMergeRequestOpts struct {
-	TargetBranch string                       `json:"target_branch"`
-	Title        string                       `json:"title"`
-	Description  string                       `json:"description,omitempty"`
-	StateEvent   UpdateMergeRequestStateEvent `json:"state_event,omitempty"`
-}
+type UpdateMergeRequestOpts struct { /* all structs must go */ }
 
 type UpdateMergeRequestStateEvent string
 

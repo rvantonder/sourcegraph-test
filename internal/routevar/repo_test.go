@@ -16,10 +16,7 @@ func TestRepoPattern(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	tests := []struct {
-		input     string
-		wantMatch bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{"foo", true},
 		{"foo/bar", true},
 		{"foo.com/bar", true},
@@ -67,10 +64,7 @@ func TestRevPattern(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	tests := []struct {
-		input     string
-		wantMatch bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{"v", true},
 		{"v/v", true},
 		{"my/branch/name", true},
@@ -94,11 +88,7 @@ func TestRepo(t *testing.T) {
 	r := mux.NewRouter()
 	r.Path("/" + Repo)
 
-	tests := []struct {
-		path        string
-		wantNoMatch bool
-		wantVars    map[string]string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{path: "/foo", wantVars: map[string]string{"Repo": "foo"}},
 		{path: "/foo.com/bar", wantVars: map[string]string{"Repo": "foo.com/bar"}},
 
@@ -137,11 +127,7 @@ func TestRev(t *testing.T) {
 	r := mux.NewRouter()
 	r.Path("/" + Rev)
 
-	tests := []struct {
-		path        string
-		wantNoMatch bool
-		wantVars    map[string]string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{path: "/v", wantVars: map[string]string{"Rev": "v"}},
 		{path: "/v/v/v", wantVars: map[string]string{"Rev": "v/v/v"}},
 
@@ -172,10 +158,7 @@ func TestRev(t *testing.T) {
 }
 
 func TestRepoRevSpec(t *testing.T) {
-	tests := []struct {
-		spec      RepoRev
-		routeVars map[string]string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{RepoRev{Repo: "a.com/x", Rev: "r"}, map[string]string{"Repo": "a.com/x", "Rev": "@r"}},
 		{RepoRev{Repo: "x", Rev: "r"}, map[string]string{"Repo": "x", "Rev": "@r"}},
 	}

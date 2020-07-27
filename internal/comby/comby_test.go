@@ -36,10 +36,7 @@ func main() {
 	}
 	defer cleanup()
 
-	cases := []struct {
-		args Args
-		want string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			args: Args{
 				Input:         ZipPath(zipPath),
@@ -94,10 +91,7 @@ func main() {
 	}
 	defer cleanup()
 
-	cases := []struct {
-		args Args
-		want string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			args: Args{
 				Input:           ZipPath(zipPath),

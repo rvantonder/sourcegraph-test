@@ -15,10 +15,7 @@ import (
 
 // registryExtensionNamesForTests is a list of test cases containing valid and invalid registry
 // extension names.
-var registryExtensionNamesForTests = []struct {
-	name      string
-	wantValid bool
-}{
+var registryExtensionNamesForTests = []struct { /* all structs must go */ }{
 	{"", false},
 	{"a", true},
 	{"-a", false},
@@ -172,10 +169,7 @@ func TestRegistryExtensions(t *testing.T) {
 		}
 	})
 
-	publishers := map[string]struct {
-		publisherUserID, publisherOrgID int32
-		publisherName                   string
-	}{
+	publishers := map[string]struct { /* all structs must go */ }{
 		"user": {publisherUserID: user.ID, publisherName: "u"},
 		"org":  {publisherOrgID: org.ID, publisherName: "o"},
 	}

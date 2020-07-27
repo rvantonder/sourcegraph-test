@@ -93,9 +93,7 @@ func requestWantsTracing(r *http.Request) bool {
 
 // Transport wraps an underlying HTTP RoundTripper, injecting the X-Sourcegraph-Should-Trace header
 // into outgoing requests whenever the shouldTraceKey context value is true.
-type Transport struct {
-	http.RoundTripper
-}
+type Transport struct { /* all structs must go */ }
 
 func (r *Transport) RoundTrip(req *http.Request) (*http.Response, error) {
 	req.Header.Set(traceHeader, strconv.FormatBool(ShouldTrace(req.Context())))

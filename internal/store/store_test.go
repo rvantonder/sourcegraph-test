@@ -125,10 +125,7 @@ func TestIngoreSizeMax(t *testing.T) {
 		"*.foo",
 		"bar.baz",
 	}
-	tests := []struct {
-		name    string
-		ignored bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		// Pass
 		{"foo", true},
 		{"foo.bar", true},

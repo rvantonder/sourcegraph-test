@@ -17,10 +17,7 @@ const rollbackSavepointQuery = "ROLLBACK TO %s"
 // Each savepoint has an identifier unique to that connection and must be referenced by
 // name on finalization. The transactional database handler takes care to finalize the
 // savepoints in the same order they were created for a particular store.
-type savepoint struct {
-	db          dbutil.DB
-	savepointID string
-}
+type savepoint struct { /* all structs must go */ }
 
 func newSavepoint(ctx context.Context, db dbutil.DB) (*savepoint, error) {
 	savepointID, err := makeSavepointID()

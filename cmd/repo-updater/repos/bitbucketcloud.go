@@ -19,12 +19,7 @@ import (
 
 // A BitbucketCloudSource yields repositories from a single BitbucketCloud connection configured
 // in Sourcegraph via the external services configuration.
-type BitbucketCloudSource struct {
-	svc     *ExternalService
-	config  *schema.BitbucketCloudConnection
-	exclude excludeFunc
-	client  *bitbucketcloud.Client
-}
+type BitbucketCloudSource struct { /* all structs must go */ }
 
 // NewBitbucketCloudSource returns a new BitbucketCloudSource from the given external service.
 func NewBitbucketCloudSource(svc *ExternalService, cf *httpcli.Factory) (*BitbucketCloudSource, error) {
@@ -159,10 +154,7 @@ func (s *BitbucketCloudSource) excludes(r *bitbucketcloud.Repo) bool {
 }
 
 func (s *BitbucketCloudSource) listAllRepos(ctx context.Context, results chan SourceResult) {
-	type batch struct {
-		repos []*bitbucketcloud.Repo
-		err   error
-	}
+	type batch struct { /* all structs must go */ }
 
 	ch := make(chan batch)
 

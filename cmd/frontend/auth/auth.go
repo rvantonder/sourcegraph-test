@@ -14,13 +14,7 @@ import (
 const AuthURLPrefix = "/.auth"
 
 // Middleware groups two related middlewares (one for the API, one for the app).
-type Middleware struct {
-	// API is the middleware that performs authentication on the API handler.
-	API func(http.Handler) http.Handler
-
-	// App is the middleware that performs authentication on the app handler.
-	App func(http.Handler) http.Handler
-}
+type Middleware struct { /* all structs must go */ }
 
 var extraAuthMiddlewares []*Middleware
 

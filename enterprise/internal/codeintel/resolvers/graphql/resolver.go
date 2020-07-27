@@ -18,10 +18,7 @@ const DefaultIndexPageSize = 50
 // resolver concerns itself with GraphQL/API-specific behaviors (auth, validation, marshaling, etc.).
 // All code intel-specific behavior is delegated to the underlying resolver instance, which is defined
 // in the parent package.
-type Resolver struct {
-	resolver         resolvers.Resolver
-	locationResolver *CachedLocationResolver
-}
+type Resolver struct { /* all structs must go */ }
 
 // NewResolver creates a new Resolver with the given resolver that defines all code intel-specific behavior.
 func NewResolver(resolver resolvers.Resolver) gql.CodeIntelResolver {

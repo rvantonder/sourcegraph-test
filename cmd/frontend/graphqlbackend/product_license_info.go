@@ -16,11 +16,7 @@ var GetConfiguredProductLicenseInfo = func() (*ProductLicenseInfo, error) {
 }
 
 // ProductLicenseInfo implements the GraphQL type ProductLicenseInfo.
-type ProductLicenseInfo struct {
-	TagsValue      []string
-	UserCountValue uint
-	ExpiresAtValue time.Time
-}
+type ProductLicenseInfo struct { /* all structs must go */ }
 
 func (r ProductLicenseInfo) ProductNameWithBrand() string {
 	return GetProductNameWithBrand(true, r.TagsValue)

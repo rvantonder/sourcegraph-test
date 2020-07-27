@@ -8,10 +8,7 @@ import (
 func TestCache_namespace(t *testing.T) {
 	SetupForTest(t)
 
-	type testcase struct {
-		prefix  string
-		entries map[string]string
-	}
+	type testcase struct { /* all structs must go */ }
 
 	cases := []testcase{
 		{

@@ -10,15 +10,7 @@ import (
 )
 
 // An ObservedCodeIntelAPI wraps another CodeIntelAPI with error logging, Prometheus metrics, and tracing.
-type ObservedCodeIntelAPI struct {
-	codeIntelAPI              CodeIntelAPI
-	findClosestDumpsOperation *observation.Operation
-	rangesOperation           *observation.Operation
-	definitionsOperation      *observation.Operation
-	referencesOperation       *observation.Operation
-	hoverOperation            *observation.Operation
-	diagnosticsOperation      *observation.Operation
-}
+type ObservedCodeIntelAPI struct { /* all structs must go */ }
 
 var _ CodeIntelAPI = &ObservedCodeIntelAPI{}
 

@@ -56,30 +56,7 @@ const (
 )
 
 // Client access a Bitbucket Server via the REST API.
-type Client struct {
-	// HTTP Client used to communicate with the API
-	httpClient httpcli.Doer
-
-	// URL is the base URL of Bitbucket Server.
-	URL *url.URL
-
-	// Token is the personal access token for accessing the
-	// server. https://bitbucket.example.com/plugins/servlet/access-tokens/manage
-	Token string
-
-	// The username and password credentials for accessing the server. Typically these are only
-	// used when the server doesn't support personal access tokens (such as Bitbucket Server
-	// version 5.4 and older). If both Token and Username/Password are specified, Token is used.
-	Username, Password string
-
-	// RateLimit is the self-imposed rate limiter (since Bitbucket does not have a concept
-	// of rate limiting in HTTP response headers).
-	RateLimit *rate.Limiter
-
-	// OAuth client used to authenticate requests, if set via SetOAuth.
-	// Takes precedence over Token and Username / Password authentication.
-	Oauth *oauth.Client
-}
+type Client struct { /* all structs must go */ }
 
 // NewClient returns an authenticated Bitbucket Server API client with
 // the provided configuration. If a nil httpClient is provided, http.DefaultClient
@@ -187,17 +164,7 @@ func (fs UserFilters) EncodeTo(qry url.Values) {
 }
 
 // UserFilter defines a sum type of filters to be used when listing users.
-type UserFilter struct {
-	// Filter filters the returned users to those whose username,
-	// name or email address contain this value.
-	// The API doesn't support exact matches.
-	Filter string
-	// Group filters the returned users to those who are in the give group.
-	Group string
-	// Permission filters the returned users to those having the given
-	// permissions.
-	Permission PermissionFilter
-}
+type UserFilter struct { /* all structs must go */ }
 
 // EncodeTo encodes the UserFilter to the given url.Values.
 func (f UserFilter) EncodeTo(qry url.Values) {
@@ -216,15 +183,7 @@ func (f UserFilter) EncodeTo(qry url.Values) {
 
 // A PermissionFilter is a filter used to list users that have specific
 // permissions.
-type PermissionFilter struct {
-	Root           Perm
-	ProjectID      string
-	ProjectKey     string
-	RepositoryID   string
-	RepositorySlug string
-
-	index int
-}
+type PermissionFilter struct { /* all structs must go */ }
 
 // EncodeTo encodes the PermissionFilter to the given url.Values.
 func (p PermissionFilter) EncodeTo(qry url.Values) {
@@ -279,15 +238,10 @@ func (c *Client) Users(ctx context.Context, pageToken *PageToken, fs ...UserFilt
 func (c *Client) UserPermissions(ctx context.Context, username string) (perms []Perm, _ error) {
 	qry := url.Values{"filter": {username}}
 
-	type permission struct {
-		User       *User `json:"user"`
-		Permission Perm  `json:"permission"`
-	}
+	type permission struct { /* all structs must go */ }
 
 	var ps []permission
-	err := c.send(ctx, "GET", "rest/api/1.0/admin/permissions/users", qry, nil, &struct {
-		Values []permission `json:"values"`
-	}{
+	err := c.send(ctx, "GET", "rest/api/1.0/admin/permissions/users", qry, nil, &struct { /* all structs must go */ }{
 		Values: ps,
 	})
 	if err != nil {
@@ -324,9 +278,7 @@ func (c *Client) LoadUser(ctx context.Context, u *User) error {
 // LoadGroup loads the given Group returning an error in case of failure.
 func (c *Client) LoadGroup(ctx context.Context, g *Group) error {
 	qry := url.Values{"filter": {g.Name}}
-	var groups struct {
-		Values []*Group `json:"values"`
-	}
+	var groups struct { /* all structs must go */ }
 
 	err := c.send(ctx, "GET", "rest/api/1.0/admin/groups", qry, nil, &groups)
 	if err != nil {
@@ -350,10 +302,7 @@ func (c *Client) CreateGroup(ctx context.Context, g *Group) error {
 
 // CreateGroupMembership creates the given Group's membership returning an error in case of failure.
 func (c *Client) CreateGroupMembership(ctx context.Context, g *Group) error {
-	type membership struct {
-		Group string   `json:"group"`
-		Users []string `json:"users"`
-	}
+	type membership struct { /* all structs must go */ }
 	m := &membership{Group: g.Name, Users: g.Users}
 	return c.send(ctx, "POST", "rest/api/1.0/admin/groups/add-users", nil, m, nil)
 }
@@ -393,9 +342,7 @@ func (c *Client) createPermission(ctx context.Context, path, name string, p Perm
 // CreateRepo creates the given Repo returning an error in case of failure.
 func (c *Client) CreateRepo(ctx context.Context, r *Repo) error {
 	path := "rest/api/1.0/projects/" + r.Project.Key + "/repos"
-	return c.send(ctx, "POST", path, nil, r, &struct {
-		Values []*Repo `json:"values"`
-	}{
+	return c.send(ctx, "POST", path, nil, r, &struct { /* all structs must go */ }{
 		Values: []*Repo{r},
 	})
 }
@@ -428,14 +375,7 @@ func (c *Client) LoadPullRequest(ctx context.Context, pr *PullRequest) error {
 	return c.send(ctx, "GET", path, nil, nil, pr)
 }
 
-type UpdatePullRequestInput struct {
-	PullRequestID string `json:"-"`
-	Version       int    `json:"version"`
-
-	Title       string `json:"title"`
-	Description string `json:"description"`
-	ToRef       Ref    `json:"toRef"`
-}
+type UpdatePullRequestInput struct { /* all structs must go */ }
 
 func (c *Client) UpdatePullRequest(ctx context.Context, in *UpdatePullRequestInput) (*PullRequest, error) {
 	path := fmt.Sprintf(
@@ -451,9 +391,7 @@ func (c *Client) UpdatePullRequest(ctx context.Context, in *UpdatePullRequestInp
 
 // ErrAlreadyExists is returned by Client.CreatePullRequest when a Pull Request
 // for the given FromRef and ToRef already exists.
-type ErrAlreadyExists struct {
-	Existing *PullRequest
-}
+type ErrAlreadyExists struct { /* all structs must go */ }
 
 func (e ErrAlreadyExists) Error() string {
 	return "A pull request with the given to and from refs already exists"
@@ -461,10 +399,7 @@ func (e ErrAlreadyExists) Error() string {
 
 // CreatePullRequest creates the given PullRequest returning an error in case of failure.
 func (c *Client) CreatePullRequest(ctx context.Context, pr *PullRequest) error {
-	for _, namedRef := range [...]struct {
-		name string
-		ref  Ref
-	}{
+	for _, namedRef := range [...]struct { /* all structs must go */ }{
 		{"ToRef", pr.ToRef},
 		{"FromRef", pr.FromRef},
 	} {
@@ -479,16 +414,7 @@ func (c *Client) CreatePullRequest(ctx context.Context, pr *PullRequest) error {
 		}
 	}
 
-	type requestBody struct {
-		Title       string `json:"title"`
-		Description string `json:"description"`
-		State       string `json:"state"`
-		Open        bool   `json:"open"`
-		Closed      bool   `json:"closed"`
-		FromRef     Ref    `json:"fromRef"`
-		ToRef       Ref    `json:"toRef"`
-		Locked      bool   `json:"locked"`
-	}
+	type requestBody struct { /* all structs must go */ }
 
 	// Bitbucket Server doesn't support GFM taskitems. But since we might add
 	// those to a PR description for certain Automation Campaigns, we have to
@@ -725,10 +651,7 @@ func (c *Client) page(ctx context.Context, path string, qry url.Values, token *P
 	}
 
 	var next PageToken
-	err = c.do(ctx, req, &struct {
-		*PageToken
-		Values interface{} `json:"values"`
-	}{
+	err = c.do(ctx, req, &struct { /* all structs must go */ }{
 		PageToken: &next,
 		Values:    results,
 	})
@@ -884,13 +807,7 @@ func categorize(u *url.URL) string {
 	}
 }
 
-type PageToken struct {
-	Size          int  `json:"size"`
-	Limit         int  `json:"limit"`
-	IsLastPage    bool `json:"isLastPage"`
-	Start         int  `json:"start"`
-	NextPageStart int  `json:"nextPageStart"`
-}
+type PageToken struct { /* all structs must go */ }
 
 func (t *PageToken) HasMore() bool {
 	if t == nil {
@@ -945,190 +862,51 @@ const (
 )
 
 // User account in a Bitbucket Server instance.
-type User struct {
-	Name         string `json:"name,omitempty"`
-	Password     string `json:"-"`
-	EmailAddress string `json:"emailAddress,omitempty"`
-	ID           int    `json:"id,omitempty"`
-	DisplayName  string `json:"displayName,omitempty"`
-	Active       bool   `json:"active,omitempty"`
-	Slug         string `json:"slug,omitempty"`
-	Type         string `json:"type,omitempty"`
-}
+type User struct { /* all structs must go */ }
 
 // Group of users in a Bitbucket Server instance.
-type Group struct {
-	Name  string   `json:"name,omitempty"`
-	Users []string `json:"users,omitempty"`
-}
+type Group struct { /* all structs must go */ }
 
 // A UserRepoPermission of a User to perform certain actions
 // on a Repo.
-type UserRepoPermission struct {
-	User *User
-	Perm Perm
-	Repo *Repo
-}
+type UserRepoPermission struct { /* all structs must go */ }
 
 // A GroupRepoPermission of a Group to perform certain actions
 // on a Repo.
-type GroupRepoPermission struct {
-	Group *Group
-	Perm  Perm
-	Repo  *Repo
-}
+type GroupRepoPermission struct { /* all structs must go */ }
 
 // A UserProjectPermission of a User to perform certain actions
 // on a Project.
-type UserProjectPermission struct {
-	User    *User
-	Perm    Perm
-	Project *Project
-}
+type UserProjectPermission struct { /* all structs must go */ }
 
 // A GroupProjectPermission of a Group to perform certain actions
 // on a Project.
-type GroupProjectPermission struct {
-	Group   *Group
-	Perm    Perm
-	Project *Project
-}
+type GroupProjectPermission struct { /* all structs must go */ }
 
-type Repo struct {
-	Slug          string   `json:"slug"`
-	ID            int      `json:"id"`
-	Name          string   `json:"name"`
-	SCMID         string   `json:"scmId"`
-	State         string   `json:"state"`
-	StatusMessage string   `json:"statusMessage"`
-	Forkable      bool     `json:"forkable"`
-	Origin        *Repo    `json:"origin"`
-	Project       *Project `json:"project"`
-	Public        bool     `json:"public"`
-	Links         struct {
-		Clone []struct {
-			Href string `json:"href"`
-			Name string `json:"name"`
-		} `json:"clone"`
-		Self []struct {
-			Href string `json:"href"`
-		} `json:"self"`
-	} `json:"links"`
-}
+type Repo struct { /* all structs must go */ }
 
 // IsPersonalRepository tells if the repository is a personal one.
 func (r *Repo) IsPersonalRepository() bool {
 	return r.Project.Type == "PERSONAL"
 }
 
-type Project struct {
-	Key    string `json:"key"`
-	ID     int    `json:"id"`
-	Name   string `json:"name"`
-	Public bool   `json:"public"`
-	Type   string `json:"type"`
-	Links  struct {
-		Self []struct {
-			Href string `json:"href"`
-		} `json:"self"`
-	} `json:"links"`
-}
+type Project struct { /* all structs must go */ }
 
-type Ref struct {
-	ID         string `json:"id"`
-	Repository struct {
-		ID      int    `json:"id"`
-		Slug    string `json:"slug"`
-		Project struct {
-			Key string `json:"key"`
-		} `json:"project"`
-	} `json:"repository"`
-}
+type Ref struct { /* all structs must go */ }
 
-type PullRequest struct {
-	ID          int    `json:"id"`
-	Version     int    `json:"version"`
-	Title       string `json:"title"`
-	Description string `json:"description"`
-	State       string `json:"state"`
-	Open        bool   `json:"open"`
-	Closed      bool   `json:"closed"`
-	CreatedDate int    `json:"createdDate"`
-	UpdatedDate int    `json:"updatedDate"`
-	FromRef     Ref    `json:"fromRef"`
-	ToRef       Ref    `json:"toRef"`
-	Locked      bool   `json:"locked"`
-	Author      struct {
-		User     *User  `json:"user"`
-		Role     string `json:"role"`
-		Approved bool   `json:"approved"`
-		Status   string `json:"status"`
-	} `json:"author"`
-	Reviewers []struct {
-		User               *User  `json:"user"`
-		LastReviewedCommit string `json:"lastReviewedCommit"`
-		Role               string `json:"role"`
-		Approved           bool   `json:"approved"`
-		Status             string `json:"status"`
-	} `json:"reviewers"`
-	Participants []struct {
-		User     *User  `json:"user"`
-		Role     string `json:"role"`
-		Approved bool   `json:"approved"`
-		Status   string `json:"status"`
-	} `json:"participants"`
-	Links struct {
-		Self []struct {
-			Href string `json:"href"`
-		} `json:"self"`
-	} `json:"links"`
-
-	Activities   []*Activity     `json:"activities,omitempty"`
-	Commits      []*Commit       `json:"commits,omitempty"`
-	CommitStatus []*CommitStatus `json:"commit_status,omitempty"`
-
-	// Deprecated, use CommitStatus instead. BuildStatus was not tied to individual commits
-	BuildStatuses []*BuildStatus `json:"buildstatuses,omitempty"`
-}
+type PullRequest struct { /* all structs must go */ }
 
 // Activity is a union type of all supported pull request activity items.
-type Activity struct {
-	ID          int            `json:"id"`
-	CreatedDate int            `json:"createdDate"`
-	User        User           `json:"user"`
-	Action      ActivityAction `json:"action"`
-
-	// Comment activity fields.
-	CommentAction string         `json:"commentAction,omitempty"`
-	Comment       *Comment       `json:"comment,omitempty"`
-	CommentAnchor *CommentAnchor `json:"commentAnchor,omitempty"`
-
-	// Reviewers change fields.
-	AddedReviewers   []User `json:"addedReviewers,omitempty"`
-	RemovedReviewers []User `json:"removedReviewers,omitempty"`
-
-	// Merged event fields.
-	Commit *Commit `json:"commit,omitempty"`
-}
+type Activity struct { /* all structs must go */ }
 
 // Key is a unique key identifying this activity in the context of its pull request.
 func (a *Activity) Key() string { return strconv.Itoa(a.ID) }
 
 // BuildStatus represents the build status of a commit
-type BuildStatus struct {
-	State       string `json:"state,omitempty"`
-	Key         string `json:"key,omitempty"`
-	Name        string `json:"name,omitempty"`
-	Url         string `json:"url,omitempty"`
-	Description string `json:"description,omitempty"`
-	DateAdded   int64  `json:"dateAdded,omitempty"`
-}
+type BuildStatus struct { /* all structs must go */ }
 
 // Commit status is the build status for a specific commit
-type CommitStatus struct {
-	Commit string      `json:"commit,omitempty"`
-	Status BuildStatus `json:"status,omitempty"`
-}
+type CommitStatus struct { /* all structs must go */ }
 
 func (s *CommitStatus) Key() string {
 	key := fmt.Sprintf("%s:%s:%s:%s", s.Commit, s.Status.Key, s.Status.Name, s.Status.Url)
@@ -1153,58 +931,19 @@ const (
 )
 
 // A Comment in a PullRequest.
-type Comment struct {
-	ID                  int                 `json:"id"`
-	Version             int                 `json:"version"`
-	Text                string              `json:"text"`
-	Author              User                `json:"author"`
-	CreatedDate         int                 `json:"createdDate"`
-	UpdatedDate         int                 `json:"updatedDate"`
-	Comments            []Comment           `json:"comments"` // Replies to the comment
-	Tasks               []Task              `json:"tasks"`
-	PermittedOperations PermittedOperations `json:"permittedOperations"`
-}
+type Comment struct { /* all structs must go */ }
 
 // A CommentAnchor captures the location of a code comment in a PullRequest.
-type CommentAnchor struct {
-	FromHash string `json:"fromHash"`
-	ToHash   string `json:"toHash"`
-	Line     int    `json:"line"`
-	LineType string `json:"lineType"`
-	FileType string `json:"fileType"`
-	Path     string `json:"path"`
-	DiffType string `json:"diffType"`
-	Orphaned bool   `json:"orphaned"`
-}
+type CommentAnchor struct { /* all structs must go */ }
 
 // A Task in a PullRequest.
-type Task struct {
-	ID                  int                 `json:"id"`
-	Author              User                `json:"author"`
-	Text                string              `json:"text"`
-	State               string              `json:"state"`
-	CreatedDate         int                 `json:"createdDate"`
-	PermittedOperations PermittedOperations `json:"permittedOperations"`
-}
+type Task struct { /* all structs must go */ }
 
 // PermittedOperations of a Comment or Task.
-type PermittedOperations struct {
-	Editable       bool `json:"editable,omitempty"`
-	Deletable      bool `json:"deletable,omitempty"`
-	Transitionable bool `json:"transitionable,omitempty"`
-}
+type PermittedOperations struct { /* all structs must go */ }
 
 // A Commit in a Repository.
-type Commit struct {
-	ID                 string   `json:"id,omitempty"`
-	DisplayID          string   `json:"displayId,omitempty"`
-	Author             *User    `json:"user,omitempty"`
-	AuthorTimestamp    int64    `json:"authorTimestamp,omitempty"`
-	Committer          *User    `json:"committer,omitempty"`
-	CommitterTimestamp int64    `json:"committerTimestamp,omitempty"`
-	Message            string   `json:"message,omitempty"`
-	Parents            []Commit `json:"parents,omitempty"`
-}
+type Commit struct { /* all structs must go */ }
 
 // IsNotFound reports whether err is a Bitbucket Server API not found error.
 func IsNotFound(err error) bool {
@@ -1244,11 +983,7 @@ func ExtractDuplicatePullRequest(err error) (*PullRequest, error) {
 	return nil, fmt.Errorf("error does not contain existing PR")
 }
 
-type httpError struct {
-	StatusCode int
-	URL        *url.URL
-	Body       []byte
-}
+type httpError struct { /* all structs must go */ }
 
 func (e *httpError) Error() string {
 	return fmt.Sprintf("Bitbucket API HTTP error: code=%d url=%q body=%q", e.StatusCode, e.URL, e.Body)
@@ -1276,12 +1011,7 @@ const (
 )
 
 func (e *httpError) ExtractExistingPullRequest() (*PullRequest, error) {
-	var dest struct {
-		Errors []struct {
-			ExceptionName       string
-			ExistingPullRequest PullRequest
-		}
-	}
+	var dest struct { /* all structs must go */ }
 
 	err := json.Unmarshal(e.Body, &dest)
 	if err != nil {

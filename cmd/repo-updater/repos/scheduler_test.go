@@ -28,10 +28,7 @@ func mockTime(t time.Time) {
 	}
 }
 
-type recording struct {
-	notifications       []chan struct{}
-	timeAfterFuncDelays []time.Duration
-}
+type recording struct { /* all structs must go */ }
 
 func startRecording() (*recording, func()) {
 	var r recording
@@ -63,18 +60,9 @@ func TestUpdateQueue_enqueue(t *testing.T) {
 	d := configuredRepo{ID: 4, Name: "d", URL: "d.com"}
 	e := configuredRepo{ID: 5, Name: "e", URL: "e.com"}
 
-	type enqueueCall struct {
-		repo     configuredRepo
-		priority priority
-	}
+	type enqueueCall struct { /* all structs must go */ }
 
-	tests := []struct {
-		name                  string
-		calls                 []*enqueueCall
-		acquire               int // acquire n updates before assertions
-		expectedUpdates       []*repoUpdate
-		expectedNotifications int
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "enqueue low priority",
 			calls: []*enqueueCall{
@@ -301,17 +289,9 @@ func TestUpdateQueue_remove(t *testing.T) {
 	b := configuredRepo{ID: 2, Name: "b", URL: "b.com"}
 	c := configuredRepo{ID: 3, Name: "c", URL: "c.com"}
 
-	type removeCall struct {
-		repo     configuredRepo
-		updating bool
-	}
+	type removeCall struct { /* all structs must go */ }
 
-	tests := []struct {
-		name         string
-		initialQueue []*repoUpdate
-		removeCalls  []*removeCall
-		finalQueue   []*repoUpdate
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "remove only",
 			initialQueue: []*repoUpdate{
@@ -460,12 +440,7 @@ func TestUpdateQueue_acquireNext(t *testing.T) {
 	a := configuredRepo{ID: 1, Name: "a", URL: "a.com"}
 	b := configuredRepo{ID: 2, Name: "b", URL: "b.com"}
 
-	tests := []struct {
-		name           string
-		initialQueue   []*repoUpdate
-		acquireResults []*configuredRepo
-		finalQueue     []*repoUpdate
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:           "acquire from empty queue returns nil",
 			acquireResults: []*configuredRepo{nil},
@@ -560,14 +535,7 @@ func Test_updateScheduler_UpdateFromDiff(t *testing.T) {
 	a := configuredRepo{ID: 1, Name: "a", URL: "a.com"}
 	b := configuredRepo{ID: 2, Name: "b", URL: "b.com"}
 
-	tests := []struct {
-		name            string
-		initialSchedule []*scheduledRepoUpdate
-		initialQueue    []*repoUpdate
-		diff            Diff
-		finalSchedule   []*scheduledRepoUpdate
-		finalQueue      []*repoUpdate
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "diff with deleted repos",
 			initialSchedule: []*scheduledRepoUpdate{
@@ -665,19 +633,9 @@ func TestSchedule_upsert(t *testing.T) {
 	a2 := configuredRepo{ID: 1, Name: "a2", URL: "a2.com"}
 	b := configuredRepo{ID: 2, Name: "b", URL: "b.com"}
 
-	type upsertCall struct {
-		time time.Time
-		repo configuredRepo
-	}
+	type upsertCall struct { /* all structs must go */ }
 
-	tests := []struct {
-		name                string
-		initialSchedule     []*scheduledRepoUpdate
-		upsertCalls         []*upsertCall
-		finalSchedule       []*scheduledRepoUpdate
-		timeAfterFuncDelays []time.Duration
-		wakeupNotifications int
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "upsert empty schedule",
 			upsertCalls: []*upsertCall{
@@ -849,20 +807,9 @@ func TestSchedule_updateInterval(t *testing.T) {
 	d := configuredRepo{ID: 4, Name: "d", URL: "d.com"}
 	e := configuredRepo{ID: 5, Name: "e", URL: "e.com"}
 
-	type updateCall struct {
-		time     time.Time
-		repo     configuredRepo
-		interval time.Duration
-	}
+	type updateCall struct { /* all structs must go */ }
 
-	tests := []struct {
-		name                string
-		initialSchedule     []*scheduledRepoUpdate
-		updateCalls         []*updateCall
-		finalSchedule       []*scheduledRepoUpdate
-		timeAfterFuncDelays []time.Duration
-		wakeupNotifications int
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "update has no effect if repo isn't in schedule",
 			updateCalls: []*updateCall{
@@ -1025,19 +972,9 @@ func TestSchedule_remove(t *testing.T) {
 	b := configuredRepo{ID: 2, Name: "b", URL: "b.com"}
 	c := configuredRepo{ID: 3, Name: "c", URL: "c.com"}
 
-	type removeCall struct {
-		time time.Time
-		repo configuredRepo
-	}
+	type removeCall struct { /* all structs must go */ }
 
-	tests := []struct {
-		name                string
-		initialSchedule     []*scheduledRepoUpdate
-		removeCalls         []*removeCall
-		finalSchedule       []*scheduledRepoUpdate
-		timeAfterFuncDelays []time.Duration
-		wakeupNotifications int
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "remove on empty schedule",
 			removeCalls: []*removeCall{
@@ -1164,14 +1101,7 @@ func TestUpdateScheduler_runSchedule(t *testing.T) {
 	d := configuredRepo{ID: 4, Name: "d", URL: "d.com"}
 	e := configuredRepo{ID: 5, Name: "e", URL: "e.com"}
 
-	tests := []struct {
-		name                  string
-		initialSchedule       []*scheduledRepoUpdate
-		finalSchedule         []*scheduledRepoUpdate
-		finalQueue            []*repoUpdate
-		timeAfterFuncDelays   []time.Duration
-		expectedNotifications func(s *updateScheduler) []chan struct{}
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "empty schedule",
 		},
@@ -1284,23 +1214,9 @@ func TestUpdateScheduler_runUpdateLoop(t *testing.T) {
 	b := configuredRepo{ID: 2, Name: "b", URL: "b.com"}
 	c := configuredRepo{ID: 3, Name: "c", URL: "c.com"}
 
-	type mockRequestRepoUpdate struct {
-		repo configuredRepo
-		resp *gitserverprotocol.RepoUpdateResponse
-		err  error
-	}
+	type mockRequestRepoUpdate struct { /* all structs must go */ }
 
-	tests := []struct {
-		name                   string
-		gitMaxConcurrentClones int
-		initialSchedule        []*scheduledRepoUpdate
-		initialQueue           []*repoUpdate
-		mockRequestRepoUpdates []*mockRequestRepoUpdate
-		finalSchedule          []*scheduledRepoUpdate
-		finalQueue             []*repoUpdate
-		timeAfterFuncDelays    []time.Duration
-		expectedNotifications  func(s *updateScheduler) []chan struct{}
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "empty queue",
 		},
@@ -1460,11 +1376,7 @@ func timePtr(t time.Time) *time.Time {
 
 func Test_updateQueue_Less(t *testing.T) {
 	q := &updateQueue{}
-	tests := []struct {
-		name   string
-		heap   []*repoUpdate
-		expVal bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "updating",
 			heap: []*repoUpdate{

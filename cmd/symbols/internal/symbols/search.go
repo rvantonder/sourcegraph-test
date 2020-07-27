@@ -220,21 +220,7 @@ const symbolsDBVersion = 3
 // symbolInDB is the same as `protocol.Symbol`, but with two additional columns:
 // namelowercase and pathlowercase, which enable indexed case insensitive
 // queries.
-type symbolInDB struct {
-	Name          string
-	NameLowercase string // derived from `Name`
-	Path          string
-	PathLowercase string // derived from `Path`
-	Line          int
-	Kind          string
-	Language      string
-	Parent        string
-	ParentKind    string
-	Signature     string
-	Pattern       string
-
-	FileLimited bool
-}
+type symbolInDB struct { /* all structs must go */ }
 
 func symbolToSymbolInDB(symbol protocol.Symbol) symbolInDB {
 	return symbolInDB{

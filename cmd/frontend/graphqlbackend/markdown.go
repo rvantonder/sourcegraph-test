@@ -7,9 +7,7 @@ type MarkdownResolver interface {
 	HTML() string
 }
 
-type markdownResolver struct {
-	text string
-}
+type markdownResolver struct { /* all structs must go */ }
 
 var _ MarkdownResolver = &markdownResolver{}
 

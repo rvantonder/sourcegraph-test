@@ -15,10 +15,7 @@ import (
 )
 
 // Deprecated: The GraphQL type Configuration is deprecated.
-type configurationResolver struct {
-	contents string
-	messages []string // error and warning messages
-}
+type configurationResolver struct { /* all structs must go */ }
 
 func (r *configurationResolver) Contents() JSONCString {
 	return JSONCString(r.contents)
@@ -31,20 +28,12 @@ func (r *configurationResolver) Messages() []string {
 	return r.messages
 }
 
-type settingsMutationGroupInput struct {
-	Subject graphql.ID
-	LastID  *int32
-}
+type settingsMutationGroupInput struct { /* all structs must go */ }
 
-type settingsMutation struct {
-	input   *settingsMutationGroupInput
-	subject *settingsSubject
-}
+type settingsMutation struct { /* all structs must go */ }
 
 // SettingsMutation defines the Mutation.settingsMutation field.
-func (r *schemaResolver) SettingsMutation(ctx context.Context, args *struct {
-	Input *settingsMutationGroupInput
-}) (*settingsMutation, error) {
+func (r *schemaResolver) SettingsMutation(ctx context.Context, args *struct { /* all structs must go */ }) (*settingsMutation, error) {
 	n, err := r.nodeByID(ctx, args.Input.Subject)
 	if err != nil {
 		return nil, err
@@ -73,9 +62,7 @@ func (r *schemaResolver) SettingsMutation(ctx context.Context, args *struct {
 }
 
 // Deprecated: in the GraphQL API
-func (r *schemaResolver) ConfigurationMutation(ctx context.Context, args *struct {
-	Input *settingsMutationGroupInput
-}) (*settingsMutation, error) {
+func (r *schemaResolver) ConfigurationMutation(ctx context.Context, args *struct { /* all structs must go */ }) (*settingsMutation, error) {
 	return r.SettingsMutation(ctx, args)
 }
 
@@ -83,16 +70,9 @@ type updateSettingsPayload struct{}
 
 func (updateSettingsPayload) Empty() *EmptyResponse { return nil }
 
-type settingsEdit struct {
-	KeyPath                   []*keyPathSegment
-	Value                     *JSONValue
-	ValueIsJSONCEncodedString bool
-}
+type settingsEdit struct { /* all structs must go */ }
 
-type keyPathSegment struct {
-	Property *string
-	Index    *int32
-}
+type keyPathSegment struct { /* all structs must go */ }
 
 func toKeyPath(gqlKeyPath []*keyPathSegment) (jsonx.Path, error) {
 	keyPath := make(jsonx.Path, len(gqlKeyPath))
@@ -113,9 +93,7 @@ func toKeyPath(gqlKeyPath []*keyPathSegment) (jsonx.Path, error) {
 	return keyPath, nil
 }
 
-func (r *settingsMutation) EditSettings(ctx context.Context, args *struct {
-	Edit *settingsEdit
-}) (*updateSettingsPayload, error) {
+func (r *settingsMutation) EditSettings(ctx context.Context, args *struct { /* all structs must go */ }) (*updateSettingsPayload, error) {
 	keyPath, err := toKeyPath(args.Edit.KeyPath)
 	if err != nil {
 		return nil, err
@@ -137,9 +115,7 @@ func (r *settingsMutation) EditSettings(ctx context.Context, args *struct {
 	return r.editSettings(ctx, keyPath, value, remove)
 }
 
-func (r *settingsMutation) EditConfiguration(ctx context.Context, args *struct {
-	Edit *settingsEdit
-}) (*updateSettingsPayload, error) {
+func (r *settingsMutation) EditConfiguration(ctx context.Context, args *struct { /* all structs must go */ }) (*updateSettingsPayload, error) {
 	return r.EditSettings(ctx, args)
 }
 
@@ -158,9 +134,7 @@ func (r *settingsMutation) editSettings(ctx context.Context, keyPath jsonx.Path,
 	return &updateSettingsPayload{}, nil
 }
 
-func (r *settingsMutation) OverwriteSettings(ctx context.Context, args *struct {
-	Contents string
-}) (*updateSettingsPayload, error) {
+func (r *settingsMutation) OverwriteSettings(ctx context.Context, args *struct { /* all structs must go */ }) (*updateSettingsPayload, error) {
 	_, err := settingsCreateIfUpToDate(ctx, r.subject, r.input.LastID, actor.FromContext(ctx).UID, args.Contents)
 	if err != nil {
 		return nil, err

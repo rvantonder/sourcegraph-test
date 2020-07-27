@@ -25,16 +25,10 @@ import (
 // users provides access to the `users` table.
 //
 // For a detailed overview of the schema, see schema.txt.
-type users struct {
-	// PreCreateUser (if set) is a hook called before creating a new user in the DB by any means
-	// (e.g., both directly via Users.Create or via ExternalAccounts.CreateUserAndSave).
-	PreCreateUser func(context.Context) error
-}
+type users struct { /* all structs must go */ }
 
 // userNotFoundErr is the error that is returned when a user is not found.
-type userNotFoundErr struct {
-	args []interface{}
-}
+type userNotFoundErr struct { /* all structs must go */ }
 
 func (err userNotFoundErr) Error() string {
 	return fmt.Sprintf("user not found: %v", err.args)
@@ -52,9 +46,7 @@ func NewUserNotFoundError(userID int32) error {
 
 // errCannotCreateUser is the error that is returned when
 // a user cannot be added to the DB due to a constraint.
-type errCannotCreateUser struct {
-	code string
-}
+type errCannotCreateUser struct { /* all structs must go */ }
 
 const (
 	errorCodeUsernameExists = "err_username_exists"
@@ -82,32 +74,7 @@ func IsEmailExists(err error) bool {
 }
 
 // NewUser describes a new to-be-created user.
-type NewUser struct {
-	Email       string
-	Username    string
-	DisplayName string
-	Password    string
-	AvatarURL   string // the new user's avatar URL, if known
-
-	// EmailVerificationCode, if given, causes the new user's email address to be unverified until
-	// they perform the email verification process and provied this code.
-	EmailVerificationCode string `json:"-"` // forbid this field being set by JSON, just in case
-
-	// EmailIsVerified is whether the email address should be considered already verified.
-	//
-	// 🚨 SECURITY: Only site admins are allowed to create users whose email addresses are initially
-	// verified (i.e., with EmailVerificationCode == "").
-	EmailIsVerified bool `json:"-"` // forbid this field being set by JSON, just in case
-
-	// FailIfNotInitialUser causes the (users).Create call to return an error and not create the
-	// user if at least one of the following is true: (1) the site has already been initialized or
-	// (2) any other user account already exists.
-	FailIfNotInitialUser bool `json:"-"` // forbid this field being set by JSON, just in case
-
-	// EnforcePasswordLength is whether should enforce minimum and maximum password length requirement.
-	// Users created by non-builtin auth providers do not have a password thus no need to check.
-	EnforcePasswordLength bool `json:"-"` // forbid this field being set by JSON, just in case
-}
+type NewUser struct { /* all structs must go */ }
 
 // Create creates a new user in the database.
 //
@@ -312,16 +279,7 @@ func orgsForAllUsersToJoin(userOrgMap map[string][]string) ([]string, []error) {
 }
 
 // UserUpdate describes user fields to update.
-type UserUpdate struct {
-	Username string // update the Username to this value (if non-zero)
-
-	// For the following fields:
-	//
-	// - If nil, the value in the DB is unchanged.
-	// - If pointer to "" (empty string), the value in the DB is set to null.
-	// - If pointer to a non-empty string, the value in the DB is set to the string.
-	DisplayName, AvatarURL *string
-}
+type UserUpdate struct { /* all structs must go */ }
 
 // Update updates a user's profile information.
 func (u *users) Update(ctx context.Context, id int32, update UserUpdate) error {
@@ -630,16 +588,7 @@ func (u *users) Count(ctx context.Context, opt *UsersListOptions) (int, error) {
 }
 
 // UsersListOptions specifies the options for listing users.
-type UsersListOptions struct {
-	// Query specifies a search query for users.
-	Query string
-	// UserIDs specifies a list of user IDs to include.
-	UserIDs []int32
-
-	Tag string // only include users with this tag
-
-	*LimitOffset
-}
+type UsersListOptions struct { /* all structs must go */ }
 
 func (u *users) List(ctx context.Context, opt *UsersListOptions) (_ []*types.User, err error) {
 	if Mocks.Users.List != nil {

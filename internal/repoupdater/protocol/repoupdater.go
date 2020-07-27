@@ -8,78 +8,40 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/api"
 )
 
-type RepoUpdateSchedulerInfoArgs struct {
-	// RepoName is the repository name to look up.
-	// XXX(tsenart): Depreacted. Remove after lookup by ID is rolled out.
-	RepoName api.RepoName
-	// The ID of the repo to lookup the schedule for.
-	ID api.RepoID
-}
+type RepoUpdateSchedulerInfoArgs struct { /* all structs must go */ }
 
-type RepoUpdateSchedulerInfoResult struct {
-	Schedule *RepoScheduleState `json:",omitempty"`
-	Queue    *RepoQueueState    `json:",omitempty"`
-}
+type RepoUpdateSchedulerInfoResult struct { /* all structs must go */ }
 
-type RepoScheduleState struct {
-	Index           int
-	Total           int
-	IntervalSeconds int
-	Due             time.Time
-}
+type RepoScheduleState struct { /* all structs must go */ }
 
-type RepoQueueState struct {
-	Index    int
-	Total    int
-	Updating bool
-}
+type RepoQueueState struct { /* all structs must go */ }
 
 // RepoExternalServicesRequest is a request for the external services
 // associated with a repository.
-type RepoExternalServicesRequest struct {
-	// ID of the repository being queried.
-	ID api.RepoID
-}
+type RepoExternalServicesRequest struct { /* all structs must go */ }
 
 // RepoExternalServicesResponse is returned in response to an
 // RepoExternalServicesRequest.
-type RepoExternalServicesResponse struct {
-	ExternalServices []api.ExternalService
-}
+type RepoExternalServicesResponse struct { /* all structs must go */ }
 
 // ExcludeRepoRequest is a request to exclude a single repo from
 // being mirrored from any external service of its kind.
-type ExcludeRepoRequest struct {
-	// ID of the repository to be excluded.
-	ID api.RepoID
-}
+type ExcludeRepoRequest struct { /* all structs must go */ }
 
 // ExcludeRepoResponse is returned in response to an ExcludeRepoRequest.
-type ExcludeRepoResponse struct {
-	ExternalServices []api.ExternalService
-}
+type ExcludeRepoResponse struct { /* all structs must go */ }
 
 // RepoLookupArgs is a request for information about a repository on repoupdater.
 //
 // Exactly one of Repo and ExternalRepo should be set.
-type RepoLookupArgs struct {
-	// Repo is the repository name to look up.
-	Repo api.RepoName `json:",omitempty"`
-}
+type RepoLookupArgs struct { /* all structs must go */ }
 
 func (a *RepoLookupArgs) String() string {
 	return fmt.Sprintf("RepoLookupArgs{%s}", a.Repo)
 }
 
 // RepoLookupResult is the response to a repository information request (RepoLookupArgs).
-type RepoLookupResult struct {
-	// Repo contains information about the repository, if it is found. If an error occurred, it is nil.
-	Repo *RepoInfo
-
-	ErrorNotFound               bool // the repository host reported that the repository was not found
-	ErrorUnauthorized           bool // the repository host rejected the client's authorization
-	ErrorTemporarilyUnavailable bool // the repository host was temporarily unavailable (e.g., rate limit exceeded)
-}
+type RepoLookupResult struct { /* all structs must go */ }
 
 func (r *RepoLookupResult) String() string {
 	var parts []string
@@ -99,119 +61,56 @@ func (r *RepoLookupResult) String() string {
 }
 
 // RepoInfo is information about a repository that lives on an external service (such as GitHub or GitLab).
-type RepoInfo struct {
-	// Name the canonical name of the repository. Its case (uppercase/lowercase) may differ from the name arg used
-	// in the lookup. If the repository was renamed on the external service, this name is the new name.
-	Name api.RepoName
-
-	Description string // repository description (from the external service)
-	Fork        bool   // whether this repository is a fork of another repository (from the external service)
-	Archived    bool   // whether this repository is archived (from the external service)
-	Private     bool   // whether this repository is private (from the external service)
-
-	VCS VCSInfo // VCS-related information (for cloning/updating)
-
-	Links *RepoLinks // link URLs related to this repository
-
-	// ExternalRepo specifies this repository's ID on the external service where it resides (and the external
-	// service itself).
-	ExternalRepo api.ExternalRepoSpec
-}
+type RepoInfo struct { /* all structs must go */ }
 
 func (r *RepoInfo) String() string {
 	return fmt.Sprintf("RepoInfo{%s}", r.Name)
 }
 
 // VCSInfo describes how to access an external repository's Git data (to clone or update it).
-type VCSInfo struct {
-	URL string // the Git remote URL
-}
+type VCSInfo struct { /* all structs must go */ }
 
 // RepoLinks contains URLs and URL patterns for objects in this repository.
-type RepoLinks struct {
-	Root   string // the repository's main (root) page URL
-	Tree   string // the URL to a tree, with {rev} and {path} substitution variables
-	Blob   string // the URL to a blob, with {rev} and {path} substitution variables
-	Commit string // the URL to a commit, with {commit} substitution variable
-}
+type RepoLinks struct { /* all structs must go */ }
 
 // RepoUpdateRequest is a request to update the contents of a given repo, or clone it if it doesn't exist.
-type RepoUpdateRequest struct {
-	Repo api.RepoName `json:"repo"`
-
-	// URL is the repository's Git remote URL (from which to clone or update).
-	URL string `json:"url"`
-}
+type RepoUpdateRequest struct { /* all structs must go */ }
 
 func (a *RepoUpdateRequest) String() string {
 	return fmt.Sprintf("RepoUpdateRequest{%s, %s}", a.Repo, a.URL)
 }
 
 // RepoUpdateResponse is a response type to a RepoUpdateRequest.
-type RepoUpdateResponse struct {
-	// ID of the repo that got an update request.
-	ID api.RepoID `json:"id"`
-	// Name of the repo that got an update request.
-	Name string `json:"name"`
-	// URL of the repo that got an update request.
-	URL string `json:"url"`
-}
+type RepoUpdateResponse struct { /* all structs must go */ }
 
 // ChangesetSyncRequest is a request to sync a number of changesets
-type ChangesetSyncRequest struct {
-	IDs []int64
-}
+type ChangesetSyncRequest struct { /* all structs must go */ }
 
 // ChangesetSyncResponse is a response to sync a number of changesets
-type ChangesetSyncResponse struct {
-	Error string
-}
+type ChangesetSyncResponse struct { /* all structs must go */ }
 
 // PermsSyncRequest is a request to sync permissions.
-type PermsSyncRequest struct {
-	UserIDs []int32      `json:"user_ids"`
-	RepoIDs []api.RepoID `json:"repo_ids"`
-}
+type PermsSyncRequest struct { /* all structs must go */ }
 
 // PermsSyncResponse is a response to sync permissions.
-type PermsSyncResponse struct {
-	Error string
-}
+type PermsSyncResponse struct { /* all structs must go */ }
 
 // ExternalServiceSyncRequest is a request to sync a specific external service eagerly.
 //
 // The FrontendAPI is one of the issuers of this request. It does so when creating or
 // updating an external service so that admins don't have to wait until the next sync
 // run to see their repos being synced.
-type ExternalServiceSyncRequest struct {
-	ExternalService api.ExternalService
-}
+type ExternalServiceSyncRequest struct { /* all structs must go */ }
 
 // ExternalServiceSyncResult is a result type of an external service's sync request.
-type ExternalServiceSyncResult struct {
-	ExternalService api.ExternalService
-	Error           string
-}
+type ExternalServiceSyncResult struct { /* all structs must go */ }
 
-type CloningProgress struct {
-	Message string
-}
+type CloningProgress struct { /* all structs must go */ }
 
-type ExternalServiceSyncError struct {
-	Message           string
-	ExternalServiceId int64
-}
+type ExternalServiceSyncError struct { /* all structs must go */ }
 
-type SyncError struct {
-	Message string
-}
+type SyncError struct { /* all structs must go */ }
 
-type StatusMessage struct {
-	Cloning                  *CloningProgress          `json:"cloning"`
-	ExternalServiceSyncError *ExternalServiceSyncError `json:"external_service_sync_error"`
-	SyncError                *SyncError                `json:"sync_error"`
-}
+type StatusMessage struct { /* all structs must go */ }
 
-type StatusMessagesResponse struct {
-	Messages []StatusMessage `json:"messages"`
-}
+type StatusMessagesResponse struct { /* all structs must go */ }

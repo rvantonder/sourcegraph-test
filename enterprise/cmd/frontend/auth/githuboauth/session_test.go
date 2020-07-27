@@ -37,22 +37,8 @@ func TestGetOrCreateUser(t *testing.T) {
 		"alice": 1,
 	}
 
-	type input struct {
-		description     string
-		ghUser          *github.User
-		ghUserEmails    []*githubsvc.UserEmail
-		ghUserOrgs      []*githubsvc.Org
-		ghUserEmailsErr error
-		ghUserOrgsErr   error
-		allowSignup     bool
-		allowOrgs       []string
-	}
-	cases := []struct {
-		inputs        []input
-		expActor      *actor.Actor
-		expErr        bool
-		expAuthUserOp *auth.GetAndSaveUserOp
-	}{
+	type input struct { /* all structs must go */ }
+	cases := []struct { /* all structs must go */ }{
 		{
 			inputs: []input{{
 				description: "ghUser, verified email -> session created",

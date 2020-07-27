@@ -58,48 +58,17 @@ func AbbreviateRef(ref string) string {
 }
 
 // A Branch is a VCS branch.
-type Branch struct {
-	// Name is the name of this branch.
-	Name string `json:"Name,omitempty"`
-	// Head is the commit ID of this branch's head commit.
-	Head api.CommitID `json:"Head,omitempty"`
-	// Commit optionally contains commit information for this branch's head commit.
-	// It is populated if IncludeCommit option is set.
-	Commit *Commit `json:"Commit,omitempty"`
-	// Counts optionally contains the commit counts relative to specified branch.
-	Counts *BehindAhead `json:"Counts,omitempty"`
-}
+type Branch struct { /* all structs must go */ }
 
 // BranchesOptions specifies options for the list of branches returned by
 // (Repository).Branches.
-type BranchesOptions struct {
-	// MergedInto will cause the returned list to be restricted to only
-	// branches that were merged into this branch name.
-	MergedInto string `json:"MergedInto,omitempty" url:",omitempty"`
-	// IncludeCommit controls whether complete commit information is included.
-	IncludeCommit bool `json:"IncludeCommit,omitempty" url:",omitempty"`
-	// BehindAheadBranch specifies a branch name. If set to something other than blank
-	// string, then each returned branch will include a behind/ahead commit counts
-	// information against the specified base branch. If left blank, then branches will
-	// not include that information and their Counts will be nil.
-	BehindAheadBranch string `json:"BehindAheadBranch,omitempty" url:",omitempty"`
-	// ContainsCommit filters the list of branches to only those that
-	// contain a specific commit ID (if set).
-	ContainsCommit string `json:"ContainsCommit,omitempty" url:",omitempty"`
-}
+type BranchesOptions struct { /* all structs must go */ }
 
 // A Tag is a VCS tag.
-type Tag struct {
-	Name         string `json:"Name,omitempty"`
-	api.CommitID `json:"CommitID,omitempty"`
-	CreatorDate  time.Time
-}
+type Tag struct { /* all structs must go */ }
 
 // BehindAhead is a set of behind/ahead counts.
-type BehindAhead struct {
-	Behind uint32 `json:"Behind,omitempty"`
-	Ahead  uint32 `json:"Ahead,omitempty"`
-}
+type BehindAhead struct { /* all structs must go */ }
 
 type Branches []*Branch
 
@@ -301,10 +270,7 @@ func ListRefs(ctx context.Context, repo gitserver.Repo) ([]Ref, error) {
 }
 
 // Ref describes a Git ref.
-type Ref struct {
-	Name     string // the full name of the ref (e.g., "refs/heads/mybranch")
-	CommitID api.CommitID
-}
+type Ref struct { /* all structs must go */ }
 
 func showRef(ctx context.Context, repo gitserver.Repo, args ...string) ([]Ref, error) {
 	cmd := gitserver.DefaultClient.Command("git", "show-ref")

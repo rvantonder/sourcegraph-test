@@ -2,14 +2,7 @@ package janitor
 
 import "github.com/prometheus/client_golang/prometheus"
 
-type JanitorMetrics struct {
-	UploadFilesRemoved        prometheus.Counter
-	PartFilesRemoved          prometheus.Counter
-	OrphanedFilesRemoved      prometheus.Counter
-	EvictedBundleFilesRemoved prometheus.Counter
-	UploadRecordsRemoved      prometheus.Counter
-	Errors                    prometheus.Counter
-}
+type JanitorMetrics struct { /* all structs must go */ }
 
 func NewJanitorMetrics(r prometheus.Registerer) JanitorMetrics {
 	uploadFilesRemoved := prometheus.NewCounter(prometheus.CounterOpts{

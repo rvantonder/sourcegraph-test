@@ -40,10 +40,7 @@ type BundleClient interface {
 	PackageInformation(ctx context.Context, path, packageInformationID string) (PackageInformationData, error)
 }
 
-type bundleClientImpl struct {
-	base     baseClient
-	bundleID int
-}
+type bundleClientImpl struct { /* all structs must go */ }
 
 var _ BundleClient = &bundleClientImpl{}
 
@@ -113,10 +110,7 @@ func (c *bundleClientImpl) Hover(ctx context.Context, path string, line, charact
 		return "", Range{}, false, nil
 	}
 
-	payload := struct {
-		Text  string `json:"text"`
-		Range Range  `json:"range"`
-	}{}
+	payload := struct { /* all structs must go */ }{}
 
 	if err := json.Unmarshal(*target, &payload); err != nil {
 		return "", Range{}, false, err
@@ -137,10 +131,7 @@ func (c *bundleClientImpl) Diagnostics(ctx context.Context, prefix string, skip,
 		args["take"] = take
 	}
 
-	target := struct {
-		Diagnostics []Diagnostic `json:"diagnostics"`
-		Count       int          `json:"count"`
-	}{}
+	target := struct { /* all structs must go */ }{}
 
 	err = c.request(ctx, "diagnostics", args, &target)
 	diagnostics = target.Diagnostics
@@ -177,10 +168,7 @@ func (c *bundleClientImpl) MonikerResults(ctx context.Context, modelType, scheme
 		args["take"] = take
 	}
 
-	target := struct {
-		Locations []Location `json:"locations"`
-		Count     int        `json:"count"`
-	}{}
+	target := struct { /* all structs must go */ }{}
 
 	err = c.request(ctx, "monikerResults", args, &target)
 	locations = target.Locations

@@ -197,9 +197,7 @@ type Store interface {
 // GetTipCommitFunc returns the head commit for the given repository.
 type GetTipCommitFunc func(ctx context.Context, repositoryID int) (string, error)
 
-type store struct {
-	*basestore.Store
-}
+type store struct { /* all structs must go */ }
 
 var _ Store = &store{}
 

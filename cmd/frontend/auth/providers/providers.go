@@ -44,42 +44,10 @@ type Provider interface {
 //
 // 🚨 SECURITY: This MUST NOT contain secret information because it is shown to unauthenticated and
 // anonymous clients.
-type ConfigID struct {
-	// Type is the type of this auth provider (equal to its "type" property in its entry in the
-	// auth.providers array in site configuration).
-	Type string
-
-	// ID is an identifier that uniquely represents a provider's config among all other provider
-	// configs of the same type.
-	//
-	// This value MUST NOT be persisted or used to associate accounts with this provider because it
-	// can change when any property in this provider's config changes, even when those changes are
-	// not material for identification (such as changing the display name).
-	//
-	// 🚨 SECURITY: This MUST NOT contain secret information because it is shown to unauthenticated
-	// and anonymous clients.
-	ID string
-}
+type ConfigID struct { /* all structs must go */ }
 
 // Info contains information about an authentication provider.
-type Info struct {
-	// ServiceID identifies the external service that this authentication provider represents. It is
-	// a stable identifier.
-	ServiceID string
-
-	// ClientID identifies the external service client used when communicating with the external
-	// service. It is a stable identifier.
-	ClientID string
-
-	// DisplayName is the name to use when displaying the provider in the UI.
-	DisplayName string
-
-	// AuthenticationURL is the URL to visit in order to initiate authenticating via this provider.
-	//
-	// TODO(sqs): Support "return-to" post-authentication-redirect destinations so newly authed
-	// users aren't dumped back onto the homepage.
-	AuthenticationURL string
-}
+type Info struct { /* all structs must go */ }
 
 var (
 	// curProviders is a map (package name -> (config string -> Provider)). The first key is the

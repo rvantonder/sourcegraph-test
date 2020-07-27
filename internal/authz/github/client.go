@@ -20,9 +20,7 @@ type client interface {
 var _ client = (*ClientAdapter)(nil)
 
 // ClientAdapter is an adapter for GitHub API client.
-type ClientAdapter struct {
-	*github.Client
-}
+type ClientAdapter struct { /* all structs must go */ }
 
 func (c *ClientAdapter) WithToken(token string) client {
 	return &ClientAdapter{Client: c.Client.WithToken(token)}
@@ -30,13 +28,7 @@ func (c *ClientAdapter) WithToken(token string) client {
 
 var _ client = (*mockClient)(nil)
 
-type mockClient struct {
-	MockGetRepositoryByNodeID          func(ctx context.Context, id string) (*github.Repository, error)
-	MockGetRepositoriesByNodeIDFromAPI func(ctx context.Context, nodeIDs []string) (map[string]*github.Repository, error)
-	MockListAffiliatedRepositories     func(ctx context.Context, visibility github.Visibility, page int) (repos []*github.Repository, hasNextPage bool, rateLimitCost int, err error)
-	MockListRepositoryCollaborators    func(ctx context.Context, owner, repo string, page int) (users []*github.Collaborator, hasNextPage bool, _ error)
-	MockWithToken                      func(token string) client
-}
+type mockClient struct { /* all structs must go */ }
 
 func (m *mockClient) GetRepositoryByNodeID(ctx context.Context, id string) (*github.Repository, error) {
 	return m.MockGetRepositoryByNodeID(ctx, id)

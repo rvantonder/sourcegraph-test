@@ -177,9 +177,7 @@ func newPrometheusValidator(prometheusURL string) conf.Validator {
 			return
 		}
 
-		var promConfigStatus struct {
-			Problems conf.Problems `json:"problems"`
-		}
+		var promConfigStatus struct { /* all structs must go */ }
 		defer resp.Body.Close()
 		if err := json.NewDecoder(resp.Body).Decode(&promConfigStatus); err != nil {
 			problems = append(problems, conf.NewSiteProblem(fmt.Sprintf("`observability.alerts`: unable to read Prometheus status: %v", err)))

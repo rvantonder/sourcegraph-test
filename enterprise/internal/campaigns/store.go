@@ -27,10 +27,7 @@ var seededRand *rand.Rand = rand.New(rand.NewSource(time.Now().UnixNano()))
 
 // Store exposes methods to read and write campaigns domain models
 // from persistent storage.
-type Store struct {
-	db  dbutil.DB
-	now func() time.Time
-}
+type Store struct { /* all structs must go */ }
 
 // NewStore returns a new Store backed by the given db.
 func NewStore(db dbutil.DB) *Store {
@@ -151,9 +148,7 @@ func (s *Store) DB() dbutil.DB { return s.db }
 // AlreadyExistError is returned by CreateChangesets in case a subset of the
 // given changesets already existed in the database and were not inserted but
 // returned
-type AlreadyExistError struct {
-	ChangesetIDs []int64
-}
+type AlreadyExistError struct { /* all structs must go */ }
 
 func (e AlreadyExistError) Error() string {
 	return fmt.Sprintf("Changesets already exist: %v", e.ChangesetIDs)
@@ -330,28 +325,7 @@ func (s *Store) createChangesetsQuery(cs []*campaigns.Changeset) (*sqlf.Query, e
 }
 
 func batchChangesetsQuery(fmtstr string, cs []*campaigns.Changeset) (*sqlf.Query, error) {
-	type record struct {
-		ID                  int64                             `json:"id"`
-		RepoID              api.RepoID                        `json:"repo_id"`
-		CreatedAt           time.Time                         `json:"created_at"`
-		UpdatedAt           time.Time                         `json:"updated_at"`
-		Metadata            json.RawMessage                   `json:"metadata"`
-		CampaignIDs         json.RawMessage                   `json:"campaign_ids"`
-		ExternalID          string                            `json:"external_id"`
-		ExternalServiceType string                            `json:"external_service_type"`
-		ExternalBranch      string                            `json:"external_branch"`
-		ExternalDeletedAt   *time.Time                        `json:"external_deleted_at"`
-		ExternalUpdatedAt   *time.Time                        `json:"external_updated_at"`
-		ExternalState       *campaigns.ChangesetExternalState `json:"external_state"`
-		ExternalReviewState *campaigns.ChangesetReviewState   `json:"external_review_state"`
-		ExternalCheckState  *campaigns.ChangesetCheckState    `json:"external_check_state"`
-		CreatedByCampaign   bool                              `json:"created_by_campaign"`
-		AddedToCampaign     bool                              `json:"added_to_campaign"`
-		DiffStatAdded       *int32                            `json:"diff_stat_added"`
-		DiffStatChanged     *int32                            `json:"diff_stat_changed"`
-		DiffStatDeleted     *int32                            `json:"diff_stat_deleted"`
-		SyncState           json.RawMessage                   `json:"sync_state"`
-	}
+	type record struct { /* all structs must go */ }
 
 	records := make([]record, 0, len(cs))
 
@@ -428,12 +402,7 @@ DELETE FROM changesets WHERE id = %s
 
 // CountChangesetsOpts captures the query options needed for
 // counting changesets.
-type CountChangesetsOpts struct {
-	CampaignID          int64
-	ExternalState       *campaigns.ChangesetExternalState
-	ExternalReviewState *campaigns.ChangesetReviewState
-	ExternalCheckState  *campaigns.ChangesetCheckState
-}
+type CountChangesetsOpts struct { /* all structs must go */ }
 
 // CountChangesets returns the number of changesets in the database.
 func (s *Store) CountChangesets(ctx context.Context, opts CountChangesetsOpts) (count int64, _ error) {
@@ -474,12 +443,7 @@ func countChangesetsQuery(opts *CountChangesetsOpts) *sqlf.Query {
 }
 
 // GetChangesetOpts captures the query options needed for getting a Changeset
-type GetChangesetOpts struct {
-	ID                  int64
-	RepoID              api.RepoID
-	ExternalID          string
-	ExternalServiceType string
-}
+type GetChangesetOpts struct { /* all structs must go */ }
 
 // ErrNoResults is returned by Store method calls that found no results.
 var ErrNoResults = errors.New("no results")
@@ -554,10 +518,7 @@ func getChangesetQuery(opts *GetChangesetOpts) *sqlf.Query {
 	return sqlf.Sprintf(getChangesetsQueryFmtstr, sqlf.Join(preds, "\n AND "))
 }
 
-type ListChangesetSyncDataOpts struct {
-	// Return only the supplied changesets. If empty, all changesets are returned
-	ChangesetIDs []int64
-}
+type ListChangesetSyncDataOpts struct { /* all structs must go */ }
 
 // ListChangesetSyncData returns sync data on all non-externally-deleted changesets
 // that are part of at least one open campaign.
@@ -623,17 +584,7 @@ func listChangesetSyncData(opts ListChangesetSyncDataOpts) *sqlf.Query {
 
 // ListChangesetsOpts captures the query options needed for
 // listing changesets.
-type ListChangesetsOpts struct {
-	Cursor               int64
-	Limit                int
-	CampaignID           int64
-	IDs                  []int64
-	WithoutDeleted       bool
-	ExternalState        *campaigns.ChangesetExternalState
-	ExternalReviewState  *campaigns.ChangesetReviewState
-	ExternalCheckState   *campaigns.ChangesetCheckState
-	OnlyWithoutDiffStats bool
-}
+type ListChangesetsOpts struct { /* all structs must go */ }
 
 // ListChangesets lists Changesets with the given filters.
 func (s *Store) ListChangesets(ctx context.Context, opts ListChangesetsOpts) (cs campaigns.Changesets, next int64, err error) {
@@ -824,12 +775,7 @@ func (s *Store) updateChangesetsQuery(cs []*campaigns.Changeset) (*sqlf.Query, e
 }
 
 // GetChangesetEventOpts captures the query options needed for getting a ChangesetEvent
-type GetChangesetEventOpts struct {
-	ID          int64
-	ChangesetID int64
-	Kind        campaigns.ChangesetEventKind
-	Key         string
-}
+type GetChangesetEventOpts struct { /* all structs must go */ }
 
 // GetChangesetEvent gets a changeset matching the given options.
 func (s *Store) GetChangesetEvent(ctx context.Context, opts GetChangesetEventOpts) (*campaigns.ChangesetEvent, error) {
@@ -888,11 +834,7 @@ func getChangesetEventQuery(opts *GetChangesetEventOpts) *sqlf.Query {
 
 // ListChangesetEventsOpts captures the query options needed for
 // listing changeset events.
-type ListChangesetEventsOpts struct {
-	ChangesetIDs []int64
-	Cursor       int64
-	Limit        int
-}
+type ListChangesetEventsOpts struct { /* all structs must go */ }
 
 // ListChangesetEvents lists ChangesetEvents with the given filters.
 func (s *Store) ListChangesetEvents(ctx context.Context, opts ListChangesetEventsOpts) (cs []*campaigns.ChangesetEvent, next int64, err error) {
@@ -965,9 +907,7 @@ func listChangesetEventsQuery(opts *ListChangesetEventsOpts) *sqlf.Query {
 
 // CountChangesetEventsOpts captures the query options needed for
 // counting changeset events.
-type CountChangesetEventsOpts struct {
-	ChangesetID int64
-}
+type CountChangesetEventsOpts struct { /* all structs must go */ }
 
 // CountChangesetEvents returns the number of changeset events in the database.
 func (s *Store) CountChangesetEvents(ctx context.Context, opts CountChangesetEventsOpts) (count int64, _ error) {
@@ -1092,15 +1032,7 @@ func (s *Store) upsertChangesetEventsQuery(es []*campaigns.ChangesetEvent) (*sql
 }
 
 func batchChangesetEventsQuery(fmtstr string, es []*campaigns.ChangesetEvent) (*sqlf.Query, error) {
-	type record struct {
-		ID          int64           `json:"id"`
-		ChangesetID int64           `json:"changeset_id"`
-		Kind        string          `json:"kind"`
-		Key         string          `json:"key"`
-		CreatedAt   time.Time       `json:"created_at"`
-		UpdatedAt   time.Time       `json:"updated_at"`
-		Metadata    json.RawMessage `json:"metadata"`
-	}
+	type record struct { /* all structs must go */ }
 
 	records := make([]record, 0, len(es))
 
@@ -1317,12 +1249,7 @@ DELETE FROM campaigns WHERE id = %s
 
 // CountCampaignsOpts captures the query options needed for
 // counting campaigns.
-type CountCampaignsOpts struct {
-	ChangesetID int64
-	State       campaigns.CampaignState
-	// Only return campaigns where author_id is the given.
-	OnlyForAuthor int32
-}
+type CountCampaignsOpts struct { /* all structs must go */ }
 
 // CountCampaigns returns the number of campaigns in the database.
 func (s *Store) CountCampaigns(ctx context.Context, opts CountCampaignsOpts) (count int64, _ error) {
@@ -1365,15 +1292,7 @@ func countCampaignsQuery(opts *CountCampaignsOpts) *sqlf.Query {
 }
 
 // GetCampaignOpts captures the query options needed for getting a Campaign
-type GetCampaignOpts struct {
-	ID int64
-
-	NamespaceUserID int32
-	NamespaceOrgID  int32
-
-	CampaignSpecID   int64
-	CampaignSpecName string
-}
+type GetCampaignOpts struct { /* all structs must go */ }
 
 // GetCampaign gets a campaign matching the given options.
 func (s *Store) GetCampaign(ctx context.Context, opts GetCampaignOpts) (*campaigns.Campaign, error) {
@@ -1454,14 +1373,7 @@ func getCampaignQuery(opts *GetCampaignOpts) *sqlf.Query {
 
 // ListCampaignsOpts captures the query options needed for
 // listing campaigns.
-type ListCampaignsOpts struct {
-	ChangesetID int64
-	Cursor      int64
-	Limit       int
-	State       campaigns.CampaignState
-	// Only return campaigns where author_id is the given.
-	OnlyForAuthor int32
-}
+type ListCampaignsOpts struct { /* all structs must go */ }
 
 // ListCampaigns lists Campaigns with the given filters.
 func (s *Store) ListCampaigns(ctx context.Context, opts ListCampaignsOpts) (cs []*campaigns.Campaign, next int64, err error) {

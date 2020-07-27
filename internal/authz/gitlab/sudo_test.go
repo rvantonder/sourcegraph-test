@@ -24,25 +24,8 @@ import (
 
 func Test_GitLab_FetchAccount(t *testing.T) {
 	// Test structures
-	type call struct {
-		description string
-
-		user    *types.User
-		current []*extsvc.Account
-
-		expMine *extsvc.Account
-	}
-	type test struct {
-		description string
-
-		// authnProviders is the list of auth providers that are mocked
-		authnProviders []providers.Provider
-
-		// op configures the SudoProvider instance
-		op SudoProviderOp
-
-		calls []call
-	}
+	type call struct { /* all structs must go */ }
+	type test struct { /* all structs must go */ }
 
 	// Mocks
 	gitlabMock := newMockGitLab(mockGitLabOp{

@@ -127,10 +127,7 @@ func TestUnmarshalRange(t *testing.T) {
 }
 
 func TestUnmarshalHover(t *testing.T) {
-	testCases := []struct {
-		contents      string
-		expectedHover string
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{
 			contents:      `"text"`,
 			expectedHover: "text",

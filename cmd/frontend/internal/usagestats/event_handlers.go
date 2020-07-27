@@ -17,14 +17,7 @@ import (
 var pubSubDotComEventsTopicID = env.Get("PUBSUB_DOTCOM_EVENTS_TOPIC_ID", "", "Pub/sub dotcom events topic ID is the pub/sub topic id where Sourcegraph.com events are published.")
 
 // Event represents a request to log telemetry.
-type Event struct {
-	EventName    string
-	UserID       int32
-	UserCookieID string
-	URL          string
-	Source       string
-	Argument     json.RawMessage
-}
+type Event struct { /* all structs must go */ }
 
 // LogBackendEvent is a convenience function for logging backend events.
 func LogBackendEvent(userID int32, eventName string, argument json.RawMessage) error {
@@ -52,16 +45,7 @@ func LogEvent(ctx context.Context, args Event) error {
 	return logLocalEvent(ctx, args.EventName, args.URL, args.UserID, args.UserCookieID, args.Source, args.Argument)
 }
 
-type bigQueryEvent struct {
-	EventName       string `json:"name"`
-	AnonymousUserID string `json:"anonymous_user_id"`
-	UserID          int    `json:"user_id"`
-	URL             string `json:"url"`
-	Source          string `json:"source"`
-	Timestamp       string `json:"timestamp"`
-	Version         string `json:"version"`
-	Argument        string `json:"argument"`
-}
+type bigQueryEvent struct { /* all structs must go */ }
 
 // publishSourcegraphDotComEvent publishes Sourcegraph.com events to BigQuery.
 func publishSourcegraphDotComEvent(args Event) error {

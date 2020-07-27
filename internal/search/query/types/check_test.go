@@ -12,10 +12,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/search/query/syntax"
 )
 
-type value struct {
-	Not   bool
-	Value interface{}
-}
+type value struct { /* all structs must go */ }
 
 func TestCheck(t *testing.T) {
 	toValue := func(v *Value) value { return value{Not: v.Not(), Value: v.Value()} }
@@ -52,10 +49,7 @@ func TestCheck(t *testing.T) {
 			"r2": "r",
 		},
 	}
-	tests := map[string]struct {
-		want    map[string][]value
-		wantErr *TypeError
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"":        {want: map[string][]value{}},
 		"a":       {want: map[string][]value{"": {{Value: regexp.MustCompile("a")}}}},
 		" a ":     {want: map[string][]value{"": {{Value: regexp.MustCompile("a")}}}},
@@ -156,10 +150,7 @@ func TestRegexpCompile(t *testing.T) {
 
 func TestAutoFix(t *testing.T) {
 	t.Run("handcrafted cases", func(t *testing.T) {
-		tests := []struct {
-			pat  string
-			want string
-		}{
+		tests := []struct { /* all structs must go */ }{
 			{"", ""},
 			{"a", "a"},
 			{"(", `\(`},

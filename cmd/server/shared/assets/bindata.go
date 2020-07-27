@@ -43,18 +43,9 @@ func bindataRead(data []byte, name string) ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
-type asset struct {
-	bytes  []byte
-	info   os.FileInfo
-	digest [sha256.Size]byte
-}
+type asset struct { /* all structs must go */ }
 
-type bindataFileInfo struct {
-	name    string
-	size    int64
-	mode    os.FileMode
-	modTime time.Time
-}
+type bindataFileInfo struct { /* all structs must go */ }
 
 func (fi bindataFileInfo) Name() string {
 	return fi.name
@@ -353,10 +344,7 @@ func AssetDir(name string) ([]string, error) {
 	return rv, nil
 }
 
-type bintree struct {
-	Func     func() (*asset, error)
-	Children map[string]*bintree
-}
+type bintree struct { /* all structs must go */ }
 
 var _bintree = &bintree{nil, map[string]*bintree{
 	"nginx": {nil, map[string]*bintree{

@@ -101,9 +101,7 @@ func TestUpdateExternalService(t *testing.T) {
 		})
 
 		ctx := actor.WithActor(context.Background(), &actor.Actor{UID: 1})
-		result, err := (&schemaResolver{}).UpdateExternalService(ctx, &struct {
-			Input UpdateExternalServiceInput
-		}{
+		result, err := (&schemaResolver{}).UpdateExternalService(ctx, &struct { /* all structs must go */ }{
 			Input: UpdateExternalServiceInput{
 				ID:     "RXh0ZXJuYWxTZXJ2aWNlOjQ=",
 				Config: strptr(""),

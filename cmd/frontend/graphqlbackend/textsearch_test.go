@@ -260,13 +260,7 @@ func TestLimitSearcherRepos(t *testing.T) {
 		return result
 	}
 
-	tests := []struct {
-		name        string
-		limit       int
-		input       []*search.RepositoryRevisions
-		want        []*search.RepositoryRevisions
-		wantLimited []*types.Repo
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:        "non_limited",
 			limit:       5,

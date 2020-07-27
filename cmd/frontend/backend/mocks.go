@@ -11,9 +11,7 @@ import (
 
 var Mocks MockServices
 
-type MockServices struct {
-	Repos MockRepos
-}
+type MockServices struct { /* all structs must go */ }
 
 // testContext creates a new context.Context for use by tests
 func testContext() context.Context {

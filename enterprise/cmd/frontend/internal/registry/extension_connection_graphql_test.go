@@ -38,10 +38,7 @@ func TestFilteringExtensionIDs(t *testing.T) {
 }
 
 func TestToDBExtensionsListOptions(t *testing.T) {
-	tests := map[string]struct {
-		args graphqlbackend.RegistryExtensionConnectionArgs
-		want dbExtensionsListOptions
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"empty": {
 			args: graphqlbackend.RegistryExtensionConnectionArgs{},
 			want: dbExtensionsListOptions{},

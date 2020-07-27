@@ -17,10 +17,7 @@ import (
 )
 
 // Client is a HubSpot API client
-type Client struct {
-	portalID string
-	hapiKey  string
-}
+type Client struct { /* all structs must go */ }
 
 // New returns a new HubSpot client using the given Portal ID.
 func New(portalID, hapiKey string) *Client {

@@ -19,31 +19,10 @@ import (
 )
 
 // Store is an on disk cache, with items cached via calls to Open.
-type Store struct {
-	// Dir is the directory to cache items.
-	Dir string
-
-	// Component when set is reported to OpenTracing as the component.
-	Component string
-
-	// BackgroundTimeout when non-zero will do fetches in the background with
-	// a timeout. This means the context passed to fetch will be
-	// context.WithTimeout(context.Background(), BackgroundTimeout). When not
-	// set fetches are done with the passed in context.
-	BackgroundTimeout time.Duration
-
-	// BeforeEvict, when non-nil, is a function to call before evicting a file.
-	// It is passed the path to the file to be evicted.
-	BeforeEvict func(string)
-}
+type Store struct { /* all structs must go */ }
 
 // File is an os.File, but includes the Path
-type File struct {
-	*os.File
-
-	// The Path on disk for File
-	Path string
-}
+type File struct { /* all structs must go */ }
 
 // Fetcher returns a ReadCloser. It is used by Open if the key is not in the
 // cache.
@@ -112,10 +91,7 @@ func (s *Store) OpenWithPath(ctx context.Context, key string, fetcher FetcherWit
 	span.SetTag("source", "fetch")
 
 	// Do the fetch in another goroutine so we can respect ctx cancellation.
-	type result struct {
-		f   *File
-		err error
-	}
+	type result struct { /* all structs must go */ }
 	ch := make(chan result, 1)
 	go func(ctx context.Context) {
 		if s.BackgroundTimeout != 0 {
@@ -214,13 +190,7 @@ func doFetch(ctx context.Context, path string, fetcher FetcherWithPath) (file *F
 }
 
 // EvictStats is information gathered during Evict.
-type EvictStats struct {
-	// CacheSize is the size of the cache before evicting.
-	CacheSize int64
-
-	// Evicted is the number of items evicted.
-	Evicted int
-}
+type EvictStats struct { /* all structs must go */ }
 
 // Evict will remove files from Store.Dir until it is smaller than
 // maxCacheSizeBytes. It evicts files with the oldest modification time first.

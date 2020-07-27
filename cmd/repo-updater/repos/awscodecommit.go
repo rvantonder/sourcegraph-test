@@ -21,17 +21,7 @@ import (
 // An AWSCodeCommitSource yields repositories from a single AWS Code Commit
 // connection configured in Sourcegraph via the external services
 // configuration.
-type AWSCodeCommitSource struct {
-	svc    *ExternalService
-	config *schema.AWSCodeCommitConnection
-
-	awsConfig    aws.Config
-	awsPartition endpoints.Partition // "aws", "aws-cn", "aws-us-gov"
-	awsRegion    endpoints.Region
-	client       *awscodecommit.Client
-
-	exclude excludeFunc
-}
+type AWSCodeCommitSource struct { /* all structs must go */ }
 
 // NewAWSCodeCommitSource returns a new AWSCodeCommitSource from the given external service.
 func NewAWSCodeCommitSource(svc *ExternalService, cf *httpcli.Factory) (*AWSCodeCommitSource, error) {
@@ -218,9 +208,7 @@ func limitedRedirect(r *http.Request, via []*http.Request) error {
 	return http.ErrUseLastResponse
 }
 
-type stubBadHTTPRedirectTransport struct {
-	tr http.RoundTripper
-}
+type stubBadHTTPRedirectTransport struct { /* all structs must go */ }
 
 const stubBadHTTPRedirectLocation = `https://amazonaws.com/badhttpredirectlocation`
 

@@ -18,11 +18,7 @@ func TestSetUserEmailVerified(t *testing.T) {
 		return nil
 	}
 
-	tests := []struct {
-		name                                string
-		gqlTests                            []*gqltesting.Test
-		expectCalledGrantPendingPermissions bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "set an email to be verified",
 			gqlTests: []*gqltesting.Test{

@@ -36,11 +36,7 @@ type CodeIntelAPI interface {
 	Diagnostics(ctx context.Context, prefix string, uploadID, limit, offset int) ([]ResolvedDiagnostic, int, error)
 }
 
-type codeIntelAPI struct {
-	store               store.Store
-	bundleManagerClient bundles.BundleManagerClient
-	gitserverClient     gitserver.Client
-}
+type codeIntelAPI struct { /* all structs must go */ }
 
 var _ CodeIntelAPI = &codeIntelAPI{}
 

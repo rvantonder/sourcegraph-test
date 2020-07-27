@@ -7,10 +7,7 @@ import (
 	"strings"
 )
 
-type test struct {
-	Name  string
-	Query string
-}
+type test struct { /* all structs must go */ }
 
 const searchTestDataDir = "testdata/search"
 

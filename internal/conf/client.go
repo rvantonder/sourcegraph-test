@@ -15,12 +15,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/conf/conftypes"
 )
 
-type client struct {
-	store       *store
-	passthrough ConfigurationSource
-	watchersMu  sync.Mutex
-	watchers    []chan struct{}
-}
+type client struct { /* all structs must go */ }
 
 var (
 	defaultClientOnce sync.Once
@@ -175,15 +170,7 @@ func (c *client) notifyWatchers() {
 	}
 }
 
-type continuousUpdateOptions struct {
-	// delayBeforeUnreachableLog is how long to wait before logging an error upon initial startup
-	// due to the frontend being unreachable. It is used to avoid log spam when other services (that
-	// contact the frontend for configuration) start up before the frontend.
-	delayBeforeUnreachableLog time.Duration
-
-	log   func(format string, v ...interface{}) // log.Printf equivalent
-	sleep func()                                // sleep between updates
-}
+type continuousUpdateOptions struct { /* all structs must go */ }
 
 // continuouslyUpdate runs (*client).fetchAndUpdate in an infinite loop, with error logging and
 // random sleep intervals.

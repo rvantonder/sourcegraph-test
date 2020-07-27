@@ -43,24 +43,9 @@ var DefaultClient = &Client{
 }
 
 // Client is a symbols service client.
-type Client struct {
-	// URL to symbols service.
-	URL string
+type Client struct { /* all structs must go */ }
 
-	// HTTP client to use
-	HTTPClient *http.Client
-
-	// Limits concurrency of outstanding HTTP posts
-	HTTPLimiter *parallel.Run
-
-	once     sync.Once
-	endpoint *endpoint.Map
-}
-
-type key struct {
-	repo     api.RepoName
-	commitID api.CommitID
-}
+type key struct { /* all structs must go */ }
 
 func (c *Client) url(key key) (string, error) {
 	c.once.Do(func() {

@@ -14,13 +14,7 @@ import (
 
 var MockGetAndSaveUser func(ctx context.Context, op GetAndSaveUserOp) (userID int32, safeErrMsg string, err error)
 
-type GetAndSaveUserOp struct {
-	UserProps           db.NewUser
-	ExternalAccount     extsvc.AccountSpec
-	ExternalAccountData extsvc.AccountData
-	CreateIfNotExist    bool
-	LookUpByUsername    bool
-}
+type GetAndSaveUserOp struct { /* all structs must go */ }
 
 // GetAndSaveUser accepts authentication information associated with a given user, validates and applies
 // the necessary updates to the DB, and returns the user ID after the updates have been applied.

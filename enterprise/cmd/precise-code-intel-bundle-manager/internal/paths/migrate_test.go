@@ -51,11 +51,7 @@ func TestMigrate(t *testing.T) {
 }
 
 func TestGetIDAndPartIndex(t *testing.T) {
-	testCases := []struct {
-		filename  string
-		id        int
-		partIndex int
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{"123.lsif.db", 123, -1},
 		{"123.456.lsif.db", 123, 456},
 		{"123.456.sqlite", -1, -1},

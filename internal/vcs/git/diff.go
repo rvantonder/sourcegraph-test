@@ -11,13 +11,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/gitserver"
 )
 
-type DiffOptions struct {
-	Repo gitserver.Repo
-
-	// These fields must be valid <commit> inputs as defined by gitrevisions(7).
-	Base string
-	Head string
-}
+type DiffOptions struct { /* all structs must go */ }
 
 // Diff returns an iterator that can be used to access the diff between two
 // commits on a per-file basis. The iterator must be closed with Close when no
@@ -59,10 +53,7 @@ func Diff(ctx context.Context, opts DiffOptions) (*DiffFileIterator, error) {
 	}, nil
 }
 
-type DiffFileIterator struct {
-	rdr  io.ReadCloser
-	mfdr *diff.MultiFileDiffReader
-}
+type DiffFileIterator struct { /* all structs must go */ }
 
 func (i *DiffFileIterator) Close() error {
 	return i.rdr.Close()

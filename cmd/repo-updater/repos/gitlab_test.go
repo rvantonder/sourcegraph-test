@@ -24,12 +24,7 @@ import (
 )
 
 func TestProjectQueryToURL(t *testing.T) {
-	tests := []struct {
-		projectQuery string
-		perPage      int
-		expURL       string
-		expErr       error
-	}{{
+	tests := []struct { /* all structs must go */ }{{
 		projectQuery: "?membership=true",
 		perPage:      100,
 		expURL:       "projects?membership=true&per_page=100",
@@ -68,12 +63,7 @@ func TestProjectQueryToURL(t *testing.T) {
 }
 
 func TestGitLabSource_GetRepo(t *testing.T) {
-	testCases := []struct {
-		name                 string
-		projectWithNamespace string
-		assert               func(*testing.T, *Repo)
-		err                  string
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{
 			name:                 "not found",
 			projectWithNamespace: "foobarfoobarfoobar/please-let-this-not-exist",
@@ -174,10 +164,7 @@ func TestGitLabSource_makeRepo(t *testing.T) {
 
 	svc := ExternalService{ID: 1, Kind: extsvc.KindGitLab}
 
-	tests := []struct {
-		name   string
-		schmea *schema.GitLabConnection
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "simple",
 			schmea: &schema.GitLabConnection{
@@ -739,13 +726,7 @@ func (d *panicDoer) Do(r *http.Request) (*http.Response, error) {
 	panic("this function should not be called; a mock must be missing")
 }
 
-type gitLabChangesetSourceTestProvider struct {
-	changeset *Changeset
-	ctx       context.Context
-	mr        *gitlab.MergeRequest
-	source    *GitLabSource
-	t         *testing.T
-}
+type gitLabChangesetSourceTestProvider struct { /* all structs must go */ }
 
 // newGitLabChangesetSourceTestProvider provides a set of useful pre-canned
 // objects, along with a handful of methods to mock underlying

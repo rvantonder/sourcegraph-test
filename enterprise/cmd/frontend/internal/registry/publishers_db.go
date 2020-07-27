@@ -11,21 +11,13 @@ import (
 )
 
 // dbPublisher is a publisher of extensions to the registry.
-type dbPublisher struct {
-	UserID, OrgID int32 // exactly 1 is nonzero
-
-	// NonCanonicalExtensionID is the publisher's username (for a user) or name (for an org) as of
-	// when the query executed. Do not persist this.
-	NonCanonicalName string
-}
+type dbPublisher struct { /* all structs must go */ }
 
 // IsZero reports whether p is the zero value.
 func (p dbPublisher) IsZero() bool { return p == dbPublisher{} }
 
 // publisherNotFoundError occurs when a registry extension publisher is not found.
-type publisherNotFoundError struct {
-	args []interface{}
-}
+type publisherNotFoundError struct { /* all structs must go */ }
 
 // NotFound implements errcode.NotFounder.
 func (err publisherNotFoundError) NotFound() bool { return true }
@@ -36,9 +28,7 @@ func (err publisherNotFoundError) Error() string {
 
 // dbPublishersListOptions contains options for listing publishers of extensions in the
 // registry.
-type dbPublishersListOptions struct {
-	*db.LimitOffset
-}
+type dbPublishersListOptions struct { /* all structs must go */ }
 
 func (o dbPublishersListOptions) sqlConditions() []*sqlf.Query {
 	var conds []*sqlf.Query

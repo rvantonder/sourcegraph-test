@@ -58,11 +58,7 @@ func TestMonitor_RecommendedWaitForBackgroundOp(t *testing.T) {
 
 func TestMonitor_RecommendedWaitForBackgroundOp_RetryAfter(t *testing.T) {
 	now := time.Now()
-	for _, tc := range []struct {
-		retry time.Time
-		now   time.Time
-		wait  time.Duration
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		// 30 seconds remaining from now until retry
 		{now.Add(30 * time.Second), now, 30 * time.Second},
 		// 0 seconds remaining from now until retry
@@ -95,12 +91,7 @@ func TestMonitor_Update(t *testing.T) {
 			a.retry.Equal(b.retry)
 	}
 
-	for _, tc := range []struct {
-		name   string
-		before *Monitor
-		h      http.Header
-		after  *Monitor
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{
 			name:   "Retry-After header sets retry deadline",
 			before: &Monitor{clock: clock},

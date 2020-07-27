@@ -13,10 +13,7 @@ func pairs(m map[string]string) []string {
 }
 
 func TestNamedToNonCapturingGroups(t *testing.T) {
-	tests := []struct {
-		input string
-		want  string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{``, ``},
 		{`(?P<foo>bar)`, `(?:bar)`},
 		{`(?P<foo>(?P<baz>bar))`, `(?:(?:bar))`},

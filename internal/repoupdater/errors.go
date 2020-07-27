@@ -7,10 +7,7 @@ import (
 )
 
 // ErrNotFound is an error that occurs when a Repo doesn't exist.
-type ErrNotFound struct {
-	Repo       api.RepoName
-	IsNotFound bool
-}
+type ErrNotFound struct { /* all structs must go */ }
 
 // ErrNotFound returns true if the repo does Not exist.
 func (e *ErrNotFound) NotFound() bool {
@@ -23,10 +20,7 @@ func (e *ErrNotFound) Error() string {
 
 // ErrUnauthorized is an error that occurs when repo access is
 // unauthorized.
-type ErrUnauthorized struct {
-	Repo    api.RepoName
-	NoAuthz bool
-}
+type ErrUnauthorized struct { /* all structs must go */ }
 
 // Unauthorized returns true if repo access is unauthorized.
 func (e *ErrUnauthorized) Unauthorized() bool {
@@ -38,10 +32,7 @@ func (e *ErrUnauthorized) Error() string {
 }
 
 // ErrTemporary is an error that can be retried
-type ErrTemporary struct {
-	Repo        api.RepoName
-	IsTemporary bool
-}
+type ErrTemporary struct { /* all structs must go */ }
 
 // ErrTemporary is when the repository was reported as being temporarily
 // unavailable.

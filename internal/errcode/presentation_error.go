@@ -35,10 +35,7 @@ func NewPresentationError(message string) error {
 }
 
 // presentationError implements PresentationError.
-type presentationError struct {
-	cause error
-	msg   string
-}
+type presentationError struct { /* all structs must go */ }
 
 func (e *presentationError) Error() string {
 	if e.cause != nil {

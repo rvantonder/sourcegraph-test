@@ -20,17 +20,7 @@ import (
 
 // Provider is an implementation of AuthzProvider that provides repository permissions as
 // determined from a Bitbucket Server instance API.
-type Provider struct {
-	urn      string
-	client   *bitbucketserver.Client
-	codeHost *extsvc.CodeHost
-	pageSize int // Page size to use in paginated requests.
-
-	// pluginPerm enables fetching permissions from the alternative roaring
-	// bitmap endpoint provided by the Bitbucket Server Sourcegraph plugin:
-	// https://github.com/sourcegraph/bitbucket-server-plugin
-	pluginPerm bool
-}
+type Provider struct { /* all structs must go */ }
 
 var _ authz.Provider = (*Provider)(nil)
 

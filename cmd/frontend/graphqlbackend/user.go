@@ -18,10 +18,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/errcode"
 )
 
-func (r *schemaResolver) User(ctx context.Context, args struct {
-	Username *string
-	Email    *string
-}) (*UserResolver, error) {
+func (r *schemaResolver) User(ctx context.Context, args struct { /* all structs must go */ }) (*UserResolver, error) {
 	switch {
 	case args.Username != nil:
 		user, err := db.Users.GetByUsername(ctx, *args.Username)
@@ -50,9 +47,7 @@ func (r *schemaResolver) User(ctx context.Context, args struct {
 }
 
 // UserResolver implements the GraphQL User type.
-type UserResolver struct {
-	user *types.User
-}
+type UserResolver struct { /* all structs must go */ }
 
 // NewUserResolver returns a new UserResolver with given user object.
 func NewUserResolver(user *types.User) *UserResolver {
@@ -177,12 +172,7 @@ func (r *UserResolver) SiteAdmin(ctx context.Context) (bool, error) {
 	return r.user.SiteAdmin, nil
 }
 
-type updateUserArgs struct {
-	User        graphql.ID
-	Username    *string
-	DisplayName *string
-	AvatarURL   *string
-}
+type updateUserArgs struct { /* all structs must go */ }
 
 func (*schemaResolver) UpdateUser(ctx context.Context, args *updateUserArgs) (*EmptyResponse, error) {
 	userID, err := UnmarshalUserID(args.User)
@@ -293,10 +283,7 @@ func (r *UserResolver) PermissionsInfo(ctx context.Context) (PermissionsInfoReso
 	return EnterpriseResolvers.authzResolver.UserPermissionsInfo(ctx, r.ID())
 }
 
-func (r *schemaResolver) UpdatePassword(ctx context.Context, args *struct {
-	OldPassword string
-	NewPassword string
-}) (*EmptyResponse, error) {
+func (r *schemaResolver) UpdatePassword(ctx context.Context, args *struct { /* all structs must go */ }) (*EmptyResponse, error) {
 	// 🚨 SECURITY: A user can only change their own password.
 	user, err := db.Users.GetByCurrentAuthUser(ctx)
 	if err != nil {

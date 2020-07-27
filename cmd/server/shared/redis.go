@@ -16,13 +16,7 @@ import (
 var redisStoreConfTmpl = template.Must(template.New("redis-store.conf").Parse(assets.MustAssetString("redis-store.conf.tmpl")))
 var redisCacheConfTmpl = template.Must(template.New("redis-cache.conf").Parse(assets.MustAssetString("redis-cache.conf.tmpl")))
 
-type redisProcfileConfig struct {
-	envVar  string
-	name    string
-	port    string
-	tmpl    *template.Template
-	dataDir string
-}
+type redisProcfileConfig struct { /* all structs must go */ }
 
 func maybeRedisStoreProcFile() (string, error) {
 	return maybeRedisProcFile(redisProcfileConfig{
@@ -130,10 +124,7 @@ func redisFixAOF(rootDataDir string, c redisProcfileConfig) {
 // yesReader simulates the output of the "yes" command.
 //
 // It is equivalent to bytes.NewReader(bytes.Repeat(Expletive, infinity))
-type yesReader struct {
-	Expletive []byte
-	offset    int
-}
+type yesReader struct { /* all structs must go */ }
 
 func (r *yesReader) Read(p []byte) (int, error) {
 	if len(r.Expletive) == 0 {

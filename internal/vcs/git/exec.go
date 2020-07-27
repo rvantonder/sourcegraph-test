@@ -204,30 +204,7 @@ type cmd interface {
 // lookup the remote URL through repo-updater (an expensive process which
 // consumes 2 code host API requests), unless the revision is actually missing
 // and gitserver would want to try fetching it.
-type commandRetryer struct {
-	// cmd is the gitserver command to execute. It is never modified, except
-	// when setting cmd.Repo.URL in the case that remoteURLFunc is called.
-	cmd *gitserver.Cmd
-
-	// remoteURLFunc is called to get the Git remote URL if it's not set in
-	// repo and if it is needed. The Git remote URL is only required if the
-	// gitserver doesn't already contain a clone of the repository or if the
-	// commit must be fetched from the remote.
-	//
-	// If cmd.EnsureRevision == "", this field is ignored.
-	remoteURLFunc func() (string, error)
-
-	// exec is called when the cmd should be executed. It is expected to run
-	// the gitserver command and return errors (e.g. RevisionNotFoundError),
-	// which will be handled by the retryer by invoking exec again.
-	//
-	// For basic usage, see the implementation of DividedOutput.
-	//
-	// Any case involving the need to parse out missing revision errors from
-	// the Git command output yourself will need to use this instead of the
-	// DividedOutput helper.
-	exec func() error
-}
+type commandRetryer struct { /* all structs must go */ }
 
 // DividedOutput is a helper which sets c.exec to a function which invokes
 // c.cmd.DividedOutput and returns the result after calling c.run.

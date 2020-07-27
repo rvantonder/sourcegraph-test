@@ -71,15 +71,7 @@ func TestResolver_SetRepositoryPermissionsForUsers(t *testing.T) {
 		}
 	})
 
-	tests := []struct {
-		name               string
-		config             *schema.PermissionsUserMapping
-		mockVerifiedEmails []*db.UserEmail
-		mockUsers          []*types.User
-		gqlTests           []*gqltesting.Test
-		expUserIDs         []uint32
-		expAccounts        *extsvc.Accounts
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "set permissions via email",
 			config: &schema.PermissionsUserMapping{
@@ -297,9 +289,7 @@ func TestResolver_ScheduleUserPermissionsSync(t *testing.T) {
 	}
 }
 
-type fakeRepoupdaterClient struct {
-	mockSchedulePermsSync func(ctx context.Context, args protocol.PermsSyncRequest) error
-}
+type fakeRepoupdaterClient struct { /* all structs must go */ }
 
 func (c *fakeRepoupdaterClient) SchedulePermsSync(ctx context.Context, args protocol.PermsSyncRequest) error {
 	return c.mockSchedulePermsSync(ctx, args)
@@ -361,10 +351,7 @@ func TestResolver_AuthorizedUserRepositories(t *testing.T) {
 		edb.Mocks.Perms = edb.MockPerms{}
 	}()
 
-	tests := []struct {
-		name     string
-		gqlTests []*gqltesting.Test
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "check authorized repos via email",
 			gqlTests: []*gqltesting.Test{
@@ -515,10 +502,7 @@ func TestResolver_UsersWithPendingPermissions(t *testing.T) {
 		edb.Mocks.Perms = edb.MockPerms{}
 	}()
 
-	tests := []struct {
-		name     string
-		gqlTests []*gqltesting.Test
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "list pending users with their bind IDs",
 			gqlTests: []*gqltesting.Test{
@@ -594,10 +578,7 @@ func TestResolver_AuthorizedUsers(t *testing.T) {
 		edb.Mocks.Perms = edb.MockPerms{}
 	}()
 
-	tests := []struct {
-		name     string
-		gqlTests []*gqltesting.Test
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "get authorized users",
 			gqlTests: []*gqltesting.Test{
@@ -674,10 +655,7 @@ func TestResolver_RepositoryPermissionsInfo(t *testing.T) {
 		db.Mocks.Repos = db.MockRepos{}
 		edb.Mocks.Perms = edb.MockPerms{}
 	}()
-	tests := []struct {
-		name     string
-		gqlTests []*gqltesting.Test
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "get permissions information",
 			gqlTests: []*gqltesting.Test{
@@ -750,10 +728,7 @@ func TestResolver_UserPermissionsInfo(t *testing.T) {
 		db.Mocks.Users = db.MockUsers{}
 		edb.Mocks.Perms = edb.MockPerms{}
 	}()
-	tests := []struct {
-		name     string
-		gqlTests []*gqltesting.Test
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "get permissions information",
 			gqlTests: []*gqltesting.Test{

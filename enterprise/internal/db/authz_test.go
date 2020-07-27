@@ -76,17 +76,8 @@ func TestAuthzStore_GrantPendingPermissions(t *testing.T) {
 	s := NewAuthzStore(dbconn.Global, clock).(*authzStore)
 
 	// Each update corresponds to a SetRepoPendingPermssions call
-	type update struct {
-		accounts *extsvc.Accounts
-		repoID   int32
-	}
-	tests := []struct {
-		name          string
-		config        *schema.PermissionsUserMapping
-		args          *db.GrantPendingPermissionsArgs
-		updates       []update
-		expectRepoIDs []int
-	}{
+	type update struct { /* all structs must go */ }
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "grant by emails",
 			config: &schema.PermissionsUserMapping{
@@ -234,16 +225,8 @@ func TestAuthzStore_AuthorizedRepos(t *testing.T) {
 
 	s := NewAuthzStore(dbconn.Global, clock).(*authzStore)
 
-	type update struct {
-		repoID  int32
-		userIDs []uint32
-	}
-	tests := []struct {
-		name        string
-		args        *db.AuthorizedReposArgs
-		updates     []update
-		expectRepos []*types.Repo
-	}{
+	type update struct { /* all structs must go */ }
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "no repos",
 			args: &db.AuthorizedReposArgs{},

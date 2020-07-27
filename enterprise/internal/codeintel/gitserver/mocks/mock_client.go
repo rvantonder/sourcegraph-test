@@ -14,29 +14,7 @@ import (
 // package
 // github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/gitserver)
 // used for unit testing.
-type MockClient struct {
-	// ArchiveFunc is an instance of a mock function object controlling the
-	// behavior of the method Archive.
-	ArchiveFunc *ClientArchiveFunc
-	// CommitGraphFunc is an instance of a mock function object controlling
-	// the behavior of the method CommitGraph.
-	CommitGraphFunc *ClientCommitGraphFunc
-	// CommitsNearFunc is an instance of a mock function object controlling
-	// the behavior of the method CommitsNear.
-	CommitsNearFunc *ClientCommitsNearFunc
-	// DirectoryChildrenFunc is an instance of a mock function object
-	// controlling the behavior of the method DirectoryChildren.
-	DirectoryChildrenFunc *ClientDirectoryChildrenFunc
-	// FileExistsFunc is an instance of a mock function object controlling
-	// the behavior of the method FileExists.
-	FileExistsFunc *ClientFileExistsFunc
-	// HeadFunc is an instance of a mock function object controlling the
-	// behavior of the method Head.
-	HeadFunc *ClientHeadFunc
-	// TagsFunc is an instance of a mock function object controlling the
-	// behavior of the method Tags.
-	TagsFunc *ClientTagsFunc
-}
+type MockClient struct { /* all structs must go */ }
 
 // NewMockClient creates a new mock of the Client interface. All methods
 // return zero values for all results, unless overwritten.
@@ -110,12 +88,7 @@ func NewMockClientFrom(i gitserver.Client) *MockClient {
 
 // ClientArchiveFunc describes the behavior when the Archive method of the
 // parent MockClient instance is invoked.
-type ClientArchiveFunc struct {
-	defaultHook func(context.Context, store.Store, int, string) (io.Reader, error)
-	hooks       []func(context.Context, store.Store, int, string) (io.Reader, error)
-	history     []ClientArchiveFuncCall
-	mutex       sync.Mutex
-}
+type ClientArchiveFunc struct { /* all structs must go */ }
 
 // Archive delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -189,26 +162,7 @@ func (f *ClientArchiveFunc) History() []ClientArchiveFuncCall {
 
 // ClientArchiveFuncCall is an object that describes an invocation of method
 // Archive on an instance of MockClient.
-type ClientArchiveFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 store.Store
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 io.Reader
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type ClientArchiveFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -224,12 +178,7 @@ func (c ClientArchiveFuncCall) Results() []interface{} {
 
 // ClientCommitGraphFunc describes the behavior when the CommitGraph method
 // of the parent MockClient instance is invoked.
-type ClientCommitGraphFunc struct {
-	defaultHook func(context.Context, store.Store, int) (map[string][]string, error)
-	hooks       []func(context.Context, store.Store, int) (map[string][]string, error)
-	history     []ClientCommitGraphFuncCall
-	mutex       sync.Mutex
-}
+type ClientCommitGraphFunc struct { /* all structs must go */ }
 
 // CommitGraph delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -303,23 +252,7 @@ func (f *ClientCommitGraphFunc) History() []ClientCommitGraphFuncCall {
 
 // ClientCommitGraphFuncCall is an object that describes an invocation of
 // method CommitGraph on an instance of MockClient.
-type ClientCommitGraphFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 store.Store
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 map[string][]string
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type ClientCommitGraphFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -335,12 +268,7 @@ func (c ClientCommitGraphFuncCall) Results() []interface{} {
 
 // ClientCommitsNearFunc describes the behavior when the CommitsNear method
 // of the parent MockClient instance is invoked.
-type ClientCommitsNearFunc struct {
-	defaultHook func(context.Context, store.Store, int, string) (map[string][]string, error)
-	hooks       []func(context.Context, store.Store, int, string) (map[string][]string, error)
-	history     []ClientCommitsNearFuncCall
-	mutex       sync.Mutex
-}
+type ClientCommitsNearFunc struct { /* all structs must go */ }
 
 // CommitsNear delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -414,26 +342,7 @@ func (f *ClientCommitsNearFunc) History() []ClientCommitsNearFuncCall {
 
 // ClientCommitsNearFuncCall is an object that describes an invocation of
 // method CommitsNear on an instance of MockClient.
-type ClientCommitsNearFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 store.Store
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 map[string][]string
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type ClientCommitsNearFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -449,12 +358,7 @@ func (c ClientCommitsNearFuncCall) Results() []interface{} {
 
 // ClientDirectoryChildrenFunc describes the behavior when the
 // DirectoryChildren method of the parent MockClient instance is invoked.
-type ClientDirectoryChildrenFunc struct {
-	defaultHook func(context.Context, store.Store, int, string, []string) (map[string][]string, error)
-	hooks       []func(context.Context, store.Store, int, string, []string) (map[string][]string, error)
-	history     []ClientDirectoryChildrenFuncCall
-	mutex       sync.Mutex
-}
+type ClientDirectoryChildrenFunc struct { /* all structs must go */ }
 
 // DirectoryChildren delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -529,29 +433,7 @@ func (f *ClientDirectoryChildrenFunc) History() []ClientDirectoryChildrenFuncCal
 
 // ClientDirectoryChildrenFuncCall is an object that describes an invocation
 // of method DirectoryChildren on an instance of MockClient.
-type ClientDirectoryChildrenFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 store.Store
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 string
-	// Arg4 is the value of the 5th argument passed to this method
-	// invocation.
-	Arg4 []string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 map[string][]string
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type ClientDirectoryChildrenFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -567,12 +449,7 @@ func (c ClientDirectoryChildrenFuncCall) Results() []interface{} {
 
 // ClientFileExistsFunc describes the behavior when the FileExists method of
 // the parent MockClient instance is invoked.
-type ClientFileExistsFunc struct {
-	defaultHook func(context.Context, store.Store, int, string, string) (bool, error)
-	hooks       []func(context.Context, store.Store, int, string, string) (bool, error)
-	history     []ClientFileExistsFuncCall
-	mutex       sync.Mutex
-}
+type ClientFileExistsFunc struct { /* all structs must go */ }
 
 // FileExists delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -646,29 +523,7 @@ func (f *ClientFileExistsFunc) History() []ClientFileExistsFuncCall {
 
 // ClientFileExistsFuncCall is an object that describes an invocation of
 // method FileExists on an instance of MockClient.
-type ClientFileExistsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 store.Store
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 string
-	// Arg4 is the value of the 5th argument passed to this method
-	// invocation.
-	Arg4 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 bool
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type ClientFileExistsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -684,12 +539,7 @@ func (c ClientFileExistsFuncCall) Results() []interface{} {
 
 // ClientHeadFunc describes the behavior when the Head method of the parent
 // MockClient instance is invoked.
-type ClientHeadFunc struct {
-	defaultHook func(context.Context, store.Store, int) (string, error)
-	hooks       []func(context.Context, store.Store, int) (string, error)
-	history     []ClientHeadFuncCall
-	mutex       sync.Mutex
-}
+type ClientHeadFunc struct { /* all structs must go */ }
 
 // Head delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -763,23 +613,7 @@ func (f *ClientHeadFunc) History() []ClientHeadFuncCall {
 
 // ClientHeadFuncCall is an object that describes an invocation of method
 // Head on an instance of MockClient.
-type ClientHeadFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 store.Store
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 string
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type ClientHeadFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -795,12 +629,7 @@ func (c ClientHeadFuncCall) Results() []interface{} {
 
 // ClientTagsFunc describes the behavior when the Tags method of the parent
 // MockClient instance is invoked.
-type ClientTagsFunc struct {
-	defaultHook func(context.Context, store.Store, int, string) (string, bool, error)
-	hooks       []func(context.Context, store.Store, int, string) (string, bool, error)
-	history     []ClientTagsFuncCall
-	mutex       sync.Mutex
-}
+type ClientTagsFunc struct { /* all structs must go */ }
 
 // Tags delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -874,29 +703,7 @@ func (f *ClientTagsFunc) History() []ClientTagsFuncCall {
 
 // ClientTagsFuncCall is an object that describes an invocation of method
 // Tags on an instance of MockClient.
-type ClientTagsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 store.Store
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 string
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 bool
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type ClientTagsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.

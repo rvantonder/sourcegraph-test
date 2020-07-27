@@ -24,20 +24,8 @@ import (
 )
 
 func TestSearch(t *testing.T) {
-	type Results struct {
-		Results     []interface{}
-		ResultCount int
-	}
-	tcs := []struct {
-		name                         string
-		searchQuery                  string
-		searchVersion                string
-		reposListMock                func(v0 context.Context, v1 db.ReposListOptions) ([]*types.Repo, error)
-		repoRevsMock                 func(spec string, opt git.ResolveRevisionOptions) (api.CommitID, error)
-		externalServicesListMock     func(opt db.ExternalServicesListOptions) ([]*types.ExternalService, error)
-		phabricatorGetRepoByNameMock func(repo api.RepoName) (*types.PhabricatorRepo, error)
-		wantResults                  Results
-	}{
+	type Results struct { /* all structs must go */ }
+	tcs := []struct { /* all structs must go */ }{
 		{
 			name:        "empty query against no repos gets no results",
 			searchQuery: "",
@@ -105,9 +93,7 @@ func TestSearch(t *testing.T) {
 			if len(result.Errors) > 0 {
 				t.Fatalf("graphQL query returned errors: %+v", result.Errors)
 			}
-			var search struct {
-				Results Results
-			}
+			var search struct { /* all structs must go */ }
 			if err := json.Unmarshal(result.Data, &search); err != nil {
 				t.Fatalf("parsing JSON response: %v", err)
 			}
@@ -256,13 +242,7 @@ func testStringResult(result *searchSuggestionResolver) string {
 }
 
 func TestDefaultRepositories(t *testing.T) {
-	tcs := []struct {
-		name             string
-		defaultsInDb     []string
-		indexedRepoNames map[string]bool
-		want             []string
-		excludePatterns  []string
-	}{
+	tcs := []struct { /* all structs must go */ }{
 		{
 			name:             "none in db => none returned",
 			defaultsInDb:     nil,
@@ -340,13 +320,7 @@ func TestDefaultRepositories(t *testing.T) {
 func TestDetectSearchType(t *testing.T) {
 	typeRegexp := "regexp"
 	typeLiteral := "literal"
-	testCases := []struct {
-		name        string
-		version     string
-		patternType *string
-		input       string
-		want        query.SearchType
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{"V1, no pattern type", "V1", nil, "", query.SearchTypeRegex},
 		{"V2, no pattern type", "V2", nil, "", query.SearchTypeLiteral},
 		{"V2, no pattern type, input does not produce parse error", "V2", nil, "/-/godoc", query.SearchTypeLiteral},
@@ -379,10 +353,7 @@ func TestDetectSearchType(t *testing.T) {
 }
 
 func TestExactlyOneRepo(t *testing.T) {
-	cases := []struct {
-		repoFilters []string
-		want        bool
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			repoFilters: []string{`^github\.com/sourcegraph/zoekt$`},
 			want:        true,
@@ -471,11 +442,7 @@ func TestQuoteSuggestions(t *testing.T) {
 }
 
 func TestEueryForStableResults(t *testing.T) {
-	cases := []struct {
-		query           string
-		wantStableCount int32
-		wantError       error
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			query:           "foo stable:yes",
 			wantStableCount: 30,
@@ -542,15 +509,7 @@ func TestVersionContext(t *testing.T) {
 	mockDecodedViewerFinalSettings = &schema.Settings{}
 	defer func() { mockDecodedViewerFinalSettings = nil }()
 
-	tcs := []struct {
-		name           string
-		searchQuery    string
-		versionContext string
-		// db.ReposListOptions.Names
-		wantReposListOptionsNames []string
-		reposGetListNames         []string
-		wantResults               []string
-	}{{
+	tcs := []struct { /* all structs must go */ }{{
 		name:           "query with version context should return the right repositories",
 		searchQuery:    "foo",
 		versionContext: "ctx-1",
@@ -662,12 +621,7 @@ func TestVersionContext(t *testing.T) {
 }
 
 func TestComputeExcludedRepositories(t *testing.T) {
-	cases := []struct {
-		Name              string
-		Query             string
-		Repos             []types.Repo
-		WantExcludedRepos *excludedRepos
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			Name:  "filter out forks and archived repos",
 			Query: "repo:repo",

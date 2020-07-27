@@ -9,22 +9,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/vcs/git"
 )
 
-type gitCommitConnectionResolver struct {
-	revisionRange string
-
-	first  *int32
-	query  *string
-	path   *string
-	author *string
-	after  *string
-
-	repo *RepositoryResolver
-
-	// cache results because it is used by multiple fields
-	once    sync.Once
-	commits []*git.Commit
-	err     error
-}
+type gitCommitConnectionResolver struct { /* all structs must go */ }
 
 func (r *gitCommitConnectionResolver) compute(ctx context.Context) ([]*git.Commit, error) {
 	do := func() ([]*git.Commit, error) {

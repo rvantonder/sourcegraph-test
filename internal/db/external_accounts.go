@@ -15,9 +15,7 @@ import (
 )
 
 // userExternalAccountNotFoundError is the error that is returned when a user external account is not found.
-type userExternalAccountNotFoundError struct {
-	args []interface{}
-}
+type userExternalAccountNotFoundError struct { /* all structs must go */ }
 
 func (err userExternalAccountNotFoundError) Error() string {
 	return fmt.Sprintf("user external account not found: %v", err.args)
@@ -195,11 +193,7 @@ func (*userExternalAccounts) Delete(ctx context.Context, id int32) error {
 }
 
 // ExternalAccountsListOptions specifies the options for listing user external accounts.
-type ExternalAccountsListOptions struct {
-	UserID                           int32
-	ServiceType, ServiceID, ClientID string
-	*LimitOffset
-}
+type ExternalAccountsListOptions struct { /* all structs must go */ }
 
 func (s *userExternalAccounts) List(ctx context.Context, opt ExternalAccountsListOptions) (acct []*extsvc.Account, err error) {
 	if Mocks.ExternalAccounts.List != nil {
@@ -319,12 +313,4 @@ func (*userExternalAccounts) listSQL(opt ExternalAccountsListOptions) (conds []*
 }
 
 // MockExternalAccounts mocks the Stores.ExternalAccounts DB store.
-type MockExternalAccounts struct {
-	Get                  func(id int32) (*extsvc.Account, error)
-	LookupUserAndSave    func(extsvc.AccountSpec, extsvc.AccountData) (userID int32, err error)
-	AssociateUserAndSave func(userID int32, spec extsvc.AccountSpec, data extsvc.AccountData) error
-	CreateUserAndSave    func(NewUser, extsvc.AccountSpec, extsvc.AccountData) (createdUserID int32, err error)
-	Delete               func(id int32) error
-	List                 func(ExternalAccountsListOptions) ([]*extsvc.Account, error)
-	Count                func(ExternalAccountsListOptions) (int, error)
-}
+type MockExternalAccounts struct { /* all structs must go */ }

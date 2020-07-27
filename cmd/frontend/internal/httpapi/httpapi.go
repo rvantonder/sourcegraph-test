@@ -153,9 +153,7 @@ func init() {
 	})
 }
 
-type errorHandler struct {
-	WriteErrBody bool
-}
+type errorHandler struct { /* all structs must go */ }
 
 func (h *errorHandler) Handle(w http.ResponseWriter, r *http.Request, status int, err error) {
 	trace.SetRequestErrorCause(r.Context(), err)

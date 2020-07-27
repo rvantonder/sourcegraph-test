@@ -6,11 +6,7 @@ import (
 )
 
 func TestProductNameWithBrand(t *testing.T) {
-	tests := []struct {
-		hasLicense  bool
-		licenseTags []string
-		want        string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{hasLicense: false, want: "Sourcegraph Free"},
 		{hasLicense: true, licenseTags: nil, want: "Sourcegraph Enterprise"},
 		{hasLicense: true, licenseTags: []string{}, want: "Sourcegraph Enterprise"},

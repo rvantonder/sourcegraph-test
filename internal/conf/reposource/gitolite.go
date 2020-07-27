@@ -7,9 +7,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/schema"
 )
 
-type Gitolite struct {
-	*schema.GitoliteConnection
-}
+type Gitolite struct { /* all structs must go */ }
 
 var _ RepoSource = Gitolite{}
 

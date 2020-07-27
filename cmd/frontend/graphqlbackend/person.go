@@ -10,18 +10,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/errcode"
 )
 
-type personResolver struct {
-	name  string
-	email string
-
-	// fetch + serve sourcegraph stored user information
-	includeUserInfo bool
-
-	// cache result because it is used by multiple fields
-	once sync.Once
-	user *types.User
-	err  error
-}
+type personResolver struct { /* all structs must go */ }
 
 // resolveUser resolves the person to a user (using the email address). Not all persons can be
 // resolved to a user.

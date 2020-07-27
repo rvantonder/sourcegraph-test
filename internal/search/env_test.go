@@ -7,11 +7,7 @@ import (
 )
 
 func TestZoektAddr(t *testing.T) {
-	cases := []struct {
-		name    string
-		environ []string
-		want    string
-	}{{
+	cases := []struct { /* all structs must go */ }{{
 		name: "default",
 		want: "k8s+rpc://indexed-search:6070",
 	}, {

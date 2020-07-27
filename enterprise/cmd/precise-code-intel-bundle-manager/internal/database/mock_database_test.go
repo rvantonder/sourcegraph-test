@@ -12,38 +12,7 @@ import (
 // package
 // github.com/sourcegraph/sourcegraph/enterprise/cmd/precise-code-intel-bundle-manager/internal/database)
 // used for unit testing.
-type MockDatabase struct {
-	// CloseFunc is an instance of a mock function object controlling the
-	// behavior of the method Close.
-	CloseFunc *DatabaseCloseFunc
-	// DefinitionsFunc is an instance of a mock function object controlling
-	// the behavior of the method Definitions.
-	DefinitionsFunc *DatabaseDefinitionsFunc
-	// DiagnosticsFunc is an instance of a mock function object controlling
-	// the behavior of the method Diagnostics.
-	DiagnosticsFunc *DatabaseDiagnosticsFunc
-	// ExistsFunc is an instance of a mock function object controlling the
-	// behavior of the method Exists.
-	ExistsFunc *DatabaseExistsFunc
-	// HoverFunc is an instance of a mock function object controlling the
-	// behavior of the method Hover.
-	HoverFunc *DatabaseHoverFunc
-	// MonikerResultsFunc is an instance of a mock function object
-	// controlling the behavior of the method MonikerResults.
-	MonikerResultsFunc *DatabaseMonikerResultsFunc
-	// MonikersByPositionFunc is an instance of a mock function object
-	// controlling the behavior of the method MonikersByPosition.
-	MonikersByPositionFunc *DatabaseMonikersByPositionFunc
-	// PackageInformationFunc is an instance of a mock function object
-	// controlling the behavior of the method PackageInformation.
-	PackageInformationFunc *DatabasePackageInformationFunc
-	// RangesFunc is an instance of a mock function object controlling the
-	// behavior of the method Ranges.
-	RangesFunc *DatabaseRangesFunc
-	// ReferencesFunc is an instance of a mock function object controlling
-	// the behavior of the method References.
-	ReferencesFunc *DatabaseReferencesFunc
-}
+type MockDatabase struct { /* all structs must go */ }
 
 // NewMockDatabase creates a new mock of the Database interface. All methods
 // return zero values for all results, unless overwritten.
@@ -141,12 +110,7 @@ func NewMockDatabaseFrom(i Database) *MockDatabase {
 
 // DatabaseCloseFunc describes the behavior when the Close method of the
 // parent MockDatabase instance is invoked.
-type DatabaseCloseFunc struct {
-	defaultHook func() error
-	hooks       []func() error
-	history     []DatabaseCloseFuncCall
-	mutex       sync.Mutex
-}
+type DatabaseCloseFunc struct { /* all structs must go */ }
 
 // Close delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -220,11 +184,7 @@ func (f *DatabaseCloseFunc) History() []DatabaseCloseFuncCall {
 
 // DatabaseCloseFuncCall is an object that describes an invocation of method
 // Close on an instance of MockDatabase.
-type DatabaseCloseFuncCall struct {
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type DatabaseCloseFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -240,12 +200,7 @@ func (c DatabaseCloseFuncCall) Results() []interface{} {
 
 // DatabaseDefinitionsFunc describes the behavior when the Definitions
 // method of the parent MockDatabase instance is invoked.
-type DatabaseDefinitionsFunc struct {
-	defaultHook func(context.Context, string, int, int) ([]client.Location, error)
-	hooks       []func(context.Context, string, int, int) ([]client.Location, error)
-	history     []DatabaseDefinitionsFuncCall
-	mutex       sync.Mutex
-}
+type DatabaseDefinitionsFunc struct { /* all structs must go */ }
 
 // Definitions delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -320,26 +275,7 @@ func (f *DatabaseDefinitionsFunc) History() []DatabaseDefinitionsFuncCall {
 
 // DatabaseDefinitionsFuncCall is an object that describes an invocation of
 // method Definitions on an instance of MockDatabase.
-type DatabaseDefinitionsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []client.Location
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type DatabaseDefinitionsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -355,12 +291,7 @@ func (c DatabaseDefinitionsFuncCall) Results() []interface{} {
 
 // DatabaseDiagnosticsFunc describes the behavior when the Diagnostics
 // method of the parent MockDatabase instance is invoked.
-type DatabaseDiagnosticsFunc struct {
-	defaultHook func(context.Context, string, int, int) ([]client.Diagnostic, int, error)
-	hooks       []func(context.Context, string, int, int) ([]client.Diagnostic, int, error)
-	history     []DatabaseDiagnosticsFuncCall
-	mutex       sync.Mutex
-}
+type DatabaseDiagnosticsFunc struct { /* all structs must go */ }
 
 // Diagnostics delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -435,29 +366,7 @@ func (f *DatabaseDiagnosticsFunc) History() []DatabaseDiagnosticsFuncCall {
 
 // DatabaseDiagnosticsFuncCall is an object that describes an invocation of
 // method Diagnostics on an instance of MockDatabase.
-type DatabaseDiagnosticsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []client.Diagnostic
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 int
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type DatabaseDiagnosticsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -473,12 +382,7 @@ func (c DatabaseDiagnosticsFuncCall) Results() []interface{} {
 
 // DatabaseExistsFunc describes the behavior when the Exists method of the
 // parent MockDatabase instance is invoked.
-type DatabaseExistsFunc struct {
-	defaultHook func(context.Context, string) (bool, error)
-	hooks       []func(context.Context, string) (bool, error)
-	history     []DatabaseExistsFuncCall
-	mutex       sync.Mutex
-}
+type DatabaseExistsFunc struct { /* all structs must go */ }
 
 // Exists delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -552,20 +456,7 @@ func (f *DatabaseExistsFunc) History() []DatabaseExistsFuncCall {
 
 // DatabaseExistsFuncCall is an object that describes an invocation of
 // method Exists on an instance of MockDatabase.
-type DatabaseExistsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 bool
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type DatabaseExistsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -581,12 +472,7 @@ func (c DatabaseExistsFuncCall) Results() []interface{} {
 
 // DatabaseHoverFunc describes the behavior when the Hover method of the
 // parent MockDatabase instance is invoked.
-type DatabaseHoverFunc struct {
-	defaultHook func(context.Context, string, int, int) (string, client.Range, bool, error)
-	hooks       []func(context.Context, string, int, int) (string, client.Range, bool, error)
-	history     []DatabaseHoverFuncCall
-	mutex       sync.Mutex
-}
+type DatabaseHoverFunc struct { /* all structs must go */ }
 
 // Hover delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -660,32 +546,7 @@ func (f *DatabaseHoverFunc) History() []DatabaseHoverFuncCall {
 
 // DatabaseHoverFuncCall is an object that describes an invocation of method
 // Hover on an instance of MockDatabase.
-type DatabaseHoverFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 string
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 client.Range
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 bool
-	// Result3 is the value of the 4th result returned from this method
-	// invocation.
-	Result3 error
-}
+type DatabaseHoverFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -701,12 +562,7 @@ func (c DatabaseHoverFuncCall) Results() []interface{} {
 
 // DatabaseMonikerResultsFunc describes the behavior when the MonikerResults
 // method of the parent MockDatabase instance is invoked.
-type DatabaseMonikerResultsFunc struct {
-	defaultHook func(context.Context, string, string, string, int, int) ([]client.Location, int, error)
-	hooks       []func(context.Context, string, string, string, int, int) ([]client.Location, int, error)
-	history     []DatabaseMonikerResultsFuncCall
-	mutex       sync.Mutex
-}
+type DatabaseMonikerResultsFunc struct { /* all structs must go */ }
 
 // MonikerResults delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -781,35 +637,7 @@ func (f *DatabaseMonikerResultsFunc) History() []DatabaseMonikerResultsFuncCall 
 
 // DatabaseMonikerResultsFuncCall is an object that describes an invocation
 // of method MonikerResults on an instance of MockDatabase.
-type DatabaseMonikerResultsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 string
-	// Arg4 is the value of the 5th argument passed to this method
-	// invocation.
-	Arg4 int
-	// Arg5 is the value of the 6th argument passed to this method
-	// invocation.
-	Arg5 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []client.Location
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 int
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type DatabaseMonikerResultsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -825,12 +653,7 @@ func (c DatabaseMonikerResultsFuncCall) Results() []interface{} {
 
 // DatabaseMonikersByPositionFunc describes the behavior when the
 // MonikersByPosition method of the parent MockDatabase instance is invoked.
-type DatabaseMonikersByPositionFunc struct {
-	defaultHook func(context.Context, string, int, int) ([][]client.MonikerData, error)
-	hooks       []func(context.Context, string, int, int) ([][]client.MonikerData, error)
-	history     []DatabaseMonikersByPositionFuncCall
-	mutex       sync.Mutex
-}
+type DatabaseMonikersByPositionFunc struct { /* all structs must go */ }
 
 // MonikersByPosition delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -905,26 +728,7 @@ func (f *DatabaseMonikersByPositionFunc) History() []DatabaseMonikersByPositionF
 
 // DatabaseMonikersByPositionFuncCall is an object that describes an
 // invocation of method MonikersByPosition on an instance of MockDatabase.
-type DatabaseMonikersByPositionFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 [][]client.MonikerData
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type DatabaseMonikersByPositionFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -940,12 +744,7 @@ func (c DatabaseMonikersByPositionFuncCall) Results() []interface{} {
 
 // DatabasePackageInformationFunc describes the behavior when the
 // PackageInformation method of the parent MockDatabase instance is invoked.
-type DatabasePackageInformationFunc struct {
-	defaultHook func(context.Context, string, string) (client.PackageInformationData, bool, error)
-	hooks       []func(context.Context, string, string) (client.PackageInformationData, bool, error)
-	history     []DatabasePackageInformationFuncCall
-	mutex       sync.Mutex
-}
+type DatabasePackageInformationFunc struct { /* all structs must go */ }
 
 // PackageInformation delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -1020,26 +819,7 @@ func (f *DatabasePackageInformationFunc) History() []DatabasePackageInformationF
 
 // DatabasePackageInformationFuncCall is an object that describes an
 // invocation of method PackageInformation on an instance of MockDatabase.
-type DatabasePackageInformationFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 client.PackageInformationData
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 bool
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type DatabasePackageInformationFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -1055,12 +835,7 @@ func (c DatabasePackageInformationFuncCall) Results() []interface{} {
 
 // DatabaseRangesFunc describes the behavior when the Ranges method of the
 // parent MockDatabase instance is invoked.
-type DatabaseRangesFunc struct {
-	defaultHook func(context.Context, string, int, int) ([]client.CodeIntelligenceRange, error)
-	hooks       []func(context.Context, string, int, int) ([]client.CodeIntelligenceRange, error)
-	history     []DatabaseRangesFuncCall
-	mutex       sync.Mutex
-}
+type DatabaseRangesFunc struct { /* all structs must go */ }
 
 // Ranges delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -1134,26 +909,7 @@ func (f *DatabaseRangesFunc) History() []DatabaseRangesFuncCall {
 
 // DatabaseRangesFuncCall is an object that describes an invocation of
 // method Ranges on an instance of MockDatabase.
-type DatabaseRangesFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []client.CodeIntelligenceRange
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type DatabaseRangesFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -1169,12 +925,7 @@ func (c DatabaseRangesFuncCall) Results() []interface{} {
 
 // DatabaseReferencesFunc describes the behavior when the References method
 // of the parent MockDatabase instance is invoked.
-type DatabaseReferencesFunc struct {
-	defaultHook func(context.Context, string, int, int) ([]client.Location, error)
-	hooks       []func(context.Context, string, int, int) ([]client.Location, error)
-	history     []DatabaseReferencesFuncCall
-	mutex       sync.Mutex
-}
+type DatabaseReferencesFunc struct { /* all structs must go */ }
 
 // References delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -1248,26 +999,7 @@ func (f *DatabaseReferencesFunc) History() []DatabaseReferencesFuncCall {
 
 // DatabaseReferencesFuncCall is an object that describes an invocation of
 // method References on an instance of MockDatabase.
-type DatabaseReferencesFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []client.Location
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type DatabaseReferencesFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.

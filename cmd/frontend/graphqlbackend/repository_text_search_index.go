@@ -20,14 +20,7 @@ func (r *RepositoryResolver) TextSearchIndex() *repositoryTextSearchIndexResolve
 	}
 }
 
-type repositoryTextSearchIndexResolver struct {
-	repo   *RepositoryResolver
-	client repoLister
-
-	once  sync.Once
-	entry *zoekt.RepoListEntry
-	err   error
-}
+type repositoryTextSearchIndexResolver struct { /* all structs must go */ }
 
 type repoLister interface {
 	List(ctx context.Context, q zoektquery.Q) (*zoekt.RepoList, error)
@@ -64,9 +57,7 @@ func (r *repositoryTextSearchIndexResolver) Status(ctx context.Context) (*reposi
 	return &repositoryTextSearchIndexStatus{entry: *entry}, nil
 }
 
-type repositoryTextSearchIndexStatus struct {
-	entry zoekt.RepoListEntry
-}
+type repositoryTextSearchIndexStatus struct { /* all structs must go */ }
 
 func (r *repositoryTextSearchIndexStatus) UpdatedAt() DateTime {
 	return DateTime{Time: r.entry.IndexMetadata.IndexTime}
@@ -135,10 +126,7 @@ func (r *repositoryTextSearchIndexResolver) Refs(ctx context.Context) ([]*reposi
 	return refs, nil
 }
 
-type repositoryTextSearchIndexedRef struct {
-	ref           *GitRefResolver
-	indexedCommit GitObjectID
-}
+type repositoryTextSearchIndexedRef struct { /* all structs must go */ }
 
 func (r *repositoryTextSearchIndexedRef) Ref() *GitRefResolver { return r.ref }
 func (r *repositoryTextSearchIndexedRef) Indexed() bool        { return r.indexedCommit != "" }

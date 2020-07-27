@@ -13,12 +13,7 @@ import (
 )
 
 func TestSearchIndexEnabled(t *testing.T) {
-	tests := []struct {
-		name string
-		sc   *Unified
-		env  []string
-		want interface{}
-	}{{
+	tests := []struct { /* all structs must go */ }{{
 		name: "SearchIndex defaults to false in docker",
 		sc:   &Unified{},
 		env:  []string{"DEPLOY_TYPE=docker-container"},

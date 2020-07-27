@@ -13,15 +13,7 @@ import (
 )
 
 // Represents an endpoint
-type Endpoint struct {
-	// Service to which the endpoint belongs
-	Service string
-	// Addr:port, so hostname part of a URL (ip address ok)
-	Addr string
-	// Hostname of the endpoint, if set. Only use this for display purposes,
-	// it doesn't include the port nor is it gaurenteed to be resolvable.
-	Hostname string
-}
+type Endpoint struct { /* all structs must go */ }
 
 // ScanConsumer is the callback to consume scan results.
 type ScanConsumer func([]Endpoint)
@@ -35,9 +27,7 @@ type kubernetesClient interface {
 }
 
 // "real" implementation that sends calls to the k8s.Client
-type k8sClientImpl struct {
-	client *k8s.Client
-}
+type k8sClientImpl struct { /* all structs must go */ }
 
 func (kci *k8sClientImpl) Watch(ctx context.Context, namespace string, r k8s.Resource, options ...k8s.Option) (*k8s.Watcher, error) {
 	return kci.client.Watch(ctx, namespace, r, options...)
@@ -57,10 +47,7 @@ func (kci *k8sClientImpl) Namespace() string {
 
 // clusterScanner scans the cluster for endpoints belonging to services that have annotation sourcegraph.prometheus/scrape=true.
 // It runs an event loop that reacts to changes to the endpoints set. Everytime there is a change it calls the ScanConsumer.
-type clusterScanner struct {
-	client  kubernetesClient
-	consume ScanConsumer
-}
+type clusterScanner struct { /* all structs must go */ }
 
 // Starts a cluster scanner with the specified client and consumer. Does not block.
 func startClusterScannerWithClient(client kubernetesClient, consumer ScanConsumer) error {

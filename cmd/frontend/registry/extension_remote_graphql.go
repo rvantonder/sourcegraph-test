@@ -12,9 +12,7 @@ import (
 
 // registryExtensionRemoteResolver implements the GraphQL type RegistryExtension with data from a
 // remote registry.
-type registryExtensionRemoteResolver struct {
-	v *registry.Extension
-}
+type registryExtensionRemoteResolver struct { /* all structs must go */ }
 
 var _ graphqlbackend.RegistryExtension = &registryExtensionRemoteResolver{}
 
@@ -26,10 +24,7 @@ func (r *registryExtensionRemoteResolver) ID() graphql.ID {
 
 // registryExtensionRemoteID identifies a registry extension on a remote registry. It is encoded in
 // RegistryExtensionID.
-type registryExtensionRemoteID struct {
-	Registry string `json:"r"`
-	UUID     string `json:"u"`
-}
+type registryExtensionRemoteID struct { /* all structs must go */ }
 
 func (r *registryExtensionRemoteResolver) UUID() string { return r.v.UUID }
 

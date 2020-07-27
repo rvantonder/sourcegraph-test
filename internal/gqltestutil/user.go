@@ -22,15 +22,7 @@ mutation CreateUser($username: String!, $email: String) {
 		"username": username,
 		"email":    email,
 	}
-	var resp struct {
-		Data struct {
-			CreateUser struct {
-				User struct {
-					ID string `json:"id"`
-				} `json:"user"`
-			} `json:"createUser"`
-		} `json:"data"`
-	}
+	var resp struct { /* all structs must go */ }
 	err := c.GraphQL("", query, variables, &resp)
 	if err != nil {
 		return "", errors.Wrap(err, "request GraphQL")
@@ -77,17 +69,7 @@ query User($username: String) {
 	variables := map[string]interface{}{
 		"username": username,
 	}
-	var resp struct {
-		Data struct {
-			User struct {
-				Organizations struct {
-					Nodes []struct {
-						Name string `json:"name"`
-					} `json:"nodes"`
-				} `json:"organizations"`
-			} `json:"user"`
-		} `json:"data"`
-	}
+	var resp struct { /* all structs must go */ }
 	err := c.GraphQL("", query, variables, &resp)
 	if err != nil {
 		return nil, errors.Wrap(err, "request GraphQL")

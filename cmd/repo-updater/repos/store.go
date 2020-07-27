@@ -34,40 +34,13 @@ type Store interface {
 
 // StoreListReposArgs is a query arguments type used by
 // the ListRepos method of Store implementations.
-type StoreListReposArgs struct {
-	// Names of repos to list. When zero-valued, this is omitted from the predicate set.
-	Names []string
-	// IDs of repos to list. When zero-valued, this is omitted from the predicate set.
-	IDs []api.RepoID
-	// Kinds of repos to list. When zero-valued, this is omitted from the predicate set.
-	Kinds []string
-	// ExternalRepos of repos to list. When zero-valued, this is omitted from the predicate set.
-	ExternalRepos []api.ExternalRepoSpec
-	// Limit the total number of repos returned. Zero means no limit
-	Limit int64
-	// PerPage determines the number of repos returned on each page. Zero means it defaults to 10000.
-	PerPage int64
-	// Only include private repositories.
-	PrivateOnly bool
-	// Only include cloned repositories.
-	ClonedOnly bool
-
-	// UseOr decides between ANDing or ORing the predicates together.
-	UseOr bool
-}
+type StoreListReposArgs struct { /* all structs must go */ }
 
 // StoreListExternalServicesArgs is a query arguments type used by
 // the ListExternalServices method of Store implementations.
 //
 // Each defined argument must map to a disjunct (i.e. AND) filter predicate.
-type StoreListExternalServicesArgs struct {
-	// IDs of external services to list. When zero-valued, this is omitted from the predicate set.
-	IDs []int64
-	// RepoIDs that the listed external services own.
-	RepoIDs []api.RepoID
-	// Kinds of external services to list. When zero-valued, this is omitted from the predicate set.
-	Kinds []string
-}
+type StoreListExternalServicesArgs struct { /* all structs must go */ }
 
 // ErrNoResults is returned by Store method invocations that yield no result set.
 var ErrNoResults = errors.New("store: no results")
@@ -89,10 +62,7 @@ type TxStore interface {
 
 // DBStore implements the Store interface for reading and writing repos directly
 // from the Postgres database.
-type DBStore struct {
-	db     dbutil.DB
-	txOpts sql.TxOptions
-}
+type DBStore struct { /* all structs must go */ }
 
 // NewDBStore instantiates and returns a new DBStore with prepared statements.
 func NewDBStore(db dbutil.DB, txOpts sql.TxOptions) *DBStore {
@@ -536,11 +506,7 @@ func (s *DBStore) UpsertRepos(ctx context.Context, repos ...*Repo) (err error) {
 		}
 	}
 
-	for _, op := range []struct {
-		name  string
-		query string
-		repos []*Repo
-	}{
+	for _, op := range []struct { /* all structs must go */ }{
 		{"delete", deleteReposQuery, deletes},
 		{"update", updateReposQuery, updates},
 		{"insert", insertReposQuery, inserts},
@@ -598,24 +564,7 @@ func (s *DBStore) UpsertRepos(ctx context.Context, repos ...*Repo) (err error) {
 }
 
 func batchReposQuery(fmtstr string, repos []*Repo) (_ *sqlf.Query, err error) {
-	type record struct {
-		ID                  api.RepoID      `json:"id"`
-		Name                string          `json:"name"`
-		URI                 *string         `json:"uri,omitempty"`
-		Description         string          `json:"description"`
-		Language            string          `json:"language"`
-		CreatedAt           time.Time       `json:"created_at"`
-		UpdatedAt           *time.Time      `json:"updated_at,omitempty"`
-		DeletedAt           *time.Time      `json:"deleted_at,omitempty"`
-		ExternalServiceType *string         `json:"external_service_type,omitempty"`
-		ExternalServiceID   *string         `json:"external_service_id,omitempty"`
-		ExternalID          *string         `json:"external_id,omitempty"`
-		Archived            bool            `json:"archived"`
-		Fork                bool            `json:"fork"`
-		Private             bool            `json:"private"`
-		Sources             json.RawMessage `json:"sources"`
-		Metadata            json.RawMessage `json:"metadata"`
-	}
+	type record struct { /* all structs must go */ }
 
 	records := make([]record, 0, len(repos))
 	for _, r := range repos {

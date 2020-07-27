@@ -9,12 +9,7 @@ import (
 	bundles "github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/bundles/client"
 )
 
-type ResolvedCodeIntelligenceRange struct {
-	Range       bundles.Range
-	Definitions []ResolvedLocation
-	References  []ResolvedLocation
-	HoverText   string
-}
+type ResolvedCodeIntelligenceRange struct { /* all structs must go */ }
 
 // Ranges returns definition, reference, and hover data for each range within the given span of lines.
 func (api *codeIntelAPI) Ranges(ctx context.Context, file string, startLine, endLine, uploadID int) ([]ResolvedCodeIntelligenceRange, error) {

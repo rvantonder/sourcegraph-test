@@ -8,10 +8,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/resolvers"
 )
 
-type UploadConnectionResolver struct {
-	resolver         *resolvers.UploadsResolver
-	locationResolver *CachedLocationResolver
-}
+type UploadConnectionResolver struct { /* all structs must go */ }
 
 func NewUploadConnectionResolver(resolver *resolvers.UploadsResolver, locationResolver *CachedLocationResolver) gql.LSIFUploadConnectionResolver {
 	return &UploadConnectionResolver{

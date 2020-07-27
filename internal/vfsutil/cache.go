@@ -24,13 +24,7 @@ type Evicter interface {
 	Evict()
 }
 
-type cachedFile struct {
-	// File is an open FD to the fetched data
-	File *os.File
-
-	// path is the disk path for File
-	path string
-}
+type cachedFile struct { /* all structs must go */ }
 
 // Evict will remove the file from the cache. It does not close File. It also
 // does not protect against other open readers or concurrent fetches.

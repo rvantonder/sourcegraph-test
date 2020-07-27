@@ -14,9 +14,7 @@ func (s *Server) handleListGitolite(w http.ResponseWriter, r *http.Request) {
 
 var defaultGitolite = gitoliteFetcher{client: gitoliteClient{}}
 
-type gitoliteFetcher struct {
-	client iGitoliteClient
-}
+type gitoliteFetcher struct { /* all structs must go */ }
 
 type iGitoliteClient interface {
 	ListRepos(ctx context.Context, host string) ([]*gitolite.Repo, error)

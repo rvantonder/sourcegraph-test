@@ -6,21 +6,10 @@ import "reflect"
 // internally connects to services. These are settings that need to be
 // propagated from the frontend to other services, so that the frontend
 // can be the source of truth for all configuration.
-type ServiceConnections struct {
-	// GitServers is the addresses of gitserver instances that should be talked
-	// to.
-	GitServers []string `json:"gitServers"`
-
-	// PostgresDSN is the PostgreSQL DB data source name.
-	// eg: "postgres://sg@pgsql/sourcegraph?sslmode=false"
-	PostgresDSN string `json:"postgresDSN"`
-}
+type ServiceConnections struct { /* all structs must go */ }
 
 // RawUnified is the unparsed variant of conf.Unified.
-type RawUnified struct {
-	Site               string
-	ServiceConnections ServiceConnections
-}
+type RawUnified struct { /* all structs must go */ }
 
 // Equal tells if the two configurations are equal or not.
 func (r RawUnified) Equal(other RawUnified) bool {

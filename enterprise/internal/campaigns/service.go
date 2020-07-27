@@ -36,14 +36,7 @@ func NewServiceWithClock(store *Store, cf *httpcli.Factory, clock func() time.Ti
 	return svc
 }
 
-type Service struct {
-	store *Store
-	cf    *httpcli.Factory
-
-	sourcer repos.Sourcer
-
-	clock func() time.Time
-}
+type Service struct { /* all structs must go */ }
 
 // CreateCampaign creates the Campaign.
 func (s *Service) CreateCampaign(ctx context.Context, c *campaigns.Campaign) error {
@@ -82,14 +75,7 @@ func (s *Service) CreateCampaign(ctx context.Context, c *campaigns.Campaign) err
 	return nil
 }
 
-type CreateCampaignSpecOpts struct {
-	RawSpec string
-
-	NamespaceUserID int32
-	NamespaceOrgID  int32
-
-	ChangesetSpecRandIDs []string
-}
+type CreateCampaignSpecOpts struct { /* all structs must go */ }
 
 // CreateCampaignSpec creates the CampaignSpec.
 func (s *Service) CreateCampaignSpec(ctx context.Context, opts CreateCampaignSpecOpts) (spec *campaigns.CampaignSpec, err error) {
@@ -198,9 +184,7 @@ func (s *Service) CreateChangesetSpec(ctx context.Context, rawSpec string, userI
 // changesetSpecNotFoundErr is returned by CreateCampaignSpec if a
 // ChangesetSpec with the given RandID doesn't exist.
 // It fulfills the interface required by errcode.IsNotFound.
-type changesetSpecNotFoundErr struct {
-	RandID string
-}
+type changesetSpecNotFoundErr struct { /* all structs must go */ }
 
 func (e *changesetSpecNotFoundErr) Error() string {
 	if e.RandID != "" {
@@ -211,10 +195,7 @@ func (e *changesetSpecNotFoundErr) Error() string {
 
 func (e *changesetSpecNotFoundErr) NotFound() bool { return true }
 
-type ApplyCampaignOpts struct {
-	CampaignSpecRandID string
-	EnsureCampaignID   int64
-}
+type ApplyCampaignOpts struct { /* all structs must go */ }
 
 func (o ApplyCampaignOpts) String() string {
 	return fmt.Sprintf(
@@ -294,14 +275,7 @@ func (s *Service) ApplyCampaign(ctx context.Context, opts ApplyCampaignOpts) (ca
 	return campaign, tx.UpdateCampaign(ctx, campaign)
 }
 
-type MoveCampaignOpts struct {
-	CampaignID int64
-
-	NewName string
-
-	NewNamespaceUserID int32
-	NewNamespaceOrgID  int32
-}
+type MoveCampaignOpts struct { /* all structs must go */ }
 
 func (o MoveCampaignOpts) String() string {
 	return fmt.Sprintf(

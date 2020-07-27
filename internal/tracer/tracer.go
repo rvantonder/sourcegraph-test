@@ -82,10 +82,7 @@ func condensedFormat(r *log15.Record) []byte {
 }
 
 // Options control the behavior of a tracer.
-type Options struct {
-	filters     []func(*log15.Record) bool
-	serviceName string
-}
+type Options struct { /* all structs must go */ }
 
 // If this idiom seems strange:
 // https://github.com/tmrts/go-patterns/blob/master/idiom/functional-options.md
@@ -246,12 +243,7 @@ func initTracer(opts *Options) {
 
 // switchableTracer implements opentracing.Tracer. The underlying tracer used is switchable (set via
 // the `set` method).
-type switchableTracer struct {
-	mu           sync.RWMutex
-	tracer       opentracing.Tracer
-	tracerCloser io.Closer
-	log          bool
-}
+type switchableTracer struct { /* all structs must go */ }
 
 func newSwitchableTracer() *switchableTracer {
 	return &switchableTracer{tracer: opentracing.NoopTracer{}}

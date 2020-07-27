@@ -1,8 +1,5 @@
 package productsubscription
 
-type dbMocks struct {
-	subscriptions mockSubscriptions
-	licenses      mockLicenses
-}
+type dbMocks struct { /* all structs must go */ }
 
 var mocks dbMocks

@@ -13,10 +13,7 @@ import (
 	"strconv"
 )
 
-type Response struct {
-	IsFreshInstance bool     `json:"is_fresh_instance"`
-	Files           []string `json:"files"`
-}
+type Response struct { /* all structs must go */ }
 
 var neverRead = (chan<- []string)(make(chan []string))
 

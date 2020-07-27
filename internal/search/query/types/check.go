@@ -12,32 +12,17 @@ import (
 )
 
 // TypeError describes an error in query typechecking.
-type TypeError struct {
-	Pos int   // the character position where the error occurred
-	Err error // the error
-}
+type TypeError struct { /* all structs must go */ }
 
 func (e *TypeError) Error() string {
 	return fmt.Sprintf("type error at character %d: %s", e.Pos, e.Err)
 }
 
 // Config specifies configuration for parsing a query.
-type Config struct {
-	FieldTypes   map[string]FieldType // map of recognized field name (excluding aliases) -> type
-	FieldAliases map[string]string    // map of field alias -> field name
-}
+type Config struct { /* all structs must go */ }
 
 // FieldType describes the type of a query field.
-type FieldType struct {
-	Literal   ValueType // interpret literal tokens as being of this type
-	Quoted    ValueType // interpret literal tokens as being of this type
-	Singular  bool      // whether the field may only be used 0 or 1 times
-	Negatable bool      // whether the field can be matched negated (i.e., -field:value)
-
-	// FeatureFlagEnabled returns true if this field is enabled.
-	// The field is always enabled if this is nil.
-	FeatureFlagEnabled func() bool
-}
+type FieldType struct { /* all structs must go */ }
 
 // Check typechecks the input query for field and type validity.
 func (c *Config) Check(parseTree syntax.ParseTree) (*Fields, error) {

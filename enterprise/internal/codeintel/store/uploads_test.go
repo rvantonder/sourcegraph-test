@@ -142,14 +142,7 @@ func TestGetUploads(t *testing.T) {
 		Upload{ID: 10, UploadedAt: t10, Root: "sub1/", Indexer: "lsif-tsc"},
 	)
 
-	testCases := []struct {
-		repositoryID   int
-		state          string
-		term           string
-		visibleAtTip   bool
-		uploadedBefore *time.Time
-		expectedIDs    []int
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{expectedIDs: []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}},
 		{repositoryID: 50, expectedIDs: []int{1, 2, 3, 5, 7, 8, 9, 10}},
 		{state: "completed", expectedIDs: []int{7, 8, 10}},

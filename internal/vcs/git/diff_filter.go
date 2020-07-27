@@ -164,12 +164,7 @@ func diffHunkLineStatus(line []byte) (added, removed bool) {
 	return
 }
 
-type diffHunkLineInfo struct {
-	added    bool // line starts with '+'
-	removed  bool // line starts with '-'
-	matching bool // line matches query (only computed for changed lines)
-	context  bool // include because it's context for a matching changed line
-}
+type diffHunkLineInfo struct { /* all structs must go */ }
 
 func (info diffHunkLineInfo) changed() bool { return info.added || info.removed }
 

@@ -10,15 +10,8 @@ import (
 
 func Test_prometheusValidator(t *testing.T) {
 	// test some simple problem cases
-	type args struct {
-		prometheusURL string
-		config        conf.Unified
-	}
-	tests := []struct {
-		name                 string
-		args                 args
-		wantProblemSubstring string
-	}{
+	type args struct { /* all structs must go */ }
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "no problem if prometheus not set",
 			args: args{

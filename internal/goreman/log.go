@@ -11,14 +11,7 @@ import (
 	ct "github.com/daviddengcn/go-colortext"
 )
 
-type clogger struct {
-	idx     int
-	proc    string
-	writes  chan []byte
-	done    chan struct{}
-	timeout time.Duration // how long to wait before printing partial lines
-	buffers net.Buffers   // partial lines awaiting printing
-}
+type clogger struct { /* all structs must go */ }
 
 var colors = []ct.Color{
 	ct.Green,

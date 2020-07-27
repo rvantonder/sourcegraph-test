@@ -3,10 +3,7 @@ package redispool
 import "testing"
 
 func TestSchemeMatcher(t *testing.T) {
-	tests := []struct {
-		urlMaybe  string
-		hasScheme bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{"redis://foo.com", true},
 		{"https://foo.com", true},
 		{"redis://:password@foo.com/0", true},

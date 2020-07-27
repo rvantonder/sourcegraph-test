@@ -14,17 +14,7 @@ const (
 	PlatformAWS Platform = "aws"
 )
 
-type Resource struct {
-	Platform   Platform
-	Identifier string
-	Type       string
-	Location   string
-	Owner      string
-	Created    time.Time
-	Meta       map[string]interface{}
-
-	Allowed bool
-}
+type Resource struct { /* all structs must go */ }
 
 type Resources []Resource
 

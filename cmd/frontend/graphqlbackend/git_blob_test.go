@@ -7,11 +7,7 @@ import (
 )
 
 func TestIsBinary(t *testing.T) {
-	tests := []struct {
-		name  string
-		input []byte
-		want  bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:  "text UTF8",
 			input: []byte("hello world!"),

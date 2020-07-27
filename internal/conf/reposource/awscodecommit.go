@@ -7,9 +7,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/schema"
 )
 
-type AWS struct {
-	*schema.AWSCodeCommitConnection
-}
+type AWS struct { /* all structs must go */ }
 
 var _ RepoSource = AWS{}
 

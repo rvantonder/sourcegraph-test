@@ -110,12 +110,7 @@ func TestStructuralSearchRepoFilter(t *testing.T) {
 }
 
 func TestStructuralPatToRegexpQuery(t *testing.T) {
-	cases := []struct {
-		Name     string
-		Pattern  string
-		Function func(string, bool) (zoektquery.Q, error)
-		Want     string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			Name:     "Just a hole",
 			Pattern:  ":[1]",

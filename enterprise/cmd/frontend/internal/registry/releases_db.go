@@ -13,25 +13,13 @@ import (
 )
 
 // dbRelease describes a release of an extension in the extension registry.
-type dbRelease struct {
-	ID                  int64
-	RegistryExtensionID int32
-	CreatorUserID       int32
-	ReleaseVersion      *string
-	ReleaseTag          string
-	Manifest            string
-	Bundle              *string
-	SourceMap           *string
-	CreatedAt           time.Time
-}
+type dbRelease struct { /* all structs must go */ }
 
 type dbReleases struct{}
 
 // releaseNotFoundError occurs when an extension release is not found in the
 // extension registry.
-type releaseNotFoundError struct {
-	args []interface{}
-}
+type releaseNotFoundError struct { /* all structs must go */ }
 
 // NotFound implements errcode.NotFounder.
 func (err releaseNotFoundError) NotFound() bool { return true }
@@ -159,8 +147,4 @@ WHERE id=%d AND deleted_at IS NULL`, id)
 }
 
 // mockReleases mocks the registry extension releases store.
-type mockReleases struct {
-	Create         func(release *dbRelease) (int64, error)
-	GetLatest      func(registryExtensionID int32, releaseTag string, includeArtifacts bool) (*dbRelease, error)
-	GetLatestBatch func(registryExtensionIDs []int32, releaseTag string, includeArtifacts bool) ([]*dbRelease, error)
-}
+type mockReleases struct { /* all structs must go */ }

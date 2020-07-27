@@ -26,10 +26,7 @@ func (r *siteResolver) UpdateCheck(ctx context.Context) (*updateCheckResolver, e
 	}, nil
 }
 
-type updateCheckResolver struct {
-	last    *updatecheck.Status
-	pending bool
-}
+type updateCheckResolver struct { /* all structs must go */ }
 
 func (r *updateCheckResolver) Pending() bool { return r.pending }
 

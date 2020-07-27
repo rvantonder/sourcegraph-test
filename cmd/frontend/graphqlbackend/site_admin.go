@@ -11,10 +11,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/extsvc"
 )
 
-func (*schemaResolver) DeleteUser(ctx context.Context, args *struct {
-	User graphql.ID
-	Hard *bool
-}) (*EmptyResponse, error) {
+func (*schemaResolver) DeleteUser(ctx context.Context, args *struct { /* all structs must go */ }) (*EmptyResponse, error) {
 	// 🚨 SECURITY: Only site admins can delete users.
 	if err := backend.CheckCurrentUserIsSiteAdmin(ctx); err != nil {
 		return nil, err
@@ -95,9 +92,7 @@ func (*schemaResolver) DeleteUser(ctx context.Context, args *struct {
 	return &EmptyResponse{}, nil
 }
 
-func (*schemaResolver) DeleteOrganization(ctx context.Context, args *struct {
-	Organization graphql.ID
-}) (*EmptyResponse, error) {
+func (*schemaResolver) DeleteOrganization(ctx context.Context, args *struct { /* all structs must go */ }) (*EmptyResponse, error) {
 	// 🚨 SECURITY: Only site admins can delete orgs.
 	if err := backend.CheckCurrentUserIsSiteAdmin(ctx); err != nil {
 		return nil, err
@@ -114,10 +109,7 @@ func (*schemaResolver) DeleteOrganization(ctx context.Context, args *struct {
 	return &EmptyResponse{}, nil
 }
 
-func (*schemaResolver) SetUserIsSiteAdmin(ctx context.Context, args *struct {
-	UserID    graphql.ID
-	SiteAdmin bool
-}) (*EmptyResponse, error) {
+func (*schemaResolver) SetUserIsSiteAdmin(ctx context.Context, args *struct { /* all structs must go */ }) (*EmptyResponse, error) {
 	// 🚨 SECURITY: Only site admins can promote other users to site admin (or demote from site
 	// admin).
 	if err := backend.CheckCurrentUserIsSiteAdmin(ctx); err != nil {

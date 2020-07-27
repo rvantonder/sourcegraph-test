@@ -27,17 +27,11 @@ func Not(child Q) Q {
 	return &not{Child: child}
 }
 
-type and struct {
-	Children []Q
-}
+type and struct { /* all structs must go */ }
 
-type or struct {
-	Children []Q
-}
+type or struct { /* all structs must go */ }
 
-type not struct {
-	Child Q
-}
+type not struct { /* all structs must go */ }
 
 // Eval runs all atoms of q through atomToQueryFn, returning the final query
 // to run. If any call of atomToQueryFn returns an error, that error is

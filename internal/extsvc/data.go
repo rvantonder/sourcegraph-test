@@ -14,9 +14,7 @@ func setJSONOrError(field **json.RawMessage, value interface{}) {
 
 	b, err := json.Marshal(value)
 	if err != nil {
-		b, _ = json.Marshal(struct {
-			Error string `json:"__jsonError"`
-		}{Error: err.Error()})
+		b, _ = json.Marshal(struct { /* all structs must go */ }{Error: err.Error()})
 	}
 	*field = (*json.RawMessage)(&b)
 }
@@ -60,6 +58,4 @@ func getJSONOrError(field *json.RawMessage, v interface{}) error {
 	return nil
 }
 
-type jsonError struct {
-	Error string `json:"__jsonError"`
-}
+type jsonError struct { /* all structs must go */ }

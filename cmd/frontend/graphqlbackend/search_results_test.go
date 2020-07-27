@@ -284,12 +284,7 @@ func TestOrderedFuzzyRegexp(t *testing.T) {
 }
 
 func TestProcessSearchPattern(t *testing.T) {
-	cases := []struct {
-		Name    string
-		Pattern string
-		Opts    *getPatternInfoOptions
-		Want    string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			Name:    "Regexp, no content field",
 			Pattern: `search me`,
@@ -476,12 +471,7 @@ func TestSearchResolver_DynamicFilters(t *testing.T) {
 		InputRev: &rev,
 	}
 
-	type testCase struct {
-		descr                             string
-		searchResults                     []SearchResultResolver
-		expectedDynamicFilterStrsRegexp   map[string]struct{}
-		expectedDynamicFilterStrsGlobbing map[string]struct{}
-	}
+	type testCase struct { /* all structs must go */ }
 
 	tests := []testCase{
 
@@ -643,14 +633,7 @@ func TestSearchResolver_DynamicFilters(t *testing.T) {
 // we get the expected error, list of matching rev specs, or list
 // of clashing revspecs (if no matching rev specs were found)
 func TestSearchRevspecs(t *testing.T) {
-	type testCase struct {
-		descr    string
-		specs    []string
-		repo     string
-		err      error
-		matched  []search.RevisionSpecifier
-		clashing []search.RevisionSpecifier
-	}
+	type testCase struct { /* all structs must go */ }
 
 	tests := []testCase{
 		{
@@ -746,11 +729,7 @@ func TestSearchRevspecs(t *testing.T) {
 }
 
 func TestCompareSearchResults(t *testing.T) {
-	type testCase struct {
-		a       SearchResultResolver
-		b       SearchResultResolver
-		aIsLess bool
-	}
+	type testCase struct { /* all structs must go */ }
 
 	tests := []testCase{{
 		// Different repo matches
@@ -827,11 +806,7 @@ func TestLonger(t *testing.T) {
 }
 
 func TestRoundStr(t *testing.T) {
-	tests := []struct {
-		name string
-		s    string
-		want string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "empty",
 			s:    "",
@@ -1014,14 +989,7 @@ func TestDedupSort(t *testing.T) {
 }
 
 func TestCommitAndDiffSearchLimits(t *testing.T) {
-	cases := []struct {
-		name                 string
-		resultTypes          []string
-		numRepoRevs          int
-		fields               map[string][]*searchquerytypes.Value
-		wantResultTypes      []string
-		wantAlertDescription string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			name:                 "diff_search_warns_on_repos_greater_than_search_limit",
 			resultTypes:          []string{"diff"},
@@ -1111,17 +1079,8 @@ func TestCommitAndDiffSearchLimits(t *testing.T) {
 }
 
 func Test_SearchResultsResolver_ApproximateResultCount(t *testing.T) {
-	type fields struct {
-		results             []SearchResultResolver
-		searchResultsCommon searchResultsCommon
-		alert               *searchAlert
-		start               time.Time
-	}
-	tests := []struct {
-		name   string
-		fields fields
-		want   string
-	}{
+	type fields struct { /* all structs must go */ }
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:   "empty",
 			fields: fields{},

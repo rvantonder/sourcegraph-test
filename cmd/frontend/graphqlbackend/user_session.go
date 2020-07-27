@@ -29,8 +29,6 @@ func (r *UserResolver) Session(ctx context.Context) (*sessionResolver, error) {
 	return &sr, nil
 }
 
-type sessionResolver struct {
-	canSignOut bool
-}
+type sessionResolver struct { /* all structs must go */ }
 
 func (r *sessionResolver) CanSignOut() bool { return r.canSignOut }

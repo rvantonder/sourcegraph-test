@@ -8,13 +8,9 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/db"
 )
 
-type surveyResponseConnectionResolver struct {
-	opt db.SurveyResponseListOptions
-}
+type surveyResponseConnectionResolver struct { /* all structs must go */ }
 
-func (r *schemaResolver) SurveyResponses(args *struct {
-	graphqlutil.ConnectionArgs
-}) *surveyResponseConnectionResolver {
+func (r *schemaResolver) SurveyResponses(args *struct { /* all structs must go */ }) *surveyResponseConnectionResolver {
 	var opt db.SurveyResponseListOptions
 	args.ConnectionArgs.Set(&opt.LimitOffset)
 	return &surveyResponseConnectionResolver{opt: opt}

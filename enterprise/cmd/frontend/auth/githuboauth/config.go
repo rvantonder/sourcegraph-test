@@ -29,10 +29,7 @@ func init() {
 	}()
 }
 
-type Provider struct {
-	*schema.GitHubAuthProvider
-	providers.Provider
-}
+type Provider struct { /* all structs must go */ }
 
 func parseConfig(cfg *conf.Unified) (ps []Provider, problems conf.Problems) {
 	for _, pr := range cfg.AuthProviders {

@@ -31,11 +31,7 @@ func TestRepoUsageStatistics(t *testing.T) {
 		}
 	}
 
-	for _, data := range []struct {
-		URL              string
-		NumSearchEvents  int
-		NumPreciseEvents int
-	}{
+	for _, data := range []struct { /* all structs must go */ }{
 		{"http://localhost:3080/github.com/foo/baz/-/remainder_of_path", 10, 10},
 		{"https://sourcegraph.com/github.com/foo/bar/-/remainder_of_path", 25, 20},
 		{"http://localhost:3080/gitlab.com/bar/baz/-/remainder_of_path", 15, 30},

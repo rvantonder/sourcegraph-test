@@ -12,13 +12,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/vcs/git"
 )
 
-type refsArgs struct {
-	graphqlutil.ConnectionArgs
-	Query       *string
-	Type        *string
-	OrderBy     *string
-	Interactive bool
-}
+type refsArgs struct { /* all structs must go */ }
 
 func (r *RepositoryResolver) Branches(ctx context.Context, args *refsArgs) (*gitRefConnectionResolver, error) {
 	t := gitRefTypeBranch
@@ -177,12 +171,7 @@ func hydrateBranchCommits(ctx context.Context, repo gitserver.Repo, interactive 
 	return true, nil
 }
 
-type gitRefConnectionResolver struct {
-	first *int32
-	refs  []*GitRefResolver
-
-	repo *RepositoryResolver
-}
+type gitRefConnectionResolver struct { /* all structs must go */ }
 
 func (r *gitRefConnectionResolver) Nodes() []*GitRefResolver {
 	var nodes []*GitRefResolver

@@ -2,6 +2,4 @@ package globalstatedb
 
 import "context"
 
-var Mock = struct {
-	Get func(ctx context.Context) (*State, error)
-}{}
+var Mock = struct { /* all structs must go */ }{}

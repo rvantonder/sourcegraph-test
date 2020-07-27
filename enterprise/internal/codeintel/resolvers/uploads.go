@@ -9,16 +9,7 @@ import (
 
 // UploadsResolver wraps store.GetUploads so that the underlying function can be
 // invoked lazily and its results memoized.
-type UploadsResolver struct {
-	store store.Store
-	opts  store.GetUploadsOptions
-	once  sync.Once
-	//
-	Uploads    []store.Upload
-	TotalCount int
-	NextOffset *int
-	err        error
-}
+type UploadsResolver struct { /* all structs must go */ }
 
 // NewUploadsResolver creates a new UploadsResolver which wil invoke store.GetUploads
 // with the given options.

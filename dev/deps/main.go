@@ -79,9 +79,7 @@ func getIntermediatePaths(pkg string) []string {
 	return []string{pkg}
 }
 
-type treeNode struct {
-	children map[string]*treeNode
-}
+type treeNode struct { /* all structs must go */ }
 
 func nestPaths(prefix string, pkgs []string) *treeNode {
 	nodes := map[string]*treeNode{}
@@ -117,11 +115,7 @@ func getAllImports(pkgs []string) (map[string][]string, error) {
 	}
 	close(ch)
 
-	type pair struct {
-		pkg     string
-		imports []string
-		err     error
-	}
+	type pair struct { /* all structs must go */ }
 
 	var wg sync.WaitGroup
 	pairs := make(chan pair, len(pkgs))

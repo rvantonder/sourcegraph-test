@@ -5,11 +5,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/store"
 )
 
-type ResolvedLocation struct {
-	Dump  store.Dump
-	Path  string
-	Range bundles.Range
-}
+type ResolvedLocation struct { /* all structs must go */ }
 
 func sliceLocations(locations []bundles.Location, lo, hi int) []bundles.Location {
 	if lo >= len(locations) {

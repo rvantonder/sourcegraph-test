@@ -17,35 +17,23 @@ func toJSON(node query.Node) interface{} {
 
 		switch n.Kind {
 		case query.And:
-			return struct {
-				And []interface{} `json:"and"`
-			}{
+			return struct { /* all structs must go */ }{
 				And: jsons,
 			}
 		case query.Or:
-			return struct {
-				Or []interface{} `json:"or"`
-			}{
+			return struct { /* all structs must go */ }{
 				Or: jsons,
 			}
 		case query.Concat:
 			// Concat should already be processed at this point, or
 			// the original query expresses something that is not
 			// supported. We just return the parse tree anyway.
-			return struct {
-				Concat []interface{} `json:"concat"`
-			}{
+			return struct { /* all structs must go */ }{
 				Concat: jsons,
 			}
 		}
 	case query.Parameter:
-		return struct {
-			Field   string      `json:"field"`
-			Value   string      `json:"value"`
-			Negated bool        `json:"negated"`
-			Labels  []string    `json:"labels"`
-			Range   query.Range `json:"range"`
-		}{
+		return struct { /* all structs must go */ }{
 			Field:   n.Field,
 			Value:   n.Value,
 			Negated: n.Negated,
@@ -53,12 +41,7 @@ func toJSON(node query.Node) interface{} {
 			Range:   n.Annotation.Range,
 		}
 	case query.Pattern:
-		return struct {
-			Value   string      `json:"value"`
-			Negated bool        `json:"negated"`
-			Labels  []string    `json:"labels"`
-			Range   query.Range `json:"range"`
-		}{
+		return struct { /* all structs must go */ }{
 			Value:   n.Value,
 			Negated: n.Negated,
 			Labels:  n.Annotation.Labels.String(),
@@ -69,10 +52,7 @@ func toJSON(node query.Node) interface{} {
 	return struct{}{}
 }
 
-func (*schemaResolver) ParseSearchQuery(ctx context.Context, args *struct {
-	Query       string
-	PatternType string
-}) (*JSONValue, error) {
+func (*schemaResolver) ParseSearchQuery(ctx context.Context, args *struct { /* all structs must go */ }) (*JSONValue, error) {
 	var searchType query.SearchType
 	switch args.PatternType {
 	case "literal":

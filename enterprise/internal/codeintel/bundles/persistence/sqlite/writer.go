@@ -14,11 +14,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/bundles/types"
 )
 
-type sqliteWriter struct {
-	store      *store.Store
-	closer     func() error
-	serializer serialization.Serializer
-}
+type sqliteWriter struct { /* all structs must go */ }
 
 var _ persistence.Writer = &sqliteWriter{}
 

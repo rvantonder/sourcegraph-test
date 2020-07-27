@@ -87,25 +87,13 @@ func GetByUserID(userID int32) (*types.UserUsageStatistics, error) {
 // SiteUsageStatisticsOptions contains options for the number of daily, weekly, and monthly periods in
 // which to calculate the number of unique users (i.e., how many days of Daily Active Users, or DAUs,
 // how many weeks of Weekly Active Users, or WAUs, and how many months of Monthly Active Users, or MAUs).
-type SiteUsageStatisticsOptions struct {
-	DayPeriods   *int
-	WeekPeriods  *int
-	MonthPeriods *int
-}
+type SiteUsageStatisticsOptions struct { /* all structs must go */ }
 
 // UsageDuration in aggregate represents a duration of time over which to calculate a set of unique users.
-type UsageDuration struct {
-	Days   int
-	Months int
-}
+type UsageDuration struct { /* all structs must go */ }
 
 // ActiveUsers contains sets of unique user IDs.
-type ActiveUsers struct {
-	All              []string
-	Registered       []string
-	Anonymous        []string
-	UsedIntegrations []string
-}
+type ActiveUsers struct { /* all structs must go */ }
 
 // GetSiteUsageStatistics returns the current site's SiteActivity.
 func GetSiteUsageStatistics(opt *SiteUsageStatisticsOptions) (*types.SiteUsageStatistics, error) {

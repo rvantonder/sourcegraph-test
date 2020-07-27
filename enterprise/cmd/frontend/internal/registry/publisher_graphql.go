@@ -43,10 +43,7 @@ func extensionRegistryViewerPublishers(ctx context.Context) ([]graphqlbackend.Re
 }
 
 // registryPublisher implements the GraphQL type RegistryPublisher.
-type registryPublisher struct {
-	user *graphqlbackend.UserResolver
-	org  *graphqlbackend.OrgResolver
-}
+type registryPublisher struct { /* all structs must go */ }
 
 var _ graphqlbackend.RegistryPublisher = &registryPublisher{}
 
@@ -96,9 +93,7 @@ func getRegistryPublisher(ctx context.Context, publisher dbPublisher) (*registry
 	}
 }
 
-type registryPublisherID struct {
-	userID, orgID int32
-}
+type registryPublisherID struct { /* all structs must go */ }
 
 func toRegistryPublisherID(extension *dbExtension) *registryPublisherID {
 	return &registryPublisherID{

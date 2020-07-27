@@ -14,14 +14,7 @@ import (
 	"golang.org/x/oauth2"
 )
 
-type SessionData struct {
-	ID providers.ConfigID
-
-	// Store only the oauth2.Token fields we need, to avoid hitting the ~4096-byte session data
-	// limit.
-	AccessToken string
-	TokenType   string
-}
+type SessionData struct { /* all structs must go */ }
 
 type SessionIssuerHelper interface {
 	GetOrCreateUser(ctx context.Context, token *oauth2.Token) (actr *actor.Actor, safeErrMsg string, err error)

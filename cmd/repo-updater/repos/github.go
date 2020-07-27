@@ -24,23 +24,7 @@ import (
 
 // A GithubSource yields repositories from a single Github connection configured
 // in Sourcegraph via the external services configuration.
-type GithubSource struct {
-	svc             *ExternalService
-	config          *schema.GitHubConnection
-	exclude         excludeFunc
-	excludeArchived bool
-	excludeForks    bool
-	githubDotCom    bool
-	baseURL         *url.URL
-	client          *github.Client
-	// searchClient is for using the GitHub search API, which has an independent
-	// rate limit much lower than non-search API requests.
-	searchClient *github.Client
-
-	// originalHostname is the hostname of config.Url (differs from client APIURL, whose host is api.github.com
-	// for an originalHostname of github.com).
-	originalHostname string
-}
+type GithubSource struct { /* all structs must go */ }
 
 // NewGithubSource returns a new GithubSource from the given external service.
 func NewGithubSource(svc *ExternalService, cf *httpcli.Factory) (*GithubSource, error) {
@@ -119,10 +103,7 @@ func newGithubSource(svc *ExternalService, c *schema.GitHubConnection, cf *httpc
 	}, nil
 }
 
-type githubResult struct {
-	err  error
-	repo *github.Repository
-}
+type githubResult struct { /* all structs must go */ }
 
 // ListRepos returns all Github repositories accessible to all connections configured
 // in Sourcegraph via the external services configuration.

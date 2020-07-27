@@ -10,19 +10,7 @@ import (
 // Writer is an io.Writer which retains the first N bytes
 // and the last N bytes written to it. The Bytes() methods reconstructs
 // it with a pretty error message.
-type Writer struct {
-	N         int // max size of prefix or suffix
-	prefix    []byte
-	suffix    []byte // ring buffer once len(suffix) == N
-	suffixOff int    // offset to write into suffix
-	skipped   int64
-
-	// TODO(bradfitz): we could keep one large []byte and use part of it for
-	// the prefix, reserve space for the '... Omitting N bytes ...' message,
-	// then the ring buffer suffix, and just rearrange the ring buffer
-	// suffix when Bytes() is called, but it doesn't seem worth it for
-	// now just for error messages. It's only ~64KB anyway.
-}
+type Writer struct { /* all structs must go */ }
 
 func (w *Writer) Write(p []byte) (n int, err error) {
 	lenp := len(p)

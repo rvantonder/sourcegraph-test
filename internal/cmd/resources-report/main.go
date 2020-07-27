@@ -13,23 +13,7 @@ import (
 
 const resultsBuffer = 5
 
-type options struct {
-	slackWebhook    *string
-	sheetID         *string
-	window          *time.Duration
-	highlightWindow *time.Duration
-
-	gcp                *bool
-	gcpLabelsAllowlist map[string]string
-
-	aws              *bool
-	awsTagsAllowlist map[string]string
-
-	runID   *string
-	dry     *bool
-	verbose *bool
-	timeout *time.Duration
-}
+type options struct { /* all structs must go */ }
 
 func main() {
 	help := flag.Bool("help", false, "Show help text")

@@ -5,18 +5,8 @@ import (
 )
 
 func TestExpr_String(t *testing.T) {
-	type fields struct {
-		Pos       int
-		Not       bool
-		Field     string
-		Value     string
-		ValueType TokenType
-	}
-	tests := []struct {
-		name   string
-		fields fields
-		want   string
-	}{
+	type fields struct { /* all structs must go */ }
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:   "empty",
 			fields: fields{},
@@ -56,11 +46,7 @@ func TestExpr_String(t *testing.T) {
 }
 
 func TestQuery_WithErrorsQuoted(t *testing.T) {
-	cases := []struct {
-		name string
-		in   string
-		want string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{name: "empty", in: "", want: ""},
 		{in: "a", want: "a"},
 		{in: "f:foo bar", want: `f:foo bar`},

@@ -65,29 +65,13 @@ func (defaultAuthzResolver) UserPermissionsInfo(ctx context.Context, userID grap
 	return nil, nil
 }
 
-type RepositoryIDArgs struct {
-	Repository graphql.ID
-}
+type RepositoryIDArgs struct { /* all structs must go */ }
 
-type UserIDArgs struct {
-	User graphql.ID
-}
+type UserIDArgs struct { /* all structs must go */ }
 
-type RepoPermsArgs struct {
-	Repository      graphql.ID
-	UserPermissions []struct {
-		BindID     string
-		Permission string
-	}
-}
+type RepoPermsArgs struct { /* all structs must go */ }
 
-type AuthorizedRepoArgs struct {
-	Username *string
-	Email    *string
-	Perm     string
-	First    int32
-	After    *string
-}
+type AuthorizedRepoArgs struct { /* all structs must go */ }
 
 type PermissionsInfoResolver interface {
 	Permissions() []string

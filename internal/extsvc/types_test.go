@@ -6,13 +6,7 @@ import (
 )
 
 func TestExtractRateLimitConfig(t *testing.T) {
-	for _, tc := range []struct {
-		name        string
-		config      string
-		kind        string
-		displayName string
-		want        RateLimitConfig
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{
 			name:        "GitLab default",
 			config:      `{"url": "https://example.com/"}`,

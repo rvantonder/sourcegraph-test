@@ -45,10 +45,7 @@ index 6f8b5d9..17400bc 100644
 var testDiffGraphQL = apitest.FileDiffs{
 	RawDiff:  testDiff,
 	DiffStat: apitest.DiffStat{Changed: 2},
-	PageInfo: struct {
-		HasNextPage bool
-		EndCursor   string
-	}{},
+	PageInfo: struct { /* all structs must go */ }{},
 	Nodes: []apitest.FileDiff{
 		{
 			OldPath: "README.md",

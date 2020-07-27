@@ -52,12 +52,7 @@ func NewWorker(
 	return workerutil.NewWorker(rootContext, store.WorkerutilUploadStore(s), options)
 }
 
-type handler struct {
-	store           store.Store
-	processor       *processor
-	enableBudget    bool
-	budgetRemaining int64
-}
+type handler struct { /* all structs must go */ }
 
 func (h *handler) Handle(ctx context.Context, tx workerutil.Store, record workerutil.Record) error {
 	_, err := h.processor.Process(ctx, h.store.With(tx), record.(store.Upload))

@@ -63,12 +63,7 @@ func TestReposIndex(t *testing.T) {
 	defaultRepos := []string{"github.com/popular/foo", "github.com/popular/bar"}
 	allRepos := append(defaultRepos, "github.com/alice/foo", "github.com/alice/bar")
 
-	cases := []struct {
-		name string
-		srv  *reposListServer
-		body string
-		want []string
-	}{{
+	cases := []struct { /* all structs must go */ }{{
 		name: "indexers",
 		srv: &reposListServer{
 			Repos: &mockRepos{
@@ -129,9 +124,7 @@ func TestReposIndex(t *testing.T) {
 				t.Errorf("got status %v", resp.StatusCode)
 			}
 
-			var data struct {
-				RepoNames []string
-			}
+			var data struct { /* all structs must go */ }
 			if err := json.Unmarshal(body, &data); err != nil {
 				t.Fatal(err)
 			}
@@ -144,10 +137,7 @@ func TestReposIndex(t *testing.T) {
 	}
 }
 
-type mockRepos struct {
-	defaultRepos []string
-	repos        []string
-}
+type mockRepos struct { /* all structs must go */ }
 
 func (r *mockRepos) ListDefault(context.Context) ([]*types.Repo, error) {
 	var repos []*types.Repo

@@ -43,12 +43,7 @@ func TestGithubSource_CreateChangeset(t *testing.T) {
 		},
 	}
 
-	testCases := []struct {
-		name   string
-		cs     *Changeset
-		err    string
-		exists bool
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{
 			name: "success",
 			cs: &Changeset{
@@ -135,11 +130,7 @@ func TestGithubSource_CreateChangeset(t *testing.T) {
 }
 
 func TestGithubSource_CloseChangeset(t *testing.T) {
-	testCases := []struct {
-		name string
-		cs   *Changeset
-		err  string
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{
 			name: "success",
 			cs: &Changeset{
@@ -202,11 +193,7 @@ func TestGithubSource_CloseChangeset(t *testing.T) {
 }
 
 func TestGithubSource_UpdateChangeset(t *testing.T) {
-	testCases := []struct {
-		name string
-		cs   *Changeset
-		err  string
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{
 			name: "success",
 			cs: &Changeset{
@@ -272,11 +259,7 @@ func TestGithubSource_UpdateChangeset(t *testing.T) {
 }
 
 func TestGithubSource_LoadChangesets(t *testing.T) {
-	testCases := []struct {
-		name string
-		cs   []*Changeset
-		err  string
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{
 			name: "found",
 			cs: []*Changeset{
@@ -350,12 +333,7 @@ func TestGithubSource_LoadChangesets(t *testing.T) {
 }
 
 func TestGithubSource_GetRepo(t *testing.T) {
-	testCases := []struct {
-		name          string
-		nameWithOwner string
-		assert        func(*testing.T, *Repo)
-		err           string
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{
 			name:          "invalid name",
 			nameWithOwner: "thisIsNotANameWithOwner",
@@ -456,10 +434,7 @@ func TestGithubSource_makeRepo(t *testing.T) {
 
 	svc := ExternalService{ID: 1, Kind: extsvc.KindGitHub}
 
-	tests := []struct {
-		name   string
-		schmea *schema.GitHubConnection
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "simple",
 			schmea: &schema.GitHubConnection{
@@ -541,13 +516,7 @@ func TestGithubSource_ListRepos(t *testing.T) {
 		}
 	}
 
-	testCases := []struct {
-		name   string
-		assert ReposAssertion
-		mw     httpcli.Middleware
-		conf   *schema.GitHubConnection
-		err    string
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{
 			name: "found",
 			assert: assertAllReposListed([]string{

@@ -116,10 +116,7 @@ func updateIssues(ctx context.Context, cli *graphql.Client, issues []*Issue) (er
 
 	r := graphql.NewRequest(q.String())
 
-	type UpdateIssueInput struct {
-		ID   string `json:"id"`
-		Body string `json:"body"`
-	}
+	type UpdateIssueInput struct { /* all structs must go */ }
 
 	for _, issue := range issues {
 		r.Var(fmt.Sprintf("issue%dInput", issue.Number), &UpdateIssueInput{
@@ -171,13 +168,7 @@ func (ws Workloads) Markdown(labelAllowlist []string) string {
 	return b.String()
 }
 
-type Workload struct {
-	Assignee     string
-	Days         float64
-	Issues       []*Issue
-	PullRequests []*PullRequest
-	Labels       []string
-}
+type Workload struct { /* all structs must go */ }
 
 func (wl *Workload) AddIssue(newIssue *Issue) {
 	for _, issue := range wl.Issues {
@@ -283,12 +274,7 @@ func Assignee(assignees []string) string {
 	return assignees[0]
 }
 
-type TrackingIssue struct {
-	*Issue
-	Issues         []*Issue
-	PRs            []*PullRequest
-	LabelAllowlist []string
-}
+type TrackingIssue struct { /* all structs must go */ }
 
 func NewTrackingIssue(issue *Issue) *TrackingIssue {
 	t := &TrackingIssue{Issue: issue}
@@ -366,26 +352,7 @@ func (t *TrackingIssue) Workloads() Workloads {
 	return workloads
 }
 
-type Issue struct {
-	ID         string
-	Title      string
-	Body       string
-	Number     int
-	URL        string
-	State      string
-	Repository string
-	Private    bool
-	Labels     []string
-	Assignees  []string
-	Milestone  string
-	Author     string
-	CreatedAt  time.Time
-	UpdatedAt  time.Time
-	ClosedAt   time.Time
-
-	Deprioritised bool           `json:"-"`
-	LinkedPRs     []*PullRequest `json:"-"`
-}
+type Issue struct { /* all structs must go */ }
 
 func (issue *Issue) Markdown(labelAllowlist []string) string {
 	state := " "
@@ -497,26 +464,7 @@ func RedactLabels(labels []string) []string {
 	return redacted
 }
 
-type PullRequest struct {
-	ID         string
-	Title      string
-	Body       string
-	Number     int
-	URL        string
-	State      string
-	Repository string
-	Private    bool
-	Labels     []string
-	Assignees  []string
-	Milestone  string
-	Author     string
-	CreatedAt  time.Time
-	UpdatedAt  time.Time
-	ClosedAt   time.Time
-	BeganAt    time.Time // Time of the first authored commit
-
-	LinkedIssues []*Issue `json:"-"`
-}
+type PullRequest struct { /* all structs must go */ }
 
 func (pr *PullRequest) Markdown() string {
 	state := " "
@@ -601,50 +549,15 @@ func Emoji(category string) string {
 	}
 }
 
-type searchNode struct {
-	Typename   string `json:"__typename"`
-	ID         string
-	Title      string
-	Body       string
-	State      string
-	Number     int
-	URL        string
-	Repository struct {
-		NameWithOwner string
-		IsPrivate     bool
-	}
-	Author    struct{ Login string }
-	Assignees struct{ Nodes []struct{ Login string } }
-	Labels    struct{ Nodes []struct{ Name string } }
-	Milestone struct{ Title string }
-	Commits   struct {
-		Nodes []struct {
-			Commit struct{ AuthoredDate time.Time }
-		}
-	}
-	CreatedAt time.Time
-	UpdatedAt time.Time
-	ClosedAt  time.Time
-}
+type searchNode struct { /* all structs must go */ }
 
-type search struct {
-	PageInfo struct {
-		EndCursor   string
-		HasNextPage bool
-	}
-	Nodes []searchNode
-}
+type search struct { /* all structs must go */ }
 
 func loadTrackingIssues(ctx context.Context, cli *graphql.Client, org string, issues []*TrackingIssue) error {
 	var q bytes.Buffer
 	q.WriteString("query(\n")
 
-	type query struct {
-		issue  *TrackingIssue
-		count  int
-		cursor string
-		query  string
-	}
+	type query struct { /* all structs must go */ }
 
 	queries := map[string]*query{}
 	for _, issue := range issues {

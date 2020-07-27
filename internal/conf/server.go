@@ -21,21 +21,7 @@ type ConfigurationSource interface {
 }
 
 // Server provides access and manages modifications to the site configuration.
-type Server struct {
-	Source ConfigurationSource
-
-	store *store
-
-	needRestartMu sync.RWMutex
-	needRestart   bool
-
-	// fileWrite signals when our app writes to the configuration file. The
-	// secondary channel is closed when server.Raw() would return the new
-	// configuration that has been written to disk.
-	fileWrite chan chan struct{}
-
-	once sync.Once
-}
+type Server struct { /* all structs must go */ }
 
 // NewServer returns a new Server instance that mangages the site config file
 // that is stored at configSource.
@@ -81,9 +67,7 @@ func (s *Server) Write(ctx context.Context, input conftypes.RawUnified) error {
 }
 
 // Edits describes some JSON edits to apply to site configuration.
-type Edits struct {
-	Site []jsonx.Edit
-}
+type Edits struct { /* all structs must go */ }
 
 // Edit invokes the provided function to compute edits to the site
 // configuration. It then applies and writes them.

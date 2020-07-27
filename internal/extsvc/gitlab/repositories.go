@@ -10,19 +10,9 @@ import (
 	"github.com/pkg/errors"
 )
 
-type Tree struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
-	Type string `json:"type"`
-	Path string `json:"path"`
-	Mode string `json:"mode"`
-}
+type Tree struct { /* all structs must go */ }
 
-type ListTreeOp struct {
-	ProjID                int
-	ProjPathWithNamespace string
-	CommonOp
-}
+type ListTreeOp struct { /* all structs must go */ }
 
 var ListTreeMock func(ctx context.Context, op ListTreeOp) ([]*Tree, error)
 

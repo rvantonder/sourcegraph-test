@@ -23,12 +23,7 @@ import (
 
 func TestHeadersMiddleware(t *testing.T) {
 	headers := []string{"X-Foo", "bar", "X-Bar", "foo"}
-	for _, tc := range []struct {
-		name    string
-		cli     Doer
-		headers []string
-		err     string
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{
 			name:    "odd number of headers panics",
 			headers: headers[:1],
@@ -81,12 +76,7 @@ func TestContextErrorMiddleware(t *testing.T) {
 	cancelled, cancel := context.WithCancel(context.Background())
 	cancel()
 
-	for _, tc := range []struct {
-		name string
-		cli  Doer
-		ctx  context.Context
-		err  string
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{
 			name: "no context error, no doer error",
 			cli:  newFakeClient(http.StatusOK, nil, nil),
@@ -161,13 +151,7 @@ func TestNewCertPool(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	for _, tc := range []struct {
-		name   string
-		certs  []string
-		cli    *http.Client
-		assert func(testing.TB, *http.Client)
-		err    string
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{
 			name:  "fails if transport isn't an http.Transport",
 			cli:   &http.Client{Transport: bogusTransport{}},
@@ -210,13 +194,7 @@ func TestNewCertPool(t *testing.T) {
 
 func TestNewIdleConnTimeoutOpt(t *testing.T) {
 	timeout := 33 * time.Second
-	for _, tc := range []struct {
-		name    string
-		cli     *http.Client
-		timeout time.Duration
-		assert  func(testing.TB, *http.Client)
-		err     string
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{
 			name: "sets default transport if nil",
 			cli:  &http.Client{},

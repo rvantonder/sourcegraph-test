@@ -116,10 +116,7 @@ func Benchmark_authzFilter(b *testing.B) {
 	}
 }
 
-type fakeProvider struct {
-	codeHost *extsvc.CodeHost
-	extAcct  *extsvc.Account
-}
+type fakeProvider struct { /* all structs must go */ }
 
 func (p *fakeProvider) FetchAccount(
 	ctx context.Context,

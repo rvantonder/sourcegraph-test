@@ -5,10 +5,7 @@ import (
 	"path/filepath"
 )
 
-type ExistenceChecker struct {
-	root              string
-	directoryContents map[string]StringSet
-}
+type ExistenceChecker struct { /* all structs must go */ }
 
 // NewExistenceChecker constructs a map of directory contents from the given set of paths and the given
 // getChildren function pointer that determines which of the given paths exist in the git clone at the

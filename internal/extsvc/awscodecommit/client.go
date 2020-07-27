@@ -13,10 +13,7 @@ import (
 )
 
 // Client is a AWS CodeCommit API client.
-type Client struct {
-	aws       aws.Config
-	repoCache *rcache.Cache
-}
+type Client struct { /* all structs must go */ }
 
 // NewClient creates a new AWS CodeCommit API client.
 func NewClient(config aws.Config) *Client {

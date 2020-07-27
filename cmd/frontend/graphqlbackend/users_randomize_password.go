@@ -10,9 +10,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/db"
 )
 
-type randomizeUserPasswordResult struct {
-	userID int32
-}
+type randomizeUserPasswordResult struct { /* all structs must go */ }
 
 func (r *randomizeUserPasswordResult) ResetPasswordURL(ctx context.Context) (*string, error) {
 	if !userpasswd.ResetPasswordEnabled() {
@@ -30,9 +28,7 @@ func (r *randomizeUserPasswordResult) ResetPasswordURL(ctx context.Context) (*st
 	return &urlStr, nil
 }
 
-func (*schemaResolver) RandomizeUserPassword(ctx context.Context, args *struct {
-	User graphql.ID
-}) (*randomizeUserPasswordResult, error) {
+func (*schemaResolver) RandomizeUserPassword(ctx context.Context, args *struct { /* all structs must go */ }) (*randomizeUserPasswordResult, error) {
 	// 🚨 SECURITY: Only site admins can randomize user passwords.
 	if err := backend.CheckCurrentUserIsSiteAdmin(ctx); err != nil {
 		return nil, err

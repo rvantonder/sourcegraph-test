@@ -17,24 +17,7 @@ import (
 // assuming that all cache entries are fresh within the lifetime of CacheControlTransport.
 // For this reason, CacheControlTransport should not outlive the lifetime of a single
 // end-user request.
-type CacheControlTransport struct {
-	// Transport is the base transport that CacheControlTransport forwards requests to
-	// after setting the Cache-Control header.
-	Transport http.RoundTripper
-
-	// The Cache-Control header to set on requests.
-	CacheControl string
-
-	// ShouldForwardCacheControl returns whether the Cache-Control header should be set on
-	// a given request. This function should be stateless. Setting this to nil is
-	// equivalent to setting a function that always returns true.
-	ShouldSetCacheControl func(req *http.Request) bool
-
-	// prevGets records previously seen GET request URLs.
-	prevGets map[string]bool
-
-	lock sync.Mutex // protects prevGets
-}
+type CacheControlTransport struct { /* all structs must go */ }
 
 func NewCacheControlTransport(cacheControl string, baseTransport http.RoundTripper, shouldSetCacheControl func(req *http.Request) bool) *CacheControlTransport {
 	return &CacheControlTransport{

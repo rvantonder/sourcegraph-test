@@ -134,10 +134,7 @@ func TestBitbucketServerSource_Exclude(t *testing.T) {
 				t.Fatal(err)
 			}
 
-			type output struct {
-				Include []string
-				Exclude []string
-			}
+			type output struct { /* all structs must go */ }
 			var got output
 			for _, r := range repos {
 				name := r.Slug
@@ -178,11 +175,7 @@ func TestBitbucketServerSource_LoadChangesets(t *testing.T) {
 		{Repo: repo, Changeset: &campaigns.Changeset{ExternalID: "999"}},
 	}
 
-	testCases := []struct {
-		name string
-		cs   []*Changeset
-		err  string
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{
 			name: "found",
 			cs:   []*Changeset{changesets[0], changesets[1]},
@@ -259,12 +252,7 @@ func TestBitbucketServerSource_CreateChangeset(t *testing.T) {
 		},
 	}
 
-	testCases := []struct {
-		name   string
-		cs     *Changeset
-		err    string
-		exists bool
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{
 			name: "abbreviated refs",
 			cs: &Changeset{
@@ -366,11 +354,7 @@ func TestBitbucketServerSource_CloseChangeset(t *testing.T) {
 	pr.ToRef.Repository.Slug = "automation-testing"
 	pr.ToRef.Repository.Project.Key = "SOUR"
 
-	testCases := []struct {
-		name string
-		cs   *Changeset
-		err  string
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{
 			name: "success",
 			cs:   &Changeset{Changeset: &campaigns.Changeset{Metadata: pr}},
@@ -435,11 +419,7 @@ func TestBitbucketServerSource_UpdateChangeset(t *testing.T) {
 	pr.ToRef.Repository.Slug = "automation-testing"
 	pr.ToRef.Repository.Project.Key = "SOUR"
 
-	testCases := []struct {
-		name string
-		cs   *Changeset
-		err  string
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{
 			name: "success",
 			cs: &Changeset{

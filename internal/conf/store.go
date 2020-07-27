@@ -14,17 +14,7 @@ import (
 
 // store manages the in-memory storage, access,
 // and updating of the site configuration in a threadsafe manner.
-type store struct {
-	configMu  sync.RWMutex
-	lastValid *Unified
-	mock      *Unified
-
-	rawMu sync.RWMutex
-	raw   conftypes.RawUnified
-
-	ready chan struct{}
-	once  sync.Once
-}
+type store struct { /* all structs must go */ }
 
 // newStore returns a new configuration store.
 func newStore() *store {
@@ -67,11 +57,7 @@ func (s *store) Mock(mockery *Unified) {
 	s.initialize()
 }
 
-type updateResult struct {
-	Changed bool
-	Old     *Unified
-	New     *Unified
-}
+type updateResult struct { /* all structs must go */ }
 
 // MaybeUpdate attempts to update the store with the supplied rawConfig.
 //

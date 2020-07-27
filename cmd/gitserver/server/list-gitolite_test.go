@@ -12,13 +12,7 @@ import (
 )
 
 func Test_Gitolite_listRepos(t *testing.T) {
-	tests := []struct {
-		listRepos       map[string][]*gitolite.Repo
-		configs         []*schema.GitoliteConnection
-		gitoliteHost    string
-		expResponseCode int
-		expResponseBody string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			listRepos: map[string][]*gitolite.Repo{
 				"git@gitolite.example.com": {
@@ -63,9 +57,7 @@ func Test_Gitolite_listRepos(t *testing.T) {
 	}
 }
 
-type stubGitoliteClient struct {
-	ListRepos_ func(ctx context.Context, host string) ([]*gitolite.Repo, error)
-}
+type stubGitoliteClient struct { /* all structs must go */ }
 
 func (c stubGitoliteClient) ListRepos(ctx context.Context, host string) ([]*gitolite.Repo, error) {
 	return c.ListRepos_(ctx, host)

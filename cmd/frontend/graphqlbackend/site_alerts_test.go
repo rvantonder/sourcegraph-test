@@ -9,13 +9,7 @@ import (
 )
 
 func Test_determineOutOfDateAlert(t *testing.T) {
-	tests := []struct {
-		name                              string
-		offline, admin                    bool
-		monthsOutOfDate                   int
-		wantOffline, wantOnline           *Alert
-		wantOfflineAdmin, wantOnlineAdmin *Alert
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:            "0_months",
 			monthsOutOfDate: 0,
@@ -104,15 +98,8 @@ func Test_determineOutOfDateAlert(t *testing.T) {
 
 func TestObservabilityActiveAlertsAlert(t *testing.T) {
 	f := false
-	type args struct {
-		prometheusURL string
-		args          AlertFuncArgs
-	}
-	tests := []struct {
-		name string
-		args args
-		want []*Alert
-	}{
+	type args struct { /* all structs must go */ }
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "not admin",
 			args: args{

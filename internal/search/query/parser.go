@@ -30,25 +30,13 @@ func (Parameter) node() {}
 func (Operator) node()  {}
 
 // An annotation stores information associated with a node.
-type Annotation struct {
-	Labels labels `json:"labels"`
-	Range  Range  `json:"range"`
-}
+type Annotation struct { /* all structs must go */ }
 
 // Pattern is a leaf node of expressions representing a search pattern fragment.
-type Pattern struct {
-	Value      string     `json:"value"`   // The pattern value.
-	Negated    bool       `json:"negated"` // True if this pattern is negated.
-	Annotation Annotation `json:"-"`       // An annotation attached to this pattern.
-}
+type Pattern struct { /* all structs must go */ }
 
 // Parameter is a leaf node of expressions representing a parameter of format "repo:foo".
-type Parameter struct {
-	Field      string     `json:"field"`   // The repo part in repo:sourcegraph.
-	Value      string     `json:"value"`   // The sourcegraph part in repo:sourcegraph.
-	Negated    bool       `json:"negated"` // True if the - prefix exists, as in -repo:sourcegraph.
-	Annotation Annotation `json:"-"`
-}
+type Parameter struct { /* all structs must go */ }
 
 type operatorKind int
 
@@ -59,11 +47,7 @@ const (
 )
 
 // Operator is a nonterminal node of kind Kind with child nodes Operands.
-type Operator struct {
-	Kind       operatorKind
-	Operands   []Node
-	Annotation Annotation
-}
+type Operator struct { /* all structs must go */ }
 
 func (node Pattern) String() string {
 	var v string
@@ -156,13 +140,7 @@ const (
 
 func isSet(h, heuristic heuristics) bool { return h&heuristic != 0 }
 
-type parser struct {
-	buf        []byte
-	heuristics heuristics
-	pos        int
-	balanced   int
-	leafParser SearchType
-}
+type parser struct { /* all structs must go */ }
 
 func (p *parser) done() bool {
 	return p.pos >= len(p.buf)
@@ -867,12 +845,7 @@ func ParseAndOr(in string, searchType SearchType) ([]Node, error) {
 	return newOperator(nodes, And), nil
 }
 
-type ParserOptions struct {
-	SearchType SearchType
-
-	// treat repo, file, or repohasfile values as glob syntax if true.
-	Globbing bool
-}
+type ParserOptions struct { /* all structs must go */ }
 
 // ProcessAndOr query parses and validates an and/or query for a given search type.
 func ProcessAndOr(in string, options ParserOptions) (QueryInfo, error) {

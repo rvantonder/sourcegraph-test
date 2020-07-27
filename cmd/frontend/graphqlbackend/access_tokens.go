@@ -16,11 +16,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/db"
 )
 
-type createAccessTokenInput struct {
-	User   graphql.ID
-	Scopes []string
-	Note   string
-}
+type createAccessTokenInput struct { /* all structs must go */ }
 
 func (r *schemaResolver) CreateAccessToken(ctx context.Context, args *createAccessTokenInput) (*createAccessTokenResult, error) {
 	// 🚨 SECURITY: Only site admins and the user can create an access token for a user.
@@ -75,18 +71,12 @@ func (r *schemaResolver) CreateAccessToken(ctx context.Context, args *createAcce
 	return &createAccessTokenResult{id: marshalAccessTokenID(id), token: token}, err
 }
 
-type createAccessTokenResult struct {
-	id    graphql.ID
-	token string
-}
+type createAccessTokenResult struct { /* all structs must go */ }
 
 func (r *createAccessTokenResult) ID() graphql.ID { return r.id }
 func (r *createAccessTokenResult) Token() string  { return r.token }
 
-type deleteAccessTokenInput struct {
-	ByID    *graphql.ID
-	ByToken *string
-}
+type deleteAccessTokenInput struct { /* all structs must go */ }
 
 func (r *schemaResolver) DeleteAccessToken(ctx context.Context, args *deleteAccessTokenInput) (*EmptyResponse, error) {
 	if args.ByID == nil && args.ByToken == nil {
@@ -127,9 +117,7 @@ func (r *schemaResolver) DeleteAccessToken(ctx context.Context, args *deleteAcce
 	return &EmptyResponse{}, nil
 }
 
-func (r *siteResolver) AccessTokens(ctx context.Context, args *struct {
-	graphqlutil.ConnectionArgs
-}) (*accessTokenConnectionResolver, error) {
+func (r *siteResolver) AccessTokens(ctx context.Context, args *struct { /* all structs must go */ }) (*accessTokenConnectionResolver, error) {
 	// 🚨 SECURITY: Only site admins can list all access tokens.
 	if err := backend.CheckCurrentUserIsSiteAdmin(ctx); err != nil {
 		return nil, err
@@ -140,9 +128,7 @@ func (r *siteResolver) AccessTokens(ctx context.Context, args *struct {
 	return &accessTokenConnectionResolver{opt: opt}, nil
 }
 
-func (r *UserResolver) AccessTokens(ctx context.Context, args *struct {
-	graphqlutil.ConnectionArgs
-}) (*accessTokenConnectionResolver, error) {
+func (r *UserResolver) AccessTokens(ctx context.Context, args *struct { /* all structs must go */ }) (*accessTokenConnectionResolver, error) {
 	// 🚨 SECURITY: Only site admins and the user can list a user's access tokens.
 	if err := backend.CheckSiteAdminOrSameUser(ctx, r.user.ID); err != nil {
 		return nil, err
@@ -157,14 +143,7 @@ func (r *UserResolver) AccessTokens(ctx context.Context, args *struct {
 //
 // 🚨 SECURITY: When instantiating an accessTokenConnectionResolver value, the caller MUST check
 // permissions.
-type accessTokenConnectionResolver struct {
-	opt db.AccessTokensListOptions
-
-	// cache results because they are used by multiple fields
-	once         sync.Once
-	accessTokens []*db.AccessToken
-	err          error
-}
+type accessTokenConnectionResolver struct { /* all structs must go */ }
 
 func (r *accessTokenConnectionResolver) compute(ctx context.Context) ([]*db.AccessToken, error) {
 	r.once.Do(func() {

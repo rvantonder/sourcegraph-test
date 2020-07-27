@@ -25,14 +25,7 @@ const stateCookieName = "sg-oidc-state"
 // All OpenID Connect endpoints are under this path prefix.
 const authPrefix = auth.AuthURLPrefix + "/openidconnect"
 
-type userClaims struct {
-	Name              string `json:"name"`
-	GivenName         string `json:"given_name"`
-	FamilyName        string `json:"family_name"`
-	PreferredUsername string `json:"preferred_username"`
-	Picture           string `json:"picture"`
-	EmailVerified     *bool  `json:"email_verified"`
-}
+type userClaims struct { /* all structs must go */ }
 
 // Middleware is middleware for OpenID Connect (OIDC) authentication, adding endpoints under the
 // auth path prefix ("/.auth") to enable the login flow and requiring login for all other endpoints.
@@ -265,13 +258,7 @@ func authHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // authnState is the state parameter passed to the Authn request and returned in the Authn response callback.
-type authnState struct {
-	CSRFToken string `json:"csrfToken"`
-	Redirect  string `json:"redirect"`
-
-	// Allow /.auth/callback to demux callbacks from multiple OpenID Connect OPs.
-	ProviderID string `json:"p"`
-}
+type authnState struct { /* all structs must go */ }
 
 // Encode returns the base64-encoded JSON representation of the authn state.
 func (s *authnState) Encode() string {

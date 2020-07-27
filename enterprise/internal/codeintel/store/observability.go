@@ -11,54 +11,7 @@ import (
 )
 
 // An ObservedStore wraps another store with error logging, Prometheus metrics, and tracing.
-type ObservedStore struct {
-	store                                   Store
-	doneOperation                           *observation.Operation
-	lockOperation                           *observation.Operation
-	getUploadByIDOperation                  *observation.Operation
-	getUploadsOperation                     *observation.Operation
-	queueSizeOperation                      *observation.Operation
-	insertUploadOperation                   *observation.Operation
-	addUploadPartOperation                  *observation.Operation
-	markQueuedOperation                     *observation.Operation
-	markCompleteOperation                   *observation.Operation
-	markErroredOperation                    *observation.Operation
-	dequeueOperation                        *observation.Operation
-	requeueOperation                        *observation.Operation
-	getStatesOperation                      *observation.Operation
-	deleteUploadByIDOperation               *observation.Operation
-	deleteUploadsWithoutRepositoryOperation *observation.Operation
-	resetStalledOperation                   *observation.Operation
-	getDumpByIDOperation                    *observation.Operation
-	findClosestDumpsOperation               *observation.Operation
-	deleteOldestDumpOperation               *observation.Operation
-	updateDumpsVisibleFromTipOperation      *observation.Operation
-	deleteOverlappingDumpsOperation         *observation.Operation
-	getPackageOperation                     *observation.Operation
-	updatePackagesOperation                 *observation.Operation
-	sameRepoPagerOperation                  *observation.Operation
-	updatePackageReferencesOperation        *observation.Operation
-	packageReferencePagerOperation          *observation.Operation
-	hasCommitOperation                      *observation.Operation
-	updateCommitsOperation                  *observation.Operation
-	indexableRepositoriesOperation          *observation.Operation
-	updateIndexableRepositoryOperation      *observation.Operation
-	resetIndexableRepositoriesOperation     *observation.Operation
-	getIndexByIDOperation                   *observation.Operation
-	getIndexesOperation                     *observation.Operation
-	indexQueueSizeOperation                 *observation.Operation
-	isQueuedOperation                       *observation.Operation
-	insertIndexOperation                    *observation.Operation
-	markIndexCompleteOperation              *observation.Operation
-	markIndexErroredOperation               *observation.Operation
-	dequeueIndexOperation                   *observation.Operation
-	requeueIndexOperation                   *observation.Operation
-	deleteIndexByIdOperation                *observation.Operation
-	deleteIndexesWithoutRepositoryOperation *observation.Operation
-	resetStalledIndexesOperation            *observation.Operation
-	repoUsageStatisticsOperation            *observation.Operation
-	repoNameOperation                       *observation.Operation
-}
+type ObservedStore struct { /* all structs must go */ }
 
 var _ Store = &ObservedStore{}
 

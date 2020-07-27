@@ -47,11 +47,7 @@ func TestChangesetSpecResolver(t *testing.T) {
 
 	}
 
-	tests := []struct {
-		name    string
-		rawSpec string
-		want    func(spec *campaigns.ChangesetSpec) apitest.ChangesetSpec
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:    "GitBranchChangesetDescription",
 			rawSpec: ct.NewRawChangesetSpecGitBranch(repoID, string(testRev)),

@@ -34,16 +34,10 @@ func (srs *searchResultsStats) Languages(ctx context.Context) ([]*languageStatis
 
 func searchResultsStatsLanguages(ctx context.Context, results []SearchResultResolver) ([]inventory.Lang, error) {
 	// Batch our operations by repo-commit.
-	type repoCommit struct {
-		repo     api.RepoID
-		commitID api.CommitID
-	}
+	type repoCommit struct { /* all structs must go */ }
 
 	// Records the work necessary for a batch (repoCommit).
-	type fileStatsWork struct {
-		fullEntries  []os.FileInfo     // matched these full files
-		partialFiles map[string]uint64 // file with line matches (path) -> count of lines matching
-	}
+	type fileStatsWork struct { /* all structs must go */ }
 
 	var (
 		repos    = map[api.RepoID]*types.Repo{}

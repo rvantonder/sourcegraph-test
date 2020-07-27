@@ -371,10 +371,7 @@ func handler(f func(w http.ResponseWriter, r *http.Request) error) http.Handler 
 	return trace.TraceRoute(gziphandler.GzipHandler(h))
 }
 
-type recoverError struct {
-	recover interface{}
-	stack   []byte
-}
+type recoverError struct { /* all structs must go */ }
 
 func (r recoverError) Error() string {
 	return fmt.Sprintf("ui: recovered from panic: %v", r.recover)
@@ -396,12 +393,7 @@ func dangerouslyServeError(w http.ResponseWriter, r *http.Request, err error, st
 	serveErrorNoDebug(w, r, err, statusCode, false, true)
 }
 
-type pageError struct {
-	StatusCode int    `json:"statusCode"`
-	StatusText string `json:"statusText"`
-	Error      string `json:"error"`
-	ErrorID    string `json:"errorID"`
-}
+type pageError struct { /* all structs must go */ }
 
 // serveErrorNoDebug should not be called by anyone except serveErrorTest.
 func serveErrorNoDebug(w http.ResponseWriter, r *http.Request, err error, statusCode int, nodebug, forceServeError bool) {
@@ -453,9 +445,7 @@ func serveErrorNoDebug(w http.ResponseWriter, r *http.Request, err error, status
 		if common == nil {
 			return // request handled by newCommon
 		}
-		fancyErr := renderTemplate(w, "app.html", &struct {
-			*Common
-		}{
+		fancyErr := renderTemplate(w, "app.html", &struct { /* all structs must go */ }{
 			Common: common,
 		})
 		if fancyErr != nil {

@@ -25,12 +25,7 @@ func TestSrcExpose(t *testing.T) {
 	}))
 	defer s.Close()
 
-	cases := []struct {
-		name string
-		body string
-		want []*Repo
-		err  string
-	}{{
+	cases := []struct { /* all structs must go */ }{{
 		name: "error",
 		body: "boom",
 		err:  "failed to decode response from src-expose: boom",

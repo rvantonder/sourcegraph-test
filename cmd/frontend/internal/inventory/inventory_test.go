@@ -18,10 +18,7 @@ import (
 )
 
 func TestGetLang_language(t *testing.T) {
-	tests := map[string]struct {
-		file fi
-		want Lang
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"empty file": {file: fi{"a.java", ""}, want: Lang{
 			Name:       "Java",
 			TotalBytes: 0,
@@ -82,10 +79,7 @@ func makeFileReader(ctx context.Context, path, contents string) func(context.Con
 	}
 }
 
-type fi struct {
-	Path     string
-	Contents string
-}
+type fi struct { /* all structs must go */ }
 
 func (f fi) Name() string {
 	return f.Path
@@ -112,10 +106,7 @@ func (f fi) Sys() interface{} {
 }
 
 func TestGet_readFile(t *testing.T) {
-	tests := []struct {
-		file os.FileInfo
-		want string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{file: fi{"a.java", "aaaaaaaaa"}, want: "Java"},
 		{file: fi{"b.md", "# Hello"}, want: "Markdown"},
 
@@ -140,10 +131,7 @@ func TestGet_readFile(t *testing.T) {
 	}
 }
 
-type nopReadCloser struct {
-	data   []byte
-	reader *bytes.Reader
-}
+type nopReadCloser struct { /* all structs must go */ }
 
 func (n *nopReadCloser) Read(p []byte) (int, error) {
 	return n.reader.Read(p)

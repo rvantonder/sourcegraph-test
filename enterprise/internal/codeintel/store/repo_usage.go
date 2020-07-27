@@ -8,11 +8,7 @@ import (
 )
 
 // RepoUsageStatistics pairs a repository identifier with a count of code intelligence events.
-type RepoUsageStatistics struct {
-	RepositoryID int
-	SearchCount  int
-	PreciseCount int
-}
+type RepoUsageStatistics struct { /* all structs must go */ }
 
 // scanRepoUsageStatisticsSlice scans a slice of repo usage statistics from the return value of `*store.query`.
 func scanRepoUsageStatisticsSlice(rows *sql.Rows, queryErr error) (_ []RepoUsageStatistics, err error) {

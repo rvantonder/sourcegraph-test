@@ -8,13 +8,7 @@ import (
 )
 
 // Status describes the status of a system requirement.
-type Status struct {
-	Name    string // the required component
-	Problem string // if non-empty, a description of the problem
-	Fix     string // if non-empty, how to fix the problem
-	Err     error  // if non-nil, the error encountered
-	Skipped bool   // if true, indicates this check was skipped
-}
+type Status struct { /* all structs must go */ }
 
 // OK is whether the component is present, has no errors, and was not
 // skipped.
@@ -58,10 +52,7 @@ func Check(ctx context.Context, skip []string) []Status {
 	return statuses
 }
 
-type check struct {
-	Name  string
-	Check CheckFunc
-}
+type check struct { /* all structs must go */ }
 
 // CheckFunc is a function that checks for a system requirement. If
 // any of problem, fix, or err are non-zero, then the system

@@ -24,12 +24,7 @@ func Test_authzFilter_permissionsUserMapping(t *testing.T) {
 	globals.SetPermissionsUserMapping(&schema.PermissionsUserMapping{Enabled: true})
 	defer globals.SetPermissionsUserMapping(before)
 
-	tests := []struct {
-		name      string
-		providers []authz.Provider
-		repos     []*types.Repo
-		expectErr string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		// 🚨 SECURITY: We need to make sure the behavior is the same for both "has repos" and "no repos".
 		// This is to ensure we always check conflict as the first step.
 		{
@@ -143,12 +138,7 @@ func Test_authzFilter(t *testing.T) {
 		ctx := context.Background()
 		ctx = actor.WithActor(ctx, &actor.Actor{UID: user.ID})
 
-		tests := []struct {
-			name                string
-			authzAllowByDefault bool
-			repos               []*types.Repo
-			wantRepos           []*types.Repo
-		}{
+		tests := []struct { /* all structs must go */ }{
 			{
 				name:                "authzAllowByDefault=false, only see public repos",
 				authzAllowByDefault: false,
@@ -213,12 +203,7 @@ func Test_authzFilter(t *testing.T) {
 		ctx := context.Background()
 		ctx = actor.WithActor(ctx, &actor.Actor{UID: user.ID})
 
-		tests := []struct {
-			name                string
-			authzAllowByDefault bool
-			repos               []*types.Repo
-			wantRepos           []*types.Repo
-		}{
+		tests := []struct { /* all structs must go */ }{
 			{
 				name:                "authzAllowByDefault=false, see explicitly authorized repos",
 				authzAllowByDefault: false,
@@ -301,12 +286,7 @@ func Test_authzFilter(t *testing.T) {
 		ctx := context.Background()
 		ctx = actor.WithActor(ctx, &actor.Actor{UID: user.ID})
 
-		tests := []struct {
-			name                string
-			authzAllowByDefault bool
-			repos               []*types.Repo
-			wantRepos           []*types.Repo
-		}{
+		tests := []struct { /* all structs must go */ }{
 			{
 				name:                "authzAllowByDefault=false, see explicitly authorized repos",
 				authzAllowByDefault: false,
@@ -362,18 +342,7 @@ func Test_authzFilter(t *testing.T) {
 	})
 }
 
-type MockAuthzProvider struct {
-	serviceID   string
-	serviceType string
-
-	// okServiceIDs indicate services whose external accounts will be straightforwardly translated
-	// into external accounts belonging to this provider.
-	okServiceIDs map[string]struct{}
-
-	// perms is the map from external user account to repository permissions. The key set must
-	// include all user external accounts that are available in this mock instance.
-	perms map[extsvc.Account]map[api.RepoName]authz.Perms
-}
+type MockAuthzProvider struct { /* all structs must go */ }
 
 func (m *MockAuthzProvider) FetchAccount(ctx context.Context, user *types.User, current []*extsvc.Account) (mine *extsvc.Account, err error) {
 	if user == nil {

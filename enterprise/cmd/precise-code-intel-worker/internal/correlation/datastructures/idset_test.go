@@ -49,10 +49,7 @@ func TestIDSetOperations(t *testing.T) {
 }
 
 func TestIDSetMin(t *testing.T) {
-	testCases := []struct {
-		add int
-		min int
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{5, 5},
 		{6, 5},
 		{4, 4},

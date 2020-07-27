@@ -26,10 +26,7 @@ func init() {
 
 // RegistryExtensionID identifies a registry extension, either locally or on a remote
 // registry. Exactly 1 field must be set.
-type RegistryExtensionID struct {
-	LocalID  int32                      `json:"l,omitempty"`
-	RemoteID *registryExtensionRemoteID `json:"r,omitempty"`
-}
+type RegistryExtensionID struct { /* all structs must go */ }
 
 func MarshalRegistryExtensionID(id RegistryExtensionID) graphql.ID {
 	return relay.MarshalID("RegistryExtension", id)

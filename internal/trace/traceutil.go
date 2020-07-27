@@ -30,9 +30,7 @@ func New(ctx context.Context, family, title string) (*Trace, context.Context) {
 // A Tracer for trace creation, parameterised over an
 // opentracing.Tracer. Use this if you don't want to use
 // the global tracer.
-type Tracer struct {
-	Tracer opentracing.Tracer
-}
+type Tracer struct { /* all structs must go */ }
 
 // New returns a new Trace with the specified family and title.
 func (t Tracer) New(ctx context.Context, family, title string) (*Trace, context.Context) {
@@ -72,11 +70,7 @@ func TraceFromContext(ctx context.Context) *Trace {
 
 // Trace is a combined version of golang.org/x/net/trace.Trace and
 // opentracing.Span. Use New to construct one.
-type Trace struct {
-	trace  nettrace.Trace
-	span   opentracing.Span
-	family string
-}
+type Trace struct { /* all structs must go */ }
 
 // LazyPrintf evaluates its arguments with fmt.Sprintf each time the
 // /debug/requests page is rendered. Any memory referenced by a will be
@@ -153,10 +147,7 @@ func (fs fieldsStringer) String() string {
 }
 
 // encoder is a log.Encoder used by fieldsStringer.
-type encoder struct {
-	strings.Builder
-	prefixNewline bool
-}
+type encoder struct { /* all structs must go */ }
 
 func (e *encoder) EmitString(key, value string) {
 	if e.prefixNewline {

@@ -11,10 +11,7 @@ import (
 // commit ID. This RepoRev type is appropriate for user input (e.g.,
 // from a URL), where it is convenient to allow users to specify
 // non-absolute commit IDs that the server can resolve.
-type RepoRev struct {
-	Repo api.RepoName // a repo path
-	Rev  string       // a VCS revision specifier (branch, "master~7", commit ID, etc.)
-}
+type RepoRev struct { /* all structs must go */ }
 
 var (
 	Repo = `{Repo:` + namedToNonCapturingGroups(RepoPattern) + `}`

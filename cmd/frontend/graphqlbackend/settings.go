@@ -12,11 +12,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/env"
 )
 
-type settingsResolver struct {
-	subject  *settingsSubject
-	settings *api.Settings
-	user     *types.User
-}
+type settingsResolver struct { /* all structs must go */ }
 
 func (o *settingsResolver) ID() int32 {
 	return o.settings.ID

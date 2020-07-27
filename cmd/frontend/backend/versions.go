@@ -14,11 +14,7 @@ import (
 
 // UpgradeError is returned by UpdateServiceVersion when it faces an
 // upgrade policy violation error.
-type UpgradeError struct {
-	Service  string
-	Previous *semver.Version
-	Latest   *semver.Version
-}
+type UpgradeError struct { /* all structs must go */ }
 
 // Error implements the error interface.
 func (e UpgradeError) Error() string {

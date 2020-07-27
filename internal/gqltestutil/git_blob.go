@@ -22,17 +22,7 @@ query Blob($repoName: String!, $revision: String!, $filePath: String!) {
 		"revision": revision,
 		"filePath": filePath,
 	}
-	var resp struct {
-		Data struct {
-			Repository struct {
-				Commit struct {
-					File struct {
-						Content string `json:"content"`
-					} `json:"file"`
-				} `json:"commit"`
-			} `json:"repository"`
-		} `json:"data"`
-	}
+	var resp struct { /* all structs must go */ }
 	err := c.GraphQL("", gqlQuery, variables, &resp)
 	if err != nil {
 		return "", errors.Wrap(err, "request GraphQL")

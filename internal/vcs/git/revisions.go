@@ -42,9 +42,7 @@ func ensureAbsoluteCommit(commitID api.CommitID) error {
 
 // ResolveRevisionOptions configure how we resolve revisions.
 // The zero value should contain appropriate default values.
-type ResolveRevisionOptions struct {
-	NoEnsureRevision bool // do not try to fetch from remote if revision doesn't exist locally
-}
+type ResolveRevisionOptions struct { /* all structs must go */ }
 
 // ResolveRevision will return the absolute commit for a commit-ish spec. If spec is empty, HEAD is
 // used.

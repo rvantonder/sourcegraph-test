@@ -10,10 +10,7 @@ import (
 )
 
 // AlertsStatusReporter summarizes alert activity from Alertmanager
-type AlertsStatusReporter struct {
-	log          log15.Logger
-	alertmanager *amclient.Alertmanager
-}
+type AlertsStatusReporter struct { /* all structs must go */ }
 
 func NewAlertsStatusReporter(logger log15.Logger, alertmanager *amclient.Alertmanager) *AlertsStatusReporter {
 	return &AlertsStatusReporter{

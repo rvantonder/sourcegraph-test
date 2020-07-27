@@ -293,12 +293,7 @@ func checkRegularPermsTable(s *PermsStore, sql string, expects map[int32][]uint3
 }
 
 func testPermsStore_SetUserPermissions(db *sql.DB) func(*testing.T) {
-	tests := []struct {
-		name            string
-		updates         []*authz.UserPermissions
-		expectUserPerms map[int32][]uint32 // user_id -> object_ids
-		expectRepoPerms map[int32][]uint32 // repo_id -> user_ids
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "empty",
 			updates: []*authz.UserPermissions{
@@ -470,12 +465,7 @@ func testPermsStore_SetUserPermissions(db *sql.DB) func(*testing.T) {
 }
 
 func testPermsStore_SetRepoPermissions(db *sql.DB) func(*testing.T) {
-	tests := []struct {
-		name            string
-		updates         []*authz.RepoPermissions
-		expectUserPerms map[int32][]uint32 // user_id -> object_ids
-		expectRepoPerms map[int32][]uint32 // repo_id -> user_ids
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "empty",
 			updates: []*authz.RepoPermissions{
@@ -949,16 +939,8 @@ func testPermsStore_SetRepoPendingPermissions(db *sql.DB) func(*testing.T) {
 		AccountID:   "cindy",
 	}
 
-	type update struct {
-		accounts *extsvc.Accounts
-		perm     *authz.RepoPermissions
-	}
-	tests := []struct {
-		name                   string
-		updates                []update
-		expectUserPendingPerms map[extsvc.AccountSpec][]uint32 // account -> object_ids
-		expectRepoPendingPerms map[int32][]extsvc.AccountSpec  // repo_id -> accounts
-	}{
+	type update struct { /* all structs must go */ }
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "empty",
 			updates: []update{
@@ -1153,15 +1135,8 @@ func testPermsStore_SetRepoPendingPermissions(db *sql.DB) func(*testing.T) {
 }
 
 func testPermsStore_ListPendingUsers(db *sql.DB) func(*testing.T) {
-	type update struct {
-		accounts *extsvc.Accounts
-		perm     *authz.RepoPermissions
-	}
-	tests := []struct {
-		name               string
-		updates            []update
-		expectPendingUsers []string
-	}{
+	type update struct { /* all structs must go */ }
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:               "no user with pending permissions",
 			expectPendingUsers: nil,
@@ -1274,27 +1249,10 @@ func testPermsStore_GrantPendingPermissions(db *sql.DB) func(*testing.T) {
 		AccountID:   "bob",
 	}
 
-	type pending struct {
-		accounts *extsvc.Accounts
-		perm     *authz.RepoPermissions
-	}
-	type update struct {
-		regulars []*authz.RepoPermissions
-		pendings []pending
-	}
-	type grant struct {
-		userID int32
-		perm   *authz.UserPendingPermissions
-	}
-	tests := []struct {
-		name                   string
-		updates                []update
-		grants                 []grant
-		expectUserPerms        map[int32][]uint32              // user_id -> object_ids
-		expectRepoPerms        map[int32][]uint32              // repo_id -> user_ids
-		expectUserPendingPerms map[extsvc.AccountSpec][]uint32 // account -> object_ids
-		expectRepoPendingPerms map[int32][]extsvc.AccountSpec  // repo_id -> accounts
-	}{
+	type pending struct { /* all structs must go */ }
+	type update struct { /* all structs must go */ }
+	type grant struct { /* all structs must go */ }
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "empty",
 			grants: []grant{

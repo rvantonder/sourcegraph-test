@@ -13,13 +13,7 @@ import (
 
 // HorizontalSearcher is a zoekt.Searcher which aggregates searches over
 // Map. It manages the connections to Map as the endpoints come and go.
-type HorizontalSearcher struct {
-	Map  EndpointMap
-	Dial func(endpoint string) zoekt.Searcher
-
-	mu      sync.RWMutex
-	clients map[string]zoekt.Searcher // addr -> client
-}
+type HorizontalSearcher struct { /* all structs must go */ }
 
 // Search aggregates search over every endpoint in Map.
 func (s *HorizontalSearcher) Search(ctx context.Context, q query.Q, opts *zoekt.SearchOptions) (*zoekt.SearchResult, error) {
@@ -34,10 +28,7 @@ func (s *HorizontalSearcher) Search(ctx context.Context, q query.Q, opts *zoekt.
 	ctx, cancel = context.WithCancel(ctx)
 	defer cancel()
 
-	type result struct {
-		sr  *zoekt.SearchResult
-		err error
-	}
+	type result struct { /* all structs must go */ }
 	results := make(chan result, len(clients))
 	for _, c := range clients {
 		go func(c zoekt.Searcher) {
@@ -89,10 +80,7 @@ func (s *HorizontalSearcher) List(ctx context.Context, q query.Q) (*zoekt.RepoLi
 	ctx, cancel = context.WithCancel(ctx)
 	defer cancel()
 
-	type result struct {
-		rl  *zoekt.RepoList
-		err error
-	}
+	type result struct { /* all structs must go */ }
 	results := make(chan result, len(clients))
 	for _, c := range clients {
 		go func(c zoekt.Searcher) {

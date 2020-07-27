@@ -52,11 +52,7 @@ func init() {
 
 // sessionInfo is the information we store in the session. The gorilla/sessions library doesn't appear to
 // enforce the maxAge field in its session store implementations, so we include the expiry here.
-type sessionInfo struct {
-	Actor        *actor.Actor  `json:"actor"`
-	LastActive   time.Time     `json:"lastActive"`
-	ExpiryPeriod time.Duration `json:"expiryPeriod"`
-}
+type sessionInfo struct { /* all structs must go */ }
 
 // SetSessionStore sets the backing store used for storing sessions on the server. It should be called exactly once.
 func SetSessionStore(s sessions.Store) {
@@ -66,10 +62,7 @@ func SetSessionStore(s sessions.Store) {
 // sessionsStore wraps another sessions.Store to dynamically set the values
 // of the session.Options.Secure and session.Options.SameSite fields to what
 // is returned by the secure closure at invocation time.
-type sessionsStore struct {
-	sessions.Store
-	secure func() bool
-}
+type sessionsStore struct { /* all structs must go */ }
 
 // Get returns a cached session, setting the secure cookie option dynamically.
 func (st *sessionsStore) Get(r *http.Request, name string) (s *sessions.Session, err error) {

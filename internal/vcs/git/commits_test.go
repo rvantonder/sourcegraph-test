@@ -24,12 +24,7 @@ func TestRepository_GetCommit(t *testing.T) {
 		Message:   "bar",
 		Parents:   []api.CommitID{"ea167fe3d76b1e5fd3ed8ca44cbd2fe3897684f8"},
 	}
-	tests := map[string]struct {
-		repo             gitserver.Repo
-		id               api.CommitID
-		wantCommit       *Commit
-		noEnsureRevision bool
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"git cmd with NoEnsureRevision false": {
 			repo:             MakeGitRepository(t, gitCommands...),
 			id:               "b266c7e3ca00b1a17ad0b1449825d0854225c007",
@@ -84,12 +79,7 @@ func TestRepository_GetCommit(t *testing.T) {
 func TestRepository_HasCommitAfter(t *testing.T) {
 	t.Parallel()
 
-	testCases := []struct {
-		commitDates []string
-		after       string
-		revspec     string
-		want        bool
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{
 			commitDates: []string{
 				"2006-01-02T15:04:05Z",
@@ -181,12 +171,7 @@ func TestRepository_Commits(t *testing.T) {
 			Parents:   nil,
 		},
 	}
-	tests := map[string]struct {
-		repo        gitserver.Repo
-		id          api.CommitID
-		wantCommits []*Commit
-		wantTotal   uint
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"git cmd": {
 			repo:        MakeGitRepository(t, gitCommands...),
 			id:          "b266c7e3ca00b1a17ad0b1449825d0854225c007",
@@ -262,12 +247,7 @@ func TestRepository_Commits_options(t *testing.T) {
 			Parents:   []api.CommitID{"b266c7e3ca00b1a17ad0b1449825d0854225c007"},
 		},
 	}
-	tests := map[string]struct {
-		repo        gitserver.Repo
-		opt         CommitsOptions
-		wantCommits []*Commit
-		wantTotal   uint
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"git cmd": {
 			repo:        MakeGitRepository(t, gitCommands...),
 			opt:         CommitsOptions{Range: "ade564eba4cf904492fb56dcd287ac633e6e082c", N: 1, Skip: 1},
@@ -340,12 +320,7 @@ func TestRepository_Commits_options_path(t *testing.T) {
 			Parents:   []api.CommitID{"a04652fa1998a0a7d2f2f77ecb7021de943d3aab"},
 		},
 	}
-	tests := map[string]struct {
-		repo        gitserver.Repo
-		opt         CommitsOptions
-		wantCommits []*Commit
-		wantTotal   uint
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"git cmd Path 0": {
 			repo: MakeGitRepository(t, gitCommands...),
 			opt: CommitsOptions{

@@ -8,11 +8,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/cmd/frontend/types"
 )
 
-func (r *siteResolver) UsageStatistics(ctx context.Context, args *struct {
-	Days   *int32
-	Weeks  *int32
-	Months *int32
-}) (*siteUsageStatisticsResolver, error) {
+func (r *siteResolver) UsageStatistics(ctx context.Context, args *struct { /* all structs must go */ }) (*siteUsageStatisticsResolver, error) {
 	opt := &usagestatsdeprecated.SiteUsageStatisticsOptions{}
 	if args.Days != nil {
 		d := int(*args.Days)
@@ -33,9 +29,7 @@ func (r *siteResolver) UsageStatistics(ctx context.Context, args *struct {
 	return &siteUsageStatisticsResolver{activity}, nil
 }
 
-type siteUsageStatisticsResolver struct {
-	siteUsageStatistics *types.SiteUsageStatistics
-}
+type siteUsageStatisticsResolver struct { /* all structs must go */ }
 
 func (s *siteUsageStatisticsResolver) DAUs() []*siteUsagePeriodResolver {
 	return s.activities(s.siteUsageStatistics.DAUs)
@@ -57,9 +51,7 @@ func (s *siteUsageStatisticsResolver) activities(periods []*types.SiteActivityPe
 	return resolvers
 }
 
-type siteUsagePeriodResolver struct {
-	siteUsagePeriod *types.SiteActivityPeriod
-}
+type siteUsagePeriodResolver struct { /* all structs must go */ }
 
 func (s *siteUsagePeriodResolver) StartTime() string {
 	return s.siteUsagePeriod.StartTime.Format(time.RFC3339)
@@ -90,9 +82,7 @@ func (s *siteUsagePeriodResolver) Stages() *siteUsageStagesResolver {
 	}
 }
 
-type siteUsageStagesResolver struct {
-	stages *types.Stages
-}
+type siteUsageStagesResolver struct { /* all structs must go */ }
 
 func (s *siteUsageStagesResolver) Manage() int32 {
 	return s.stages.Manage

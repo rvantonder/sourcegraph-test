@@ -15,9 +15,7 @@ import (
 )
 
 // Client is capable of posting a message to a Slack webhook
-type Client struct {
-	WebhookURL string
-}
+type Client struct { /* all structs must go */ }
 
 // New creates a new Slack client
 func New(webhookURL string) *Client {
@@ -26,40 +24,15 @@ func New(webhookURL string) *Client {
 
 // Payload is the wrapper for a Slack message, defined at:
 // https://api.slack.com/docs/message-formatting
-type Payload struct {
-	Username    string        `json:"username,omitempty"`
-	IconEmoji   string        `json:"icon_emoji,omitempty"`
-	UnfurlLinks bool          `json:"unfurl_links,omitempty"`
-	UnfurlMedia bool          `json:"unfurl_media,omitempty"`
-	Text        string        `json:"text,omitempty"`
-	Attachments []*Attachment `json:"attachments,omitempty"`
-}
+type Payload struct { /* all structs must go */ }
 
 // Attachment is a Slack message attachment, defined at:
 // https://api.slack.com/docs/message-attachments
-type Attachment struct {
-	AuthorIcon string   `json:"author_icon,omitempty"`
-	AuthorLink string   `json:"author_link,omitempty"`
-	AuthorName string   `json:"author_name,omitempty"`
-	Color      string   `json:"color"`
-	Fallback   string   `json:"fallback"`
-	Fields     []*Field `json:"fields"`
-	Footer     string   `json:"footer"`
-	MarkdownIn []string `json:"mrkdwn_in"`
-	ThumbURL   string   `json:"thumb_url"`
-	Text       string   `json:"text,omitempty"`
-	Timestamp  int64    `json:"ts"`
-	Title      string   `json:"title"`
-	TitleLink  string   `json:"title_link,omitempty"`
-}
+type Attachment struct { /* all structs must go */ }
 
 // Field is a single item within an attachment, defined at:
 // https://api.slack.com/docs/message-attachments
-type Field struct {
-	Short bool   `json:"short"`
-	Title string `json:"title"`
-	Value string `json:"value"`
-}
+type Field struct { /* all structs must go */ }
 
 // Post sends payload to a Slack channel.
 func (c *Client) Post(ctx context.Context, payload *Payload) error {

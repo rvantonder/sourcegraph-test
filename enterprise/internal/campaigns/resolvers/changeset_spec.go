@@ -26,25 +26,7 @@ func unmarshalChangesetSpecID(id graphql.ID) (changesetSpecRandID string, err er
 
 var _ graphqlbackend.ChangesetSpecResolver = &changesetSpecResolver{}
 
-type changesetSpecResolver struct {
-	store       *ee.Store
-	httpFactory *httpcli.Factory
-
-	changesetSpec *campaigns.ChangesetSpec
-
-	preloadedRepo        *types.Repo
-	attemptedPreloadRepo bool
-
-	// Cache repo because it's accessed more than once
-	repoOnce sync.Once
-	repo     *graphqlbackend.RepositoryResolver
-	repoErr  error
-	// The context with which we try to load the repository if it's not
-	// preloaded. We need an extra field for that, because the
-	// ToVisibleChangesetSpec/ToHiddenChangesetSpec methods cannot take a
-	// context.Context without graphql-go panic'ing.
-	repoCtx context.Context
-}
+type changesetSpecResolver struct { /* all structs must go */ }
 
 func (r *changesetSpecResolver) ID() graphql.ID {
 	// 🚨 SECURITY: This needs to be the RandID! We can't expose the
@@ -144,10 +126,7 @@ var _ graphqlbackend.ChangesetDescription = &changesetDescriptionResolver{}
 // changesetDescriptionResolver implements both ChangesetDescription
 // interfaces: ExistingChangesetReferenceResolver and
 // GitBranchChangesetDescriptionResolver.
-type changesetDescriptionResolver struct {
-	repoResolver *graphqlbackend.RepositoryResolver
-	desc         *campaigns.ChangesetSpecDescription
-}
+type changesetDescriptionResolver struct { /* all structs must go */ }
 
 func (r *changesetDescriptionResolver) ToExistingChangesetReference() (graphqlbackend.ExistingChangesetReferenceResolver, bool) {
 	if r.desc.IsExisting() {
@@ -197,10 +176,7 @@ func (r *changesetDescriptionResolver) Commits() []graphqlbackend.GitCommitDescr
 
 var _ graphqlbackend.GitCommitDescriptionResolver = &gitCommitDescriptionResolver{}
 
-type gitCommitDescriptionResolver struct {
-	message string
-	diff    string
-}
+type gitCommitDescriptionResolver struct { /* all structs must go */ }
 
 func (r *gitCommitDescriptionResolver) Message() string { return r.message }
 func (r *gitCommitDescriptionResolver) Diff() string    { return r.diff }

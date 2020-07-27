@@ -5,9 +5,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/observation"
 )
 
-type IndexerMetrics struct {
-	ProcessOperation *observation.Operation
-}
+type IndexerMetrics struct { /* all structs must go */ }
 
 func NewIndexerMetrics(observationContext *observation.Context) IndexerMetrics {
 	metrics := metrics.NewOperationMetrics(

@@ -24,20 +24,9 @@ import (
 	"github.com/sourcegraph/sourcegraph/schema"
 )
 
-type Webhook struct {
-	Store *Store
-	Repos repos.Store
-	Now   func() time.Time
+type Webhook struct { /* all structs must go */ }
 
-	// ServiceType corresponds to api.ExternalRepoSpec.ServiceType
-	// Example values: extsvc.TypeBitbucketServer, extsvc.TypeGitHub
-	ServiceType string
-}
-
-type PR struct {
-	ID             int64
-	RepoExternalID string
-}
+type PR struct { /* all structs must go */ }
 
 func (h Webhook) getRepoForPR(
 	ctx context.Context,
@@ -178,18 +167,9 @@ func (h Webhook) upsertChangesetEvent(
 // GitHubWebhook receives GitHub organization webhook events that are
 // relevant to campaigns, normalizes those events into ChangesetEvents
 // and upserts them to the database.
-type GitHubWebhook struct {
-	*Webhook
-}
+type GitHubWebhook struct { /* all structs must go */ }
 
-type BitbucketServerWebhook struct {
-	*Webhook
-	Name string
-
-	// cache of config we've seen so that we can decide what changes
-	// need to be synced if any
-	configCache map[int64]*schema.BitbucketServerConnection
-}
+type BitbucketServerWebhook struct { /* all structs must go */ }
 
 func NewGitHubWebhook(store *Store, repos repos.Store, now func() time.Time) *GitHubWebhook {
 	return &GitHubWebhook{&Webhook{store, repos, now, extsvc.TypeGitHub}}
@@ -903,10 +883,7 @@ func (h *BitbucketServerWebhook) convertEvent(theirs interface{}) (prs []PR, our
 	return
 }
 
-type httpError struct {
-	code int
-	err  error
-}
+type httpError struct { /* all structs must go */ }
 
 func (e httpError) Error() string {
 	if e.err != nil {

@@ -228,9 +228,7 @@ func listRemoteRegistryExtensions(ctx context.Context, query string) ([]*registr
 // This helps us feel the UX of not being in Northern California latency-wise and ensure that
 // Sourcegraph's communication with the remote extension registry (usually Sourcegraph.com) does not
 // block unrelated workflows.
-type sleepIfUncachedTransport struct {
-	http.RoundTripper
-}
+type sleepIfUncachedTransport struct { /* all structs must go */ }
 
 func (t sleepIfUncachedTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 	resp, err := t.RoundTripper.RoundTrip(req)
@@ -256,10 +254,7 @@ func IsWorkInProgressExtension(manifest *string) bool {
 		return true
 	}
 
-	var result struct {
-		schema.SourcegraphExtensionManifest
-		Title string
-	}
+	var result struct { /* all structs must go */ }
 	if err := jsonc.Unmarshal(*manifest, &result); err != nil {
 		// An extension whose manifest fails to parse is problematic for other reasons (and an error
 		// will be displayed), but it isn't helpful to also consider it work-in-progress.

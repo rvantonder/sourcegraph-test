@@ -11,9 +11,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/db/dbtesting"
 )
 
-type TestWorkRecord struct {
-	ID int
-}
+type TestWorkRecord struct { /* all structs must go */ }
 
 func (r TestWorkRecord) RecordID() int {
 	return r.ID
@@ -23,10 +21,7 @@ func testStore(options StoreOptions) *store {
 	return newStore(basestore.NewHandleWithDB(dbconn.Global), options)
 }
 
-type TestRecord struct {
-	ID    int
-	State string
-}
+type TestRecord struct { /* all structs must go */ }
 
 func (v TestRecord) RecordID() int {
 	return v.ID
@@ -50,11 +45,7 @@ func testScanFirstRecord(rows *sql.Rows, queryErr error) (v Record, _ bool, err 
 	return nil, false, nil
 }
 
-type TestRecordView struct {
-	ID       int
-	State    string
-	NewField int
-}
+type TestRecordView struct { /* all structs must go */ }
 
 func (v TestRecordView) RecordID() int {
 	return v.ID

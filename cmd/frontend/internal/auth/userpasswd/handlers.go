@@ -21,11 +21,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/hubspot/hubspotutil"
 )
 
-type credentials struct {
-	Email    string `json:"email"`
-	Username string `json:"username"`
-	Password string `json:"password"`
-}
+type credentials struct { /* all structs must go */ }
 
 // HandleSignUp handles submission of the user signup form.
 func HandleSignUp(w http.ResponseWriter, r *http.Request) {

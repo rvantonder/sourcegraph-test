@@ -9,10 +9,7 @@ import (
 )
 
 func (r *GitTreeEntryResolver) Blame(ctx context.Context,
-	args *struct {
-		StartLine int32
-		EndLine   int32
-	}) ([]*hunkResolver, error) {
+	args *struct { /* all structs must go */ }) ([]*hunkResolver, error) {
 	hunks, err := git.BlameFile(ctx, gitserver.Repo{Name: r.commit.repoResolver.repo.Name}, r.Path(), &git.BlameOptions{
 		NewestCommit: api.CommitID(r.commit.OID()),
 		StartLine:    int(args.StartLine),

@@ -11,12 +11,7 @@ import (
 
 type queryRunnerState struct{}
 
-type SavedQueryInfo struct {
-	Query        string
-	LastExecuted time.Time
-	LatestResult time.Time
-	ExecDuration time.Duration
-}
+type SavedQueryInfo struct { /* all structs must go */ }
 
 // Get gets the saved query information for the given query. nil
 // is returned if there is no existing saved query info.

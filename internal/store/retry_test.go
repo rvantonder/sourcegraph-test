@@ -9,11 +9,7 @@ import (
 )
 
 func TestGetZipFileWithRetry(t *testing.T) {
-	tests := []struct {
-		name     string
-		errs     []error
-		succeeds bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:     "success first try",
 			errs:     []error{nil},

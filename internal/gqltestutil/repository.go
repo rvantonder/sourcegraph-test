@@ -21,15 +21,7 @@ query Repositories {
 	}
 }
 `
-		var resp struct {
-			Data struct {
-				Repositories struct {
-					Nodes []struct {
-						Name string `json:"name"`
-					} `json:"nodes"`
-				} `json:"repositories"`
-			} `json:"data"`
-		}
+		var resp struct { /* all structs must go */ }
 		err := c.GraphQL("", query, nil, &resp)
 		if err != nil {
 			return errors.Wrap(err, "request GraphQL")

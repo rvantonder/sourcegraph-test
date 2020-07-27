@@ -10,19 +10,7 @@ import (
 )
 
 // An ObservedDatabase wraps another Database with error logging, Prometheus metrics, and tracing.
-type ObservedDatabase struct {
-	database                    Database
-	filename                    string
-	existsOperation             *observation.Operation
-	rangesOperation             *observation.Operation
-	definitionsOperation        *observation.Operation
-	referencesOperation         *observation.Operation
-	hoverOperation              *observation.Operation
-	diagnosticsOperation        *observation.Operation
-	monikersByPositionOperation *observation.Operation
-	monikerResultsOperation     *observation.Operation
-	packageInformationOperation *observation.Operation
-}
+type ObservedDatabase struct { /* all structs must go */ }
 
 var _ Database = &ObservedDatabase{}
 

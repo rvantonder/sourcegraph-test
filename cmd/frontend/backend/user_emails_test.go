@@ -29,14 +29,7 @@ func TestCheckEmailAbuse(t *testing.T) {
 
 	now := time.Now()
 
-	tests := []struct {
-		name       string
-		mockEmails []*db.UserEmail
-		hasQuote   bool
-		expAbused  bool
-		expReason  string
-		expErr     error
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "no verified email address",
 			mockEmails: []*db.UserEmail{
@@ -143,10 +136,7 @@ func TestSendUserEmailVerificationEmail(t *testing.T) {
 		FromName: "",
 		To:       []string{"a@example.com"},
 		Template: verifyEmailTemplates,
-		Data: struct {
-			Email string
-			URL   string
-		}{
+		Data: struct { /* all structs must go */ }{
 			Email: "a@example.com",
 			URL:   "http://example.com/-/verify-email?code=c&email=a%40example.com",
 		},

@@ -34,12 +34,7 @@ func TestIsDev(t *testing.T) {
 }
 
 func Test_monthsFromDays(t *testing.T) {
-	tests := []struct {
-		name       string
-		timeA      string
-		timeB      string
-		wantMonths int
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			"0 case",
 			"01-01-2020",
@@ -99,13 +94,7 @@ func Test_monthsFromDays(t *testing.T) {
 	}
 }
 func TestHowLongOutOfDate(t *testing.T) {
-	tests := []struct {
-		name           string
-		now            time.Time
-		buildTimestamp string
-		want           int
-		wantErr        bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			"build is in the future",
 			time.Unix(1577577600, 0), // 2019-12-29

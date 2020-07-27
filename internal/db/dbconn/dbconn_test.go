@@ -3,11 +3,7 @@ package dbconn
 import "testing"
 
 func TestBuildConnectionString(t *testing.T) {
-	tests := []struct {
-		name                   string
-		dataSource             string
-		wantedConnectionString string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:                   "empty dataSource",
 			dataSource:             "",

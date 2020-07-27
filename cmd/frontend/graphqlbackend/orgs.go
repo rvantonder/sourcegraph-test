@@ -8,10 +8,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/db"
 )
 
-func (r *schemaResolver) Organizations(args *struct {
-	graphqlutil.ConnectionArgs
-	Query *string
-}) *orgConnectionResolver {
+func (r *schemaResolver) Organizations(args *struct { /* all structs must go */ }) *orgConnectionResolver {
 	var opt db.OrgsListOptions
 	if args.Query != nil {
 		opt.Query = *args.Query
@@ -20,9 +17,7 @@ func (r *schemaResolver) Organizations(args *struct {
 	return &orgConnectionResolver{opt: opt}
 }
 
-type orgConnectionResolver struct {
-	opt db.OrgsListOptions
-}
+type orgConnectionResolver struct { /* all structs must go */ }
 
 func (r *orgConnectionResolver) Nodes(ctx context.Context) ([]*OrgResolver, error) {
 	// 🚨 SECURITY: Only site admins can list orgs.
@@ -54,9 +49,7 @@ func (r *orgConnectionResolver) TotalCount(ctx context.Context) (int32, error) {
 	return int32(count), err
 }
 
-type orgConnectionStaticResolver struct {
-	nodes []*OrgResolver
-}
+type orgConnectionStaticResolver struct { /* all structs must go */ }
 
 func (r *orgConnectionStaticResolver) Nodes() []*OrgResolver { return r.nodes }
 func (r *orgConnectionStaticResolver) TotalCount() int32     { return int32(len(r.nodes)) }

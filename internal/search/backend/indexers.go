@@ -18,14 +18,7 @@ type EndpointMap interface {
 
 // Indexers provides methods over the set of indexed-search servers in a
 // Sourcegraph cluster.
-type Indexers struct {
-	// Map is the desired mapping from repository names to endpoints.
-	Map EndpointMap
-
-	// Indexed returns a set of repository names currently indexed on
-	// endpoint. If indexed fails, it is expected to return an empty set.
-	Indexed func(ctx context.Context, endpoint string) map[string]struct{}
-}
+type Indexers struct { /* all structs must go */ }
 
 // ReposSubset returns the subset of repoNames that hostname should index.
 //

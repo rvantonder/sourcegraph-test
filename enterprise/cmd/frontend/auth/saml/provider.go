@@ -28,14 +28,7 @@ import (
 
 const providerType = "saml"
 
-type provider struct {
-	config   schema.SAMLAuthProvider
-	multiple bool // whether there are multiple SAML auth providers
-
-	mu         sync.Mutex
-	samlSP     *saml2.SAMLServiceProvider
-	refreshErr error
-}
+type provider struct { /* all structs must go */ }
 
 // ConfigID implements providers.Provider.
 func (p *provider) ConfigID() providers.ConfigID {
@@ -174,16 +167,7 @@ func getServiceProvider(ctx context.Context, pc *schema.SAMLAuthProvider) (*saml
 }
 
 // entitiesDescriptor represents the SAML EntitiesDescriptor object.
-type entitiesDescriptor struct {
-	XMLName             xml.Name       `xml:"urn:oasis:names:tc:SAML:2.0:metadata EntitiesDescriptor"`
-	ID                  *string        `xml:",attr,omitempty"`
-	ValidUntil          *time.Time     `xml:"validUntil,attr,omitempty"`
-	CacheDuration       *time.Duration `xml:"cacheDuration,attr,omitempty"`
-	Name                *string        `xml:",attr,omitempty"`
-	Signature           *etree.Element
-	EntitiesDescriptors []entitiesDescriptor     `xml:"urn:oasis:names:tc:SAML:2.0:metadata EntitiesDescriptor"`
-	EntityDescriptors   []types.EntityDescriptor `xml:"urn:oasis:names:tc:SAML:2.0:metadata EntityDescriptor"`
-}
+type entitiesDescriptor struct { /* all structs must go */ }
 
 // unmarshalEntityDescriptor unmarshals from an XML root <EntityDescriptor> or <EntitiesDescriptor>
 // element. If the latter, it returns the first <EntityDescriptor> child that has an
@@ -214,13 +198,7 @@ func unmarshalEntityDescriptor(data []byte) (*types.EntityDescriptor, error) {
 	return entity, nil
 }
 
-type providerConfig struct {
-	keyPair *tls.Certificate
-
-	// Exactly 1 of these is set:
-	identityProviderMetadataURL *url.URL
-	identityProviderMetadata    []byte
-}
+type providerConfig struct { /* all structs must go */ }
 
 func readProviderConfig(pc *schema.SAMLAuthProvider) (*providerConfig, error) {
 	var c providerConfig

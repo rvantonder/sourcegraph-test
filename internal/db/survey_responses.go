@@ -13,9 +13,7 @@ import (
 )
 
 // SurveyResponseListOptions specifies the options for listing survey responses.
-type SurveyResponseListOptions struct {
-	*LimitOffset
-}
+type SurveyResponseListOptions struct { /* all structs must go */ }
 
 type surveyResponses struct{}
 

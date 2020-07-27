@@ -12,11 +12,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/vcs/git"
 )
 
-type MockedChangesetSyncState struct {
-	execReader      func([]string) (io.ReadCloser, error)
-	mockRepoLookup  func(protocol.RepoLookupArgs) (*protocol.RepoLookupResult, error)
-	resolveRevision func(string, git.ResolveRevisionOptions) (api.CommitID, error)
-}
+type MockedChangesetSyncState struct { /* all structs must go */ }
 
 // MockChangesetSyncState sets up mocks such that invoking SetDerivedState() with
 // a Changeset will use the same diff (+1, ~1, -3) when setting the SyncState

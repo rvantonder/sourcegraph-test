@@ -15,15 +15,7 @@ func TestCalcCounts(t *testing.T) {
 	now := time.Now().UTC().Truncate(time.Microsecond)
 	daysAgo := func(days int) time.Time { return now.AddDate(0, 0, -days) }
 
-	tests := []struct {
-		codehosts  string
-		name       string
-		changesets []*campaigns.Changeset
-		start      time.Time
-		end        time.Time
-		events     []*campaigns.ChangesetEvent
-		want       []*ChangesetCounts
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			codehosts: extsvc.TypeGitHub,
 			name:      "single changeset open merged",

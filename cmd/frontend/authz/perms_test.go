@@ -9,11 +9,7 @@ import (
 )
 
 func TestPermsInclude(t *testing.T) {
-	for _, tc := range []struct {
-		Perms
-		other Perms
-		want  bool
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{None, Read, false},
 		{None, Write, false},
 		{Read, Read, true},
@@ -49,10 +45,7 @@ func BenchmarkPermsInclude(b *testing.B) {
 }
 
 func TestPermsString(t *testing.T) {
-	for _, tc := range []struct {
-		Perms
-		want string
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{0, "none"},
 		{None, "none"},
 		{Read, "read"},
@@ -84,12 +77,7 @@ func bitmap(ids ...uint32) *roaring.Bitmap {
 }
 
 func TestUserPermissions_AuthorizedRepos(t *testing.T) {
-	tests := []struct {
-		name     string
-		repos    []*types.Repo
-		p        *UserPermissions
-		expPerms []RepoPerms
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:  "wrong permissions type",
 			repos: []*types.Repo{},

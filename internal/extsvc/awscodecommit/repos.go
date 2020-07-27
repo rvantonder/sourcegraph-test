@@ -11,15 +11,7 @@ import (
 )
 
 // Repository is an AWS CodeCommit repository.
-type Repository struct {
-	ARN          string     // the ARN (Amazon Resource Name) of the repository
-	AccountID    string     // the ID of the AWS account associated with the repository
-	ID           string     // the ID of the repository
-	Name         string     // the name of the repository
-	Description  string     // the description of the repository
-	HTTPCloneURL string     // the HTTP(S) clone URL of the repository
-	LastModified *time.Time // the last modified date of the repository
-}
+type Repository struct { /* all structs must go */ }
 
 func (c *Client) repositoryCacheKey(ctx context.Context, arn string) (string, error) {
 	key, err := c.cacheKeyPrefix(ctx)
@@ -88,13 +80,7 @@ func init() {
 	prometheus.MustRegister(reposCacheCounter)
 }
 
-type cachedRepo struct {
-	Repository
-
-	// NotFound indicates that the AWS CodeCommit API reported that the repository was not
-	// found.
-	NotFound bool
-}
+type cachedRepo struct { /* all structs must go */ }
 
 // getRepositoryFromCache attempts to get a response from the redis cache.
 // It returns nil error for cache-hit condition and non-nil error for cache-miss.

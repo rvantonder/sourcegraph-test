@@ -18,10 +18,7 @@ func init() {
 	gob.Register(&types.Location{})
 }
 
-type gobSerializer struct {
-	readers sync.Pool
-	writers sync.Pool
-}
+type gobSerializer struct { /* all structs must go */ }
 
 var _ serialization.Serializer = &gobSerializer{}
 

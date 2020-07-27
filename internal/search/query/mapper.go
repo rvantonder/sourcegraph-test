@@ -48,10 +48,7 @@ func (*BaseMapper) MapPattern(mapper Mapper, value string, negated bool, annotat
 // OperatorMapper is a helper mapper that maps operators in a query. It takes as
 // state a callback that will call and map each visited operator with the return
 // value.
-type OperatorMapper struct {
-	BaseMapper
-	callback func(kind operatorKind, operands []Node) []Node
-}
+type OperatorMapper struct { /* all structs must go */ }
 
 // MapOperator implements OperatorMapper by overriding the BaseMapper's value to
 // substitute a node computed by the callback. It reduces any substituted node.
@@ -62,10 +59,7 @@ func (s *OperatorMapper) MapOperator(mapper Mapper, kind operatorKind, operands 
 // ParameterMapper is a helper mapper that only maps parameters in a query. It
 // takes as state a callback that will call and map each visited parameter by
 // the return value.
-type ParameterMapper struct {
-	BaseMapper
-	callback func(field, value string, negated bool, annotation Annotation) Node
-}
+type ParameterMapper struct { /* all structs must go */ }
 
 // MapParameter implements ParameterMapper by overriding the BaseMapper's value
 // to substitute a node computed by the callback.
@@ -76,10 +70,7 @@ func (s *ParameterMapper) MapParameter(mapper Mapper, field, value string, negat
 // PatternMapper is a helper mapper that only maps patterns in a query. It
 // takes as state a callback that will call and map each visited pattern by
 // the return value.
-type PatternMapper struct {
-	BaseMapper
-	callback func(value string, negated bool, annotation Annotation) Node
-}
+type PatternMapper struct { /* all structs must go */ }
 
 func (s *PatternMapper) MapPattern(mapper Mapper, value string, negated bool, annotation Annotation) Node {
 	return s.callback(value, negated, annotation)
@@ -88,11 +79,7 @@ func (s *PatternMapper) MapPattern(mapper Mapper, value string, negated bool, an
 // FieldMapper is a helper mapper that only maps patterns in a query, for a
 // field specified in state. For each parameter with this field name it calls
 // the callback that maps the field's members.
-type FieldMapper struct {
-	BaseMapper
-	field    string
-	callback func(value string, negated bool) Node
-}
+type FieldMapper struct { /* all structs must go */ }
 
 func (s *FieldMapper) MapParameter(mapper Mapper, field, value string, negated bool, annotation Annotation) Node {
 	if s.field == field {

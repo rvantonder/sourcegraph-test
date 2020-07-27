@@ -182,10 +182,7 @@ func TestMigrateSettingsMOTDToNotices(t *testing.T) {
 }
 
 func TestMigrateSettingsMOTDToNoticesJSON(t *testing.T) {
-	tests := map[string]struct {
-		input string
-		want  string
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"empty": {
 			input: `{}`,
 			want:  `{}`,

@@ -11,9 +11,7 @@ import (
 )
 
 // productSubscriptionEvent implements the GraphQL type ProductSubscriptionEvent.
-type productSubscriptionEvent struct {
-	v *stripe.Event
-}
+type productSubscriptionEvent struct { /* all structs must go */ }
 
 // ToProductSubscriptionEvent returns a resolver for the GraphQL type ProductSubscriptionEvent from
 // the given billing event.

@@ -19,12 +19,7 @@ func TestConfigureRemoteGitCommand(t *testing.T) {
 		"GIT_ASKPASS=true",
 		"GIT_SSH_COMMAND=ssh -o BatchMode=yes -o ConnectTimeout=30",
 	}
-	tests := []struct {
-		input        *exec.Cmd
-		tlsConfig    *tlsConfig
-		expectedEnv  []string
-		expectedArgs []string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			input:        exec.Command("git", "clone"),
 			expectedEnv:  expectedEnv,
@@ -85,10 +80,7 @@ func TestConfigureRemoteGitCommand_tls(t *testing.T) {
 		"GIT_SSH_COMMAND=ssh -o BatchMode=yes -o ConnectTimeout=30",
 	}
 
-	cases := []struct {
-		conf *tlsConfig
-		want []string
-	}{{
+	cases := []struct { /* all structs must go */ }{{
 		conf: &tlsConfig{},
 		want: nil,
 	}, {
@@ -110,11 +102,7 @@ func TestConfigureRemoteGitCommand_tls(t *testing.T) {
 }
 
 func TestProgressWriter(t *testing.T) {
-	testCases := []struct {
-		name   string
-		writes []string
-		text   string
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{
 			name:   "identity",
 			writes: []string{"hello"},

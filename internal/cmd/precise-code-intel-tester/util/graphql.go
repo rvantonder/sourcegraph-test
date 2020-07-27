@@ -11,13 +11,9 @@ import (
 	"github.com/hashicorp/go-multierror"
 )
 
-type ErrorPayload struct {
-	Errors []GraphQLError `json:"errors"`
-}
+type ErrorPayload struct { /* all structs must go */ }
 
-type GraphQLError struct {
-	Message string `json:"message"`
-}
+type GraphQLError struct { /* all structs must go */ }
 
 // QueryGraphQL performs GraphQL query on the frontend.
 func QueryGraphQL(ctx context.Context, endpoint, token, query string, variables map[string]interface{}, target interface{}) error {

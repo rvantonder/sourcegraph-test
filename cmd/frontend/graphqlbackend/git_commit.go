@@ -29,28 +29,7 @@ func gitCommitByID(ctx context.Context, id graphql.ID) (*GitCommitResolver, erro
 	return repo.Commit(ctx, &RepositoryCommitArgs{Rev: string(commitID)})
 }
 
-type GitCommitResolver struct {
-	repoResolver *RepositoryResolver
-
-	// inputRev is the Git revspec that the user originally requested that resolved to this Git commit. It is used
-	// to avoid redirecting a user browsing a revision "mybranch" to the absolute commit ID as they follow links in the UI.
-	inputRev *string
-
-	// fetch + serve sourcegraph stored user information
-	includeUserInfo bool
-
-	// oid MUST be specified and a 40-character Git SHA.
-	oid GitObjectID
-
-	author    signatureResolver
-	committer *signatureResolver
-	message   string
-	parents   []api.CommitID
-
-	// once ensures that fetching git commit information occurs once
-	once sync.Once
-	err  error
-}
+type GitCommitResolver struct { /* all structs must go */ }
 
 func toGitCommitResolver(repo *RepositoryResolver, commit *git.Commit) *GitCommitResolver {
 	res := &GitCommitResolver{
@@ -95,10 +74,7 @@ func (r *GitCommitResolver) consumeCommit(commit *git.Commit) {
 
 // gitCommitGQLID is a type used for marshaling and unmarshaling a Git commit's
 // GraphQL ID.
-type gitCommitGQLID struct {
-	Repository graphql.ID  `json:"r"`
-	CommitID   GitObjectID `json:"c"`
-}
+type gitCommitGQLID struct { /* all structs must go */ }
 
 func marshalGitCommitID(repo graphql.ID, commitID GitObjectID) graphql.ID {
 	return relay.MarshalID("GitCommit", gitCommitGQLID{Repository: repo, CommitID: commitID})
@@ -182,10 +158,7 @@ func (r *GitCommitResolver) ExternalURLs(ctx context.Context) ([]*externallink.R
 	return externallink.Commit(ctx, r.repoResolver.repo, api.CommitID(r.oid))
 }
 
-func (r *GitCommitResolver) Tree(ctx context.Context, args *struct {
-	Path      string
-	Recursive bool
-}) (*GitTreeEntryResolver, error) {
+func (r *GitCommitResolver) Tree(ctx context.Context, args *struct { /* all structs must go */ }) (*GitTreeEntryResolver, error) {
 	cachedRepo, err := backend.CachedGitRepo(ctx, r.repoResolver.repo)
 	if err != nil {
 		return nil, err
@@ -204,9 +177,7 @@ func (r *GitCommitResolver) Tree(ctx context.Context, args *struct {
 	}, nil
 }
 
-func (r *GitCommitResolver) Blob(ctx context.Context, args *struct {
-	Path string
-}) (*GitTreeEntryResolver, error) {
+func (r *GitCommitResolver) Blob(ctx context.Context, args *struct { /* all structs must go */ }) (*GitTreeEntryResolver, error) {
 	cachedRepo, err := backend.CachedGitRepo(ctx, r.repoResolver.repo)
 	if err != nil {
 		return nil, err
@@ -224,9 +195,7 @@ func (r *GitCommitResolver) Blob(ctx context.Context, args *struct {
 	}, nil
 }
 
-func (r *GitCommitResolver) File(ctx context.Context, args *struct {
-	Path string
-}) (*GitTreeEntryResolver, error) {
+func (r *GitCommitResolver) File(ctx context.Context, args *struct { /* all structs must go */ }) (*GitTreeEntryResolver, error) {
 	return r.Blob(ctx, args)
 }
 
@@ -257,12 +226,7 @@ func (r *GitCommitResolver) LanguageStatistics(ctx context.Context) ([]*language
 	return stats, nil
 }
 
-func (r *GitCommitResolver) Ancestors(ctx context.Context, args *struct {
-	graphqlutil.ConnectionArgs
-	Query *string
-	Path  *string
-	After *string
-}) (*gitCommitConnectionResolver, error) {
+func (r *GitCommitResolver) Ancestors(ctx context.Context, args *struct { /* all structs must go */ }) (*gitCommitConnectionResolver, error) {
 	return &gitCommitConnectionResolver{
 		revisionRange: string(r.oid),
 		first:         args.ConnectionArgs.First,
@@ -273,9 +237,7 @@ func (r *GitCommitResolver) Ancestors(ctx context.Context, args *struct {
 	}, nil
 }
 
-func (r *GitCommitResolver) BehindAhead(ctx context.Context, args *struct {
-	Revspec string
-}) (*behindAheadCountsResolver, error) {
+func (r *GitCommitResolver) BehindAhead(ctx context.Context, args *struct { /* all structs must go */ }) (*behindAheadCountsResolver, error) {
 	cachedRepo, err := backend.CachedGitRepo(ctx, r.repoResolver.repo)
 	if err != nil {
 		return nil, err

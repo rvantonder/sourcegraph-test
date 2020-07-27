@@ -5,10 +5,7 @@ import (
 )
 
 func TestDirWithoutDot(t *testing.T) {
-	testCases := []struct {
-		actual   string
-		expected string
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{dirWithoutDot("foo.txt"), ""},
 		{dirWithoutDot("foo/bar.txt"), "foo"},
 		{dirWithoutDot("foo/baz"), "foo"},

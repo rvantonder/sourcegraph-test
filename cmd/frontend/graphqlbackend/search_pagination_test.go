@@ -83,13 +83,7 @@ func TestSearchPagination_sliceSearchResults(t *testing.T) {
 		// tests).
 		repos: []*types.Repo{repo("org/repo1"), repo("org/repo3"), repo("org/repo2")},
 	}
-	tests := []struct {
-		name          string
-		results       []SearchResultResolver
-		common        *searchResultsCommon
-		offset, limit int
-		want          slicedSearchResults
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:    "empty result set",
 			results: []SearchResultResolver{},
@@ -312,16 +306,7 @@ func TestSearchPagination_repoPaginationPlan(t *testing.T) {
 	}
 	ctx := context.Background()
 
-	tests := []struct {
-		name                string
-		executor            executor
-		request             *searchPaginationInfo
-		wantSearchedBatches [][]*search.RepositoryRevisions
-		wantCursor          *searchCursor
-		wantResults         []SearchResultResolver
-		wantCommon          *searchResultsCommon
-		wantErr             error
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "first request",
 			request: &searchPaginationInfo{
@@ -526,13 +511,7 @@ func TestSearchPagination_issue_6287(t *testing.T) {
 	}
 	ctx := context.Background()
 
-	tests := []struct {
-		name        string
-		request     *searchPaginationInfo
-		wantCursor  *searchCursor
-		wantResults []SearchResultResolver
-		wantErr     error
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "request 1",
 			request: &searchPaginationInfo{
@@ -661,15 +640,7 @@ func TestSearchPagination_cloning_missing(t *testing.T) {
 	}
 	ctx := context.Background()
 
-	tests := []struct {
-		name        string
-		request     *searchPaginationInfo
-		searchRepos []*search.RepositoryRevisions
-		wantCursor  *searchCursor
-		wantResults []SearchResultResolver
-		wantCommon  *searchResultsCommon
-		wantErr     error
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "repo a",
 			request: &searchPaginationInfo{

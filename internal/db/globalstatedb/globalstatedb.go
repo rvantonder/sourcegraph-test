@@ -10,10 +10,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/db/dbconn"
 )
 
-type State struct {
-	SiteID      string
-	Initialized bool // whether the initial site admin account has been created
-}
+type State struct { /* all structs must go */ }
 
 func Get(ctx context.Context) (*State, error) {
 	if Mock.Get != nil {

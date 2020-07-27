@@ -13,26 +13,7 @@ import (
 // package
 // github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/bundles/persistence)
 // used for unit testing.
-type MockWriter struct {
-	// CloseFunc is an instance of a mock function object controlling the
-	// behavior of the method Close.
-	CloseFunc *WriterCloseFunc
-	// WriteDefinitionsFunc is an instance of a mock function object
-	// controlling the behavior of the method WriteDefinitions.
-	WriteDefinitionsFunc *WriterWriteDefinitionsFunc
-	// WriteDocumentsFunc is an instance of a mock function object
-	// controlling the behavior of the method WriteDocuments.
-	WriteDocumentsFunc *WriterWriteDocumentsFunc
-	// WriteMetaFunc is an instance of a mock function object controlling
-	// the behavior of the method WriteMeta.
-	WriteMetaFunc *WriterWriteMetaFunc
-	// WriteReferencesFunc is an instance of a mock function object
-	// controlling the behavior of the method WriteReferences.
-	WriteReferencesFunc *WriterWriteReferencesFunc
-	// WriteResultChunksFunc is an instance of a mock function object
-	// controlling the behavior of the method WriteResultChunks.
-	WriteResultChunksFunc *WriterWriteResultChunksFunc
-}
+type MockWriter struct { /* all structs must go */ }
 
 // NewMockWriter creates a new mock of the Writer interface. All methods
 // return zero values for all results, unless overwritten.
@@ -98,12 +79,7 @@ func NewMockWriterFrom(i persistence.Writer) *MockWriter {
 
 // WriterCloseFunc describes the behavior when the Close method of the
 // parent MockWriter instance is invoked.
-type WriterCloseFunc struct {
-	defaultHook func(error) error
-	hooks       []func(error) error
-	history     []WriterCloseFuncCall
-	mutex       sync.Mutex
-}
+type WriterCloseFunc struct { /* all structs must go */ }
 
 // Close delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -177,14 +153,7 @@ func (f *WriterCloseFunc) History() []WriterCloseFuncCall {
 
 // WriterCloseFuncCall is an object that describes an invocation of method
 // Close on an instance of MockWriter.
-type WriterCloseFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 error
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type WriterCloseFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -200,12 +169,7 @@ func (c WriterCloseFuncCall) Results() []interface{} {
 
 // WriterWriteDefinitionsFunc describes the behavior when the
 // WriteDefinitions method of the parent MockWriter instance is invoked.
-type WriterWriteDefinitionsFunc struct {
-	defaultHook func(context.Context, []types.MonikerLocations) error
-	hooks       []func(context.Context, []types.MonikerLocations) error
-	history     []WriterWriteDefinitionsFuncCall
-	mutex       sync.Mutex
-}
+type WriterWriteDefinitionsFunc struct { /* all structs must go */ }
 
 // WriteDefinitions delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -280,17 +244,7 @@ func (f *WriterWriteDefinitionsFunc) History() []WriterWriteDefinitionsFuncCall 
 
 // WriterWriteDefinitionsFuncCall is an object that describes an invocation
 // of method WriteDefinitions on an instance of MockWriter.
-type WriterWriteDefinitionsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 []types.MonikerLocations
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type WriterWriteDefinitionsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -306,12 +260,7 @@ func (c WriterWriteDefinitionsFuncCall) Results() []interface{} {
 
 // WriterWriteDocumentsFunc describes the behavior when the WriteDocuments
 // method of the parent MockWriter instance is invoked.
-type WriterWriteDocumentsFunc struct {
-	defaultHook func(context.Context, map[string]types.DocumentData) error
-	hooks       []func(context.Context, map[string]types.DocumentData) error
-	history     []WriterWriteDocumentsFuncCall
-	mutex       sync.Mutex
-}
+type WriterWriteDocumentsFunc struct { /* all structs must go */ }
 
 // WriteDocuments delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -386,17 +335,7 @@ func (f *WriterWriteDocumentsFunc) History() []WriterWriteDocumentsFuncCall {
 
 // WriterWriteDocumentsFuncCall is an object that describes an invocation of
 // method WriteDocuments on an instance of MockWriter.
-type WriterWriteDocumentsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 map[string]types.DocumentData
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type WriterWriteDocumentsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -412,12 +351,7 @@ func (c WriterWriteDocumentsFuncCall) Results() []interface{} {
 
 // WriterWriteMetaFunc describes the behavior when the WriteMeta method of
 // the parent MockWriter instance is invoked.
-type WriterWriteMetaFunc struct {
-	defaultHook func(context.Context, types.MetaData) error
-	hooks       []func(context.Context, types.MetaData) error
-	history     []WriterWriteMetaFuncCall
-	mutex       sync.Mutex
-}
+type WriterWriteMetaFunc struct { /* all structs must go */ }
 
 // WriteMeta delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -491,17 +425,7 @@ func (f *WriterWriteMetaFunc) History() []WriterWriteMetaFuncCall {
 
 // WriterWriteMetaFuncCall is an object that describes an invocation of
 // method WriteMeta on an instance of MockWriter.
-type WriterWriteMetaFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 types.MetaData
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type WriterWriteMetaFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -517,12 +441,7 @@ func (c WriterWriteMetaFuncCall) Results() []interface{} {
 
 // WriterWriteReferencesFunc describes the behavior when the WriteReferences
 // method of the parent MockWriter instance is invoked.
-type WriterWriteReferencesFunc struct {
-	defaultHook func(context.Context, []types.MonikerLocations) error
-	hooks       []func(context.Context, []types.MonikerLocations) error
-	history     []WriterWriteReferencesFuncCall
-	mutex       sync.Mutex
-}
+type WriterWriteReferencesFunc struct { /* all structs must go */ }
 
 // WriteReferences delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -597,17 +516,7 @@ func (f *WriterWriteReferencesFunc) History() []WriterWriteReferencesFuncCall {
 
 // WriterWriteReferencesFuncCall is an object that describes an invocation
 // of method WriteReferences on an instance of MockWriter.
-type WriterWriteReferencesFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 []types.MonikerLocations
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type WriterWriteReferencesFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -623,12 +532,7 @@ func (c WriterWriteReferencesFuncCall) Results() []interface{} {
 
 // WriterWriteResultChunksFunc describes the behavior when the
 // WriteResultChunks method of the parent MockWriter instance is invoked.
-type WriterWriteResultChunksFunc struct {
-	defaultHook func(context.Context, map[int]types.ResultChunkData) error
-	hooks       []func(context.Context, map[int]types.ResultChunkData) error
-	history     []WriterWriteResultChunksFuncCall
-	mutex       sync.Mutex
-}
+type WriterWriteResultChunksFunc struct { /* all structs must go */ }
 
 // WriteResultChunks delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -703,17 +607,7 @@ func (f *WriterWriteResultChunksFunc) History() []WriterWriteResultChunksFuncCal
 
 // WriterWriteResultChunksFuncCall is an object that describes an invocation
 // of method WriteResultChunks on an instance of MockWriter.
-type WriterWriteResultChunksFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 map[int]types.ResultChunkData
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type WriterWriteResultChunksFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.

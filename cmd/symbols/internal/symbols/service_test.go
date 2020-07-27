@@ -25,11 +25,7 @@ func init() {
 }
 
 func TestIsLiteralEquality(t *testing.T) {
-	type TestCase struct {
-		Regex       string
-		WantOk      bool
-		WantLiteral string
-	}
+	type TestCase struct { /* all structs must go */ }
 
 	for _, test := range []TestCase{
 		{Regex: `^foo$`, WantLiteral: "foo", WantOk: true},
@@ -85,10 +81,7 @@ func TestService(t *testing.T) {
 	x := protocol.Symbol{Name: "x", Path: "a.js"}
 	y := protocol.Symbol{Name: "y", Path: "a.js"}
 
-	tests := map[string]struct {
-		args search.SymbolsParameters
-		want protocol.SearchResult
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"simple": {
 			args: search.SymbolsParameters{First: 10},
 			want: protocol.SearchResult{Symbols: []protocol.Symbol{x, y}},

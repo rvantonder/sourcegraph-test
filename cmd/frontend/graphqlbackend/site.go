@@ -49,9 +49,7 @@ func (*schemaResolver) Site() *siteResolver {
 	return &siteResolver{gqlID: singletonSiteGQLID}
 }
 
-type siteResolver struct {
-	gqlID string // == singletonSiteGQLID, not the site ID
-}
+type siteResolver struct { /* all structs must go */ }
 
 var singletonSiteResolver = &siteResolver{gqlID: singletonSiteGQLID}
 
@@ -149,10 +147,7 @@ func (r *siteConfigurationResolver) ValidationMessages(ctx context.Context) ([]s
 
 var siteConfigAllowEdits, _ = strconv.ParseBool(env.Get("SITE_CONFIG_ALLOW_EDITS", "false", "When SITE_CONFIG_FILE is in use, allow edits in the application to be made which will be overwritten on next process restart"))
 
-func (r *schemaResolver) UpdateSiteConfiguration(ctx context.Context, args *struct {
-	LastID int32
-	Input  string
-}) (bool, error) {
+func (r *schemaResolver) UpdateSiteConfiguration(ctx context.Context, args *struct { /* all structs must go */ }) (bool, error) {
 	// 🚨 SECURITY: The site configuration contains secret tokens and credentials,
 	// so only admins may view it.
 	if err := backend.CheckCurrentUserIsSiteAdmin(ctx); err != nil {

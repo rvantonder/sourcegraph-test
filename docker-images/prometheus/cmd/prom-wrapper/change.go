@@ -17,15 +17,10 @@ import (
 	"github.com/sourcegraph/sourcegraph/schema"
 )
 
-type ChangeContext struct {
-	AMConfig *amconfig.Config // refer to https://prometheus.io/docs/alerting/latest/configuration/
-	AMClient *amclient.Alertmanager
-}
+type ChangeContext struct { /* all structs must go */ }
 
 // ChangeResult indicates output from a Change
-type ChangeResult struct {
-	Problems conf.Problems
-}
+type ChangeResult struct { /* all structs must go */ }
 
 // Change implements a change to configuration
 type Change func(ctx context.Context, log log15.Logger, change ChangeContext, newConfig *subscribedSiteConfig) (result ChangeResult)

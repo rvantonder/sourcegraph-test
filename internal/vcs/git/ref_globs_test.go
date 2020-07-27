@@ -5,12 +5,7 @@ import (
 )
 
 func TestRefGlobs(t *testing.T) {
-	tests := map[string]struct {
-		globs   []RefGlob
-		match   []string
-		noMatch []string
-		want    []string
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"empty": {
 			globs:   nil,
 			noMatch: []string{"a"},

@@ -2,41 +2,15 @@ package lsif
 
 import "github.com/sourcegraph/sourcegraph/enterprise/cmd/precise-code-intel-worker/internal/correlation/datastructures"
 
-type Element struct {
-	ID      int
-	Type    string
-	Label   string
-	Payload interface{}
-}
+type Element struct { /* all structs must go */ }
 
-type Edge struct {
-	OutV     int
-	InV      int
-	InVs     []int
-	Document int
-}
+type Edge struct { /* all structs must go */ }
 
-type MetaData struct {
-	Version     string
-	ProjectRoot string
-}
+type MetaData struct { /* all structs must go */ }
 
-type Document struct {
-	URI         string
-	Contains    *datastructures.IDSet
-	Diagnostics *datastructures.IDSet
-}
+type Document struct { /* all structs must go */ }
 
-type Range struct {
-	StartLine          int
-	StartCharacter     int
-	EndLine            int
-	EndCharacter       int
-	DefinitionResultID int
-	ReferenceResultID  int
-	HoverResultID      int
-	MonikerIDs         *datastructures.IDSet
-}
+type Range struct { /* all structs must go */ }
 
 func (d Range) SetDefinitionResultID(id int) Range {
 	return Range{
@@ -90,12 +64,7 @@ func (d Range) SetMonikerIDs(ids *datastructures.IDSet) Range {
 	}
 }
 
-type ResultSet struct {
-	DefinitionResultID int
-	ReferenceResultID  int
-	HoverResultID      int
-	MonikerIDs         *datastructures.IDSet
-}
+type ResultSet struct { /* all structs must go */ }
 
 func (d ResultSet) SetDefinitionResultID(id int) ResultSet {
 	return ResultSet{
@@ -133,12 +102,7 @@ func (d ResultSet) SetMonikerIDs(ids *datastructures.IDSet) ResultSet {
 	}
 }
 
-type Moniker struct {
-	Kind                 string
-	Scheme               string
-	Identifier           string
-	PackageInformationID int
-}
+type Moniker struct { /* all structs must go */ }
 
 func (d Moniker) SetPackageInformationID(id int) Moniker {
 	return Moniker{
@@ -149,22 +113,8 @@ func (d Moniker) SetPackageInformationID(id int) Moniker {
 	}
 }
 
-type PackageInformation struct {
-	Name    string
-	Version string
-}
+type PackageInformation struct { /* all structs must go */ }
 
-type DiagnosticResult struct {
-	Result []Diagnostic
-}
+type DiagnosticResult struct { /* all structs must go */ }
 
-type Diagnostic struct {
-	Severity       int
-	Code           string
-	Message        string
-	Source         string
-	StartLine      int
-	StartCharacter int
-	EndLine        int
-	EndCharacter   int
-}
+type Diagnostic struct { /* all structs must go */ }

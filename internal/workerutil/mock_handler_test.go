@@ -11,11 +11,7 @@ import (
 // MockHandler is a mock implementation of the Handler interface (from the
 // package github.com/sourcegraph/sourcegraph/internal/workerutil) used for
 // unit testing.
-type MockHandler struct {
-	// HandleFunc is an instance of a mock function object controlling the
-	// behavior of the method Handle.
-	HandleFunc *HandlerHandleFunc
-}
+type MockHandler struct { /* all structs must go */ }
 
 // NewMockHandler creates a new mock of the Handler interface. All methods
 // return zero values for all results, unless overwritten.
@@ -41,12 +37,7 @@ func NewMockHandlerFrom(i Handler) *MockHandler {
 
 // HandlerHandleFunc describes the behavior when the Handle method of the
 // parent MockHandler instance is invoked.
-type HandlerHandleFunc struct {
-	defaultHook func(context.Context, Store, Record) error
-	hooks       []func(context.Context, Store, Record) error
-	history     []HandlerHandleFuncCall
-	mutex       sync.Mutex
-}
+type HandlerHandleFunc struct { /* all structs must go */ }
 
 // Handle delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -120,20 +111,7 @@ func (f *HandlerHandleFunc) History() []HandlerHandleFuncCall {
 
 // HandlerHandleFuncCall is an object that describes an invocation of method
 // Handle on an instance of MockHandler.
-type HandlerHandleFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 Store
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 Record
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type HandlerHandleFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -151,17 +129,7 @@ func (c HandlerHandleFuncCall) Results() []interface{} {
 // interface (from the package
 // github.com/sourcegraph/sourcegraph/internal/workerutil) used for unit
 // testing.
-type MockHandlerWithHooks struct {
-	// HandleFunc is an instance of a mock function object controlling the
-	// behavior of the method Handle.
-	HandleFunc *HandlerWithHooksHandleFunc
-	// PostHandleFunc is an instance of a mock function object controlling
-	// the behavior of the method PostHandle.
-	PostHandleFunc *HandlerWithHooksPostHandleFunc
-	// PreHandleFunc is an instance of a mock function object controlling
-	// the behavior of the method PreHandle.
-	PreHandleFunc *HandlerWithHooksPreHandleFunc
-}
+type MockHandlerWithHooks struct { /* all structs must go */ }
 
 // NewMockHandlerWithHooks creates a new mock of the HandlerWithHooks
 // interface. All methods return zero values for all results, unless
@@ -205,12 +173,7 @@ func NewMockHandlerWithHooksFrom(i HandlerWithHooks) *MockHandlerWithHooks {
 
 // HandlerWithHooksHandleFunc describes the behavior when the Handle method
 // of the parent MockHandlerWithHooks instance is invoked.
-type HandlerWithHooksHandleFunc struct {
-	defaultHook func(context.Context, Store, Record) error
-	hooks       []func(context.Context, Store, Record) error
-	history     []HandlerWithHooksHandleFuncCall
-	mutex       sync.Mutex
-}
+type HandlerWithHooksHandleFunc struct { /* all structs must go */ }
 
 // Handle delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -285,20 +248,7 @@ func (f *HandlerWithHooksHandleFunc) History() []HandlerWithHooksHandleFuncCall 
 
 // HandlerWithHooksHandleFuncCall is an object that describes an invocation
 // of method Handle on an instance of MockHandlerWithHooks.
-type HandlerWithHooksHandleFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 Store
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 Record
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type HandlerWithHooksHandleFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -314,12 +264,7 @@ func (c HandlerWithHooksHandleFuncCall) Results() []interface{} {
 
 // HandlerWithHooksPostHandleFunc describes the behavior when the PostHandle
 // method of the parent MockHandlerWithHooks instance is invoked.
-type HandlerWithHooksPostHandleFunc struct {
-	defaultHook func(context.Context, Record)
-	hooks       []func(context.Context, Record)
-	history     []HandlerWithHooksPostHandleFuncCall
-	mutex       sync.Mutex
-}
+type HandlerWithHooksPostHandleFunc struct { /* all structs must go */ }
 
 // PostHandle delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -394,14 +339,7 @@ func (f *HandlerWithHooksPostHandleFunc) History() []HandlerWithHooksPostHandleF
 
 // HandlerWithHooksPostHandleFuncCall is an object that describes an
 // invocation of method PostHandle on an instance of MockHandlerWithHooks.
-type HandlerWithHooksPostHandleFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 Record
-}
+type HandlerWithHooksPostHandleFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -417,12 +355,7 @@ func (c HandlerWithHooksPostHandleFuncCall) Results() []interface{} {
 
 // HandlerWithHooksPreHandleFunc describes the behavior when the PreHandle
 // method of the parent MockHandlerWithHooks instance is invoked.
-type HandlerWithHooksPreHandleFunc struct {
-	defaultHook func(context.Context, Record)
-	hooks       []func(context.Context, Record)
-	history     []HandlerWithHooksPreHandleFuncCall
-	mutex       sync.Mutex
-}
+type HandlerWithHooksPreHandleFunc struct { /* all structs must go */ }
 
 // PreHandle delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -497,14 +430,7 @@ func (f *HandlerWithHooksPreHandleFunc) History() []HandlerWithHooksPreHandleFun
 
 // HandlerWithHooksPreHandleFuncCall is an object that describes an
 // invocation of method PreHandle on an instance of MockHandlerWithHooks.
-type HandlerWithHooksPreHandleFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 Record
-}
+type HandlerWithHooksPreHandleFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -522,14 +448,7 @@ func (c HandlerWithHooksPreHandleFuncCall) Results() []interface{} {
 // HandlerWithPreDequeue interface (from the package
 // github.com/sourcegraph/sourcegraph/internal/workerutil) used for unit
 // testing.
-type MockHandlerWithPreDequeue struct {
-	// HandleFunc is an instance of a mock function object controlling the
-	// behavior of the method Handle.
-	HandleFunc *HandlerWithPreDequeueHandleFunc
-	// PreDequeueFunc is an instance of a mock function object controlling
-	// the behavior of the method PreDequeue.
-	PreDequeueFunc *HandlerWithPreDequeuePreDequeueFunc
-}
+type MockHandlerWithPreDequeue struct { /* all structs must go */ }
 
 // NewMockHandlerWithPreDequeue creates a new mock of the
 // HandlerWithPreDequeue interface. All methods return zero values for all
@@ -565,12 +484,7 @@ func NewMockHandlerWithPreDequeueFrom(i HandlerWithPreDequeue) *MockHandlerWithP
 
 // HandlerWithPreDequeueHandleFunc describes the behavior when the Handle
 // method of the parent MockHandlerWithPreDequeue instance is invoked.
-type HandlerWithPreDequeueHandleFunc struct {
-	defaultHook func(context.Context, Store, Record) error
-	hooks       []func(context.Context, Store, Record) error
-	history     []HandlerWithPreDequeueHandleFuncCall
-	mutex       sync.Mutex
-}
+type HandlerWithPreDequeueHandleFunc struct { /* all structs must go */ }
 
 // Handle delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -645,20 +559,7 @@ func (f *HandlerWithPreDequeueHandleFunc) History() []HandlerWithPreDequeueHandl
 
 // HandlerWithPreDequeueHandleFuncCall is an object that describes an
 // invocation of method Handle on an instance of MockHandlerWithPreDequeue.
-type HandlerWithPreDequeueHandleFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 Store
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 Record
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 error
-}
+type HandlerWithPreDequeueHandleFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -675,12 +576,7 @@ func (c HandlerWithPreDequeueHandleFuncCall) Results() []interface{} {
 // HandlerWithPreDequeuePreDequeueFunc describes the behavior when the
 // PreDequeue method of the parent MockHandlerWithPreDequeue instance is
 // invoked.
-type HandlerWithPreDequeuePreDequeueFunc struct {
-	defaultHook func(context.Context) (bool, []*sqlf.Query, error)
-	hooks       []func(context.Context) (bool, []*sqlf.Query, error)
-	history     []HandlerWithPreDequeuePreDequeueFuncCall
-	mutex       sync.Mutex
-}
+type HandlerWithPreDequeuePreDequeueFunc struct { /* all structs must go */ }
 
 // PreDequeue delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -757,20 +653,7 @@ func (f *HandlerWithPreDequeuePreDequeueFunc) History() []HandlerWithPreDequeueP
 // HandlerWithPreDequeuePreDequeueFuncCall is an object that describes an
 // invocation of method PreDequeue on an instance of
 // MockHandlerWithPreDequeue.
-type HandlerWithPreDequeuePreDequeueFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 bool
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 []*sqlf.Query
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type HandlerWithPreDequeuePreDequeueFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.

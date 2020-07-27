@@ -13,9 +13,7 @@ import (
 )
 
 // Info wraps the lower-level license.Info and exposes plan and feature information.
-type Info struct {
-	license.Info
-}
+type Info struct { /* all structs must go */ }
 
 // publicKey is the public key used to verify product license keys.
 var publicKey = func() ssh.PublicKey {

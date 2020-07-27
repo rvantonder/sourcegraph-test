@@ -28,11 +28,7 @@ import (
 // BillingPublishableKey is the publishable (non-secret) API key for the billing system, if any.
 var BillingPublishableKey string
 
-type authProviderInfo struct {
-	IsBuiltin         bool   `json:"isBuiltin"`
-	DisplayName       string `json:"displayName"`
-	AuthenticationURL string `json:"authenticationURL"`
-}
+type authProviderInfo struct { /* all structs must go */ }
 
 // JSContext is made available to JavaScript code via the
 // "sourcegraph/app/context" module.
@@ -42,45 +38,7 @@ type authProviderInfo struct {
 // server. Including secret fields here is OK if it is based on the user's
 // authentication above, but do not include e.g. hard-coded secrets about
 // the server instance here as they would be sent to anonymous users.
-type JSContext struct {
-	AppRoot        string            `json:"appRoot,omitempty"`
-	ExternalURL    string            `json:"externalURL,omitempty"`
-	XHRHeaders     map[string]string `json:"xhrHeaders"`
-	CSRFToken      string            `json:"csrfToken"`
-	UserAgentIsBot bool              `json:"userAgentIsBot"`
-	AssetsRoot     string            `json:"assetsRoot"`
-	Version        string            `json:"version"`
-
-	IsAuthenticatedUser bool `json:"isAuthenticatedUser"`
-
-	SentryDSN     *string `json:"sentryDSN"`
-	SiteID        string  `json:"siteID"`
-	SiteGQLID     string  `json:"siteGQLID"`
-	Debug         bool    `json:"debug"`
-	NeedsSiteInit bool    `json:"needsSiteInit"`
-	EmailEnabled  bool    `json:"emailEnabled"`
-
-	Site              schema.SiteConfiguration `json:"site"` // public subset of site configuration
-	LikelyDockerOnMac bool                     `json:"likelyDockerOnMac"`
-	NeedServerRestart bool                     `json:"needServerRestart"`
-	DeployType        string                   `json:"deployType"`
-
-	SourcegraphDotComMode bool `json:"sourcegraphDotComMode"`
-
-	BillingPublishableKey string `json:"billingPublishableKey,omitempty"`
-
-	AccessTokensAllow conf.AccessTokAllow `json:"accessTokensAllow"`
-
-	AllowSignup bool `json:"allowSignup"`
-
-	ResetPasswordEnabled bool `json:"resetPasswordEnabled"`
-
-	AuthProviders []authProviderInfo `json:"authProviders"`
-
-	Branding *schema.Branding `json:"branding"`
-
-	ExperimentalFeatures schema.ExperimentalFeatures `json:"experimentalFeatures"`
-}
+type JSContext struct { /* all structs must go */ }
 
 // NewJSContextFromRequest populates a JSContext struct from the HTTP
 // request.

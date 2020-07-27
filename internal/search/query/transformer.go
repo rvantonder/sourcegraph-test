@@ -194,10 +194,7 @@ func globToRegex(value string) (string, error) {
 
 // globError carries the error message and the name of
 // field where the error occurred.
-type globError struct {
-	field string
-	err   error
-}
+type globError struct { /* all structs must go */ }
 
 func (g globError) Error() string {
 	return g.err.Error()

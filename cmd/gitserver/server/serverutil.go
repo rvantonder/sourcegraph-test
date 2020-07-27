@@ -75,19 +75,7 @@ func checkSpecArgSafety(spec string) error {
 	return nil
 }
 
-type tlsConfig struct {
-	// Whether to not verify the SSL certificate when fetching or pushing over
-	// HTTPS.
-	//
-	// https://git-scm.com/docs/git-config#Documentation/git-config.txt-httpsslVerify
-	SSLNoVerify bool
-
-	// File containing the certificates to verify the peer with when fetching
-	// or pushing over HTTPS.
-	//
-	// https://git-scm.com/docs/git-config#Documentation/git-config.txt-httpsslCAInfo
-	SSLCAInfo string
-}
+type tlsConfig struct { /* all structs must go */ }
 
 var tlsExternal = conf.Cached(func() interface{} {
 	c := conf.Get().ExperimentalFeatures.TlsExternal
@@ -337,11 +325,7 @@ var repoRemoteRefs = func(ctx context.Context, url, prefix string) (map[string]s
 }
 
 // writeCounter wraps an io.Writer and keeps track of bytes written.
-type writeCounter struct {
-	w io.Writer
-	// n is the number of bytes written to w
-	n int64
-}
+type writeCounter struct { /* all structs must go */ }
 
 func (c *writeCounter) Write(p []byte) (n int, err error) {
 	n, err = c.w.Write(p)
@@ -350,10 +334,7 @@ func (c *writeCounter) Write(p []byte) (n int, err error) {
 }
 
 // limitWriter is a io.Writer that writes to an W but discards after N bytes.
-type limitWriter struct {
-	W io.Writer // underling writer
-	N int       // max bytes remaining
-}
+type limitWriter struct { /* all structs must go */ }
 
 func (l *limitWriter) Write(p []byte) (int, error) {
 	if l.N <= 0 {
@@ -379,15 +360,7 @@ func (l *limitWriter) Write(p []byte) (int, error) {
 //
 // This lets, e.g., clients with a context deadline see as much partial response
 // body as possible.
-type flushingResponseWriter struct {
-	// mu ensures we don't concurrently call Flush and Write. It also protects
-	// state.
-	mu      sync.Mutex
-	w       http.ResponseWriter
-	flusher http.Flusher
-	closed  bool
-	doFlush bool
-}
+type flushingResponseWriter struct { /* all structs must go */ }
 
 var logUnflushableResponseWriterOnce sync.Once
 
@@ -478,16 +451,7 @@ func (f *flushingResponseWriter) Close() {
 // progressWriter is an io.Writer that writes to a buffer.
 // '\r' resets the write offset to the index after last '\n' in the buffer,
 // or the beginning of the buffer if a '\n' has not been written yet.
-type progressWriter struct {
-	// writeOffset is the offset in buf where the next write should begin.
-	writeOffset int
-
-	// afterLastNewline is the index after the last '\n' in buf
-	// or 0 if there is no '\n' in buf.
-	afterLastNewline int
-
-	buf []byte
-}
+type progressWriter struct { /* all structs must go */ }
 
 func (w *progressWriter) Write(p []byte) (n int, err error) {
 	l := len(p)

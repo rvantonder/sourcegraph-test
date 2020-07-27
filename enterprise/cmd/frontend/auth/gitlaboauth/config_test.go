@@ -19,15 +19,8 @@ func TestParseConfig(t *testing.T) {
 	spew.Config.SortKeys = true
 	spew.Config.SpewKeys = true
 
-	type args struct {
-		cfg *conf.Unified
-	}
-	tests := []struct {
-		name          string
-		args          args
-		wantProviders map[schema.GitLabAuthProvider]providers.Provider
-		wantProblems  []string
-	}{
+	type args struct { /* all structs must go */ }
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:          "No configs",
 			args:          args{cfg: &conf.Unified{}},

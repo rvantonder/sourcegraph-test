@@ -31,9 +31,7 @@ func init() {
 }
 
 // productSubscription implements the GraphQL type ProductSubscription.
-type productSubscription struct {
-	v *dbSubscription
-}
+type productSubscription struct { /* all structs must go */ }
 
 // productSubscriptionByID looks up and returns the ProductSubscription with the given GraphQL
 // ID. If no such ProductSubscription exists, it returns a non-nil error.
@@ -498,14 +496,7 @@ func (ProductSubscriptionLicensingResolver) ProductSubscriptions(ctx context.Con
 //
 // 🚨 SECURITY: When instantiating a productSubscriptionConnection value, the caller MUST
 // check permissions.
-type productSubscriptionConnection struct {
-	opt dbSubscriptionsListOptions
-
-	// cache results because they are used by multiple fields
-	once    sync.Once
-	results []*dbSubscription
-	err     error
-}
+type productSubscriptionConnection struct { /* all structs must go */ }
 
 func (r *productSubscriptionConnection) compute(ctx context.Context) ([]*dbSubscription, error) {
 	r.once.Do(func() {

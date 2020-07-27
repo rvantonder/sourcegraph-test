@@ -104,11 +104,7 @@ func correlateFromReader(r io.Reader, root string) (*State, error) {
 	return wrappedState.State, nil
 }
 
-type wrappedState struct {
-	*State
-	dumpRoot            string
-	unsupportedVertices *datastructures.IDSet
-}
+type wrappedState struct { /* all structs must go */ }
 
 func newWrappedState(dumpRoot string) *wrappedState {
 	return &wrappedState{

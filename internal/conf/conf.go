@@ -23,10 +23,7 @@ import (
 // - The site configuration, from the database (from the site-admin panel).
 // - Service connections, from the frontend (e.g. which gitservers to talk to).
 //
-type Unified struct {
-	schema.SiteConfiguration
-	ServiceConnections conftypes.ServiceConnections
-}
+type Unified struct { /* all structs must go */ }
 
 type configurationMode int
 
@@ -105,14 +102,7 @@ func initDefaultClient() *client {
 // cachedConfigurationSource caches reads for a specified duration to reduce
 // the number of reads against the underlying configuration source (e.g. a
 // Postgres DB).
-type cachedConfigurationSource struct {
-	source ConfigurationSource
-
-	ttl       time.Duration
-	entryMu   sync.Mutex
-	entry     *conftypes.RawUnified
-	entryTime time.Time
-}
+type cachedConfigurationSource struct { /* all structs must go */ }
 
 func (c *cachedConfigurationSource) Read(ctx context.Context) (conftypes.RawUnified, error) {
 	c.entryMu.Lock()

@@ -19,13 +19,7 @@ mutation CreateAccessToken($user: ID!, $scopes: [String!]!, $note: String!) {
 		"scopes": scopes,
 		"note":   note,
 	}
-	var resp struct {
-		Data struct {
-			CreateAccessToken struct {
-				Token string `json:"token"`
-			} `json:"createAccessToken"`
-		} `json:"data"`
-	}
+	var resp struct { /* all structs must go */ }
 	err := c.GraphQL("", query, variables, &resp)
 	if err != nil {
 		return "", errors.Wrap(err, "request GraphQL")

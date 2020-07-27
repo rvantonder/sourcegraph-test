@@ -53,11 +53,7 @@ func TestComputeGithubCheckState(t *testing.T) {
 	lastSynced := now.Add(-1 * time.Minute)
 	pr := &github.PullRequest{}
 
-	tests := []struct {
-		name   string
-		events []*cmpgn.ChangesetEvent
-		want   cmpgn.ChangesetCheckState
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:   "empty slice",
 			events: nil,
@@ -180,11 +176,7 @@ func TestComputeBitbucketBuildStatus(t *testing.T) {
 		},
 	}
 
-	tests := []struct {
-		name   string
-		events []*cmpgn.ChangesetEvent
-		want   cmpgn.ChangesetCheckState
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:   "empty slice",
 			events: nil,
@@ -264,10 +256,7 @@ func TestComputeBitbucketBuildStatus(t *testing.T) {
 }
 
 func TestComputeGitLabCheckState(t *testing.T) {
-	for name, tc := range map[string]struct {
-		mr   *gitlab.MergeRequest
-		want cmpgn.ChangesetCheckState
-	}{
+	for name, tc := range map[string]struct { /* all structs must go */ }{
 		"no pipelines at all": {
 			mr:   &gitlab.MergeRequest{},
 			want: cmpgn.ChangesetCheckStateUnknown,
@@ -344,12 +333,7 @@ func TestComputeReviewState(t *testing.T) {
 	now := time.Now().UTC().Truncate(time.Microsecond)
 	daysAgo := func(days int) time.Time { return now.AddDate(0, 0, -days) }
 
-	tests := []struct {
-		name      string
-		changeset *campaigns.Changeset
-		history   []changesetStatesAtTime
-		want      cmpgn.ChangesetReviewState
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:      "github - no events",
 			changeset: githubChangeset(daysAgo(10), "OPEN"),
@@ -489,12 +473,7 @@ func TestComputeExternalState(t *testing.T) {
 	now := time.Now().UTC().Truncate(time.Microsecond)
 	daysAgo := func(days int) time.Time { return now.AddDate(0, 0, -days) }
 
-	tests := []struct {
-		name      string
-		changeset *campaigns.Changeset
-		history   []changesetStatesAtTime
-		want      cmpgn.ChangesetExternalState
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:      "github - no events",
 			changeset: githubChangeset(daysAgo(10), "OPEN"),
@@ -650,12 +629,7 @@ func TestComputeLabels(t *testing.T) {
 		return ls
 	}
 
-	tests := []struct {
-		name      string
-		changeset *cmpgn.Changeset
-		events    ChangesetEvents
-		want      []cmpgn.ChangesetLabel
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "zero values",
 		},
@@ -718,13 +692,7 @@ func bitbucketChangeset(updatedAt time.Time, state, reviewStatus string) *campai
 		Metadata: &bitbucketserver.PullRequest{
 			State: state,
 			// TODO: Reviewers should be its own struct
-			Reviewers: []struct {
-				User               *bitbucketserver.User `json:"user"`
-				LastReviewedCommit string                `json:"lastReviewedCommit"`
-				Role               string                `json:"role"`
-				Approved           bool                  `json:"approved"`
-				Status             string                `json:"status"`
-			}{
+			Reviewers: []struct { /* all structs must go */ }{
 				{Status: reviewStatus},
 			},
 		},

@@ -70,22 +70,7 @@ func NewClient(cli httpcli.Doer) *Client {
 }
 
 // Client is a gitserver client.
-type Client struct {
-	// HTTP client to use
-	HTTPClient httpcli.Doer
-
-	// Limits concurrency of outstanding HTTP posts
-	HTTPLimiter *parallel.Run
-
-	// Addrs is a function which should return the addresses for gitservers. It
-	// is called each time a request is made. The function must be safe for
-	// concurrent use. It may return different results at different times.
-	Addrs func(ctx context.Context) []string
-
-	// UserAgent is a string identifing who the client is. It will be logged in
-	// the telemetry in gitserver.
-	UserAgent string
-}
+type Client struct { /* all structs must go */ }
 
 // AddrForRepo returns the gitserver address to use for the given repo name.
 func (c *Client) AddrForRepo(ctx context.Context, repo api.RepoName) string {
@@ -110,20 +95,12 @@ func addrForKey(addrs []string, key string) string {
 }
 
 // ArchiveOptions contains options for the Archive func.
-type ArchiveOptions struct {
-	Treeish string   // the tree or commit to produce an archive for
-	Format  string   // format of the resulting archive (usually "tar" or "zip")
-	Paths   []string // if nonempty, only include these paths
-}
+type ArchiveOptions struct { /* all structs must go */ }
 
 // archiveReader wraps the StdoutReader yielded by gitserver's
 // Cmd.StdoutReader with one that knows how to report a repository-not-found
 // error more carefully.
-type archiveReader struct {
-	base io.ReadCloser
-	repo api.RepoName
-	spec string
-}
+type archiveReader struct { /* all structs must go */ }
 
 // Read checks the known output behavior of the StdoutReader.
 func (a *archiveReader) Read(p []byte) (int, error) {
@@ -283,25 +260,11 @@ func init() {
 }
 
 // Cmd represents a command to be executed remotely.
-type Cmd struct {
-	client *Client
-
-	Args           []string
-	Repo           // the repository to execute the command in
-	EnsureRevision string
-	ExitStatus     int
-}
+type Cmd struct { /* all structs must go */ }
 
 // Repo represents a repository on gitserver. It contains the information necessary to identify and
 // create/clone it.
-type Repo struct {
-	Name api.RepoName // the repository's name
-
-	// URL is the repository's Git remote URL. If the gitserver already has cloned the repository,
-	// this field is optional (it will use the last-used Git remote URL). If the repository is not
-	// cloned on the gitserver, the request will fail.
-	URL string
-}
+type Repo struct { /* all structs must go */ }
 
 // Command creates a new Cmd. Command name must be 'git',
 // otherwise it panics.
@@ -376,10 +339,7 @@ func StdoutReader(ctx context.Context, c *Cmd) (io.ReadCloser, error) {
 	}, nil
 }
 
-type cmdReader struct {
-	rc      io.ReadCloser
-	trailer http.Header
-}
+type cmdReader struct { /* all structs must go */ }
 
 func (c *cmdReader) Read(p []byte) (int, error) {
 	n, err := c.rc.Read(p)
@@ -623,11 +583,7 @@ func (c *Client) IsRepoCloneable(ctx context.Context, repo Repo) error {
 }
 
 // RepoNotCloneableErr is the error that happens when a repository can not be cloned.
-type RepoNotCloneableErr struct {
-	repo     Repo
-	reason   string
-	notFound bool
-}
+type RepoNotCloneableErr struct { /* all structs must go */ }
 
 // NotFound returns true if the repo could not be cloned because it wasn't found.
 // This may be because the repo doesn't exist, or because the repo is private and
@@ -673,11 +629,7 @@ func (c *Client) RepoCloneProgress(ctx context.Context, repos ...api.RepoName) (
 		shard.Repos = append(shard.Repos, r)
 	}
 
-	type op struct {
-		req *protocol.RepoCloneProgressRequest
-		res *protocol.RepoCloneProgressResponse
-		err error
-	}
+	type op struct { /* all structs must go */ }
 
 	ch := make(chan op, len(shards))
 	for _, req := range shards {
@@ -750,11 +702,7 @@ func (c *Client) RepoInfo(ctx context.Context, repos ...api.RepoName) (*protocol
 		shard.Repos = append(shard.Repos, r)
 	}
 
-	type op struct {
-		req *protocol.RepoInfoRequest
-		res *protocol.RepoInfoResponse
-		err error
-	}
+	type op struct { /* all structs must go */ }
 
 	ch := make(chan op, len(shards))
 	for _, req := range shards {

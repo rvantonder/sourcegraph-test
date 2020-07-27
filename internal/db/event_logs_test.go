@@ -21,11 +21,7 @@ func TestEventLogs_ValidInfo(t *testing.T) {
 	dbtesting.SetupGlobalTestDB(t)
 	ctx := context.Background()
 
-	var testCases = []struct {
-		name  string
-		event *Event
-		err   string // Stringified error
-	}{
+	var testCases = []struct { /* all structs must go */ }{
 		{
 			name:  "EmptyName",
 			event: &Event{UserID: 1, URL: "http://sourcegraph.com", Source: "WEB"},
@@ -172,11 +168,7 @@ func TestEventLogs_SiteUsage(t *testing.T) {
 	// time that falls too near the edge of a week.
 	now := time.Unix(1589581800, 0).UTC()
 
-	days := map[time.Time]struct {
-		users   []uint32
-		names   []string
-		sources []string
-	}{
+	days := map[time.Time]struct { /* all structs must go */ }{
 		// Today
 		now: {
 			[]uint32{1, 2, 3, 4, 5},

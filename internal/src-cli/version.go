@@ -12,11 +12,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/linkheader"
 )
 
-type releaseMeta struct {
-	TagName    string `json:"tag_name"`
-	Draft      bool   `json:"draft"`
-	Prerelease bool   `json:"prerelease"`
-}
+type releaseMeta struct { /* all structs must go */ }
 
 const githubAPIReleasesEndpoint = "https://api.github.com/repos/sourcegraph/src-cli/releases"
 

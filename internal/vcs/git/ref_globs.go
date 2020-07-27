@@ -9,23 +9,12 @@ import (
 
 // RefGlob describes a glob pattern that either includes or excludes refs. Exactly 1 of the fields
 // must be set.
-type RefGlob struct {
-	// Include is a glob pattern for including refs interpreted as in `git log --glob`. See the
-	// git-log(1) manual page for details.
-	Include string
-
-	// Exclude is a glob pattern for excluding refs interpreted as in `git log --exclude`. See the
-	// git-log(1) manual page for details.
-	Exclude string
-}
+type RefGlob struct { /* all structs must go */ }
 
 // RefGlobs is a compiled matcher based on RefGlob patterns. Use CompileRefGlobs to create it.
 type RefGlobs []compiledRefGlobPattern
 
-type compiledRefGlobPattern struct {
-	pattern glob.Glob
-	include bool // true for include, false for exclude
-}
+type compiledRefGlobPattern struct { /* all structs must go */ }
 
 // CompileRefGlobs compiles the ordered ref glob patterns (interpreted as in `git log --glob
 // ... --exclude ...`; see the git-log(1) manual page) into a matcher. If the input patterns are

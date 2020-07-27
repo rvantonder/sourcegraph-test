@@ -7,10 +7,7 @@ import (
 )
 
 func TestGitLab_cloneURLToRepoName(t *testing.T) {
-	tests := []struct {
-		conn schema.GitLabConnection
-		urls []urlToRepoName
-	}{{
+	tests := []struct { /* all structs must go */ }{{
 		conn: schema.GitLabConnection{
 			Url: "https://gitlab.com",
 			NameTransformations: []*schema.GitLabNameTransformation{

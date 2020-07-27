@@ -23,13 +23,7 @@ import (
 
 var extsvcConfigAllowEdits, _ = strconv.ParseBool(env.Get("EXTSVC_CONFIG_ALLOW_EDITS", "false", "When EXTSVC_CONFIG_FILE is in use, allow edits in the application to be made which will be overwritten on next process restart"))
 
-func (r *schemaResolver) AddExternalService(ctx context.Context, args *struct {
-	Input struct {
-		Kind        string
-		DisplayName string
-		Config      string
-	}
-}) (*externalServiceResolver, error) {
+func (r *schemaResolver) AddExternalService(ctx context.Context, args *struct { /* all structs must go */ }) (*externalServiceResolver, error) {
 	// 🚨 SECURITY: Only site admins may add external services.
 	if err := backend.CheckCurrentUserIsSiteAdmin(ctx); err != nil {
 		return nil, err
@@ -56,15 +50,9 @@ func (r *schemaResolver) AddExternalService(ctx context.Context, args *struct {
 	return res, nil
 }
 
-type UpdateExternalServiceInput struct {
-	ID          graphql.ID
-	DisplayName *string
-	Config      *string
-}
+type UpdateExternalServiceInput struct { /* all structs must go */ }
 
-func (*schemaResolver) UpdateExternalService(ctx context.Context, args *struct {
-	Input UpdateExternalServiceInput
-}) (*externalServiceResolver, error) {
+func (*schemaResolver) UpdateExternalService(ctx context.Context, args *struct { /* all structs must go */ }) (*externalServiceResolver, error) {
 	// 🚨 SECURITY: Only site admins are allowed to update the user.
 	if err := backend.CheckCurrentUserIsSiteAdmin(ctx); err != nil {
 		return nil, err
@@ -128,9 +116,7 @@ func syncExternalService(ctx context.Context, svc *types.ExternalService) error 
 	return nil
 }
 
-func (*schemaResolver) DeleteExternalService(ctx context.Context, args *struct {
-	ExternalService graphql.ID
-}) (*EmptyResponse, error) {
+func (*schemaResolver) DeleteExternalService(ctx context.Context, args *struct { /* all structs must go */ }) (*EmptyResponse, error) {
 	// 🚨 SECURITY: Only site admins can delete external services.
 	if err := backend.CheckCurrentUserIsSiteAdmin(ctx); err != nil {
 		return nil, err
@@ -164,9 +150,7 @@ func (*schemaResolver) DeleteExternalService(ctx context.Context, args *struct {
 	return &EmptyResponse{}, nil
 }
 
-func (r *schemaResolver) ExternalServices(ctx context.Context, args *struct {
-	graphqlutil.ConnectionArgs
-}) (*externalServiceConnectionResolver, error) {
+func (r *schemaResolver) ExternalServices(ctx context.Context, args *struct { /* all structs must go */ }) (*externalServiceConnectionResolver, error) {
 	// 🚨 SECURITY: Only site admins may read external services (they have secrets).
 	if err := backend.CheckCurrentUserIsSiteAdmin(ctx); err != nil {
 		return nil, err
@@ -176,14 +160,7 @@ func (r *schemaResolver) ExternalServices(ctx context.Context, args *struct {
 	return &externalServiceConnectionResolver{opt: opt}, nil
 }
 
-type externalServiceConnectionResolver struct {
-	opt db.ExternalServicesListOptions
-
-	// cache results because they are used by multiple fields
-	once             sync.Once
-	externalServices []*types.ExternalService
-	err              error
-}
+type externalServiceConnectionResolver struct { /* all structs must go */ }
 
 func (r *externalServiceConnectionResolver) compute(ctx context.Context) ([]*types.ExternalService, error) {
 	r.once.Do(func() {
@@ -217,10 +194,7 @@ func (r *externalServiceConnectionResolver) PageInfo(ctx context.Context) (*grap
 	return graphqlutil.HasNextPage(r.opt.LimitOffset != nil && len(externalServices) >= r.opt.Limit), nil
 }
 
-type computedExternalServiceConnectionResolver struct {
-	args             graphqlutil.ConnectionArgs
-	externalServices []*types.ExternalService
-}
+type computedExternalServiceConnectionResolver struct { /* all structs must go */ }
 
 func (r *computedExternalServiceConnectionResolver) Nodes(ctx context.Context) []*externalServiceResolver {
 	svcs := r.externalServices

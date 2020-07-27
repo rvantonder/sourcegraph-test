@@ -36,11 +36,7 @@ func TestLowercaseFieldNames(t *testing.T) {
 }
 
 func TestHoist(t *testing.T) {
-	cases := []struct {
-		input      string
-		want       string
-		wantErrMsg string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			input: `repo:foo a or b`,
 			want:  `"repo:foo" (or "a" "b")`,
@@ -128,10 +124,7 @@ func TestHoist(t *testing.T) {
 }
 
 func TestSearchUppercase(t *testing.T) {
-	cases := []struct {
-		input string
-		want  string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			input: `TeSt`,
 			want:  `(and "TeSt" "case:yes")`,
@@ -185,10 +178,7 @@ func TestSearchUppercase(t *testing.T) {
 }
 
 func TestSubstituteOrForRegexp(t *testing.T) {
-	cases := []struct {
-		input string
-		want  string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			input: "foo or bar",
 			want:  `"(foo)|(bar)"`,
@@ -230,10 +220,7 @@ func TestSubstituteOrForRegexp(t *testing.T) {
 }
 
 func TestSubstituteConcat(t *testing.T) {
-	cases := []struct {
-		input string
-		want  string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			input: "a b c d e f",
 			want:  `"a b c d e f"`,
@@ -263,10 +250,7 @@ func TestSubstituteConcat(t *testing.T) {
 }
 
 func TestConvertEmptyGroupsToLiteral(t *testing.T) {
-	cases := []struct {
-		input      string
-		wantLabels labels
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			input:      "func()",
 			wantLabels: HeuristicParensAsPatterns | Literal,
@@ -288,10 +272,7 @@ func TestConvertEmptyGroupsToLiteral(t *testing.T) {
 }
 
 func TestExpandOr(t *testing.T) {
-	cases := []struct {
-		input string
-		want  string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			input: `a or b`,
 			want:  `("a") OR ("b")`,
@@ -342,11 +323,7 @@ func TestExpandOr(t *testing.T) {
 }
 
 func TestMap(t *testing.T) {
-	cases := []struct {
-		input string
-		fns   []func(_ []Node) []Node
-		want  string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			input: "RePo:foo",
 			fns:   []func(_ []Node) []Node{LowercaseFieldNames},
@@ -370,10 +347,7 @@ func TestMap(t *testing.T) {
 }
 
 func TestTranslateGlobToRegex(t *testing.T) {
-	cases := []struct {
-		input string
-		want  string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			input: "*",
 			want:  "[^/]*?",
@@ -486,9 +460,7 @@ func TestTranslateGlobToRegex(t *testing.T) {
 }
 
 func TestTranslateBadGlobPattern(t *testing.T) {
-	cases := []struct {
-		input string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{input: "fo[a-b-c]"},
 		{input: "fo\\o"},
 		{input: "fo[o"},

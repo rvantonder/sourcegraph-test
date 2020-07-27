@@ -43,10 +43,7 @@ func TestIntegration(t *testing.T) {
 		trace.Tracer{Tracer: opentracing.GlobalTracer()},
 	)
 
-	for _, tc := range []struct {
-		name string
-		test func(*testing.T)
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{"DBStore/Transact", testDBStoreTransact(dbstore)},
 		{"DBStore/ListExternalServices", testStoreListExternalServices(store)},
 		{"DBStore/ListExternalServices/ByRepo", testStoreListExternalServicesByRepos(store)},

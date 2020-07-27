@@ -54,11 +54,7 @@ func TestSearchResultsStatsLanguages(t *testing.T) {
 	}
 	defer git.ResetMocks()
 
-	tests := map[string]struct {
-		results  []SearchResultResolver
-		getFiles []os.FileInfo
-		want     []inventory.Lang // TotalBytes values are incorrect (known issue doc'd in GraphQL schema)
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"empty": {
 			results: nil,
 			want:    []inventory.Lang{},

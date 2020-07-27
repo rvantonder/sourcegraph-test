@@ -17,11 +17,7 @@ import (
 
 func TestNextSync(t *testing.T) {
 	clock := func() time.Time { return time.Date(2020, 01, 01, 01, 01, 01, 01, time.UTC) }
-	tests := []struct {
-		name string
-		h    campaigns.ChangesetSyncData
-		want time.Time
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "No time passed",
 			h: campaigns.ChangesetSyncData{
@@ -177,11 +173,7 @@ func TestChangesetPriorityQueue(t *testing.T) {
 }
 
 func TestPrioritizeChangesetsWithoutDiffStats(t *testing.T) {
-	for name, tc := range map[string]struct {
-		listChangesets func(context.Context, ListChangesetsOpts) (campaigns.Changesets, int64, error)
-		wantError      bool
-		wantIDs        []int64
-	}{
+	for name, tc := range map[string]struct { /* all structs must go */ }{
 		"ListChangesets error": {
 			listChangesets: func(ctx context.Context, opts ListChangesetsOpts) (campaigns.Changesets, int64, error) {
 				return nil, 0, errors.New("hello!")
@@ -346,12 +338,7 @@ func TestSyncerRun(t *testing.T) {
 }
 
 func TestFilterSyncData(t *testing.T) {
-	testCases := []struct {
-		name        string
-		codeHostURL string
-		data        []campaigns.ChangesetSyncData
-		want        []campaigns.ChangesetSyncData
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{
 			name:        "Empty",
 			codeHostURL: "https://example.com/",
@@ -502,14 +489,7 @@ func TestSyncRegistry(t *testing.T) {
 	}
 }
 
-type MockSyncStore struct {
-	listChangesetSyncData func(context.Context, ListChangesetSyncDataOpts) ([]campaigns.ChangesetSyncData, error)
-	getChangeset          func(context.Context, GetChangesetOpts) (*campaigns.Changeset, error)
-	listChangesets        func(context.Context, ListChangesetsOpts) (campaigns.Changesets, int64, error)
-	updateChangesets      func(context.Context, ...*campaigns.Changeset) error
-	upsertChangesetEvents func(context.Context, ...*campaigns.ChangesetEvent) error
-	transact              func(context.Context) (*Store, error)
-}
+type MockSyncStore struct { /* all structs must go */ }
 
 func (m MockSyncStore) ListChangesetSyncData(ctx context.Context, opts ListChangesetSyncDataOpts) ([]campaigns.ChangesetSyncData, error) {
 	return m.listChangesetSyncData(ctx, opts)
@@ -535,10 +515,7 @@ func (m MockSyncStore) Transact(ctx context.Context) (*Store, error) {
 	return m.transact(ctx)
 }
 
-type MockRepoStore struct {
-	listExternalServices func(context.Context, repos.StoreListExternalServicesArgs) ([]*repos.ExternalService, error)
-	listRepos            func(context.Context, repos.StoreListReposArgs) ([]*repos.Repo, error)
-}
+type MockRepoStore struct { /* all structs must go */ }
 
 func (m MockRepoStore) UpsertExternalServices(ctx context.Context, svcs ...*repos.ExternalService) error {
 	panic("implement me")

@@ -14,12 +14,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/extsvc"
 )
 
-type authnResponseInfo struct {
-	spec                 extsvc.AccountSpec
-	email, displayName   string
-	unnormalizedUsername string
-	accountData          interface{}
-}
+type authnResponseInfo struct { /* all structs must go */ }
 
 func readAuthnResponse(p *provider, encodedResp string) (*authnResponseInfo, error) {
 	{

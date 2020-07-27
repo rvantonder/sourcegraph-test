@@ -19,10 +19,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/trace"
 )
 
-type RepoNotFoundErr struct {
-	ID   api.RepoID
-	Name api.RepoName
-}
+type RepoNotFoundErr struct { /* all structs must go */ }
 
 func (e *RepoNotFoundErr) Error() string {
 	if e.Name != "" {
@@ -230,68 +227,7 @@ func scanRepo(rows *sql.Rows, r *types.Repo) (err error) {
 // ReposListOptions specifies the options for listing repositories.
 //
 // Query and IncludePatterns/ExcludePatterns may not be used together.
-type ReposListOptions struct {
-	// Query specifies a search query for repositories. If specified, then the Sort and
-	// Direction options are ignored
-	Query string
-
-	// IncludePatterns is a list of regular expressions, all of which must match all
-	// repositories returned in the list.
-	IncludePatterns []string
-
-	// ExcludePattern is a regular expression that must not match any repository
-	// returned in the list.
-	ExcludePattern string
-
-	// Names is a list of repository names used to limit the results to that
-	// set of repositories.
-	// Note: This is currently used for version contexts. In future iterations,
-	// version contexts may have their own table
-	// and this may be replaced by the version context name.
-	Names []string
-
-	// PatternQuery is an expression tree of patterns to query. The atoms of
-	// the query are strings which are regular expression patterns.
-	PatternQuery query.Q
-
-	// NoForks excludes forks from the list.
-	NoForks bool
-
-	// OnlyForks excludes non-forks from the lhist.
-	OnlyForks bool
-
-	// NoArchived excludes archived repositories from the list.
-	NoArchived bool
-
-	// OnlyArchived excludes non-archived repositories from the list.
-	OnlyArchived bool
-
-	// NoCloned excludes cloned repositories from the list.
-	NoCloned bool
-
-	// OnlyCloned excludes non-cloned repositories from the list.
-	OnlyCloned bool
-
-	// NoPrivate excludes private repositories from the list.
-	NoPrivate bool
-
-	// OnlyPrivate excludes non-private repositories from the list.
-	OnlyPrivate bool
-
-	// OnlyRepoIDs skips fetching of RepoFields in each Repo.
-	OnlyRepoIDs bool
-
-	// Index when set will only include repositories which should be indexed
-	// if true. If false it will exclude repositories which should be
-	// indexed. An example use case of this is for indexed search only
-	// indexing a subset of repositories.
-	Index *bool
-
-	// List of fields by which to order the return repositories.
-	OrderBy RepoListOrderBy
-
-	*LimitOffset
-}
+type ReposListOptions struct { /* all structs must go */ }
 
 type RepoListOrderBy []RepoListSort
 
@@ -308,10 +244,7 @@ func (r RepoListOrderBy) SQL() *sqlf.Query {
 }
 
 // RepoListSort is a field by which to sort and the direction of the sorting.
-type RepoListSort struct {
-	Field      RepoListColumn
-	Descending bool
-}
+type RepoListSort struct { /* all structs must go */ }
 
 func (r RepoListSort) SQL() *sqlf.Query {
 	if r.Descending {

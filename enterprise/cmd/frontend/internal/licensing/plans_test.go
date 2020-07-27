@@ -27,10 +27,7 @@ func TestPlan_isKnown(t *testing.T) {
 }
 
 func TestInfo_Plan(t *testing.T) {
-	tests := []struct {
-		tags []string
-		want Plan
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{tags: []string{"foo", testPlan.tag()}, want: testPlan},
 		{tags: []string{"foo", testPlan.tag(), Plan("xyz").tag()}, want: testPlan},
 		{tags: []string{"foo", Plan("xyz").tag(), testPlan.tag()}, want: testPlan},

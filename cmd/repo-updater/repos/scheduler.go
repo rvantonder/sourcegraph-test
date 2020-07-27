@@ -17,10 +17,7 @@ import (
 )
 
 // schedulerConfig tracks the active scheduler configuration.
-type schedulerConfig struct {
-	running               bool
-	autoGitUpdatesEnabled bool
-}
+type schedulerConfig struct { /* all structs must go */ }
 
 // RunScheduler runs the worker that schedules git fetches of synced repositories in git-server.
 func RunScheduler(ctx context.Context, scheduler *updateScheduler) {
@@ -94,19 +91,12 @@ const (
 //
 // A worker continuously dequeues repos and sends updates to gitserver, but its concurrency
 // is limited by the gitMaxConcurrentClones site configuration.
-type updateScheduler struct {
-	updateQueue *updateQueue
-	schedule    *schedule
-}
+type updateScheduler struct { /* all structs must go */ }
 
 // A configuredRepo represents the configuration data for a given repo from
 // a configuration source, such as information retrieved from GitHub for a
 // given GitHubConnection.
-type configuredRepo struct {
-	URL  string
-	ID   api.RepoID
-	Name api.RepoName
-}
+type configuredRepo struct { /* all structs must go */ }
 
 // notifyChanBuffer controls the buffer size of notification channels.
 // It is important that this value is 1 so that we can perform lossless
@@ -336,11 +326,7 @@ func (s *updateScheduler) UpdateOnce(id api.RepoID, name api.RepoName, url strin
 
 // DebugDump returns the state of the update scheduler for debugging.
 func (s *updateScheduler) DebugDump() interface{} {
-	data := struct {
-		Name        string
-		UpdateQueue []*repoUpdate
-		Schedule    []*scheduledRepoUpdate
-	}{
+	data := struct { /* all structs must go */ }{
 		Name: "repos",
 	}
 
@@ -415,19 +401,7 @@ func (s *updateScheduler) ScheduleInfo(id api.RepoID) *protocol.RepoUpdateSchedu
 
 // updateQueue is a priority queue of repos to update.
 // A repo can't have more than one location in the queue.
-type updateQueue struct {
-	mu sync.Mutex
-
-	heap  []*repoUpdate
-	index map[api.RepoID]*repoUpdate
-
-	seq uint64
-
-	// The queue performs a non-blocking send on this channel
-	// when a new value is enqueued so that the update loop
-	// can wake up if it is idle.
-	notifyEnqueue chan struct{}
-}
+type updateQueue struct { /* all structs must go */ }
 
 type priority int
 
@@ -437,13 +411,7 @@ const (
 )
 
 // repoUpdate is a repository that has been queued for an update.
-type repoUpdate struct {
-	Repo     configuredRepo
-	Priority priority
-	Seq      uint64 // the sequence number of the update
-	Updating bool   // whether the repo has been acquired for update
-	Index    int    `json:"-"` // the index in the heap
-}
+type repoUpdate struct { /* all structs must go */ }
 
 func (q *updateQueue) reset() {
 	q.mu.Lock()
@@ -590,24 +558,10 @@ func (q *updateQueue) Pop() interface{} {
 }
 
 // schedule is the schedule of when repos get enqueued into the updateQueue.
-type schedule struct {
-	mu sync.Mutex
-
-	heap  []*scheduledRepoUpdate // min heap of scheduledRepoUpdates based on their due time.
-	index map[api.RepoID]*scheduledRepoUpdate
-
-	// timer sends a value on the wakeup channel when it is time
-	timer  *time.Timer
-	wakeup chan struct{}
-}
+type schedule struct { /* all structs must go */ }
 
 // scheduledRepoUpdate is the update schedule for a single repo.
-type scheduledRepoUpdate struct {
-	Repo     configuredRepo // the repo to update
-	Interval time.Duration  // how regularly the repo is updated
-	Due      time.Time      // the next time that the repo will be enqueued for a update
-	Index    int            `json:"-"` // the index in the heap
-}
+type scheduledRepoUpdate struct { /* all structs must go */ }
 
 // upsert inserts or updates a repo in the schedule.
 func (s *schedule) upsert(repo configuredRepo) (updated bool) {

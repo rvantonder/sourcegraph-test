@@ -4,11 +4,7 @@ package main
 import "testing"
 
 func TestParsePercent(t *testing.T) {
-	tests := []struct {
-		s       string
-		want    int
-		wantErr bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{s: "", wantErr: true},
 		{s: "-1", wantErr: true},
 		{s: "-4", wantErr: true},

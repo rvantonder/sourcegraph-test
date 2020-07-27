@@ -10,15 +10,10 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/hubspot/hubspotutil"
 )
 
-type trialRequestForHubSpot struct {
-	Email  *string `url:"email"`
-	SiteID string  `url:"site_id"`
-}
+type trialRequestForHubSpot struct { /* all structs must go */ }
 
 // RequestTrial makes a submission to the request trial form.
-func (r *schemaResolver) RequestTrial(ctx context.Context, args *struct {
-	Email string
-}) (*EmptyResponse, error) {
+func (r *schemaResolver) RequestTrial(ctx context.Context, args *struct { /* all structs must go */ }) (*EmptyResponse, error) {
 	email := args.Email
 
 	// If user is authenticated, use their uid and overwrite the optional email field.

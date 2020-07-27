@@ -156,10 +156,7 @@ func TestReposGetInventory(t *testing.T) {
 	}
 	defer git.ResetMocks()
 
-	tests := []struct {
-		useEnhancedLanguageDetection bool
-		want                         *inventory.Inventory
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			useEnhancedLanguageDetection: false,
 			want: &inventory.Inventory{

@@ -30,14 +30,7 @@ import (
 )
 
 // fakeSearcher is a zoekt.Searcher that returns a predefined search result.
-type fakeSearcher struct {
-	result *zoekt.SearchResult
-
-	repos []*zoekt.RepoListEntry
-
-	// Default all unimplemented zoekt.Searcher methods to panic.
-	zoekt.Searcher
-}
+type fakeSearcher struct { /* all structs must go */ }
 
 func (ss *fakeSearcher) Search(ctx context.Context, q zoektquery.Q, opts *zoekt.SearchOptions) (*zoekt.SearchResult, error) {
 	if ss.result == nil {
@@ -54,12 +47,7 @@ func (ss *fakeSearcher) String() string {
 	return fmt.Sprintf("fakeSearcher(result = %v, repos = %v)", ss.result, ss.repos)
 }
 
-type errorSearcher struct {
-	err error
-
-	// Default all unimplemented zoekt.Searcher methods to panic.
-	zoekt.Searcher
-}
+type errorSearcher struct { /* all structs must go */ }
 
 func (es *errorSearcher) Search(ctx context.Context, q zoektquery.Q, opts *zoekt.SearchOptions) (*zoekt.SearchResult, error) {
 	return nil, es.err
@@ -68,14 +56,7 @@ func (es *errorSearcher) Search(ctx context.Context, q zoektquery.Q, opts *zoekt
 func TestIndexedSearch(t *testing.T) {
 	zeroTimeoutCtx, cancel := context.WithTimeout(context.Background(), 0)
 	defer cancel()
-	type args struct {
-		ctx             context.Context
-		query           *search.TextPatternInfo
-		repos           []*search.RepositoryRevisions
-		useFullDeadline bool
-		results         []zoekt.FileMatch
-		since           func(time.Time) time.Duration
-	}
+	type args struct { /* all structs must go */ }
 
 	reposHEAD := makeRepositoryRevisions("foo/bar", "foo/foobar")
 	zoektRepos := []*zoekt.RepoListEntry{{
@@ -90,17 +71,7 @@ func TestIndexedSearch(t *testing.T) {
 		},
 	}}
 
-	tests := []struct {
-		name               string
-		args               args
-		wantMatchCount     int
-		wantMatchURLs      []string
-		wantMatchInputRevs []string
-		wantUnindexed      []*search.RepositoryRevisions
-		wantLimitHit       bool
-		wantReposLimitHit  map[string]struct{}
-		wantErr            bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "no matches",
 			args: args{
@@ -365,12 +336,7 @@ func TestZoektIndexedRepos(t *testing.T) {
 		return indexed
 	}
 
-	cases := []struct {
-		name      string
-		repos     []*search.RepositoryRevisions
-		indexed   []*search.RepositoryRevisions
-		unindexed []*search.RepositoryRevisions
-	}{{
+	cases := []struct { /* all structs must go */ }{{
 		name:      "all",
 		repos:     repos,
 		indexed:   makeIndexed(repos[:3]),
@@ -429,12 +395,7 @@ func Benchmark_zoektIndexedRepos(b *testing.B) {
 }
 
 func TestZoektResultCountFactor(t *testing.T) {
-	cases := []struct {
-		name     string
-		numRepos int
-		pattern  *search.TextPatternInfo
-		want     int
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			name:     "One repo implies max scaling factor",
 			numRepos: 1,
@@ -471,12 +432,7 @@ func TestZoektResultCountFactor(t *testing.T) {
 }
 
 func TestQueryToZoektQuery(t *testing.T) {
-	cases := []struct {
-		Name    string
-		Type    indexedRequestType
-		Pattern *search.TextPatternInfo
-		Query   string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			Name: "substr",
 			Type: textRequest,
@@ -828,11 +784,7 @@ func TestZoektIndexedRepos_single(t *testing.T) {
 			},
 		},
 	}
-	cases := []struct {
-		rev           string
-		wantIndexed   []*search.RepositoryRevisions
-		wantUnindexed []*search.RepositoryRevisions
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			rev:           "",
 			wantIndexed:   []*search.RepositoryRevisions{repoRev("")},
@@ -870,10 +822,7 @@ func TestZoektIndexedRepos_single(t *testing.T) {
 		},
 	}
 
-	type ret struct {
-		Indexed   map[string]*search.RepositoryRevisions
-		Unindexed []*search.RepositoryRevisions
-	}
+	type ret struct { /* all structs must go */ }
 
 	for _, tt := range cases {
 		indexed, unindexed := zoektIndexedRepos(zoektRepos, []*search.RepositoryRevisions{repoRev(tt.rev)}, nil)

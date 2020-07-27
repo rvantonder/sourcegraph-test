@@ -28,9 +28,7 @@ func HandleResetPasswordInit(w http.ResponseWriter, r *http.Request) {
 	}
 
 	ctx := r.Context()
-	var formData struct {
-		Email string `json:"email"`
-	}
+	var formData struct { /* all structs must go */ }
 	if err := json.NewDecoder(r.Body).Decode(&formData); err != nil {
 		httpLogAndError(w, "Could not decode password reset request body", http.StatusBadRequest, "err", err)
 		return
@@ -63,10 +61,7 @@ func HandleResetPasswordInit(w http.ResponseWriter, r *http.Request) {
 	if err := txemail.Send(r.Context(), txemail.Message{
 		To:       []string{formData.Email},
 		Template: resetPasswordEmailTemplates,
-		Data: struct {
-			Username string
-			URL      string
-		}{
+		Data: struct { /* all structs must go */ }{
 			Username: usr.Username,
 			URL:      globals.ExternalURL().ResolveReference(resetURL).String(),
 		},
@@ -105,11 +100,7 @@ func HandleResetPasswordCode(w http.ResponseWriter, r *http.Request) {
 	}
 
 	ctx := r.Context()
-	var params struct {
-		UserID   int32  `json:"userID"`
-		Code     string `json:"code"`
-		Password string `json:"password"` // new password
-	}
+	var params struct { /* all structs must go */ }
 	if err := json.NewDecoder(r.Body).Decode(&params); err != nil {
 		httpLogAndError(w, "Password reset with code: could not decode request body", http.StatusBadGateway, "err", err)
 		return

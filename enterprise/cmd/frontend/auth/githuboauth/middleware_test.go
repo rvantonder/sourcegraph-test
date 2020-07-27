@@ -266,10 +266,7 @@ func TestMiddleware(t *testing.T) {
 	})
 }
 
-type MockProvider struct {
-	*oauth.Provider
-	lastCallbackRequestURL *url.URL
-}
+type MockProvider struct { /* all structs must go */ }
 
 func newMockProvider(t *testing.T, clientID, clientSecret, baseURL string) *MockProvider {
 	var (

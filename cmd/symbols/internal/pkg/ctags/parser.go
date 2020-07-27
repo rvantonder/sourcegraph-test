@@ -15,19 +15,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/env"
 )
 
-type Entry struct {
-	Name       string
-	Path       string
-	Line       int
-	Kind       string
-	Language   string
-	Parent     string
-	ParentKind string
-	Pattern    string
-	Signature  string
-
-	FileLimited bool
-}
+type Entry struct { /* all structs must go */ }
 
 const debug = false
 
@@ -101,12 +89,7 @@ func New() (Parser, error) {
 	return &proc, nil
 }
 
-type ctagsProcess struct {
-	cmd     *exec.Cmd
-	in      io.WriteCloser
-	out     *scanner
-	outPipe io.ReadCloser
-}
+type ctagsProcess struct { /* all structs must go */ }
 
 func (p *ctagsProcess) Close() {
 	_ = p.cmd.Process.Kill()
@@ -160,36 +143,9 @@ func (p *ctagsProcess) post(req *request, content []byte) error {
 	return err
 }
 
-type request struct {
-	Command  string `json:"command"`
-	Filename string `json:"filename"`
-	Size     int    `json:"size"`
-}
+type request struct { /* all structs must go */ }
 
-type reply struct {
-	// Init
-	Typ     string `json:"_type"`
-	Name    string `json:"name"`
-	Version string `json:"version"`
-
-	// completed
-	Command string `json:"command"`
-
-	Path      string `json:"path"`
-	Language  string `json:"language"`
-	Line      int    `json:"line"`
-	Kind      string `json:"kind"`
-	End       int    `json:"end"`
-	Scope     string `json:"scope"`
-	ScopeKind string `json:"scopeKind"`
-	Access    string `json:"access"`
-	File      bool   `json:"file"`
-	Signature string `json:"signature"`
-	Pattern   string `json:"pattern"`
-
-	// error
-	Message string `json:"message"`
-}
+type reply struct { /* all structs must go */ }
 
 func (p *ctagsProcess) Parse(name string, content []byte) (entries []Entry, err error) {
 	req := request{
@@ -236,11 +192,7 @@ func (p *ctagsProcess) Parse(name string, content []byte) (entries []Entry, err 
 // bufio.ErrTooLong.
 //
 // Additionally it will skip empty lines.
-type scanner struct {
-	r    *bufio.Reader
-	line []byte
-	err  error
-}
+type scanner struct { /* all structs must go */ }
 
 func (s *scanner) Scan() bool {
 	if s.err != nil {

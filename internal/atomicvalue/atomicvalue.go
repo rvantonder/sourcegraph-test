@@ -8,10 +8,7 @@ package atomicvalue
 import "sync"
 
 // Value manages an atomic value.
-type Value struct {
-	mu    sync.RWMutex
-	value interface{}
-}
+type Value struct { /* all structs must go */ }
 
 // Get returns the current value.
 func (v *Value) Get() interface{} {

@@ -50,9 +50,7 @@ var builtinExtensions = map[string]bool{
 
 const singletonDefaultSettingsGQLID = "DefaultSettings"
 
-type defaultSettingsResolver struct {
-	gqlID string
-}
+type defaultSettingsResolver struct { /* all structs must go */ }
 
 var singletonDefaultSettingsResolver = &defaultSettingsResolver{gqlID: singletonDefaultSettingsGQLID}
 

@@ -15,10 +15,7 @@ import (
 
 const Port = 3188
 
-type Server struct {
-	server *http.Server
-	once   sync.Once
-}
+type Server struct { /* all structs must go */ }
 
 func New() *Server {
 	host := ""

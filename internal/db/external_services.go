@@ -27,11 +27,7 @@ import (
 // Before updating or creating a new external service, validation is performed.
 // The enterprise code registers additional validators at run-time and sets the
 // global instance in stores.go
-type ExternalServicesStore struct {
-	GitHubValidators          []func(*schema.GitHubConnection) error
-	GitLabValidators          []func(*schema.GitLabConnection, []schema.AuthProviders) error
-	BitbucketServerValidators []func(*schema.BitbucketServerConnection) error
-}
+type ExternalServicesStore struct { /* all structs must go */ }
 
 // ExternalServiceKinds contains a map of all supported kinds of
 // external services.
@@ -47,18 +43,10 @@ var ExternalServiceKinds = map[string]ExternalServiceKind{
 }
 
 // ExternalServiceKind describes a kind of external service.
-type ExternalServiceKind struct {
-	// True if the external service can host repositories.
-	CodeHost bool
-
-	JSONSchema string // JSON Schema for the external service's configuration
-}
+type ExternalServiceKind struct { /* all structs must go */ }
 
 // ExternalServicesListOptions contains options for listing external services.
-type ExternalServicesListOptions struct {
-	Kinds []string
-	*LimitOffset
-}
+type ExternalServicesListOptions struct { /* all structs must go */ }
 
 func (o ExternalServicesListOptions) sqlConditions() []*sqlf.Query {
 	conds := []*sqlf.Query{sqlf.Sprintf("deleted_at IS NULL")}
@@ -288,10 +276,7 @@ func (e *ExternalServicesStore) Create(ctx context.Context, confGet func() *conf
 }
 
 // ExternalServiceUpdate contains optional fields to update.
-type ExternalServiceUpdate struct {
-	DisplayName *string
-	Config      *string
-}
+type ExternalServiceUpdate struct { /* all structs must go */ }
 
 // Update updates a external service.
 //
@@ -343,9 +328,7 @@ func (e *ExternalServicesStore) Update(ctx context.Context, ps []schema.AuthProv
 	})
 }
 
-type externalServiceNotFoundError struct {
-	id int64
-}
+type externalServiceNotFoundError struct { /* all structs must go */ }
 
 func (e externalServiceNotFoundError) Error() string {
 	return fmt.Sprintf("external service not found: %v", e.id)
@@ -590,10 +573,4 @@ func (*ExternalServicesStore) Count(ctx context.Context, opt ExternalServicesLis
 }
 
 // MockExternalServices mocks the external services store.
-type MockExternalServices struct {
-	Create  func(ctx context.Context, confGet func() *conf.Unified, externalService *types.ExternalService) error
-	Delete  func(ctx context.Context, id int64) error
-	GetByID func(id int64) (*types.ExternalService, error)
-	List    func(opt ExternalServicesListOptions) ([]*types.ExternalService, error)
-	Update  func(ctx context.Context, ps []schema.AuthProviders, id int64, update *ExternalServiceUpdate) error
-}
+type MockExternalServices struct { /* all structs must go */ }

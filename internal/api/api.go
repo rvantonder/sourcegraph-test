@@ -18,20 +18,7 @@ type RepoName string
 type CommitID string
 
 // Repo represents a source code repository.
-type Repo struct {
-	// ID is the unique numeric ID for this repository on Sourcegraph.
-	ID RepoID
-
-	// ExternalRepo identifies this repository by its ID on the external service where it resides (and the external
-	// service itself).
-	ExternalRepo *ExternalRepoSpec
-
-	// Name is the name of the repository (such as "github.com/user/repo").
-	Name RepoName
-	// Enabled is whether the repository is enabled. Disabled repositories are
-	// not accessible by users (except site admins).
-	Enabled bool
-}
+type Repo struct { /* all structs must go */ }
 
 func (Repo) Fork() bool {
 	// TODO(sqs): update callers
@@ -39,28 +26,7 @@ func (Repo) Fork() bool {
 }
 
 // ExternalRepoSpec specifies a repository on an external service (such as GitHub or GitLab).
-type ExternalRepoSpec struct {
-	// ID is the repository's ID on the external service. Its value is opaque except to the repo-updater.
-	//
-	// For GitHub, this is the GitHub GraphQL API's node ID for the repository.
-	ID string
-
-	// ServiceType is the type of external service. Its value is opaque except to the repo-updater.
-	//
-	// Example: "github", "gitlab", etc.
-	ServiceType string
-
-	// ServiceID is the particular instance of the external service where this repository resides. Its value is
-	// opaque but typically consists of the canonical base URL to the service.
-	//
-	// Implementations must take care to normalize this URL. For example, if different GitHub.com repository code
-	// paths used slightly different values here (such as "https://github.com/" and "https://github.com", note the
-	// lack of trailing slash), then the same logical repository would be incorrectly treated as multiple distinct
-	// repositories depending on the code path that provided its ServiceID value.
-	//
-	// Example: "https://github.com/", "https://github-enterprise.example.com/"
-	ServiceID string
-}
+type ExternalRepoSpec struct { /* all structs must go */ }
 
 // Equal returns true if r is equal to s.
 func (r ExternalRepoSpec) Equal(s *ExternalRepoSpec) bool {
@@ -83,12 +49,7 @@ func (r ExternalRepoSpec) String() string {
 }
 
 // A SettingsSubject is something that can have settings. Exactly 1 field must be nonzero.
-type SettingsSubject struct {
-	Default bool   // whether this is for default settings
-	Site    bool   // whether this is for global settings
-	Org     *int32 // the org's ID
-	User    *int32 // the user's ID
-}
+type SettingsSubject struct { /* all structs must go */ }
 
 func (s SettingsSubject) String() string {
 	switch {
@@ -106,24 +67,10 @@ func (s SettingsSubject) String() string {
 }
 
 // Settings contains settings for a subject.
-type Settings struct {
-	ID           int32           // the unique ID of this settings value
-	Subject      SettingsSubject // the subject of these settings
-	AuthorUserID *int32          // the ID of the user who authored this settings value
-	Contents     string          // the raw JSON (with comments and trailing commas allowed)
-	CreatedAt    time.Time       // the date when this settings value was created
-}
+type Settings struct { /* all structs must go */ }
 
 // ExternalService represents an complete external service record.
-type ExternalService struct {
-	ID          int64
-	Kind        string
-	DisplayName string
-	Config      string
-	CreatedAt   time.Time
-	UpdatedAt   time.Time
-	DeletedAt   *time.Time
-}
+type ExternalService struct { /* all structs must go */ }
 
 func cmp(a, b string) int {
 	switch {

@@ -23,12 +23,7 @@ func TestExternalService(t *testing.T) {
 		esID, err := client.AddExternalService(gqltestutil.AddExternalServiceInput{
 			Kind:        extsvc.KindGitHub,
 			DisplayName: "gqltest-github-repoPathPattern",
-			Config: mustMarshalJSONString(struct {
-				URL                   string   `json:"url"`
-				Token                 string   `json:"token"`
-				Repos                 []string `json:"repos"`
-				RepositoryPathPattern string   `json:"repositoryPathPattern"`
-			}{
+			Config: mustMarshalJSONString(struct { /* all structs must go */ }{
 				URL:                   "http://github.com",
 				Token:                 *githubToken,
 				Repos:                 []string{repo},
@@ -75,13 +70,7 @@ func TestExternalService_AWSCodeCommit(t *testing.T) {
 	esID, err := client.AddExternalService(gqltestutil.AddExternalServiceInput{
 		Kind:        extsvc.KindAWSCodeCommit,
 		DisplayName: "gqltest-aws-code-commit",
-		Config: mustMarshalJSONString(struct {
-			Region                string            `json:"region"`
-			AccessKeyID           string            `json:"accessKeyID"`
-			SecretAccessKey       string            `json:"secretAccessKey"`
-			RepositoryPathPattern string            `json:"repositoryPathPattern"`
-			GitCredentials        map[string]string `json:"gitCredentials"`
-		}{
+		Config: mustMarshalJSONString(struct { /* all structs must go */ }{
 			Region:                "us-west-1",
 			AccessKeyID:           *awsAccessKeyID,
 			SecretAccessKey:       *awsSecretAccessKey,
@@ -128,13 +117,7 @@ func TestExternalService_BitbucketServer(t *testing.T) {
 	esID, err := client.AddExternalService(gqltestutil.AddExternalServiceInput{
 		Kind:        extsvc.KindBitbucketServer,
 		DisplayName: "gqltest-bitbucket-server",
-		Config: mustMarshalJSONString(struct {
-			URL                   string   `json:"url"`
-			Token                 string   `json:"token"`
-			Username              string   `json:"username"`
-			Repos                 []string `json:"repos"`
-			RepositoryPathPattern string   `json:"repositoryPathPattern"`
-		}{
+		Config: mustMarshalJSONString(struct { /* all structs must go */ }{
 			URL:                   *bbsURL,
 			Token:                 *bbsToken,
 			Username:              *bbsUsername,

@@ -49,11 +49,7 @@ func getOrCreateUser(ctx context.Context, p *provider, idToken *oidc.IDToken, us
 	}
 
 	var data extsvc.AccountData
-	data.SetAccountData(struct {
-		IDToken    *oidc.IDToken  `json:"idToken"`
-		UserInfo   *oidc.UserInfo `json:"userInfo"`
-		UserClaims *userClaims    `json:"userClaims"`
-	}{IDToken: idToken, UserInfo: userInfo, UserClaims: claims})
+	data.SetAccountData(struct { /* all structs must go */ }{IDToken: idToken, UserInfo: userInfo, UserClaims: claims})
 
 	userID, safeErrMsg, err := auth.GetAndSaveUser(ctx, auth.GetAndSaveUserOp{
 		UserProps: db.NewUser{

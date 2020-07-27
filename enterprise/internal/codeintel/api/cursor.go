@@ -12,24 +12,7 @@ import (
 )
 
 // Cursor holds the complete state necessary to page through a reference result set.
-type Cursor struct {
-	Phase                  string                // common
-	DumpID                 int                   // common
-	Path                   string                // same-dump/same-dump-monikers/definition-monikers
-	Line                   int                   // same-dump/same-dump-monikers
-	Character              int                   // same-dump/same-dump-monikers
-	Monikers               []bundles.MonikerData // same-dump/same-dump-monikers/definition-monikers
-	SkipResults            int                   // same-dump/same-dump-monikers/definition-monikers
-	Identifier             string                // same-repo/remote-repo
-	Scheme                 string                // same-repo/remote-repo
-	Name                   string                // same-repo/remote-repo
-	Version                string                // same-repo/remote-repo
-	DumpIDs                []int                 // same-repo/remote-repo
-	TotalDumpsWhenBatching int                   // same-repo/remote-repo
-	SkipDumpsWhenBatching  int                   // same-repo/remote-repo
-	SkipDumpsInBatch       int                   // same-repo/remote-repo
-	SkipResultsInDump      int                   // same-repo/remote-repo
-}
+type Cursor struct { /* all structs must go */ }
 
 // EncodeCursor returns an encoding of the given cursor suitable for a URL.
 func EncodeCursor(cursor Cursor) string {

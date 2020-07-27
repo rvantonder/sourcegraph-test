@@ -14,9 +14,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/hubspot/hubspotutil"
 )
 
-type surveyResponseResolver struct {
-	surveyResponse *types.SurveyResponse
-}
+type surveyResponseResolver struct { /* all structs must go */ }
 
 func (s *surveyResponseResolver) ID() graphql.ID {
 	return marshalSurveyResponseID(s.surveyResponse.ID)
@@ -56,31 +54,12 @@ func (s *surveyResponseResolver) CreatedAt() DateTime {
 }
 
 // SurveySubmissionInput contains a satisfaction (NPS) survey response.
-type SurveySubmissionInput struct {
-	// Emails is an optional, user-provided email address, if there is no
-	// currently authenticated user. If there is, this value will not be used.
-	Email *string
-	// Score is the user's likelihood of recommending Sourcegraph to a friend, from 0-10.
-	Score int32
-	// Reason is the answer to "What is the most important reason for the score you gave".
-	Reason *string
-	// Better is the answer to "What can Sourcegraph do to provide a better product"
-	Better *string
-}
+type SurveySubmissionInput struct { /* all structs must go */ }
 
-type surveySubmissionForHubSpot struct {
-	Email           *string `url:"email"`
-	Score           int32   `url:"nps_score"`
-	Reason          *string `url:"nps_reason"`
-	Better          *string `url:"nps_improvement"`
-	IsAuthenticated bool    `url:"user_is_authenticated"`
-	SiteID          string  `url:"site_id"`
-}
+type surveySubmissionForHubSpot struct { /* all structs must go */ }
 
 // SubmitSurvey records a new satisfaction (NPS) survey response by the current user.
-func (r *schemaResolver) SubmitSurvey(ctx context.Context, args *struct {
-	Input *SurveySubmissionInput
-}) (*EmptyResponse, error) {
+func (r *schemaResolver) SubmitSurvey(ctx context.Context, args *struct { /* all structs must go */ }) (*EmptyResponse, error) {
 	input := args.Input
 	var uid *int32
 	email := input.Email

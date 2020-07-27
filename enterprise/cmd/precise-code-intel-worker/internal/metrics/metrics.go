@@ -5,17 +5,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/observation"
 )
 
-type WorkerMetrics struct {
-	ProcessOperation             *observation.Operation
-	RepoStateOperation           *observation.Operation
-	CorrelateOperation           *observation.Operation
-	CanonicalizeOperation        *observation.Operation
-	PruneOperation               *observation.Operation
-	GroupBundleDataOperation     *observation.Operation
-	WriteOperation               *observation.Operation
-	UpdateXrepoDatabaseOperation *observation.Operation
-	SendDBOperation              *observation.Operation
-}
+type WorkerMetrics struct { /* all structs must go */ }
 
 func NewWorkerMetrics(observationContext *observation.Context) WorkerMetrics {
 	metrics := metrics.NewOperationMetrics(

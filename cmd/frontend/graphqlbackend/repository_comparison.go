@@ -20,16 +20,9 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/vcs/git"
 )
 
-type RepositoryComparisonInput struct {
-	Base         *string
-	Head         *string
-	FetchMissing bool
-}
+type RepositoryComparisonInput struct { /* all structs must go */ }
 
-type FileDiffsConnectionArgs struct {
-	First *int32
-	After *string
-}
+type FileDiffsConnectionArgs struct { /* all structs must go */ }
 
 type RepositoryComparisonInterface interface {
 	BaseRepository() *RepositoryResolver
@@ -150,11 +143,7 @@ func (r *RepositoryResolver) Comparison(ctx context.Context, args *RepositoryCom
 	return NewRepositoryComparison(ctx, r, args)
 }
 
-type RepositoryComparisonResolver struct {
-	baseRevspec, headRevspec string
-	base, head               *GitCommitResolver
-	repo                     *RepositoryResolver
-}
+type RepositoryComparisonResolver struct { /* all structs must go */ }
 
 // Type guard.
 var _ RepositoryComparisonInterface = &RepositoryComparisonResolver{}
@@ -316,14 +305,7 @@ func NewFileDiffConnectionResolver(
 	}
 }
 
-type fileDiffConnectionResolver struct {
-	base    *GitCommitResolver
-	head    *GitCommitResolver
-	first   *int32
-	after   *string
-	compute ComputeDiffFunc
-	newFile NewFileFunc
-}
+type fileDiffConnectionResolver struct { /* all structs must go */ }
 
 func (r *fileDiffConnectionResolver) Nodes(ctx context.Context) ([]FileDiff, error) {
 	fileDiffs, afterIdx, _, err := r.compute(ctx, &FileDiffsConnectionArgs{First: r.first, After: r.after})
@@ -400,13 +382,7 @@ func (r *fileDiffConnectionResolver) RawDiff(ctx context.Context) (string, error
 	return string(b), err
 }
 
-type FileDiffResolver struct {
-	FileDiff *diff.FileDiff
-	Base     *GitCommitResolver
-	Head     *GitCommitResolver
-
-	newFile NewFileFunc
-}
+type FileDiffResolver struct { /* all structs must go */ }
 
 func (r *FileDiffResolver) OldPath() *string { return diffPathOrNull(r.FileDiff.OrigName) }
 func (r *FileDiffResolver) NewPath() *string { return diffPathOrNull(r.FileDiff.NewName) }
@@ -472,15 +448,7 @@ type FileDiffHighlighter interface {
 	Highlight(ctx context.Context, args *HighlightArgs) ([]template.HTML, []template.HTML, bool, error)
 }
 
-type fileDiffHighlighter struct {
-	oldFile          FileResolver
-	newFile          FileResolver
-	highlightedBase  []template.HTML
-	highlightedHead  []template.HTML
-	highlightOnce    sync.Once
-	highlightErr     error
-	highlightAborted bool
-}
+type fileDiffHighlighter struct { /* all structs must go */ }
 
 func (r *fileDiffHighlighter) Highlight(ctx context.Context, args *HighlightArgs) ([]template.HTML, []template.HTML, bool, error) {
 	r.highlightOnce.Do(func() {
@@ -517,10 +485,7 @@ func (r *fileDiffHighlighter) Highlight(ctx context.Context, args *HighlightArgs
 	return r.highlightedBase, r.highlightedHead, r.highlightAborted, r.highlightErr
 }
 
-type DiffHunk struct {
-	hunk        *diff.Hunk
-	highlighter FileDiffHighlighter
-}
+type DiffHunk struct { /* all structs must go */ }
 
 func (r *DiffHunk) OldRange() *DiffHunkRange {
 	return NewDiffHunkRange(r.hunk.OrigStartLine, r.hunk.OrigLines)
@@ -580,10 +545,7 @@ func (r *DiffHunk) Highlight(ctx context.Context, args *HighlightArgs) (*highlig
 	}, nil
 }
 
-type highlightedDiffHunkBodyResolver struct {
-	highlightedDiffHunkLineResolvers []*highlightedDiffHunkLineResolver
-	aborted                          bool
-}
+type highlightedDiffHunkBodyResolver struct { /* all structs must go */ }
 
 func (r *highlightedDiffHunkBodyResolver) Aborted() bool {
 	return r.aborted
@@ -593,10 +555,7 @@ func (r *highlightedDiffHunkBodyResolver) Lines() []*highlightedDiffHunkLineReso
 	return r.highlightedDiffHunkLineResolvers
 }
 
-type highlightedDiffHunkLineResolver struct {
-	html string
-	kind string
-}
+type highlightedDiffHunkLineResolver struct { /* all structs must go */ }
 
 func (r *highlightedDiffHunkLineResolver) HTML() string {
 	return r.html
@@ -610,10 +569,7 @@ func NewDiffHunkRange(startLine, lines int32) *DiffHunkRange {
 	return &DiffHunkRange{startLine: startLine, lines: lines}
 }
 
-type DiffHunkRange struct {
-	startLine int32
-	lines     int32
-}
+type DiffHunkRange struct { /* all structs must go */ }
 
 func (r *DiffHunkRange) StartLine() int32 { return r.startLine }
 func (r *DiffHunkRange) Lines() int32     { return r.lines }

@@ -235,10 +235,7 @@ func buildAuthURLRedirect(p *provider, relayState relayState) (string, error) {
 //   the RelayState.
 // * In the IdP-initiated login flow, the RelayState can be any arbitrary hint, but in practice
 //   is the desired post-login redirect URL in plain text.
-type relayState struct {
-	ProviderID  string `json:"k"`
-	ReturnToURL string `json:"r"`
-}
+type relayState struct { /* all structs must go */ }
 
 // encode returns the base64-encoded JSON representation of the relay state.
 func (s *relayState) encode() string {

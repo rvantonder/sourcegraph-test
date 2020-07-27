@@ -6,10 +6,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/vcs/git"
 )
 
-type signatureResolver struct {
-	person *personResolver
-	date   time.Time
-}
+type signatureResolver struct { /* all structs must go */ }
 
 func (r signatureResolver) Person() *personResolver {
 	return r.person

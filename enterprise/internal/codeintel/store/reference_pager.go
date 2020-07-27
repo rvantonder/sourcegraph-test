@@ -29,10 +29,7 @@ func noopPageFromOffsetFunc(ctx context.Context, offset int) ([]types.PackageRef
 }
 
 // referencePager is a small struct that conforms to the ReferencePager interface.
-type referencePager struct {
-	pageFromOffset PageFromOffsetFunc
-	done           DoneFunc
-}
+type referencePager struct { /* all structs must go */ }
 
 // PageFromOffset returns the page of package references that starts at the given offset.
 func (rp *referencePager) PageFromOffset(ctx context.Context, offset int) ([]types.PackageReference, error) {

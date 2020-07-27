@@ -10,12 +10,7 @@ import (
 // NOTE: To update VCR for this test, please use the token of "sourcegraph-vcr"
 // for GITHUB_TOKEN, which can be found in 1Password.
 func TestClient_ListRepositoryCollaborators(t *testing.T) {
-	tests := []struct {
-		name      string
-		owner     string
-		repo      string
-		wantUsers []*Collaborator
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:  "public repo",
 			owner: "sourcegraph-vcr-repos",

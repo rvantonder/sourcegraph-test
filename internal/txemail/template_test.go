@@ -23,10 +23,7 @@ func TestParseTemplate(t *testing.T) {
 	}
 
 	var m email.Email
-	if err := renderTemplate(pt, struct {
-		A string
-		B string
-	}{
+	if err := renderTemplate(pt, struct { /* all structs must go */ }{
 		A: "a",
 		B: `<b>`,
 	}, &m); err != nil {

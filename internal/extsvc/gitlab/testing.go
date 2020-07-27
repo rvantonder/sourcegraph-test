@@ -12,11 +12,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/rcache"
 )
 
-type mockHTTPResponseBody struct {
-	count        int
-	header       http.Header
-	responseBody string
-}
+type mockHTTPResponseBody struct { /* all structs must go */ }
 
 func (s *mockHTTPResponseBody) Do(req *http.Request) (*http.Response, error) {
 	s.count++
@@ -28,9 +24,7 @@ func (s *mockHTTPResponseBody) Do(req *http.Request) (*http.Response, error) {
 	}, nil
 }
 
-type mockHTTPEmptyResponse struct {
-	statusCode int
-}
+type mockHTTPEmptyResponse struct { /* all structs must go */ }
 
 func (s mockHTTPEmptyResponse) Do(req *http.Request) (*http.Response, error) {
 	return &http.Response{

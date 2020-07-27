@@ -9,19 +9,9 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/api"
 )
 
-type symbolLocationArgs struct {
-	vfs        map[string]string
-	commitID   api.CommitID
-	importPath string
-	path       string
-	receiver   *string
-	symbol     string
-}
+type symbolLocationArgs struct { /* all structs must go */ }
 
-type test struct {
-	args symbolLocationArgs
-	want *lsp.Location
-}
+type test struct { /* all structs must go */ }
 
 func mkLocation(uri string, line, character int) *lsp.Location {
 	return &lsp.Location{
@@ -128,10 +118,7 @@ func mapFS(m map[string]string) *stringMapFS {
 	}
 }
 
-type stringMapFS struct {
-	ctxvfs.FileSystem
-	filenames []string
-}
+type stringMapFS struct { /* all structs must go */ }
 
 func (fs *stringMapFS) ListAllFiles(ctx context.Context) ([]string, error) {
 	return fs.filenames, nil

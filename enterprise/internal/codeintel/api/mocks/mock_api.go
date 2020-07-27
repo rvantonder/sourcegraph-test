@@ -14,26 +14,7 @@ import (
 // (from the package
 // github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/api)
 // used for unit testing.
-type MockCodeIntelAPI struct {
-	// DefinitionsFunc is an instance of a mock function object controlling
-	// the behavior of the method Definitions.
-	DefinitionsFunc *CodeIntelAPIDefinitionsFunc
-	// DiagnosticsFunc is an instance of a mock function object controlling
-	// the behavior of the method Diagnostics.
-	DiagnosticsFunc *CodeIntelAPIDiagnosticsFunc
-	// FindClosestDumpsFunc is an instance of a mock function object
-	// controlling the behavior of the method FindClosestDumps.
-	FindClosestDumpsFunc *CodeIntelAPIFindClosestDumpsFunc
-	// HoverFunc is an instance of a mock function object controlling the
-	// behavior of the method Hover.
-	HoverFunc *CodeIntelAPIHoverFunc
-	// RangesFunc is an instance of a mock function object controlling the
-	// behavior of the method Ranges.
-	RangesFunc *CodeIntelAPIRangesFunc
-	// ReferencesFunc is an instance of a mock function object controlling
-	// the behavior of the method References.
-	ReferencesFunc *CodeIntelAPIReferencesFunc
-}
+type MockCodeIntelAPI struct { /* all structs must go */ }
 
 // NewMockCodeIntelAPI creates a new mock of the CodeIntelAPI interface. All
 // methods return zero values for all results, unless overwritten.
@@ -100,12 +81,7 @@ func NewMockCodeIntelAPIFrom(i api.CodeIntelAPI) *MockCodeIntelAPI {
 
 // CodeIntelAPIDefinitionsFunc describes the behavior when the Definitions
 // method of the parent MockCodeIntelAPI instance is invoked.
-type CodeIntelAPIDefinitionsFunc struct {
-	defaultHook func(context.Context, string, int, int, int) ([]api.ResolvedLocation, error)
-	hooks       []func(context.Context, string, int, int, int) ([]api.ResolvedLocation, error)
-	history     []CodeIntelAPIDefinitionsFuncCall
-	mutex       sync.Mutex
-}
+type CodeIntelAPIDefinitionsFunc struct { /* all structs must go */ }
 
 // Definitions delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -180,29 +156,7 @@ func (f *CodeIntelAPIDefinitionsFunc) History() []CodeIntelAPIDefinitionsFuncCal
 
 // CodeIntelAPIDefinitionsFuncCall is an object that describes an invocation
 // of method Definitions on an instance of MockCodeIntelAPI.
-type CodeIntelAPIDefinitionsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 int
-	// Arg4 is the value of the 5th argument passed to this method
-	// invocation.
-	Arg4 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []api.ResolvedLocation
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type CodeIntelAPIDefinitionsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -218,12 +172,7 @@ func (c CodeIntelAPIDefinitionsFuncCall) Results() []interface{} {
 
 // CodeIntelAPIDiagnosticsFunc describes the behavior when the Diagnostics
 // method of the parent MockCodeIntelAPI instance is invoked.
-type CodeIntelAPIDiagnosticsFunc struct {
-	defaultHook func(context.Context, string, int, int, int) ([]api.ResolvedDiagnostic, int, error)
-	hooks       []func(context.Context, string, int, int, int) ([]api.ResolvedDiagnostic, int, error)
-	history     []CodeIntelAPIDiagnosticsFuncCall
-	mutex       sync.Mutex
-}
+type CodeIntelAPIDiagnosticsFunc struct { /* all structs must go */ }
 
 // Diagnostics delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -298,32 +247,7 @@ func (f *CodeIntelAPIDiagnosticsFunc) History() []CodeIntelAPIDiagnosticsFuncCal
 
 // CodeIntelAPIDiagnosticsFuncCall is an object that describes an invocation
 // of method Diagnostics on an instance of MockCodeIntelAPI.
-type CodeIntelAPIDiagnosticsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 int
-	// Arg4 is the value of the 5th argument passed to this method
-	// invocation.
-	Arg4 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []api.ResolvedDiagnostic
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 int
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type CodeIntelAPIDiagnosticsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -340,12 +264,7 @@ func (c CodeIntelAPIDiagnosticsFuncCall) Results() []interface{} {
 // CodeIntelAPIFindClosestDumpsFunc describes the behavior when the
 // FindClosestDumps method of the parent MockCodeIntelAPI instance is
 // invoked.
-type CodeIntelAPIFindClosestDumpsFunc struct {
-	defaultHook func(context.Context, int, string, string, bool, string) ([]store.Dump, error)
-	hooks       []func(context.Context, int, string, string, bool, string) ([]store.Dump, error)
-	history     []CodeIntelAPIFindClosestDumpsFuncCall
-	mutex       sync.Mutex
-}
+type CodeIntelAPIFindClosestDumpsFunc struct { /* all structs must go */ }
 
 // FindClosestDumps delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -420,32 +339,7 @@ func (f *CodeIntelAPIFindClosestDumpsFunc) History() []CodeIntelAPIFindClosestDu
 
 // CodeIntelAPIFindClosestDumpsFuncCall is an object that describes an
 // invocation of method FindClosestDumps on an instance of MockCodeIntelAPI.
-type CodeIntelAPIFindClosestDumpsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 string
-	// Arg4 is the value of the 5th argument passed to this method
-	// invocation.
-	Arg4 bool
-	// Arg5 is the value of the 6th argument passed to this method
-	// invocation.
-	Arg5 string
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []store.Dump
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type CodeIntelAPIFindClosestDumpsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -461,12 +355,7 @@ func (c CodeIntelAPIFindClosestDumpsFuncCall) Results() []interface{} {
 
 // CodeIntelAPIHoverFunc describes the behavior when the Hover method of the
 // parent MockCodeIntelAPI instance is invoked.
-type CodeIntelAPIHoverFunc struct {
-	defaultHook func(context.Context, string, int, int, int) (string, client.Range, bool, error)
-	hooks       []func(context.Context, string, int, int, int) (string, client.Range, bool, error)
-	history     []CodeIntelAPIHoverFuncCall
-	mutex       sync.Mutex
-}
+type CodeIntelAPIHoverFunc struct { /* all structs must go */ }
 
 // Hover delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -540,35 +429,7 @@ func (f *CodeIntelAPIHoverFunc) History() []CodeIntelAPIHoverFuncCall {
 
 // CodeIntelAPIHoverFuncCall is an object that describes an invocation of
 // method Hover on an instance of MockCodeIntelAPI.
-type CodeIntelAPIHoverFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 int
-	// Arg4 is the value of the 5th argument passed to this method
-	// invocation.
-	Arg4 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 string
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 client.Range
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 bool
-	// Result3 is the value of the 4th result returned from this method
-	// invocation.
-	Result3 error
-}
+type CodeIntelAPIHoverFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -584,12 +445,7 @@ func (c CodeIntelAPIHoverFuncCall) Results() []interface{} {
 
 // CodeIntelAPIRangesFunc describes the behavior when the Ranges method of
 // the parent MockCodeIntelAPI instance is invoked.
-type CodeIntelAPIRangesFunc struct {
-	defaultHook func(context.Context, string, int, int, int) ([]api.ResolvedCodeIntelligenceRange, error)
-	hooks       []func(context.Context, string, int, int, int) ([]api.ResolvedCodeIntelligenceRange, error)
-	history     []CodeIntelAPIRangesFuncCall
-	mutex       sync.Mutex
-}
+type CodeIntelAPIRangesFunc struct { /* all structs must go */ }
 
 // Ranges delegates to the next hook function in the queue and stores the
 // parameter and result values of this invocation.
@@ -663,29 +519,7 @@ func (f *CodeIntelAPIRangesFunc) History() []CodeIntelAPIRangesFuncCall {
 
 // CodeIntelAPIRangesFuncCall is an object that describes an invocation of
 // method Ranges on an instance of MockCodeIntelAPI.
-type CodeIntelAPIRangesFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 int
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 int
-	// Arg4 is the value of the 5th argument passed to this method
-	// invocation.
-	Arg4 int
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []api.ResolvedCodeIntelligenceRange
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type CodeIntelAPIRangesFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -701,12 +535,7 @@ func (c CodeIntelAPIRangesFuncCall) Results() []interface{} {
 
 // CodeIntelAPIReferencesFunc describes the behavior when the References
 // method of the parent MockCodeIntelAPI instance is invoked.
-type CodeIntelAPIReferencesFunc struct {
-	defaultHook func(context.Context, int, string, int, api.Cursor) ([]api.ResolvedLocation, api.Cursor, bool, error)
-	hooks       []func(context.Context, int, string, int, api.Cursor) ([]api.ResolvedLocation, api.Cursor, bool, error)
-	history     []CodeIntelAPIReferencesFuncCall
-	mutex       sync.Mutex
-}
+type CodeIntelAPIReferencesFunc struct { /* all structs must go */ }
 
 // References delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -781,35 +610,7 @@ func (f *CodeIntelAPIReferencesFunc) History() []CodeIntelAPIReferencesFuncCall 
 
 // CodeIntelAPIReferencesFuncCall is an object that describes an invocation
 // of method References on an instance of MockCodeIntelAPI.
-type CodeIntelAPIReferencesFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 int
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 int
-	// Arg4 is the value of the 5th argument passed to this method
-	// invocation.
-	Arg4 api.Cursor
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []api.ResolvedLocation
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 api.Cursor
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 bool
-	// Result3 is the value of the 4th result returned from this method
-	// invocation.
-	Result3 error
-}
+type CodeIntelAPIReferencesFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.

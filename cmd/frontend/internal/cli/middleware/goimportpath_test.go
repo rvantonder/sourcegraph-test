@@ -10,11 +10,7 @@ import (
 )
 
 func TestGoImportPath(t *testing.T) {
-	tests := []struct {
-		path       string
-		wantStatus int
-		wantBody   string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			path:       "/sourcegraph/sourcegraph/usercontent",
 			wantStatus: http.StatusOK,

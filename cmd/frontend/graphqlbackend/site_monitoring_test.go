@@ -15,17 +15,8 @@ import (
 func Test_siteMonitoringStatisticsResolver_Alerts(t *testing.T) {
 	mock := prometheusutil.NewMockPrometheusQuerier()
 	sampleT := model.Time(time.Now().UTC().Unix())
-	type fields struct {
-		queryValue    model.Value
-		queryWarnings prometheus.Warnings
-		queryErr      error
-	}
-	tests := []struct {
-		name    string
-		fields  fields
-		want    []*MonitoringAlert
-		wantErr error
-	}{
+	type fields struct { /* all structs must go */ }
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "includes alerts with no occurrences",
 			fields: fields{

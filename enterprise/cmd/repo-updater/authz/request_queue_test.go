@@ -21,14 +21,7 @@ func Test_requestQueue_enqueue(t *testing.T) {
 
 	lowUser1 := &requestMeta{Priority: priorityLow, Type: requestTypeUser, ID: 1}
 
-	tests := []struct {
-		name             string
-		metas            []*requestMeta
-		acquires         int // To acquire n requests before assertions
-		expHeap          []*syncRequest
-		expUpdated       []requestQueueKey
-		expNotifications int // The number of notifications expect to receive
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "enqueue a low priority repo 1",
 			metas: []*requestMeta{
@@ -239,17 +232,9 @@ func Test_requestQueue_remove(t *testing.T) {
 	repo3 := &requestMeta{Type: requestTypeRepo, ID: 3}
 	repo3Key := requestQueueKey{typ: requestTypeRepo, id: 3}
 
-	type remove struct {
-		requestQueueKey
-		acquired bool
-	}
+	type remove struct { /* all structs must go */ }
 
-	tests := []struct {
-		name    string
-		metas   []*requestMeta
-		removes []*remove
-		expHeap []*syncRequest
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "remove the only one",
 			metas: []*requestMeta{
@@ -386,13 +371,7 @@ func Test_requestQueue_acquireNext(t *testing.T) {
 	repo1 := &requestMeta{Type: requestTypeRepo, ID: 1}
 	repo2 := &requestMeta{Type: requestTypeRepo, ID: 2}
 
-	tests := []struct {
-		name        string
-		metas       []*requestMeta
-		acquires    int // To acquire n requests before assertions
-		expAcquires []*syncRequest
-		expHeap     []*syncRequest
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:     "acquire from empty queue returns nothing",
 			acquires: 1,
@@ -511,11 +490,7 @@ func Test_requestQueue_release(t *testing.T) {
 func Test_requestQueue_Less(t *testing.T) {
 	q := newRequestQueue()
 
-	tests := []struct {
-		name   string
-		heap   []*syncRequest
-		expVal bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "i is acquired",
 			heap: []*syncRequest{

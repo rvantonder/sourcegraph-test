@@ -8,14 +8,8 @@ import (
 )
 
 func TestProposedQuotedQueries(t *testing.T) {
-	type args struct {
-		rawQuery string
-	}
-	tests := []struct {
-		name string
-		args args
-		want []*searchQueryDescription
-	}{
+	type args struct { /* all structs must go */ }
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "empty",
 			args: args{
@@ -67,11 +61,7 @@ func TestProposedQuotedQueries(t *testing.T) {
 }
 
 func TestCapFirst(t *testing.T) {
-	tests := []struct {
-		name string
-		in   string
-		want string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{name: "empty", in: "", want: ""},
 		{name: "a", in: "a", want: "A"},
 		{name: "ab", in: "ab", want: "Ab"},

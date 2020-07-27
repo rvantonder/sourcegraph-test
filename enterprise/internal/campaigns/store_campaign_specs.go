@@ -160,10 +160,7 @@ FROM campaign_specs
 `
 
 // GetCampaignSpecOpts captures the query options needed for getting a CampaignSpec
-type GetCampaignSpecOpts struct {
-	ID     int64
-	RandID string
-}
+type GetCampaignSpecOpts struct { /* all structs must go */ }
 
 // GetCampaignSpec gets a code mod matching the given options.
 func (s *Store) GetCampaignSpec(ctx context.Context, opts GetCampaignSpecOpts) (*campaigns.CampaignSpec, error) {
@@ -211,10 +208,7 @@ func getCampaignSpecQuery(opts *GetCampaignSpecOpts) *sqlf.Query {
 
 // ListCampaignSpecsOpts captures the query options needed for
 // listing code mods.
-type ListCampaignSpecsOpts struct {
-	Cursor int64
-	Limit  int
-}
+type ListCampaignSpecsOpts struct { /* all structs must go */ }
 
 // ListCampaignSpecs lists CampaignSpecs with the given filters.
 func (s *Store) ListCampaignSpecs(ctx context.Context, opts ListCampaignSpecsOpts) (cs []*campaigns.CampaignSpec, next int64, err error) {

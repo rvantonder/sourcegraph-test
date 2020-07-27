@@ -9,11 +9,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/db"
 )
 
-func (r *schemaResolver) SetTag(ctx context.Context, args *struct {
-	Node    graphql.ID
-	Tag     string
-	Present bool
-}) (*EmptyResponse, error) {
+func (r *schemaResolver) SetTag(ctx context.Context, args *struct { /* all structs must go */ }) (*EmptyResponse, error) {
 	// 🚨 SECURITY: Only site admins may set tags.
 	if err := backend.CheckCurrentUserIsSiteAdmin(ctx); err != nil {
 		return nil, err

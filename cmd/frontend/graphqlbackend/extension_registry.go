@@ -52,40 +52,17 @@ type ExtensionRegistryResolver interface {
 	FilterRemoteExtensions([]string) []string // not exposed via GraphQL
 }
 
-type RegistryExtensionConnectionArgs struct {
-	graphqlutil.ConnectionArgs
-	Query                  *string
-	Publisher              *graphql.ID
-	Local                  bool
-	Remote                 bool
-	PrioritizeExtensionIDs *[]string
-}
+type RegistryExtensionConnectionArgs struct { /* all structs must go */ }
 
-type ExtensionRegistryExtensionArgs struct {
-	ExtensionID string
-}
+type ExtensionRegistryExtensionArgs struct { /* all structs must go */ }
 
-type ExtensionRegistryCreateExtensionArgs struct {
-	Publisher graphql.ID
-	Name      string
-}
+type ExtensionRegistryCreateExtensionArgs struct { /* all structs must go */ }
 
-type ExtensionRegistryUpdateExtensionArgs struct {
-	Extension graphql.ID
-	Name      *string
-}
+type ExtensionRegistryUpdateExtensionArgs struct { /* all structs must go */ }
 
-type ExtensionRegistryPublishExtensionArgs struct {
-	ExtensionID string
-	Manifest    string
-	Bundle      *string
-	SourceMap   *string
-	Force       bool
-}
+type ExtensionRegistryPublishExtensionArgs struct { /* all structs must go */ }
 
-type ExtensionRegistryDeleteExtensionArgs struct {
-	Extension graphql.ID
-}
+type ExtensionRegistryDeleteExtensionArgs struct { /* all structs must go */ }
 
 // ExtensionRegistryMutationResult is the interface for the GraphQL type ExtensionRegistryMutationResult.
 type ExtensionRegistryMutationResult interface {

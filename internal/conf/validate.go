@@ -55,10 +55,7 @@ const (
 )
 
 // Problem contains kind and description of a specific configuration problem.
-type Problem struct {
-	kind        problemKind
-	description string
-}
+type Problem struct { /* all structs must go */ }
 
 // NewSiteProblem creates a new site config problem with given message.
 func NewSiteProblem(msg string) *Problem {
@@ -247,9 +244,7 @@ func validate(schema, input []byte) (*gojsonschema.Result, error) {
 	return s.Validate(gojsonschema.NewBytesLoader(input))
 }
 
-type jsonLoader struct {
-	gojsonschema.JSONLoader
-}
+type jsonLoader struct { /* all structs must go */ }
 
 func (l jsonLoader) LoaderFactory() gojsonschema.JSONLoaderFactory {
 	return &jsonLoaderFactory{}

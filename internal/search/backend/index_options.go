@@ -13,18 +13,7 @@ import (
 // fetched. See getIndexOptions in the zoekt codebase.
 //
 // We only specify a subset of the fields.
-type zoektIndexOptions struct {
-	// LargeFiles is a slice of glob patterns where matching file paths should
-	// be indexed regardless of their size. The pattern syntax can be found
-	// here: https://golang.org/pkg/path/filepath/#Match.
-	LargeFiles []string
-
-	// Symbols if true will make zoekt index the output of ctags.
-	Symbols bool
-
-	// Branches is a slice of branches to index.
-	Branches []zoekt.RepositoryBranch `json:",omitempty"`
-}
+type zoektIndexOptions struct { /* all structs must go */ }
 
 // GetIndexOptions returns a json blob for consumption by
 // sourcegraph-zoekt-indexserver. It is for repoName based on site settings c.

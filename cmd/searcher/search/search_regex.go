@@ -39,29 +39,7 @@ import (
 // consider using ripgrep directly (modify it to search zip archives).
 //
 // TODO(keegan) return search statistics
-type readerGrep struct {
-	// re is the regexp to match, or nil if empty ("match all files' content").
-	re *regexp.Regexp
-
-	// ignoreCase if true means we need to do case insensitive matching.
-	ignoreCase bool
-
-	// transformBuf is reused between file searches to avoid
-	// re-allocating. It is only used if we need to transform the input
-	// before matching. For example we lower case the input in the case of
-	// ignoreCase.
-	transformBuf []byte
-
-	// matchPath is compiled from the include/exclude path patterns and reports
-	// whether a file path matches (and should be searched).
-	matchPath pathmatch.PathMatcher
-
-	// literalSubstring is used to test if a file is worth considering for
-	// matches. literalSubstring is guaranteed to appear in any match found by
-	// re. It is the output of the longestLiteral function. It is only set if
-	// the regex has an empty LiteralPrefix.
-	literalSubstring []byte
-}
+type readerGrep struct { /* all structs must go */ }
 
 // compile returns a readerGrep for matching p.
 func compile(p *protocol.PatternInfo) (*readerGrep, error) {

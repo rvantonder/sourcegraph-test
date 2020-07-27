@@ -12,19 +12,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/vcs"
 )
 
-type Scheduler struct {
-	store                       store.Store
-	gitserverClient             gitserver.Client
-	interval                    time.Duration
-	batchSize                   int
-	minimumTimeSinceLastEnqueue time.Duration
-	minimumSearchCount          int
-	minimumSearchRatio          float64
-	minimumPreciseCount         int
-	metrics                     SchedulerMetrics
-	done                        chan struct{}
-	once                        sync.Once
-}
+type Scheduler struct { /* all structs must go */ }
 
 func NewScheduler(
 	store store.Store,

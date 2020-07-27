@@ -15,9 +15,7 @@ import (
 )
 
 // OrgNotFoundError occurs when an organization is not found.
-type OrgNotFoundError struct {
-	Message string
-}
+type OrgNotFoundError struct { /* all structs must go */ }
 
 func (e *OrgNotFoundError) Error() string {
 	return fmt.Sprintf("org not found: %s", e.Message)
@@ -100,12 +98,7 @@ func (o *orgs) Count(ctx context.Context, opt OrgsListOptions) (int, error) {
 }
 
 // OrgsListOptions specifies the options for listing organizations.
-type OrgsListOptions struct {
-	// Query specifies a search query for organizations.
-	Query string
-
-	*LimitOffset
-}
+type OrgsListOptions struct { /* all structs must go */ }
 
 func (o *orgs) List(ctx context.Context, opt *OrgsListOptions) ([]*types.Org, error) {
 	if Mocks.Orgs.List != nil {

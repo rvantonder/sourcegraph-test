@@ -28,26 +28,10 @@ import (
 )
 
 // A Changeset of an existing Repo.
-type Changeset struct {
-	Title   string
-	Body    string
-	HeadRef string
-	BaseRef string
-
-	*campaigns.Changeset
-	*Repo
-}
+type Changeset struct { /* all structs must go */ }
 
 // An ExternalService defines a Source that yields Repos.
-type ExternalService struct {
-	ID          int64
-	Kind        string
-	DisplayName string
-	Config      string
-	CreatedAt   time.Time
-	UpdatedAt   time.Time
-	DeletedAt   time.Time
-}
+type ExternalService struct { /* all structs must go */ }
 
 // URN returns a unique resource identifier of this external service,
 // used as the key in a repo's Sources map as well as the SourceInfo ID.
@@ -514,50 +498,10 @@ func (e *ExternalService) With(opts ...func(*ExternalService)) *ExternalService 
 }
 
 // Repo represents a source code repository stored in Sourcegraph.
-type Repo struct {
-	// The internal Sourcegraph repo ID.
-	ID api.RepoID
-	// Name is the name for this repository (e.g., "github.com/user/repo"). It
-	// is the same as URI, unless the user configures a non-default
-	// repositoryPathPattern.
-	//
-	// Previously, this was called RepoURI.
-	Name string
-	// URI is the full name for this repository (e.g.,
-	// "github.com/user/repo"). See the documentation for the Name field.
-	URI string
-	// Description is a brief description of the repository.
-	Description string
-	// Language is the primary programming language used in this repository.
-	Language string
-	// Fork is whether this repository is a fork of another repository.
-	Fork bool
-	// Archived is whether the repository has been archived.
-	Archived bool
-	// Private is whether the repository is private.
-	Private bool
-	// Cloned is whether the repository is cloned.
-	Cloned bool
-	// CreatedAt is when this repository was created on Sourcegraph.
-	CreatedAt time.Time
-	// UpdatedAt is when this repository's metadata was last updated on Sourcegraph.
-	UpdatedAt time.Time
-	// DeletedAt is when this repository was soft-deleted from Sourcegraph.
-	DeletedAt time.Time
-	// ExternalRepo identifies this repository by its ID on the external service where it resides (and the external
-	// service itself).
-	ExternalRepo api.ExternalRepoSpec
-	// Sources identifies all the repo sources this Repo belongs to.
-	Sources map[string]*SourceInfo
-	// Metadata contains the raw source code host JSON metadata.
-	Metadata interface{}
-}
+type Repo struct { /* all structs must go */ }
 
 // A SourceInfo represents a source a Repo belongs to (such as an external service).
-type SourceInfo struct {
-	ID       string
-	CloneURL string
-}
+type SourceInfo struct { /* all structs must go */ }
 
 // ExternalServiceID returns the ID of the external service this
 // SourceInfo refers to.
@@ -937,10 +881,7 @@ func NewRateLimitSyncer(registry *ratelimit.Registry, serviceLister externalServ
 }
 
 // RateLimitSyncer syncs rate limits based on external service configuration
-type RateLimitSyncer struct {
-	registry      *ratelimit.Registry
-	serviceLister externalServiceLister
-}
+type RateLimitSyncer struct { /* all structs must go */ }
 
 // SyncRateLimiters syncs all rate limiters using current config.
 // We sync them all as we need to pick the most restrictive configured limit per code host

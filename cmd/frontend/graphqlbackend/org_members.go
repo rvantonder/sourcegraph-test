@@ -20,9 +20,7 @@ func (r *UserResolver) OrganizationMemberships(ctx context.Context) (*organizati
 	return &c, nil
 }
 
-type organizationMembershipConnectionResolver struct {
-	nodes []*organizationMembershipResolver
-}
+type organizationMembershipConnectionResolver struct { /* all structs must go */ }
 
 func (r *organizationMembershipConnectionResolver) Nodes() []*organizationMembershipResolver {
 	return r.nodes
@@ -32,9 +30,7 @@ func (r *organizationMembershipConnectionResolver) PageInfo() *graphqlutil.PageI
 	return graphqlutil.HasNextPage(false)
 }
 
-type organizationMembershipResolver struct {
-	membership *types.OrgMembership
-}
+type organizationMembershipResolver struct { /* all structs must go */ }
 
 func (r *organizationMembershipResolver) Organization(ctx context.Context) (*OrgResolver, error) {
 	return OrgByIDInt32(ctx, r.membership.OrgID)

@@ -20,19 +20,7 @@ import (
 )
 
 // SyncRegistry manages a ChangesetSyncer per code host
-type SyncRegistry struct {
-	Ctx         context.Context
-	SyncStore   SyncStore
-	RepoStore   RepoStore
-	HTTPFactory *httpcli.Factory
-
-	// Used to receive high priority sync requests
-	priorityNotify chan []int64
-
-	mu sync.Mutex
-	// key is normalised code host url, also called external_service_id on the repo table
-	syncers map[string]*ChangesetSyncer
-}
+type SyncRegistry struct { /* all structs must go */ }
 
 type RepoStore interface {
 	ListExternalServices(context.Context, repos.StoreListExternalServicesArgs) ([]*repos.ExternalService, error)
@@ -213,36 +201,9 @@ func timeIsNilOrZero(t *time.Time) bool {
 
 // A ChangesetSyncer periodically syncs metadata of changesets
 // saved in the database.
-type ChangesetSyncer struct {
-	SyncStore   SyncStore
-	ReposStore  RepoStore
-	HTTPFactory *httpcli.Factory
+type ChangesetSyncer struct { /* all structs must go */ }
 
-	codeHostURL string
-
-	// scheduleInterval determines how often a new schedule will be computed.
-	// NOTE: It involves a DB query but no communication with code hosts.
-	scheduleInterval time.Duration
-
-	queue          *changesetPriorityQueue
-	priorityNotify chan []int64
-
-	// Replaceable for testing
-	syncFunc func(ctx context.Context, id int64) error
-	clock    func() time.Time
-
-	// cancel should be called to stop this syncer
-	cancel context.CancelFunc
-}
-
-var syncerMetrics = struct {
-	syncs                   *prometheus.CounterVec
-	priorityQueued          *prometheus.CounterVec
-	syncDuration            *prometheus.HistogramVec
-	computeScheduleDuration *prometheus.HistogramVec
-	scheduleSize            *prometheus.GaugeVec
-	behindSchedule          *prometheus.GaugeVec
-}{}
+var syncerMetrics = struct { /* all structs must go */ }{}
 
 func init() {
 	syncerMetrics.syncs = promauto.NewCounterVec(prometheus.CounterOpts{
@@ -701,18 +662,11 @@ func filterSyncData(codeHostURL string, allSyncData []campaigns.ChangesetSyncDat
 	return syncData
 }
 
-type scheduledSync struct {
-	changesetID int64
-	nextSync    time.Time
-	priority    priority
-}
+type scheduledSync struct { /* all structs must go */ }
 
 // changesetPriorityQueue is a min heap that sorts syncs by priority
 // and time of next sync. It is not safe for concurrent use.
-type changesetPriorityQueue struct {
-	items []scheduledSync
-	index map[int64]int // changesetID -> index
-}
+type changesetPriorityQueue struct { /* all structs must go */ }
 
 // newChangesetPriorityQueue creates a new queue for holding changeset sync instructions in chronological order.
 // items with a high priority will always appear at the front of the queue.
@@ -824,7 +778,4 @@ const (
 
 // A SourceChangesets groups *repos.Changesets together with the
 // repos.ChangesetSource that can be used to modify the changesets.
-type SourceChangesets struct {
-	repos.ChangesetSource
-	Changesets []*repos.Changeset
-}
+type SourceChangesets struct { /* all structs must go */ }

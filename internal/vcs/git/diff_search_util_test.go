@@ -6,10 +6,7 @@ import (
 )
 
 func TestRegexpToGlobBestEffort(t *testing.T) {
-	tests := map[string]struct {
-		glob  string
-		equiv bool
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"":          {"*", true},
 		"foo":       {"*foo*", true},
 		"^foo":      {"foo*", true},

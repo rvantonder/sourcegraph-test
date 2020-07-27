@@ -85,9 +85,7 @@ var debugPretendSavedQueryResultsExist = false
 
 var executor = &executorT{}
 
-type executorT struct {
-	forceRunInterval *time.Duration
-}
+type executorT struct { /* all structs must go */ }
 
 func (e *executorT) run(ctx context.Context) error {
 	// Parse FORCE_RUN_INTERVAL value.
@@ -303,13 +301,7 @@ func notify(ctx context.Context, spec api.SavedQueryIDSpec, query api.ConfigSave
 	return nil
 }
 
-type notifier struct {
-	spec       api.SavedQueryIDSpec
-	query      api.ConfigSavedQuery
-	newQuery   string
-	results    *gqlSearchResponse
-	recipients recipients
-}
+type notifier struct { /* all structs must go */ }
 
 const (
 	utmSourceEmail = "saved-search-email"

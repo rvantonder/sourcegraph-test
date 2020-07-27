@@ -34,41 +34,11 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/vcs/git"
 )
 
-type InjectedHTML struct {
-	HeadTop    template.HTML
-	HeadBottom template.HTML
-	BodyTop    template.HTML
-	BodyBottom template.HTML
-}
+type InjectedHTML struct { /* all structs must go */ }
 
-type Metadata struct {
-	// Title is the title of the page for Twitter cards, OpenGraph, etc.
-	// e.g. "Open in Sourcegraph"
-	Title string
+type Metadata struct { /* all structs must go */ }
 
-	// Description is the description of the page for Twitter cards, OpenGraph,
-	// etc. e.g. "View this link in Sourcegraph Editor."
-	Description string
-
-	// ShowPreview controls whether or not OpenGraph/Twitter card/etc metadata is rendered.
-	ShowPreview bool
-}
-
-type Common struct {
-	Injected InjectedHTML
-	Metadata *Metadata
-	Context  jscontext.JSContext
-	AssetURL string
-	Title    string
-	Error    *pageError
-
-	WebpackDevServer bool // whether the Webpack dev server is running (WEBPACK_DEV_SERVER env var)
-
-	// The fields below have zero values when not on a repo page.
-	Repo         *types.Repo
-	Rev          string // unresolved / user-specified revision (e.x.: "@master")
-	api.CommitID        // resolved SHA1 revision
-}
+type Common struct { /* all structs must go */ }
 
 var webpackDevServer, _ = strconv.ParseBool(os.Getenv("WEBPACK_DEV_SERVER"))
 

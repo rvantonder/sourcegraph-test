@@ -110,11 +110,7 @@ func TestComparePosition(t *testing.T) {
 		EndCharacter:   13,
 	}
 
-	testCases := []struct {
-		line      int
-		character int
-		expected  int
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{5, 11, 0},
 		{5, 12, 0},
 		{5, 13, 0},
@@ -132,11 +128,7 @@ func TestComparePosition(t *testing.T) {
 }
 
 func TestRangeIntersectsSpan(t *testing.T) {
-	testCases := []struct {
-		startLine int
-		endLine   int
-		expected  bool
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{startLine: 1, endLine: 4, expected: false},
 		{startLine: 7, endLine: 9, expected: false},
 		{startLine: 1, endLine: 6, expected: true},

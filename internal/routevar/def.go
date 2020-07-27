@@ -3,10 +3,7 @@ package routevar
 // DefAtRev refers to a def at a non-absolute commit ID (unlike
 // DefSpec/DefKey, which require the CommitID field to have an
 // absolute commit ID).
-type DefAtRev struct {
-	RepoRev
-	Unit, UnitType, Path string
-}
+type DefAtRev struct { /* all structs must go */ }
 
 // Def captures def paths in URL routes.
 const Def = "{UnitType}/{Unit:.+?}/-/{Path:.*?}"

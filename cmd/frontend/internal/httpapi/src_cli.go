@@ -19,9 +19,7 @@ var allowedFilenames = []string{
 }
 
 func srcCliVersionServe(w http.ResponseWriter, r *http.Request) error {
-	return writeJSON(w, &struct {
-		Version string `json:"version"`
-	}{
+	return writeJSON(w, &struct { /* all structs must go */ }{
 		Version: srcCliVersion(),
 	})
 }

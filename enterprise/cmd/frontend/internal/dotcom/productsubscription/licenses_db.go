@@ -12,12 +12,7 @@ import (
 )
 
 // dbLicense describes an product license row in the product_licenses DB table.
-type dbLicense struct {
-	ID                    string // UUID
-	ProductSubscriptionID string // UUID
-	LicenseKey            string
-	CreatedAt             time.Time
-}
+type dbLicense struct { /* all structs must go */ }
 
 // errLicenseNotFound occurs when a database operation expects a specific Sourcegraph
 // license to exist but it does not exist.
@@ -79,11 +74,7 @@ func (s dbLicenses) GetByLicenseKey(ctx context.Context, licenseKey string) (*db
 }
 
 // dbLicensesListOptions contains options for listing product licenses.
-type dbLicensesListOptions struct {
-	LicenseKeySubstring   string
-	ProductSubscriptionID string // only list product licenses for this subscription (by UUID)
-	*db.LimitOffset
-}
+type dbLicensesListOptions struct { /* all structs must go */ }
 
 func (o dbLicensesListOptions) sqlConditions() []*sqlf.Query {
 	conds := []*sqlf.Query{sqlf.Sprintf("TRUE")}
@@ -142,9 +133,4 @@ func (dbLicenses) Count(ctx context.Context, opt dbLicensesListOptions) (int, er
 	return count, nil
 }
 
-type mockLicenses struct {
-	Create          func(subscriptionID, licenseKey string) (id string, err error)
-	GetByID         func(id string) (*dbLicense, error)
-	GetByLicenseKey func(licenseKey string) (*dbLicense, error)
-	List            func(ctx context.Context, opt dbLicensesListOptions) ([]*dbLicense, error)
-}
+type mockLicenses struct { /* all structs must go */ }

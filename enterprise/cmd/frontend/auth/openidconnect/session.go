@@ -11,14 +11,7 @@ import (
 
 const sessionKey = "oidc@0"
 
-type sessionData struct {
-	ID providers.ConfigID
-
-	// Store only the oauth2.Token fields we need, to avoid hitting the ~4096-byte session data
-	// limit.
-	AccessToken string
-	TokenType   string
-}
+type sessionData struct { /* all structs must go */ }
 
 // SignOut clears OpenID Connect-related data from the session. If possible, it revokes the token
 // from the OP. If there is an end-session endpoint, it returns that for the caller to present to

@@ -8,9 +8,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/schema"
 )
 
-type versionContextResolver struct {
-	vc *schema.VersionContext
-}
+type versionContextResolver struct { /* all structs must go */ }
 
 func (v *versionContextResolver) ID() graphql.ID {
 	return graphql.ID(v.vc.Name)

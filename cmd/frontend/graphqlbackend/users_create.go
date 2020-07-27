@@ -12,10 +12,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/db"
 )
 
-func (*schemaResolver) CreateUser(ctx context.Context, args *struct {
-	Username string
-	Email    *string
-}) (*createUserResult, error) {
+func (*schemaResolver) CreateUser(ctx context.Context, args *struct { /* all structs must go */ }) (*createUserResult, error) {
 	// 🚨 SECURITY: Only site admins can create user accounts.
 	if err := backend.CheckCurrentUserIsSiteAdmin(ctx); err != nil {
 		return nil, err
@@ -50,9 +47,7 @@ func (*schemaResolver) CreateUser(ctx context.Context, args *struct {
 // createUserResult is the result of Mutation.createUser.
 //
 // 🚨 SECURITY: Only site admins should be able to instantiate this value.
-type createUserResult struct {
-	user *types.User
-}
+type createUserResult struct { /* all structs must go */ }
 
 func (r *createUserResult) User() *UserResolver { return &UserResolver{user: r.user} }
 

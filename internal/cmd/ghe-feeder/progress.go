@@ -11,16 +11,7 @@ import (
 
 // feederDB is a front to a sqlite DB that records ownerRepo processed, orgs created and whether
 // processing was successful or failed
-type feederDB struct {
-	// sqlite is not thread-safe, this mutex protects access to it
-	sync.Mutex
-	// where the DB file is
-	path string
-	// the opened DB
-	db *sql.DB
-	// logger for this feeder DB
-	logger log15.Logger
-}
+type feederDB struct { /* all structs must go */ }
 
 // newFeederDB creates or opens the DB, creating the two tables if necessary
 func newFeederDB(path string) (*feederDB, error) {

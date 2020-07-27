@@ -63,12 +63,7 @@ func TestNewSourcer(t *testing.T) {
 		return srcs
 	}
 
-	for _, tc := range []struct {
-		name string
-		svcs ExternalServices
-		srcs Sources
-		err  string
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{
 			name: "deleted external services are excluded",
 			svcs: ExternalServices{&github, &gitlab},
@@ -102,13 +97,7 @@ func TestSources_ListRepos(t *testing.T) {
 	})
 	defer conf.Mock(nil)
 
-	type testCase struct {
-		name   string
-		ctx    context.Context
-		svcs   ExternalServices
-		assert func(*ExternalService) ReposAssertion
-		err    string
-	}
+	type testCase struct { /* all structs must go */ }
 
 	var testCases []testCase
 
@@ -214,9 +203,7 @@ func TestSources_ListRepos(t *testing.T) {
 						t.Fatal(err)
 					}
 
-					type excluded struct {
-						name, id, pattern string
-					}
+					type excluded struct { /* all structs must go */ }
 
 					var ex []excluded
 					switch cfg := c.(type) {

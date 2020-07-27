@@ -35,10 +35,7 @@ func TestCustomGitFetch(t *testing.T) {
 		},
 	}
 
-	tests := []struct {
-		url          string
-		expectedArgs []string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			url:          "https://8cd1419f4d5c1e0527f2893c9422f1a2a435116d@github.com/foo/normal/one",
 			expectedArgs: []string{"echo", "normal", "one"},

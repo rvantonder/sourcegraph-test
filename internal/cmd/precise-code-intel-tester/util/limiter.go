@@ -3,9 +3,7 @@ package util
 import "context"
 
 // Limiter implements a counting semaphore.
-type Limiter struct {
-	ch chan struct{}
-}
+type Limiter struct { /* all structs must go */ }
 
 // NewLimiter creates a new limiter with the given maximum concurrency.
 func NewLimiter(concurrency int) *Limiter {

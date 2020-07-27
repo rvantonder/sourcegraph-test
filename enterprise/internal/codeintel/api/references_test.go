@@ -776,11 +776,7 @@ func TestApplyBloomFilter(t *testing.T) {
 		{DumpID: 12, Filter: readTestFilter(t, "normal", "12")}, // bar
 	}
 
-	testCases := []struct {
-		limit           int
-		expectedScanned int
-		expectedDumpIDs []int
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{1, 1, []int{1}},
 		{2, 3, []int{1, 3}},
 		{6, 9, []int{1, 3, 4, 6, 7, 9}},

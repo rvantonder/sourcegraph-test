@@ -121,10 +121,7 @@ func newExtension(v *dbExtension, manifest *string, publishedAt time.Time) *regi
 	}
 }
 
-type responseRecorder struct {
-	http.ResponseWriter
-	code int
-}
+type responseRecorder struct { /* all structs must go */ }
 
 func (r *responseRecorder) WriteHeader(code int) {
 	r.code = code

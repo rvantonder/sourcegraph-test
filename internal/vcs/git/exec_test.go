@@ -8,12 +8,7 @@ import (
 func TestExecSafe(t *testing.T) {
 	t.Parallel()
 
-	tests := []struct {
-		args                   []string
-		wantStdout, wantStderr string
-		wantExitCode           int
-		wantError              bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			args:       []string{"log", "--name-status", "--full-history", "-M", "--date=iso8601", "--format=%H -%nauthor %an%nauthor-date %ai%nparents %P%nsummary %B%nfilename ?"},
 			wantStdout: "ea167fe3d76b1e5fd3ed8ca44cbd2fe3897684f8 -\nauthor a\nauthor-date 2006-01-02 15:04:05 +0000\nparents \nsummary foo\n\nfilename ?\n",

@@ -12,12 +12,7 @@ const (
 	defaultAcquireInterval = 30 * time.Second
 )
 
-type Options struct {
-	// AcquireInterval defines how frequently we should attempt to acquire
-	// leadership when not the leader.
-	AcquireInterval time.Duration
-	MutexOptions    rcache.MutexOptions
-}
+type Options struct { /* all structs must go */ }
 
 // Do will ensure that only one instance of workFn is running globally per key at any point using a mutex
 // stored in Redis.

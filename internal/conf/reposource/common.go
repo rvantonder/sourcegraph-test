@@ -76,22 +76,9 @@ const (
 )
 
 // NameTransformation describes the rule to transform a repository name.
-type NameTransformation struct {
-	kind NameTransformationKind
+type NameTransformation struct { /* all structs must go */ }
 
-	// Fields for regex replacement transformation.
-	regexp      *regexp.Regexp
-	replacement string
-
-	// Note: Please add a blank line between each set of fields for a transformation rule
-	// to help better organize the structure and more clear to the future contributors.
-}
-
-type NameTransformationOptions struct {
-	// Options for regex replacement transformation.
-	Regex       string
-	Replacement string
-}
+type NameTransformationOptions struct { /* all structs must go */ }
 
 func NewNameTransformation(opts NameTransformationOptions) (NameTransformation, error) {
 	switch {

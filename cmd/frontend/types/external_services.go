@@ -11,11 +11,7 @@ type CodeHostConnection interface {
 
 var _ CodeHostConnection = (*AWSCodeCommitConnection)(nil)
 
-type AWSCodeCommitConnection struct {
-	// The unique resource identifier of the external service.
-	URN string
-	*schema.AWSCodeCommitConnection
-}
+type AWSCodeCommitConnection struct { /* all structs must go */ }
 
 func (c *AWSCodeCommitConnection) SetURN(urn string) {
 	c.URN = urn
@@ -23,11 +19,7 @@ func (c *AWSCodeCommitConnection) SetURN(urn string) {
 
 var _ CodeHostConnection = (*BitbucketCloudConnection)(nil)
 
-type BitbucketCloudConnection struct {
-	// The unique resource identifier of the external service.
-	URN string
-	*schema.BitbucketCloudConnection
-}
+type BitbucketCloudConnection struct { /* all structs must go */ }
 
 func (c *BitbucketCloudConnection) SetURN(urn string) {
 	c.URN = urn
@@ -35,11 +27,7 @@ func (c *BitbucketCloudConnection) SetURN(urn string) {
 
 var _ CodeHostConnection = (*BitbucketServerConnection)(nil)
 
-type BitbucketServerConnection struct {
-	// The unique resource identifier of the external service.
-	URN string
-	*schema.BitbucketServerConnection
-}
+type BitbucketServerConnection struct { /* all structs must go */ }
 
 func (c *BitbucketServerConnection) SetURN(urn string) {
 	c.URN = urn
@@ -47,11 +35,7 @@ func (c *BitbucketServerConnection) SetURN(urn string) {
 
 var _ CodeHostConnection = (*GitHubConnection)(nil)
 
-type GitHubConnection struct {
-	// The unique resource identifier of the external service.
-	URN string
-	*schema.GitHubConnection
-}
+type GitHubConnection struct { /* all structs must go */ }
 
 func (c *GitHubConnection) SetURN(urn string) {
 	c.URN = urn
@@ -59,11 +43,7 @@ func (c *GitHubConnection) SetURN(urn string) {
 
 var _ CodeHostConnection = (*GitLabConnection)(nil)
 
-type GitLabConnection struct {
-	// The unique resource identifier of the external service.
-	URN string
-	*schema.GitLabConnection
-}
+type GitLabConnection struct { /* all structs must go */ }
 
 func (c *GitLabConnection) SetURN(urn string) {
 	c.URN = urn
@@ -71,11 +51,7 @@ func (c *GitLabConnection) SetURN(urn string) {
 
 var _ CodeHostConnection = (*GitoliteConnection)(nil)
 
-type GitoliteConnection struct {
-	// The unique resource identifier of the external service.
-	URN string
-	*schema.GitoliteConnection
-}
+type GitoliteConnection struct { /* all structs must go */ }
 
 func (c *GitoliteConnection) SetURN(urn string) {
 	c.URN = urn
@@ -83,11 +59,7 @@ func (c *GitoliteConnection) SetURN(urn string) {
 
 var _ CodeHostConnection = (*OtherExternalServiceConnection)(nil)
 
-type OtherExternalServiceConnection struct {
-	// The unique resource identifier of the external service.
-	URN string
-	*schema.OtherExternalServiceConnection
-}
+type OtherExternalServiceConnection struct { /* all structs must go */ }
 
 func (c *OtherExternalServiceConnection) SetURN(urn string) {
 	c.URN = urn
@@ -95,11 +67,7 @@ func (c *OtherExternalServiceConnection) SetURN(urn string) {
 
 var _ CodeHostConnection = (*PhabricatorConnection)(nil)
 
-type PhabricatorConnection struct {
-	// The unique resource identifier of the external service.
-	URN string
-	*schema.PhabricatorConnection
-}
+type PhabricatorConnection struct { /* all structs must go */ }
 
 func (c *PhabricatorConnection) SetURN(urn string) {
 	c.URN = urn

@@ -94,15 +94,7 @@ var defaultTransport = &ot.Transport{
 	}),
 }
 
-type bundleManagerClientImpl struct {
-	httpClient          *http.Client
-	httpLimiter         *parallel.Run
-	bundleManagerURL    string
-	userAgent           string
-	maxPayloadSizeBytes int
-	clock               glock.Clock
-	ioCopy              func(io.Writer, io.Reader) (int64, error)
-}
+type bundleManagerClientImpl struct { /* all structs must go */ }
 
 var _ BundleManagerClient = &bundleManagerClientImpl{}
 var _ baseClient = &bundleManagerClientImpl{}
@@ -387,9 +379,7 @@ func (c *bundleManagerClientImpl) doAndDecode(ctx context.Context, method string
 // doAndDecodeSize performs an HTTP request to the bundle manager and decodes the body into target. This assumes that
 // the shape of the response body is `{"size": ...}`.
 func (c *bundleManagerClientImpl) doAndDecodeSize(ctx context.Context, method string, url *url.URL, body io.Reader) (size int, err error) {
-	payload := struct {
-		Size *int `json:"size"`
-	}{
+	payload := struct { /* all structs must go */ }{
 		Size: &size,
 	}
 	err = c.doAndDecode(ctx, "POST", url, body, &payload)

@@ -30,11 +30,7 @@ type Processor interface {
 	Process(ctx context.Context, tx store.Store, upload store.Upload) (bool, error)
 }
 
-type processor struct {
-	bundleManagerClient bundles.BundleManagerClient
-	gitserverClient     gitserver.Client
-	metrics             metrics.WorkerMetrics
-}
+type processor struct { /* all structs must go */ }
 
 // process converts a raw upload into a dump within the given transaction context. Returns true if the
 // upload record was requeued and false otherwise.

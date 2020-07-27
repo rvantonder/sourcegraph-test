@@ -36,11 +36,7 @@ func (h changesetHistory) StatesAtTime(t time.Time) (changesetStatesAtTime, bool
 	return states, found
 }
 
-type changesetStatesAtTime struct {
-	t             time.Time
-	externalState campaigns.ChangesetExternalState
-	reviewState   campaigns.ChangesetReviewState
-}
+type changesetStatesAtTime struct { /* all structs must go */ }
 
 // computeHistory calculates the changesetHistory for the given Changeset and
 // its ChangesetEvents.

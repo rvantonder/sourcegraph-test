@@ -40,31 +40,14 @@ func init() {
 
 // Endpoint is a handler for the debug server. It will be displayed on the
 // debug index page.
-type Endpoint struct {
-	// Name is the name shown on the index page for the endpoint
-	Name string
-	// Path is passed to http.Mux.Handle as the pattern.
-	Path string
-	// Handler is the debug handler
-	Handler http.Handler
-}
+type Endpoint struct { /* all structs must go */ }
 
 // Services is the list of registered services' debug addresses. Populated
 // from SRC_PROF_MAP.
 var Services []Service
 
 // Service is a service's debug addr (host:port).
-type Service struct {
-	// Name of the service. Always the binary name. example: "gitserver"
-	Name string
-
-	// Host is the host:port for the services SRC_PROF_HTTP. example:
-	// "127.0.0.1:6060"
-	Host string
-
-	// DefaultPath is the path to the service we should link to.
-	DefaultPath string
-}
+type Service struct { /* all structs must go */ }
 
 // Start runs a debug server (pprof, prometheus, etc) if it is configured (via
 // SRC_PROF_HTTP environment variable). It is blocking.

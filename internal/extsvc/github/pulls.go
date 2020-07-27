@@ -14,48 +14,19 @@ import (
 )
 
 // An Actor represents an object which can take actions on GitHub. Typically a User or Bot.
-type Actor struct {
-	AvatarURL string
-	Login     string
-	URL       string
-}
+type Actor struct { /* all structs must go */ }
 
 // A Team represents a team on Github.
-type Team struct {
-	Name string
-	URL  string
-}
+type Team struct { /* all structs must go */ }
 
 // A GitActor represents an actor in a Git commit (ie. an author or committer).
-type GitActor struct {
-	AvatarURL string
-	Email     string
-	Name      string
-	User      *Actor `json:"User,omitempty"`
-}
+type GitActor struct { /* all structs must go */ }
 
 // A Review of a PullRequest.
-type Review struct {
-	Body        string
-	State       string
-	URL         string
-	Author      Actor
-	Commit      Commit
-	CreatedAt   time.Time
-	SubmittedAt time.Time
-}
+type Review struct { /* all structs must go */ }
 
 // CheckSuite represents the status of a checksuite
-type CheckSuite struct {
-	ID string
-	// One of COMPLETED, IN_PROGRESS, QUEUED, REQUESTED
-	Status string
-	// One of ACTION_REQUIRED, CANCELLED, FAILURE, NEUTRAL, SUCCESS, TIMED_OUT
-	Conclusion string
-	ReceivedAt time.Time
-	// When the suite was received via a webhook
-	CheckRuns struct{ Nodes []CheckRun }
-}
+type CheckSuite struct { /* all structs must go */ }
 
 func (c *CheckSuite) Key() string {
 	key := fmt.Sprintf("%s:%s:%s:%d", c.ID, c.Status, c.Conclusion, c.ReceivedAt.UnixNano())
@@ -63,15 +34,7 @@ func (c *CheckSuite) Key() string {
 }
 
 // CheckRun represents the status of a checkrun
-type CheckRun struct {
-	ID string
-	// One of COMPLETED, IN_PROGRESS, QUEUED, REQUESTED
-	Status string
-	// One of ACTION_REQUIRED, CANCELLED, FAILURE, NEUTRAL, SUCCESS, TIMED_OUT
-	Conclusion string
-	// When the run was received via a webhook
-	ReceivedAt time.Time
-}
+type CheckRun struct { /* all structs must go */ }
 
 func (c *CheckRun) Key() string {
 	key := fmt.Sprintf("%s:%s:%s:%d", c.ID, c.Status, c.Conclusion, c.ReceivedAt.UnixNano())
@@ -79,30 +42,14 @@ func (c *CheckRun) Key() string {
 }
 
 // A Commit in a Repository.
-type Commit struct {
-	OID             string
-	Message         string
-	MessageHeadline string
-	URL             string
-	Committer       GitActor
-	CommittedDate   time.Time
-	PushedDate      time.Time
-}
+type Commit struct { /* all structs must go */ }
 
 // A Status represents a Commit status.
-type Status struct {
-	State    string
-	Contexts []Context
-}
+type Status struct { /* all structs must go */ }
 
 // CommitStatus represents the state of a commit context received
 // via the StatusEvent webhook
-type CommitStatus struct {
-	SHA        string
-	Context    string
-	State      string
-	ReceivedAt time.Time
-}
+type CommitStatus struct { /* all structs must go */ }
 
 func (c *CommitStatus) Key() string {
 	key := fmt.Sprintf("%s:%s:%s:%d", c.SHA, c.State, c.Context, c.ReceivedAt.UnixNano())
@@ -110,48 +57,15 @@ func (c *CommitStatus) Key() string {
 }
 
 // Context represent the individual commit status context
-type Context struct {
-	ID          string
-	Context     string
-	Description string
-	State       string
-}
+type Context struct { /* all structs must go */ }
 
-type Label struct {
-	ID          string
-	Color       string
-	Description string
-	Name        string
-}
+type Label struct { /* all structs must go */ }
 
 // PullRequest is a GitHub pull request.
-type PullRequest struct {
-	RepoWithOwner string `json:"-"`
-	ID            string
-	Title         string
-	Body          string
-	State         string
-	URL           string
-	HeadRefOid    string
-	BaseRefOid    string
-	HeadRefName   string
-	BaseRefName   string
-	Number        int64
-	Author        Actor
-	Participants  []Actor
-	Labels        struct{ Nodes []Label }
-	TimelineItems []TimelineItem
-	Commits       struct{ Nodes []CommitWithChecks }
-	CreatedAt     time.Time
-	UpdatedAt     time.Time
-}
+type PullRequest struct { /* all structs must go */ }
 
 // AssignedEvent represents an 'assigned' event on a PullRequest.
-type AssignedEvent struct {
-	Actor     Actor
-	Assignee  Actor
-	CreatedAt time.Time
-}
+type AssignedEvent struct { /* all structs must go */ }
 
 // Key is a unique key identifying this event in the context of its pull request.
 func (e AssignedEvent) Key() string {
@@ -159,11 +73,7 @@ func (e AssignedEvent) Key() string {
 }
 
 // ClosedEvent represents a 'closed' event on a PullRequest.
-type ClosedEvent struct {
-	Actor     Actor
-	CreatedAt time.Time
-	URL       string
-}
+type ClosedEvent struct { /* all structs must go */ }
 
 // Key is a unique key identifying this event in the context of its pull request.
 func (e ClosedEvent) Key() string {
@@ -172,17 +82,7 @@ func (e ClosedEvent) Key() string {
 
 // IssueComment represents a comment on an PullRequest that isn't
 // a commit or review comment.
-type IssueComment struct {
-	DatabaseID          int64
-	Author              Actor
-	Editor              *Actor
-	AuthorAssociation   string
-	Body                string
-	URL                 string
-	CreatedAt           time.Time
-	UpdatedAt           time.Time
-	IncludesCreatedEdit bool
-}
+type IssueComment struct { /* all structs must go */ }
 
 // Key is a unique key identifying this event in the context of its pull request.
 func (e IssueComment) Key() string {
@@ -190,12 +90,7 @@ func (e IssueComment) Key() string {
 }
 
 // RenamedTitleEvent represents a 'renamed' event on a given pull request.
-type RenamedTitleEvent struct {
-	Actor         Actor
-	PreviousTitle string
-	CurrentTitle  string
-	CreatedAt     time.Time
-}
+type RenamedTitleEvent struct { /* all structs must go */ }
 
 // Key is a unique key identifying this event in the context of its pull request.
 func (e RenamedTitleEvent) Key() string {
@@ -203,13 +98,7 @@ func (e RenamedTitleEvent) Key() string {
 }
 
 // MergedEvent represents a 'merged' event on a given pull request.
-type MergedEvent struct {
-	Actor        Actor
-	MergeRefName string
-	URL          string
-	Commit       Commit
-	CreatedAt    time.Time
-}
+type MergedEvent struct { /* all structs must go */ }
 
 // Key is a unique key identifying this event in the context of its pull request.
 func (e MergedEvent) Key() string {
@@ -217,18 +106,7 @@ func (e MergedEvent) Key() string {
 }
 
 // PullRequestReview represents a review on a given pull request.
-type PullRequestReview struct {
-	DatabaseID          int64
-	Author              Actor
-	AuthorAssociation   string
-	Body                string
-	State               string
-	URL                 string
-	CreatedAt           time.Time
-	UpdatedAt           time.Time
-	Commit              Commit
-	IncludesCreatedEdit bool
-}
+type PullRequestReview struct { /* all structs must go */ }
 
 // Key is a unique key identifying this event in the context of its pull request.
 func (e PullRequestReview) Key() string {
@@ -240,13 +118,9 @@ func (e PullRequestReview) Key() string {
 // each thread we receive via GraphQL, and don't store this event as the metadata
 // of a ChangesetEvent, instead storing each contained comment as a separate ChangesetEvent.
 // That's why this type doesn't have a Key method like the others.
-type PullRequestReviewThread struct {
-	Comments []*PullRequestReviewComment
-}
+type PullRequestReviewThread struct { /* all structs must go */ }
 
-type PullRequestCommit struct {
-	Commit Commit
-}
+type PullRequestCommit struct { /* all structs must go */ }
 
 func (p PullRequestCommit) Key() string {
 	return p.Commit.OID
@@ -254,29 +128,10 @@ func (p PullRequestCommit) Key() string {
 
 // CommitWithChecks represents check/build status of a commit. When we load the PR
 // from GitHub we fetch the most recent commit into this type to check build status.
-type CommitWithChecks struct {
-	Commit struct {
-		OID           string
-		CheckSuites   struct{ Nodes []CheckSuite }
-		Status        Status
-		CommittedDate time.Time
-	}
-}
+type CommitWithChecks struct { /* all structs must go */ }
 
 // PullRequestReviewComment represents a review comment on a given pull request.
-type PullRequestReviewComment struct {
-	DatabaseID          int64
-	Author              Actor
-	AuthorAssociation   string
-	Editor              Actor
-	Commit              Commit
-	Body                string
-	State               string
-	URL                 string
-	CreatedAt           time.Time
-	UpdatedAt           time.Time
-	IncludesCreatedEdit bool
-}
+type PullRequestReviewComment struct { /* all structs must go */ }
 
 // Key is a unique key identifying this event in the context of its pull request.
 func (e PullRequestReviewComment) Key() string {
@@ -284,10 +139,7 @@ func (e PullRequestReviewComment) Key() string {
 }
 
 // ReopenedEvent represents a 'reopened' event on a pull request.
-type ReopenedEvent struct {
-	Actor     Actor
-	CreatedAt time.Time
-}
+type ReopenedEvent struct { /* all structs must go */ }
 
 // Key is a unique key identifying this event in the context of its pull request.
 func (e ReopenedEvent) Key() string {
@@ -295,12 +147,7 @@ func (e ReopenedEvent) Key() string {
 }
 
 // ReviewDismissedEvent represents a 'review_dismissed' event on a pull request.
-type ReviewDismissedEvent struct {
-	Actor            Actor
-	Review           PullRequestReview
-	DismissalMessage string
-	CreatedAt        time.Time
-}
+type ReviewDismissedEvent struct { /* all structs must go */ }
 
 // Key is a unique key identifying this event in the context of its pull request.
 func (e ReviewDismissedEvent) Key() string {
@@ -314,12 +161,7 @@ func (e ReviewDismissedEvent) Key() string {
 
 // ReviewRequestRemovedEvent represents a 'review_request_removed' event on a
 // pull request.
-type ReviewRequestRemovedEvent struct {
-	Actor             Actor
-	RequestedReviewer Actor
-	RequestedTeam     Team
-	CreatedAt         time.Time
-}
+type ReviewRequestRemovedEvent struct { /* all structs must go */ }
 
 // Key is a unique key identifying this event in the context of its pull request.
 func (e ReviewRequestRemovedEvent) Key() string {
@@ -333,12 +175,7 @@ func (e ReviewRequestRemovedEvent) Key() string {
 
 // ReviewRequestedRevent represents a 'review_requested' event on a
 // pull request.
-type ReviewRequestedEvent struct {
-	Actor             Actor
-	RequestedReviewer Actor
-	RequestedTeam     Team
-	CreatedAt         time.Time
-}
+type ReviewRequestedEvent struct { /* all structs must go */ }
 
 // Key is a unique key identifying this event in the context of its pull request.
 func (e ReviewRequestedEvent) Key() string {
@@ -358,11 +195,7 @@ func (e ReviewRequestedEvent) ReviewerDeleted() bool {
 }
 
 // UnassignedEvent represents an 'unassigned' event on a pull request.
-type UnassignedEvent struct {
-	Actor     Actor
-	Assignee  Actor
-	CreatedAt time.Time
-}
+type UnassignedEvent struct { /* all structs must go */ }
 
 // Key is a unique key identifying this event in the context of its pull request.
 func (e UnassignedEvent) Key() string {
@@ -370,13 +203,7 @@ func (e UnassignedEvent) Key() string {
 }
 
 // LabelEvent represents a label being added or removed from a pull request
-type LabelEvent struct {
-	Actor     Actor
-	Label     Label
-	CreatedAt time.Time
-	// Will be true if we had an "unlabeled" event
-	Removed bool
-}
+type LabelEvent struct { /* all structs must go */ }
 
 func (e LabelEvent) Key() string {
 	action := "add"
@@ -387,19 +214,12 @@ func (e LabelEvent) Key() string {
 }
 
 // TimelineItem is a union type of all supported pull request timeline items.
-type TimelineItem struct {
-	Type string
-	Item interface{}
-}
+type TimelineItem struct { /* all structs must go */ }
 
 // UnmarshalJSON knows how to unmarshal a TimelineItem as produced
 // by json.Marshal or as returned by the GitHub GraphQL API.
 func (i *TimelineItem) UnmarshalJSON(data []byte) error {
-	v := struct {
-		Typename *string `json:"__typename"`
-		Type     *string
-		Item     json.RawMessage
-	}{
+	v := struct { /* all structs must go */ }{
 		Typename: &i.Type,
 		Type:     &i.Type,
 	}
@@ -452,19 +272,7 @@ func (i *TimelineItem) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, i.Item)
 }
 
-type CreatePullRequestInput struct {
-	// The Node ID of the repository.
-	RepositoryID string `json:"repositoryId"`
-	// The name of the branch you want your changes pulled into. This should be
-	// an existing branch on the current repository.
-	BaseRefName string `json:"baseRefName"`
-	// The name of the branch where your changes are implemented.
-	HeadRefName string `json:"headRefName"`
-	// The title of the pull request.
-	Title string `json:"title"`
-	// The body of the pull request (optional).
-	Body string `json:"body"`
-}
+type CreatePullRequestInput struct { /* all structs must go */ }
 
 // CreatePullRequest creates a PullRequest on Github.
 func (c *Client) CreatePullRequest(ctx context.Context, in *CreatePullRequestInput) (*PullRequest, error) {
@@ -478,15 +286,7 @@ func (c *Client) CreatePullRequest(ctx context.Context, in *CreatePullRequestInp
   }
 }`)
 
-	var result struct {
-		CreatePullRequest struct {
-			PullRequest struct {
-				PullRequest
-				Participants  struct{ Nodes []Actor }
-				TimelineItems struct{ Nodes []TimelineItem }
-			} `json:"pullRequest"`
-		} `json:"createPullRequest"`
-	}
+	var result struct { /* all structs must go */ }
 
 	input := map[string]interface{}{"input": in}
 	err := c.requestGraphQL(ctx, q.String(), input, &result)
@@ -506,17 +306,7 @@ func (c *Client) CreatePullRequest(ctx context.Context, in *CreatePullRequestInp
 	return pr, nil
 }
 
-type UpdatePullRequestInput struct {
-	// The Node ID of the pull request.
-	PullRequestID string `json:"pullRequestId"`
-	// The name of the branch you want your changes pulled into. This should be
-	// an existing branch on the current repository.
-	BaseRefName string `json:"baseRefName"`
-	// The title of the pull request.
-	Title string `json:"title"`
-	// The body of the pull request (optional).
-	Body string `json:"body"`
-}
+type UpdatePullRequestInput struct { /* all structs must go */ }
 
 // UpdatePullRequest creates a PullRequest on Github.
 func (c *Client) UpdatePullRequest(ctx context.Context, in *UpdatePullRequestInput) (*PullRequest, error) {
@@ -530,15 +320,7 @@ func (c *Client) UpdatePullRequest(ctx context.Context, in *UpdatePullRequestInp
   }
 }`)
 
-	var result struct {
-		UpdatePullRequest struct {
-			PullRequest struct {
-				PullRequest
-				Participants  struct{ Nodes []Actor }
-				TimelineItems struct{ Nodes []TimelineItem }
-			} `json:"pullRequest"`
-		} `json:"updatePullRequest"`
-	}
+	var result struct { /* all structs must go */ }
 
 	input := map[string]interface{}{"input": in}
 	err := c.requestGraphQL(ctx, q.String(), input, &result)
@@ -570,19 +352,9 @@ func (c *Client) ClosePullRequest(ctx context.Context, pr *PullRequest) error {
   }
 }`)
 
-	var result struct {
-		ClosePullRequest struct {
-			PullRequest struct {
-				PullRequest
-				Participants  struct{ Nodes []Actor }
-				TimelineItems struct{ Nodes []TimelineItem }
-			} `json:"pullRequest"`
-		} `json:"closePullRequest"`
-	}
+	var result struct { /* all structs must go */ }
 
-	input := map[string]interface{}{"input": struct {
-		ID string `json:"pullRequestId"`
-	}{ID: pr.ID}}
+	input := map[string]interface{}{"input": struct { /* all structs must go */ }{ID: pr.ID}}
 	err := c.requestGraphQL(ctx, q.String(), input, &result)
 	if err != nil {
 		return err
@@ -612,11 +384,7 @@ func (c *Client) LoadPullRequests(ctx context.Context, prs ...*PullRequest) erro
 }
 
 func (c *Client) loadPullRequests(ctx context.Context, prs ...*PullRequest) error {
-	type repository struct {
-		Owner string
-		Name  string
-		PRs   map[string]*PullRequest
-	}
+	type repository struct { /* all structs must go */ }
 
 	labeled := map[string]*repository{}
 	for i, pr := range prs {
@@ -659,11 +427,7 @@ func (c *Client) loadPullRequests(ctx context.Context, prs ...*PullRequest) erro
 
 	q.WriteString("}")
 
-	var results map[string]map[string]*struct {
-		PullRequest
-		Participants  struct{ Nodes []Actor }
-		TimelineItems struct{ Nodes []TimelineItem }
-	}
+	var results map[string]map[string]*struct { /* all structs must go */ }
 
 	err := c.requestGraphQL(ctx, q.String(), nil, &results)
 	if err != nil {
@@ -695,17 +459,7 @@ func (c *Client) GetOpenPullRequestByRefs(ctx context.Context, owner, name, base
 	))
 	q.WriteString("nodes{ ... pr }\n}\n}\n}")
 
-	var results struct {
-		Repository struct {
-			PullRequests struct {
-				Nodes []*struct {
-					PullRequest
-					Participants  struct{ Nodes []Actor }
-					TimelineItems struct{ Nodes []TimelineItem }
-				}
-			}
-		}
-	}
+	var results struct { /* all structs must go */ }
 
 	err := c.requestGraphQL(ctx, q.String(), nil, &results)
 	if err != nil {

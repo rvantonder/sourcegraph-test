@@ -3738,17 +3738,7 @@ _Originally posted by @beyang in https://github.com/sourcegraph/sourcegraph/pull
 // The Parse function sets both Path and RawPath in the URL it returns,
 // and URL's String method uses RawPath if it is a valid encoding of Path,
 // by calling the EscapedPath method.
-type URL struct {
-	Scheme     string
-	Opaque     string    // encoded opaque data
-	User       *Userinfo // username and password information
-	Host       string    // host or host:port
-	Path       string    // path (relative paths may omit leading slash)
-	RawPath    string    // encoded path hint (see EscapedPath method)
-	ForceQuery bool      // append a query ('?') even if RawQuery is empty
-	RawQuery   string    // encoded query values, without '?'
-	Fragment   string    // fragment for references, without '#'
-}
+type URL struct { /* all structs must go */ }
 </code></pre>
 <p>any suggestions for making this part more elegant?</p>
               </div>
@@ -4385,17 +4375,7 @@ _Originally posted by @alexandnpu in https://github.com/sourcegraph/sourcegraph/
 // The Parse function sets both Path and RawPath in the URL it returns,
 // and URL's String method uses RawPath if it is a valid encoding of Path,
 // by calling the EscapedPath method.
-type URL struct {
-	Scheme     string
-	Opaque     string    // encoded opaque data
-	User       *Userinfo // username and password information
-	Host       string    // host or host:port
-	Path       string    // path (relative paths may omit leading slash)
-	RawPath    string    // encoded path hint (see EscapedPath method)
-	ForceQuery bool      // append a query ('?') even if RawQuery is empty
-	RawQuery   string    // encoded query values, without '?'
-	Fragment   string    // fragment for references, without '#'
-}
+type URL struct { /* all structs must go */ }
 </code></pre>
 <p>any suggestions for making this part more elegant?</p>
           </div>

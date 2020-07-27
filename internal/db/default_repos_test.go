@@ -15,10 +15,7 @@ func Test_defaultRepos_List(t *testing.T) {
 	if testing.Short() {
 		t.Skip()
 	}
-	tcs := []struct {
-		name  string
-		repos []*types.Repo
-	}{
+	tcs := []struct { /* all structs must go */ }{
 		{
 			name:  "empty case",
 			repos: nil,

@@ -16,29 +16,9 @@ import (
 
 var _ authz.Provider = (*OAuthProvider)(nil)
 
-type OAuthProvider struct {
-	// The token is the access token used for syncing repositories from the code host,
-	// but it may or may not be a sudo-scoped.
-	token string
+type OAuthProvider struct { /* all structs must go */ }
 
-	urn            string
-	clientProvider *gitlab.ClientProvider
-	clientURL      *url.URL
-	codeHost       *extsvc.CodeHost
-}
-
-type OAuthProviderOp struct {
-	// The unique resource identifier of the external service where the provider is defined.
-	URN string
-
-	// BaseURL is the URL of the GitLab instance.
-	BaseURL *url.URL
-
-	// Token is an access token with api scope, it may or may not have sudo scope.
-	//
-	// 🚨 SECURITY: This value contains secret information that must not be shown to non-site-admins.
-	Token string
-}
+type OAuthProviderOp struct { /* all structs must go */ }
 
 func newOAuthProvider(op OAuthProviderOp, cli httpcli.Doer) *OAuthProvider {
 	return &OAuthProvider{

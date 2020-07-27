@@ -14,9 +14,7 @@ func (r *siteResolver) AuthProviders(ctx context.Context) (*authProviderConnecti
 }
 
 // authProviderConnectionResolver resolves a list of auth providers.
-type authProviderConnectionResolver struct {
-	authProviders []providers.Provider
-}
+type authProviderConnectionResolver struct { /* all structs must go */ }
 
 func (r *authProviderConnectionResolver) Nodes(ctx context.Context) ([]*authProviderResolver, error) {
 	var rs []*authProviderResolver

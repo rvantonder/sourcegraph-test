@@ -33,34 +33,7 @@ const (
 // indexedSearchRequest is responsible for translating a Sourcegraph search
 // query into a Zoekt query and mapping the results from zoekt back to
 // Sourcegraph result types.
-type indexedSearchRequest struct {
-	// Unindexed is a slice of repository revisions that can't be searched by
-	// Zoekt. The repository revisions should be searched by the searcher
-	// service.
-	//
-	// If IndexUnavailable is true or the query specifies index:no then all
-	// repository revisions will be listed. Otherwise it will just be
-	// repository revisions not indexed.
-	Unindexed []*search.RepositoryRevisions
-
-	// IndexUnavailable is true if zoekt is offline or disabled.
-	IndexUnavailable bool
-
-	// DisableUnindexedSearch is true if the query specified that only index
-	// search should be used.
-	DisableUnindexedSearch bool
-
-	// inputs
-	args *search.TextParameters
-	typ  indexedRequestType
-
-	// repos is the repository revisions that are indexed and will be
-	// searched.
-	repos *indexedRepoRevs
-
-	// since if non-nil will be used instead of time.Since. For tests
-	since func(time.Time) time.Duration
-}
+type indexedSearchRequest struct { /* all structs must go */ }
 
 func newIndexedSearchRequest(ctx context.Context, args *search.TextParameters, typ indexedRequestType) (*indexedSearchRequest, error) {
 	// Parse index:yes (default), index:only, and index:no in search query.
@@ -585,24 +558,7 @@ func zoektIndexedRepos(indexedSet map[string]*zoekt.Repository, revs []*search.R
 
 // indexedRepoRevs creates both the Sourcegraph and Zoekt representation of a
 // list of repository and refs to search.
-type indexedRepoRevs struct {
-	// repoRevs is the Sourcegraph representation of a the list of repoRevs
-	// repository and revisions to search.
-	repoRevs map[string]*search.RepositoryRevisions
-
-	// repoBranches will be used when we query zoekt. The order of branches
-	// must match that in a reporev such that we can map back results. IE this
-	// invariant is maintained:
-	//
-	//  repoBranches[reporev.Repo.Name][i] <-> reporev.Revs[i]
-	repoBranches map[string][]string
-
-	// NotHEADOnlySearch is true if we are searching a branch other than HEAD.
-	//
-	// This option can be removed once structural search supports searching
-	// more than HEAD.
-	NotHEADOnlySearch bool
-}
+type indexedRepoRevs struct { /* all structs must go */ }
 
 // Add will add reporev and repo to the list of repository and branches to
 // search if reporev's refs are a subset of repo's branches. It will return

@@ -17,16 +17,7 @@ import (
 )
 
 // Message describes an email message to be sent.
-type Message struct {
-	FromName   string   // email "From" address proper name
-	To         []string // email "To" recipients
-	ReplyTo    *string  // optional "ReplyTo" address
-	MessageID  *string  // optional "Message-ID" header
-	References []string // optional "References" header list
-
-	Template txtypes.Templates // unparsed subject/body templates
-	Data     interface{}       // template data
-}
+type Message struct { /* all structs must go */ }
 
 // render returns the rendered message contents without sending email.
 func render(message Message) (*email.Email, error) {

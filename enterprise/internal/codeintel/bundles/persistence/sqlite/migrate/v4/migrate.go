@@ -123,15 +123,7 @@ const Delimiter = ":"
 
 // GroupedDefinitionReferenceRow is a row of all moniker locations grouped by scheme and identifier. The
 // remaining columns are string values concatenated by the delimiter defined above.
-type GroupedDefinitionReferenceRow struct {
-	Scheme          string
-	Identifier      string
-	URIs            string
-	StartLines      string
-	StartCharacters string
-	EndLines        string
-	EndCharacters   string
-}
+type GroupedDefinitionReferenceRow struct { /* all structs must go */ }
 
 // scanDefinitionReferenceRow reads a row that describes the GroupedDefinitionReferenceRow and converts it
 // into a moniker location. The uri and range data for each location is extracted by splitting the concatenated

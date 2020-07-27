@@ -43,9 +43,7 @@ func init() {
 	prometheus.MustRegister(codeIntelSearchHistogram)
 }
 
-type prometheusTracer struct {
-	trace.OpenTracingTracer
-}
+type prometheusTracer struct { /* all structs must go */ }
 
 func (prometheusTracer) TraceQuery(ctx context.Context, queryString string, operationName string, variables map[string]interface{}, varTypes map[string]*introspection.Type) (context.Context, trace.TraceQueryFinishFunc) {
 	start := time.Now()
@@ -372,9 +370,7 @@ type Node interface {
 	ID() graphql.ID
 }
 
-type NodeResolver struct {
-	Node
-}
+type NodeResolver struct { /* all structs must go */ }
 
 func (r *NodeResolver) ToAccessToken() (*accessTokenResolver, bool) {
 	n, ok := r.Node.(*accessTokenResolver)
@@ -513,18 +509,11 @@ func (r *NodeResolver) ToVersionContext() (*versionContextResolver, bool) {
 // schemaResolver handles all GraphQL queries for Sourcegraph. To do this, it
 // uses subresolvers which are globals. Enterprise-only resolvers are assigned
 // to a field of EnterpriseResolvers.
-type schemaResolver struct {
-	CampaignsResolver
-	AuthzResolver
-	CodeIntelResolver
-}
+type schemaResolver struct { /* all structs must go */ }
 
 // EnterpriseResolvers holds the instances of resolvers which are enabled only
 // in enterprise mode. These resolver instances are nil when running as OSS.
-var EnterpriseResolvers = struct {
-	codeIntelResolver CodeIntelResolver
-	authzResolver     AuthzResolver
-}{
+var EnterpriseResolvers = struct { /* all structs must go */ }{
 	codeIntelResolver: defaultCodeIntelResolver{},
 	authzResolver:     defaultAuthzResolver{},
 }
@@ -598,20 +587,12 @@ func (r *schemaResolver) nodeByID(ctx context.Context, id graphql.ID) (Node, err
 	}
 }
 
-func (r *schemaResolver) Repository(ctx context.Context, args *struct {
-	Name     *string
-	CloneURL *string
-	// TODO(chris): Remove URI in favor of Name.
-	URI *string
-}) (*RepositoryResolver, error) {
+func (r *schemaResolver) Repository(ctx context.Context, args *struct { /* all structs must go */ }) (*RepositoryResolver, error) {
 	// Deprecated query by "URI"
 	if args.URI != nil && args.Name == nil {
 		args.Name = args.URI
 	}
-	resolver, err := r.RepositoryRedirect(ctx, &struct {
-		Name     *string
-		CloneURL *string
-	}{args.Name, args.CloneURL})
+	resolver, err := r.RepositoryRedirect(ctx, &struct { /* all structs must go */ }{args.Name, args.CloneURL})
 	if err != nil {
 		return nil, err
 	}
@@ -621,18 +602,13 @@ func (r *schemaResolver) Repository(ctx context.Context, args *struct {
 	return resolver.repo, nil
 }
 
-type RedirectResolver struct {
-	url string
-}
+type RedirectResolver struct { /* all structs must go */ }
 
 func (r *RedirectResolver) URL() string {
 	return r.url
 }
 
-type repositoryRedirect struct {
-	repo     *RepositoryResolver
-	redirect *RedirectResolver
-}
+type repositoryRedirect struct { /* all structs must go */ }
 
 func (r *repositoryRedirect) ToRepository() (*RepositoryResolver, bool) {
 	return r.repo, r.repo != nil
@@ -642,10 +618,7 @@ func (r *repositoryRedirect) ToRedirect() (*RedirectResolver, bool) {
 	return r.redirect, r.redirect != nil
 }
 
-func (r *schemaResolver) RepositoryRedirect(ctx context.Context, args *struct {
-	Name     *string
-	CloneURL *string
-}) (*repositoryRedirect, error) {
+func (r *schemaResolver) RepositoryRedirect(ctx context.Context, args *struct { /* all structs must go */ }) (*repositoryRedirect, error) {
 	var name api.RepoName
 	if args.Name != nil {
 		// Query by name
@@ -678,11 +651,7 @@ func (r *schemaResolver) RepositoryRedirect(ctx context.Context, args *struct {
 	return &repositoryRedirect{repo: &RepositoryResolver{repo: repo}}, nil
 }
 
-func (r *schemaResolver) PhabricatorRepo(ctx context.Context, args *struct {
-	Name *string
-	// TODO(chris): Remove URI in favor of Name.
-	URI *string
-}) (*phabricatorRepoResolver, error) {
+func (r *schemaResolver) PhabricatorRepo(ctx context.Context, args *struct { /* all structs must go */ }) (*phabricatorRepoResolver, error) {
 	if args.Name != nil {
 		args.URI = args.Name
 	}

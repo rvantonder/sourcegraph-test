@@ -6,11 +6,7 @@ import (
 )
 
 func TestParser(t *testing.T) {
-	tests := map[string]struct {
-		wantExpr   ParseTree
-		wantString string
-		wantErr    *ParseError
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"":   {wantExpr: []*Expr{}},
 		" ":  {wantExpr: []*Expr{}, wantString: ""},
 		"  ": {wantExpr: []*Expr{}, wantString: ""},
@@ -113,14 +109,8 @@ func TestParser(t *testing.T) {
 }
 
 func TestParseAllowingErrors(t *testing.T) {
-	type args struct {
-		input string
-	}
-	tests := []struct {
-		name string
-		args args
-		want ParseTree
-	}{
+	type args struct { /* all structs must go */ }
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "empty",
 			args: args{input: ""},

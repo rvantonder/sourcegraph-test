@@ -14,13 +14,7 @@ import (
 
 // dbSubscription describes an product subscription row in the product_subscriptions DB
 // table.
-type dbSubscription struct {
-	ID                    string // UUID
-	UserID                int32
-	BillingSubscriptionID *string // this subscription's ID in the billing system
-	CreatedAt             time.Time
-	ArchivedAt            *time.Time
-}
+type dbSubscription struct { /* all structs must go */ }
 
 var emailQueries = sqlf.Sprintf(`all_primary_emails AS (
 	SELECT user_id, FIRST_VALUE(email) over (PARTITION BY user_id ORDER BY created_at ASC) AS primary_email
@@ -74,12 +68,7 @@ func (s dbSubscriptions) GetByID(ctx context.Context, id string) (*dbSubscriptio
 }
 
 // dbSubscriptionsListOptions contains options for listing product subscriptions.
-type dbSubscriptionsListOptions struct {
-	UserID          int32 // only list product subscriptions for this user
-	Query           string
-	IncludeArchived bool
-	*db.LimitOffset
-}
+type dbSubscriptionsListOptions struct { /* all structs must go */ }
 
 func (o dbSubscriptionsListOptions) sqlConditions() []*sqlf.Query {
 	conds := []*sqlf.Query{sqlf.Sprintf("TRUE")}
@@ -155,9 +144,7 @@ WHERE (%s)`, emailQueries, sqlf.Join(opt.sqlConditions(), ") AND ("))
 // dbSubscriptionsUpdate represents an update to a product subscription in the database. Each field
 // represents an update to the corresponding database field if the Go value is non-nil. If the Go
 // value is nil, the field remains unchanged in the database.
-type dbSubscriptionUpdate struct {
-	billingSubscriptionID *sql.NullString
-}
+type dbSubscriptionUpdate struct { /* all structs must go */ }
 
 // Update updates a product subscription.
 func (dbSubscriptions) Update(ctx context.Context, id string, update dbSubscriptionUpdate) error {
@@ -205,9 +192,4 @@ func (dbSubscriptions) Archive(ctx context.Context, id string) error {
 	return nil
 }
 
-type mockSubscriptions struct {
-	Create  func(userID int32) (id string, err error)
-	GetByID func(id string) (*dbSubscription, error)
-	Archive func(id string) error
-	List    func(ctx context.Context, opt dbSubscriptionsListOptions) ([]*dbSubscription, error)
-}
+type mockSubscriptions struct { /* all structs must go */ }

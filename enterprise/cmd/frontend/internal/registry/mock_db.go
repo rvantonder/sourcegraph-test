@@ -4,9 +4,6 @@ func resetMocks() {
 	mocks = dbMocks{}
 }
 
-type dbMocks struct {
-	extensions mockExtensions
-	releases   mockReleases
-}
+type dbMocks struct { /* all structs must go */ }
 
 var mocks dbMocks

@@ -52,11 +52,7 @@ type Database interface {
 	PackageInformation(ctx context.Context, path string, packageInformationID string) (bundles.PackageInformationData, bool, error)
 }
 
-type databaseImpl struct {
-	filename        string
-	reader          persistence.Reader // database file reader
-	numResultChunks int                // numResultChunks value from meta row
-}
+type databaseImpl struct { /* all structs must go */ }
 
 var _ Database = &databaseImpl{}
 
@@ -74,17 +70,10 @@ func newRange(startLine, startCharacter, endLine, endCharacter int) bundles.Rang
 }
 
 // DocumentPathRangeID denotes a range qualified by its containing document.
-type DocumentPathRangeID struct {
-	Path    string
-	RangeID types.ID
-}
+type DocumentPathRangeID struct { /* all structs must go */ }
 
 // ErrMalformedBundle is returned when a bundle is missing an expected map key.
-type ErrMalformedBundle struct {
-	Filename string // the filename of the malformed bundle
-	Name     string // the type of value key should contain
-	Key      string // the missing key
-}
+type ErrMalformedBundle struct { /* all structs must go */ }
 
 func (e ErrMalformedBundle) Error() string {
 	return fmt.Sprintf("malformed bundle: unknown %s %s", e.Name, e.Key)

@@ -20,14 +20,7 @@ func extensionRegistryPublishers(ctx context.Context, args *graphqlutil.Connecti
 }
 
 // registryPublisherConnection resolves a list of registry publishers.
-type registryPublisherConnection struct {
-	opt dbPublishersListOptions
-
-	// cache results because they are used by multiple fields
-	once               sync.Once
-	registryPublishers []*dbPublisher
-	err                error
-}
+type registryPublisherConnection struct { /* all structs must go */ }
 
 func (r *registryPublisherConnection) compute(ctx context.Context) ([]*dbPublisher, error) {
 	r.once.Do(func() {

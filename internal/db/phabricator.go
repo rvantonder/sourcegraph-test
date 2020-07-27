@@ -12,9 +12,7 @@ import (
 
 type phabricator struct{}
 
-type errPhabricatorRepoNotFound struct {
-	args []interface{}
-}
+type errPhabricatorRepoNotFound struct { /* all structs must go */ }
 
 func (err errPhabricatorRepoNotFound) Error() string {
 	return fmt.Sprintf("phabricator repo not found: %v", err.args)
@@ -126,6 +124,4 @@ func (p *phabricator) GetByName(ctx context.Context, name api.RepoName) (*types.
 	return p.getOneBySQL(ctx, "WHERE repo_name=$1", name)
 }
 
-type MockPhabricator struct {
-	GetByName func(repo api.RepoName) (*types.PhabricatorRepo, error)
-}
+type MockPhabricator struct { /* all structs must go */ }

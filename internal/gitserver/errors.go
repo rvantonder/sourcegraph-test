@@ -7,10 +7,7 @@ import (
 )
 
 // RevisionNotFoundError is an error that reports a revision doesn't exist.
-type RevisionNotFoundError struct {
-	Repo api.RepoName
-	Spec string
-}
+type RevisionNotFoundError struct { /* all structs must go */ }
 
 func (e *RevisionNotFoundError) Error() string {
 	return fmt.Sprintf("revision not found: %s@%s", e.Repo, e.Spec)

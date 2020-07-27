@@ -10,37 +10,15 @@ import (
 
 // GrantPendingPermissionsArgs contains required arguments to grant pending permissions for a user
 // by username or verified email address(es) according to the site configuration.
-type GrantPendingPermissionsArgs struct {
-	// The user ID that will be used to bind pending permissions.
-	UserID int32
-	// The permission level to be granted.
-	Perm authz.Perms
-	// The type of permissions to be granted.
-	Type authz.PermType
-}
+type GrantPendingPermissionsArgs struct { /* all structs must go */ }
 
 // AuthorizedReposArgs contains required arguments to verify if a user is authorized to access some
 // or all of the repositories from the candidate list with the given level and type of permissions.
-type AuthorizedReposArgs struct {
-	// The candidate list of repositories to be verified.
-	Repos []*types.Repo
-	// The user whose authorization to access the repos is being checked.
-	UserID int32
-	// The permission level to be verified.
-	Perm authz.Perms
-	// The type of permissions to be verified.
-	Type authz.PermType
-}
+type AuthorizedReposArgs struct { /* all structs must go */ }
 
 // RevokeUserPermissionsArgs contains required arguments to revoke user permissions, it includes all
 // possible leads to grant or authorize access for a user.
-type RevokeUserPermissionsArgs struct {
-	// The user ID that will be used to revoke effective permissions.
-	UserID int32
-	// The list of external accounts related to the user. This is list because a user could have
-	// multiple external accounts, including ones from code hosts and/or Sourcegraph authz provider.
-	Accounts []*extsvc.Accounts
-}
+type RevokeUserPermissionsArgs struct { /* all structs must go */ }
 
 // AuthzStore contains methods for manipulating user permissions.
 type AuthzStore interface {

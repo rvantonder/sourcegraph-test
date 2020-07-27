@@ -68,14 +68,7 @@ func copySSH() error {
 
 // execer wraps exec.Command, but acts like "set -x". If a command fails, all
 // future commands will return the original error.
-type execer struct {
-	// Out if set will write the command, stdout and stderr to it
-	Out io.Writer
-	// Working directory of the command.
-	Dir string
-
-	err error
-}
+type execer struct { /* all structs must go */ }
 
 // Command creates an exec.Command connected to stdout/stderr and runs it.
 func (e *execer) Command(name string, arg ...string) {

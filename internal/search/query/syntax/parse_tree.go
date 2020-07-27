@@ -57,13 +57,7 @@ func (p ParseTree) String() string {
 }
 
 // An Expr describes an expression in the parse tree.
-type Expr struct {
-	Pos       int       // the starting character position of the expression
-	Not       bool      // the expression is negated (e.g., -term or -field:term)
-	Field     string    // the field that this expression applies to
-	Value     string    // the raw field value
-	ValueType TokenType // the type of the value
-}
+type Expr struct { /* all structs must go */ }
 
 func (e Expr) String() string {
 	var buf bytes.Buffer

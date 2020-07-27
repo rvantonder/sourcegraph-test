@@ -24,10 +24,7 @@ const BloomFilterNumHashFunctions = 16
 // This includes the bitstring encoded as arrays of 32-bit integers as well as the number of hash
 // functions each identifier is identified with. This is necessary to encode as increasing its value
 // after its created will make all inserted identifiers un-findable.
-type encodedFilterPayload struct {
-	Buckets          []int32 `json:"buckets"`
-	NumHashFunctions int32   `json:"numHashFunctions"`
-}
+type encodedFilterPayload struct { /* all structs must go */ }
 
 // CreateFilter allocates a new bloom filter and inserts all of the given identifiers. The returned
 // value is an encoded and compressed payload that can be passed to DecodeAndTestFilter.

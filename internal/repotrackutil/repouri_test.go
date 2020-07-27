@@ -7,10 +7,7 @@ import (
 )
 
 func TestGetTrackedRepo(t *testing.T) {
-	cases := []struct {
-		Path        api.RepoName
-		TrackedRepo string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		// Top-level view
 		{"/github.com/kubernetes/kubernetes", "github.com/kubernetes/kubernetes"},
 		// Code view

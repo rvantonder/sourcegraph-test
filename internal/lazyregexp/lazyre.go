@@ -15,12 +15,7 @@ import (
 
 // Regexp is a wrapper around regexp.Regexp, where the underlying regexp will be
 // compiled the first time it is needed.
-type Regexp struct {
-	str   string
-	posix bool
-	once  sync.Once
-	rx    *regexp.Regexp
-}
+type Regexp struct { /* all structs must go */ }
 
 func (r *Regexp) re() *regexp.Regexp {
 	r.once.Do(r.build)

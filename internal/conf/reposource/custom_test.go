@@ -8,10 +8,7 @@ import (
 )
 
 func TestCustomCloneURLToRepoName(t *testing.T) {
-	tests := []struct {
-		cloneURLResolvers  []*cloneURLResolver
-		cloneURLToRepoName map[string]string
-	}{{
+	tests := []struct { /* all structs must go */ }{{
 		cloneURLResolvers: []*cloneURLResolver{{
 			from: regexp.MustCompile(`^\.\./(?P<name>[A-Za-z0-9]+)$`),
 			to:   `github.com/user/{name}`,

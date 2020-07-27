@@ -14,10 +14,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/trace/ot"
 )
 
-type parseRequest struct {
-	path string
-	data []byte
-}
+type parseRequest struct { /* all structs must go */ }
 
 func (s *Service) fetchRepositoryArchive(ctx context.Context, repo api.RepoName, commitID api.CommitID) (<-chan parseRequest, <-chan error, error) {
 	fetchQueueSize.Inc()

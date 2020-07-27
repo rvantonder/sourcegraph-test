@@ -16,17 +16,7 @@ import (
 
 var _ graphqlbackend.CampaignsConnectionResolver = &campaignsConnectionResolver{}
 
-type campaignsConnectionResolver struct {
-	store       *ee.Store
-	httpFactory *httpcli.Factory
-	opts        ee.ListCampaignsOpts
-
-	// cache results because they are used by multiple fields
-	once      sync.Once
-	campaigns []*campaigns.Campaign
-	next      int64
-	err       error
-}
+type campaignsConnectionResolver struct { /* all structs must go */ }
 
 func (r *campaignsConnectionResolver) Nodes(ctx context.Context) ([]graphqlbackend.CampaignResolver, error) {
 	nodes, _, err := r.compute(ctx)
@@ -63,11 +53,7 @@ func (r *campaignsConnectionResolver) compute(ctx context.Context) ([]*campaigns
 
 var _ graphqlbackend.CampaignResolver = &campaignResolver{}
 
-type campaignResolver struct {
-	store       *ee.Store
-	httpFactory *httpcli.Factory
-	*campaigns.Campaign
-}
+type campaignResolver struct { /* all structs must go */ }
 
 func (r *campaignResolver) ID() graphql.ID {
 	return campaigns.MarshalCampaignID(r.Campaign.ID)

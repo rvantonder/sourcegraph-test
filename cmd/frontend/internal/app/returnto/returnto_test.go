@@ -7,11 +7,7 @@ import (
 )
 
 func TestURLFromRequest(t *testing.T) {
-	tests := []struct {
-		url     string
-		want    string
-		wantErr bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{url: "", want: "/"},
 		{url: "?return-to=foo", wantErr: true},
 		{url: "?return-to=foo/bar", wantErr: true},

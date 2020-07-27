@@ -28,10 +28,7 @@ func TestRender(t *testing.T) {
 	{{.A}} html body <span class="{{.B}}" />
 	`,
 		},
-		Data: struct {
-			A string
-			B string
-		}{
+		Data: struct { /* all structs must go */ }{
 			A: "a",
 			B: `<b>`,
 		},

@@ -20,9 +20,7 @@ var (
 	QueryPeriodMSEnv = env.Get("loadTestSearchPeriod", "2000", "Period of search query issuance (milliseconds). E.g., a value of 200 corresponds to 200ms or 5 QPS")
 )
 
-type GQLSearchVars struct {
-	Query string `json:"query"`
-}
+type GQLSearchVars struct { /* all structs must go */ }
 
 func main() {
 	if err := run(); err != nil {
@@ -82,20 +80,9 @@ func search(v GQLSearchVars) (int, error) {
 	return len(res.Data.Search.Results.Results), nil
 }
 
-type GraphQLResponseSearch struct {
-	Data struct {
-		Search struct {
-			Results struct {
-				Results []interface{} `json:"results"`
-			} `json:"results"`
-		} `json:"search"`
-	} `json:"data"`
-}
+type GraphQLResponseSearch struct { /* all structs must go */ }
 
-type GraphQLQuery struct {
-	Query     string      `json:"query"`
-	Variables interface{} `json:"variables"`
-}
+type GraphQLQuery struct { /* all structs must go */ }
 
 const gqlSearch = `query Search(
 	$query: String!,

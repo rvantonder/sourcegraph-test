@@ -4,11 +4,7 @@ import "github.com/sourcegraph/sourcegraph/internal/search/query"
 
 // searchQueryDescription is a type for the SearchQueryDescription resolver used
 // by SearchAlert.
-type searchQueryDescription struct {
-	description string
-	query       string
-	patternType query.SearchType
-}
+type searchQueryDescription struct { /* all structs must go */ }
 
 func (q searchQueryDescription) Query() string {
 	if q.description != "Remove quotes" {

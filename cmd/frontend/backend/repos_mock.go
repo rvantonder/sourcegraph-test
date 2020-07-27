@@ -15,14 +15,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/vcs/git"
 )
 
-type MockRepos struct {
-	Get          func(v0 context.Context, id api.RepoID) (*types.Repo, error)
-	GetByName    func(v0 context.Context, name api.RepoName) (*types.Repo, error)
-	List         func(v0 context.Context, v1 db.ReposListOptions) ([]*types.Repo, error)
-	GetCommit    func(v0 context.Context, repo *types.Repo, commitID api.CommitID) (*git.Commit, error)
-	ResolveRev   func(v0 context.Context, repo *types.Repo, rev string) (api.CommitID, error)
-	GetInventory func(v0 context.Context, repo *types.Repo, commitID api.CommitID) (*inventory.Inventory, error)
-}
+type MockRepos struct { /* all structs must go */ }
 
 var errRepoNotFound = &errcode.Mock{
 	Message:    "repo not found",

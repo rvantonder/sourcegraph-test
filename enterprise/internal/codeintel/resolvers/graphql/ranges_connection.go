@@ -7,10 +7,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/resolvers"
 )
 
-type CodeIntelligenceRangeConnectionResolver struct {
-	ranges           []resolvers.AdjustedCodeIntelligenceRange
-	locationResolver *CachedLocationResolver
-}
+type CodeIntelligenceRangeConnectionResolver struct { /* all structs must go */ }
 
 func (r *CodeIntelligenceRangeConnectionResolver) Nodes(ctx context.Context) ([]gql.CodeIntelligenceRangeResolver, error) {
 	var resolvers []gql.CodeIntelligenceRangeResolver

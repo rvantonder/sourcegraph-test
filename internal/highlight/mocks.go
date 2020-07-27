@@ -8,9 +8,7 @@ import (
 // mocks are not (inadvertently) used by subsequent tests.
 //
 // (The emptyMocks is used by ResetMocks to zero out Mocks without needing to use a named type.)
-var Mocks, emptyMocks struct {
-	Code func(p Params) (h template.HTML, aborted bool, err error)
-}
+var Mocks, emptyMocks struct { /* all structs must go */ }
 
 // ResetMocks clears the mock functions set on Mocks (so that subsequent tests don't inadvertently
 // use them).

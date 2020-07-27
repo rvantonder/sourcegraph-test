@@ -28,11 +28,7 @@ func (r *productSubscription) InvoiceItem(ctx context.Context) (graphqlbackend.P
 	}, nil
 }
 
-type productSubscriptionInvoiceItem struct {
-	plan      *stripe.Plan
-	userCount int32
-	expiresAt time.Time
-}
+type productSubscriptionInvoiceItem struct { /* all structs must go */ }
 
 var _ graphqlbackend.ProductSubscriptionInvoiceItem = &productSubscriptionInvoiceItem{}
 

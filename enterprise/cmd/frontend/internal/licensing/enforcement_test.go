@@ -9,11 +9,7 @@ import (
 )
 
 func TestEnforcementPreCreateUser(t *testing.T) {
-	tests := []struct {
-		license         *license.Info
-		activeUserCount int
-		wantErr         bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		// See the impl for why we treat UserCount == 0 as unlimited.
 		{
 			license:         &license.Info{UserCount: 0},

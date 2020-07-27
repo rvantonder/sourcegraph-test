@@ -28,11 +28,7 @@ func TestAWSCodeCommitSource_Exclude(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	for _, tc := range []struct {
-		name         string
-		repo         *awscodecommit.Repository
-		wantExcluded bool
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{"name matches", &awscodecommit.Repository{Name: "my-repository"}, true},
 		{"name does not match", &awscodecommit.Repository{Name: "foobar"}, false},
 		{"id matches", &awscodecommit.Repository{ID: "id1"}, true},

@@ -6,57 +6,20 @@ import "github.com/sourcegraph/go-jsonschema/jsonschema"
 // not need to contain all fields, only those used by Go code.
 
 // SourcegraphExtensionManifest description: The Sourcegraph extension manifest describes the extension and the features it provides.
-type SourcegraphExtensionManifest struct {
-	ActivationEvents []string                `json:"activationEvents"`
-	Args             *map[string]interface{} `json:"args,omitempty"`
-	Contributes      *Contributions          `json:"contributes,omitempty"`
-	Description      string                  `json:"description,omitempty"`
-	Icon             string                  `json:"icon,omitempty"`
-	Readme           string                  `json:"readme,omitempty"`
-	Repository       *ExtensionRepository    `json:"repository,omitempty"`
-	Wip              bool                    `json:"wip,omitempty"`
-	Url              string                  `json:"url"`
-}
+type SourcegraphExtensionManifest struct { /* all structs must go */ }
 
 // ExtensionRepository description: The location of the version control repository for this extension.
-type ExtensionRepository struct {
-	Type string `json:"type,omitempty"`
-	Url  string `json:"url"`
-}
+type ExtensionRepository struct { /* all structs must go */ }
 
-type Action struct {
-	ActionItem       *ActionItem   `json:"actionItem,omitempty"`
-	Category         string        `json:"category,omitempty"`
-	Command          string        `json:"command,omitempty"`
-	CommandArguments []interface{} `json:"commandArguments,omitempty"`
-	IconURL          string        `json:"iconURL,omitempty"`
-	Id               string        `json:"id,omitempty"`
-	Title            string        `json:"title,omitempty"`
-}
+type Action struct { /* all structs must go */ }
 
 // ActionItem description: The action item.
-type ActionItem struct {
-	Description string `json:"description,omitempty"`
-	IconURL     string `json:"iconURL,omitempty"`
-	Label       string `json:"label,omitempty"`
-}
+type ActionItem struct { /* all structs must go */ }
 
 // Contributions description: Features contributed by this extension. Extensions may also register certain types of contributions dynamically.
-type Contributions struct {
-	Actions       []*Action          `json:"actions,omitempty"`
-	Configuration *jsonschema.Schema `json:"configuration,omitempty"`
-	Menus         *Menus             `json:"menus,omitempty"`
-}
+type Contributions struct { /* all structs must go */ }
 
-type MenuItem struct {
-	Action string `json:"action,omitempty"`
-	Alt    string `json:"alt,omitempty"`
-	When   string `json:"when,omitempty"`
-}
+type MenuItem struct { /* all structs must go */ }
 
 // Menus description: Describes where to place actions in menus.
-type Menus struct {
-	CommandPalette []*MenuItem `json:"commandPalette,omitempty"`
-	EditorTitle    []*MenuItem `json:"editor/title,omitempty"`
-	Help           []*MenuItem `json:"help,omitempty"`
-}
+type Menus struct { /* all structs must go */ }

@@ -18,9 +18,7 @@ func NewTest(h http.Handler) *Client {
 	return &Client{http.Client{Transport: handlerTransport{h}}}
 }
 
-type handlerTransport struct {
-	http.Handler
-}
+type handlerTransport struct { /* all structs must go */ }
 
 func (t handlerTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 	rw := httptest.NewRecorder()

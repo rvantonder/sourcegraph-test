@@ -11,31 +11,7 @@ import (
 
 // FakeChangesetSource is a fake implementation of the repos.ChangesetSource
 // interface to be used in tests.
-type FakeChangesetSource struct {
-	Svc *repos.ExternalService
-
-	// The Changeset.HeadRef to be expected in CreateChangeset/UpdateChangeset calls.
-	WantHeadRef string
-	// The Changeset.BaseRef to be expected in CreateChangeset/UpdateChangeset calls.
-	WantBaseRef string
-
-	// The metadata the FakeChangesetSource should set on the created/updated
-	// Changeset with changeset.SetMetadata.
-	FakeMetadata interface{}
-
-	// Whether or not the changeset already ChangesetExists on the code host at the time
-	// when CreateChangeset is called.
-	ChangesetExists bool
-
-	// error to be returned from every method
-	Err error
-
-	// ClosedChangesets contains the changesets that were passed to CloseChangeset
-	ClosedChangesets []*repos.Changeset
-
-	// LoadedChangesets contains the changesets that were passed to LoadChangesets
-	LoadedChangesets []*repos.Changeset
-}
+type FakeChangesetSource struct { /* all structs must go */ }
 
 func (s *FakeChangesetSource) CreateChangeset(ctx context.Context, c *repos.Changeset) (bool, error) {
 	if s.Err != nil {
@@ -95,10 +71,7 @@ func (s *FakeChangesetSource) CloseChangeset(ctx context.Context, c *repos.Chang
 
 // FakeGitserverClient is a test implementation of the GitserverClient
 // interface required by ExecChangesetJob.
-type FakeGitserverClient struct {
-	Response    string
-	ResponseErr error
-}
+type FakeGitserverClient struct { /* all structs must go */ }
 
 func (f *FakeGitserverClient) CreateCommitFromPatch(ctx context.Context, req protocol.CreateCommitFromPatchRequest) (string, error) {
 	return f.Response, f.ResponseErr

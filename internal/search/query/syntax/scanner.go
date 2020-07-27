@@ -30,11 +30,7 @@ var singleCharTokens = map[rune]TokenType{
 }
 
 // Token is a token in a query.
-type Token struct {
-	Type  TokenType // type of token
-	Value string    // string value
-	Pos   int       // starting character position
-}
+type Token struct { /* all structs must go */ }
 
 // Scan scans the query and returns a list of tokens.
 func Scan(input string) []Token {
@@ -48,13 +44,7 @@ func Scan(input string) []Token {
 
 type stateFn func(*scanner) stateFn
 
-type scanner struct {
-	input   string
-	tokens  []Token
-	pos     int
-	prevPos int
-	start   int
-}
+type scanner struct { /* all structs must go */ }
 
 func (s *scanner) next() rune {
 	s.prevPos = s.pos

@@ -15,14 +15,7 @@ func TestCheckEmailAbuse(t *testing.T) {
 	yesterday := now.AddDate(0, 0, -1)
 	farFuture := now.AddDate(100, 0, 0)
 
-	tests := []struct {
-		name      string
-		mockEmail *db.UserEmail
-		mockErr   error
-		expAbused bool
-		expReason string
-		expErr    error
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:      "no emails found",
 			mockEmail: nil,

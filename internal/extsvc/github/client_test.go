@@ -23,10 +23,7 @@ import (
 )
 
 func TestUnmarshal(t *testing.T) {
-	type result struct {
-		FieldA string
-		FieldB string
-	}
+	type result struct { /* all structs must go */ }
 	cases := map[string]string{
 		// Valid
 		`[]`:                                  "",
@@ -136,11 +133,7 @@ func TestClient_WithToken(t *testing.T) {
 // NOTE: To update VCR for this test, please use the token of "sourcegraph-vcr"
 // for GITHUB_TOKEN, which can be found in 1Password.
 func TestClient_ListAffiliatedRepositories(t *testing.T) {
-	tests := []struct {
-		name       string
-		visibility Visibility
-		wantRepos  []*Repository
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:       "list all repositories",
 			visibility: VisibilityAll,
@@ -236,12 +229,7 @@ func TestClient_LoadPullRequests(t *testing.T) {
 	cli, save := newClient(t, "LoadPullRequests")
 	defer save()
 
-	for i, tc := range []struct {
-		name string
-		ctx  context.Context
-		prs  []*PullRequest
-		err  string
-	}{
+	for i, tc := range []struct { /* all structs must go */ }{
 		{
 			name: "non-existing-repo",
 			prs:  []*PullRequest{{RepoWithOwner: "whoisthis/sourcegraph", Number: 5550}},
@@ -299,12 +287,7 @@ func TestClient_CreatePullRequest(t *testing.T) {
 	// only open a pull request once.
 	// In order to update specific tests, comment out the other ones and then
 	// run with -update.
-	for i, tc := range []struct {
-		name  string
-		ctx   context.Context
-		input *CreatePullRequestInput
-		err   string
-	}{
+	for i, tc := range []struct { /* all structs must go */ }{
 		{
 			name: "success",
 			input: &CreatePullRequestInput{
@@ -374,12 +357,7 @@ func TestClient_ClosePullRequest(t *testing.T) {
 	// only close a pull request once.
 	// In order to update specific tests, comment out the other ones and then
 	// run with -update.
-	for i, tc := range []struct {
-		name string
-		ctx  context.Context
-		pr   *PullRequest
-		err  string
-	}{
+	for i, tc := range []struct { /* all structs must go */ }{
 		{
 			name: "success",
 			// github.com/sourcegraph/automation-testing/pull/44
@@ -457,11 +435,7 @@ func newClient(t testing.TB, name string) (*Client, func()) {
 }
 
 func TestEstimateGraphQLCost(t *testing.T) {
-	for _, tc := range []struct {
-		name  string
-		query string
-		want  int
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{
 			name: "Canonical example",
 			query: `query {

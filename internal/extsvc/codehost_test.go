@@ -7,12 +7,7 @@ import (
 )
 
 func TestCodeHostOf(t *testing.T) {
-	for _, tc := range []struct {
-		name      string
-		repo      api.RepoName
-		codehosts []*CodeHost
-		want      *CodeHost
-	}{{
+	for _, tc := range []struct { /* all structs must go */ }{{
 		name:      "none",
 		repo:      "github.com/foo/bar",
 		codehosts: nil,

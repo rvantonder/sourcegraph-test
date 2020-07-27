@@ -9,10 +9,7 @@ import (
 )
 
 func TestAndOrQuery_Validation(t *testing.T) {
-	cases := []struct {
-		input string
-		want  string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			input: "case:yes case:no",
 			want:  `field "case" may not be used more than once`,
@@ -70,11 +67,7 @@ func TestAndOrQuery_Validation(t *testing.T) {
 }
 
 func TestAndOrQuery_IsCaseSensitive(t *testing.T) {
-	cases := []struct {
-		name  string
-		input string
-		want  bool
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			name:  "yes",
 			input: "case:yes",
@@ -106,15 +99,8 @@ func TestAndOrQuery_IsCaseSensitive(t *testing.T) {
 }
 
 func TestAndOrQuery_RegexpPatterns(t *testing.T) {
-	type want struct {
-		values        []string
-		negatedValues []string
-	}
-	c := struct {
-		query string
-		field string
-		want
-	}{
+	type want struct { /* all structs must go */ }
+	c := struct { /* all structs must go */ }{
 		query: "r:a r:b -r:c",
 		field: "repo",
 		want: want{
@@ -155,10 +141,7 @@ func TestAndOrQuery_CaseInsensitiveFields(t *testing.T) {
 }
 
 func TestPartitionSearchPattern(t *testing.T) {
-	cases := []struct {
-		input string
-		want  string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			input: "x",
 			want:  `"x"`,

@@ -30,9 +30,7 @@ func (r *schemaResolver) StatusMessages(ctx context.Context) ([]*statusMessageRe
 	return messages, nil
 }
 
-type statusMessageResolver struct {
-	message protocol.StatusMessage
-}
+type statusMessageResolver struct { /* all structs must go */ }
 
 func (r *statusMessageResolver) ToCloningProgress() (*statusMessageResolver, bool) {
 	return r, r.message.Cloning != nil

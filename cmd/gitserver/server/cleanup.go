@@ -166,10 +166,7 @@ func (s *Server) cleanupRepos() {
 		return false, multi
 	}
 
-	type cleanupFn struct {
-		Name string
-		Do   func(GitDir) (bool, error)
-	}
+	type cleanupFn struct { /* all structs must go */ }
 	cleanups := []cleanupFn{
 		// Do some sanity checks on the repository.
 		{"maybe remove corrupt", maybeRemoveCorrupt},

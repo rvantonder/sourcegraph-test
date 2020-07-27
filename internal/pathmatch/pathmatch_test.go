@@ -3,12 +3,7 @@ package pathmatch
 import "testing"
 
 func TestCompilePattern(t *testing.T) {
-	tests := []struct {
-		pattern string
-		options CompileOptions
-		want    map[string]bool
-		wantErr bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			pattern: `README.md`,
 			options: CompileOptions{},

@@ -19,16 +19,7 @@ const (
 
 // MutexOptions hold options passed to TryAcquireMutex. It is safe to
 // pass zero values in which case defaults will be used instead.
-type MutexOptions struct {
-	// Expiry sets how long a lock should be held. Under normal
-	// operation it will be extended on an interval of (Expiry / 2)
-	Expiry time.Duration
-	// Tries is how many tries we have before we give up acquiring a
-	// lock.
-	Tries int
-	// RetryDelay is how long to sleep between attempts to lock
-	RetryDelay time.Duration
-}
+type MutexOptions struct { /* all structs must go */ }
 
 // TryAcquireMutex tries to Lock a distributed mutex. If the mutex is already
 // locked, it will return `ctx, nil, false`. Otherwise it returns `ctx,

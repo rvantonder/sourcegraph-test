@@ -20,11 +20,7 @@ func TestRead(t *testing.T) {
 
 	ctx := context.Background()
 
-	tests := map[string]struct {
-		file     string
-		maxBytes int64
-		checkFn  func(*testing.T, error, []byte)
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"all": {
 			file: "file1",
 			checkFn: func(t *testing.T, err error, data []byte) {

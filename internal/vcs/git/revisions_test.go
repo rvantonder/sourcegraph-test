@@ -28,11 +28,7 @@ func TestRepository_ResolveBranch(t *testing.T) {
 	gitCommands := []string{
 		"GIT_COMMITTER_NAME=a GIT_COMMITTER_EMAIL=a@a.com GIT_COMMITTER_DATE=2006-01-02T15:04:05Z git commit --allow-empty -m foo --author='a <a@a.com>' --date 2006-01-02T15:04:05Z",
 	}
-	tests := map[string]struct {
-		repo         gitserver.Repo
-		branch       string
-		wantCommitID api.CommitID
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"git cmd": {
 			repo:         MakeGitRepository(t, gitCommands...),
 			branch:       "master",
@@ -59,11 +55,7 @@ func TestRepository_ResolveBranch_error(t *testing.T) {
 	gitCommands := []string{
 		"GIT_COMMITTER_NAME=a GIT_COMMITTER_EMAIL=a@a.com GIT_COMMITTER_DATE=2006-01-02T15:04:05Z git commit --allow-empty -m foo --author='a <a@a.com>' --date 2006-01-02T15:04:05Z",
 	}
-	tests := map[string]struct {
-		repo    gitserver.Repo
-		branch  string
-		wantErr func(error) bool
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"git cmd": {
 			repo:    MakeGitRepository(t, gitCommands...),
 			branch:  "doesntexist",
@@ -91,11 +83,7 @@ func TestRepository_ResolveTag(t *testing.T) {
 		"GIT_COMMITTER_NAME=a GIT_COMMITTER_EMAIL=a@a.com GIT_COMMITTER_DATE=2006-01-02T15:04:05Z git commit --allow-empty -m foo --author='a <a@a.com>' --date 2006-01-02T15:04:05Z",
 		"git tag t",
 	}
-	tests := map[string]struct {
-		repo         gitserver.Repo
-		tag          string
-		wantCommitID api.CommitID
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"git cmd": {
 			repo:         MakeGitRepository(t, gitCommands...),
 			tag:          "t",
@@ -122,11 +110,7 @@ func TestRepository_ResolveTag_error(t *testing.T) {
 	gitCommands := []string{
 		"GIT_COMMITTER_NAME=a GIT_COMMITTER_EMAIL=a@a.com GIT_COMMITTER_DATE=2006-01-02T15:04:05Z git commit --allow-empty -m foo --author='a <a@a.com>' --date 2006-01-02T15:04:05Z",
 	}
-	tests := map[string]struct {
-		repo    gitserver.Repo
-		tag     string
-		wantErr func(error) bool
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"git cmd": {
 			repo:    MakeGitRepository(t, gitCommands...),
 			tag:     "doesntexist",

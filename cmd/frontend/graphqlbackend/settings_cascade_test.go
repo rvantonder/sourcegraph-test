@@ -15,11 +15,7 @@ func TestMergeSettings(t *testing.T) {
 	}
 	defer func() { deeplyMergedSettingsFields = orig }()
 
-	tests := map[string]struct {
-		configs []string
-		want    string
-		wantErr bool
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"empty": {
 			configs: []string{},
 			want:    `{}`,

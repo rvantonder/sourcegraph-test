@@ -47,13 +47,7 @@ func (c *Client) GetMergeRequestNotes(ctx context.Context, project *Project, iid
 	}
 }
 
-type Note struct {
-	ID        ID        `json:"id"`
-	Body      string    `json:"body"`
-	Author    User      `json:"author"`
-	CreatedAt time.Time `json:"created_at"`
-	System    bool      `json:"system"`
-}
+type Note struct { /* all structs must go */ }
 
 func (n *Note) Key() string {
 	return fmt.Sprintf("Note:%d", n.ID)

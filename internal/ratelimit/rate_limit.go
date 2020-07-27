@@ -15,18 +15,7 @@ import (
 // headers. It supports both GitHub's and GitLab's APIs.
 //
 // It is intended to be embedded in an API client struct.
-type Monitor struct {
-	HeaderPrefix string // "X-" (GitHub) or "" (GitLab)
-
-	mu        sync.Mutex
-	known     bool
-	limit     int       // last RateLimit-Limit HTTP response header value
-	remaining int       // last RateLimit-Remaining HTTP response header value
-	reset     time.Time // last RateLimit-Remaining HTTP response header value
-	retry     time.Time // deadline based on Retry-After HTTP response header value
-
-	clock func() time.Time
-}
+type Monitor struct { /* all structs must go */ }
 
 // Get reports the client's rate limit status (as of the last API response it received).
 func (c *Monitor) Get() (remaining int, reset, retry time.Duration, known bool) {
@@ -163,12 +152,7 @@ func NewRegistry() *Registry {
 
 // Registry keeps a mapping of external service URL to *rate.Limiter.
 // By default an infinite limiter is returned.
-type Registry struct {
-	mu sync.Mutex
-	// Rate limiter per code host, keys are the normalized base URL for a
-	// code host.
-	rateLimiters map[string]*rate.Limiter
-}
+type Registry struct { /* all structs must go */ }
 
 // normaliseURL will attempt to normalise rawURL.
 // If there is an error parsing it, we'll just return rawURL lower cased.

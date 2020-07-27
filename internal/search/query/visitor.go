@@ -40,10 +40,7 @@ func (*BaseVisitor) VisitPattern(visitor Visitor, value string, negated bool, an
 
 // ParameterVisitor is a helper visitor that only visits operators in a query,
 // and supplies the operator members via a callback.
-type OperatorVisitor struct {
-	BaseVisitor
-	callback func(kind operatorKind, operands []Node)
-}
+type OperatorVisitor struct { /* all structs must go */ }
 
 func (s *OperatorVisitor) VisitOperator(visitor Visitor, kind operatorKind, operands []Node) {
 	s.callback(kind, operands)
@@ -52,10 +49,7 @@ func (s *OperatorVisitor) VisitOperator(visitor Visitor, kind operatorKind, oper
 
 // ParameterVisitor is a helper visitor that only visits parameters in a query,
 // and supplies the parameter members via a callback.
-type ParameterVisitor struct {
-	BaseVisitor
-	callback func(field, value string, negated bool)
-}
+type ParameterVisitor struct { /* all structs must go */ }
 
 func (s *ParameterVisitor) VisitParameter(visitor Visitor, field, value string, negated bool) {
 	s.callback(field, value, negated)
@@ -63,10 +57,7 @@ func (s *ParameterVisitor) VisitParameter(visitor Visitor, field, value string, 
 
 // PatternVisitor is a helper visitor that only visits patterns in a query,
 // and supplies the pattern members via a callback.
-type PatternVisitor struct {
-	BaseVisitor
-	callback func(value string, negated bool, annotation Annotation)
-}
+type PatternVisitor struct { /* all structs must go */ }
 
 func (s *PatternVisitor) VisitPattern(visitor Visitor, value string, negated bool, annotation Annotation) {
 	s.callback(value, negated, annotation)
@@ -75,11 +66,7 @@ func (s *PatternVisitor) VisitPattern(visitor Visitor, value string, negated boo
 // FieldVisitor is a helper visitor that only visits parameter fields in a
 // query, for a field specified in the state. For each parameter with
 // this field name it calls the callback with the field's members.
-type FieldVisitor struct {
-	BaseVisitor
-	field    string
-	callback func(value string, negated bool)
-}
+type FieldVisitor struct { /* all structs must go */ }
 
 func (s *FieldVisitor) VisitParameter(visitor Visitor, field, value string, negated bool) {
 	if s.field == field {

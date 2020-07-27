@@ -16,15 +16,7 @@ import (
 
 // AccessToken describes an access token. The actual token (that a caller must supply to
 // authenticate) is not stored and is not present in this struct.
-type AccessToken struct {
-	ID            int64
-	SubjectUserID int32 // the user whose privileges the access token grants
-	Scopes        []string
-	Note          string
-	CreatorUserID int32
-	CreatedAt     time.Time
-	LastUsedAt    *time.Time
-}
+type AccessToken struct { /* all structs must go */ }
 
 // ErrAccessTokenNotFound occurs when a database operation expects a specific access token to exist
 // but it does not exist.
@@ -151,12 +143,7 @@ func (s *accessTokens) GetByID(ctx context.Context, id int64) (*AccessToken, err
 }
 
 // AccessTokensListOptions contains options for listing access tokens.
-type AccessTokensListOptions struct {
-	SubjectUserID  int32 // only list access tokens with this user as the subject
-	LastUsedAfter  *time.Time
-	LastUsedBefore *time.Time
-	*LimitOffset
-}
+type AccessTokensListOptions struct { /* all structs must go */ }
 
 func (o AccessTokensListOptions) sqlConditions() []*sqlf.Query {
 	conds := []*sqlf.Query{sqlf.Sprintf("deleted_at IS NULL")}
@@ -264,9 +251,4 @@ func toSHA256Bytes(input []byte) []byte {
 	return b[:]
 }
 
-type MockAccessTokens struct {
-	Create     func(subjectUserID int32, scopes []string, note string, creatorUserID int32) (id int64, token string, err error)
-	DeleteByID func(id int64, subjectUserID int32) error
-	Lookup     func(tokenHexEncoded, requiredScope string) (subjectUserID int32, err error)
-	GetByID    func(id int64) (*AccessToken, error)
-}
+type MockAccessTokens struct { /* all structs must go */ }

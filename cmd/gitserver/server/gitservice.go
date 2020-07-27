@@ -34,11 +34,7 @@ var uploadPackArgs = []string{
 // This allows users to clone any git repo. We only support the smart
 // protocol. We aim to support modern git features such as protocol v2 to
 // minimize traffic.
-type gitServiceHandler struct {
-	// Dir is a funcion which takes a repository name and returns an absolute
-	// path to the GIT_DIR for it.
-	Dir func(string) string
-}
+type gitServiceHandler struct { /* all structs must go */ }
 
 func (s *gitServiceHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// Only support clones and fetches (git upload-pack). /info/refs sets the

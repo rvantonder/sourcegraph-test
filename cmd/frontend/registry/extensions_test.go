@@ -10,12 +10,7 @@ import (
 )
 
 func TestSplitExtensionID(t *testing.T) {
-	tests := map[string]struct {
-		wantPrefix    string
-		wantPublisher string
-		wantName      string
-		wantErr       bool
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"":        {wantErr: true},
 		"/":       {wantErr: true},
 		"a/":      {wantErr: true},
@@ -48,13 +43,7 @@ func TestSplitExtensionID(t *testing.T) {
 }
 
 func TestParseExtensionID(t *testing.T) {
-	tests := map[string]struct {
-		mockConfiguredPrefix         string
-		wantPrefix                   string
-		wantExtensionIDWithoutPrefix string
-		wantIsLocal                  bool
-		wantErr                      bool
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"":      {wantErr: true},
 		"b/c":   {wantExtensionIDWithoutPrefix: "b/c", wantIsLocal: true},
 		"a/b/c": {wantErr: true},
@@ -91,11 +80,7 @@ func TestParseExtensionID(t *testing.T) {
 	}
 }
 
-type mockRegistryExtension struct {
-	id   int32
-	name string
-	graphqlbackend.RegistryExtension
-}
+type mockRegistryExtension struct { /* all structs must go */ }
 
 func TestGetExtensionByExtensionID(t *testing.T) {
 	ctx := context.Background()

@@ -38,14 +38,7 @@ func (api *codeIntelAPI) References(ctx context.Context, repositoryID int, commi
 	return rpr.resolvePage(ctx, cursor)
 }
 
-type ReferencePageResolver struct {
-	store               store.Store
-	bundleManagerClient bundles.BundleManagerClient
-	repositoryID        int
-	commit              string
-	remoteDumpLimit     int
-	limit               int
-}
+type ReferencePageResolver struct { /* all structs must go */ }
 
 func (s *ReferencePageResolver) resolvePage(ctx context.Context, cursor Cursor) ([]ResolvedLocation, Cursor, bool, error) {
 	var allLocations []ResolvedLocation

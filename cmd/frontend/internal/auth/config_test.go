@@ -8,10 +8,7 @@ import (
 )
 
 func TestValidateCustom(t *testing.T) {
-	tests := map[string]struct {
-		input        conf.Unified
-		wantProblems conf.Problems
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"no auth.providers": {
 			input:        conf.Unified{SiteConfiguration: schema.SiteConfiguration{}},
 			wantProblems: conf.NewSiteProblems("no auth providers set"),

@@ -15,17 +15,7 @@ const ModeSubmodule = 0160000 | os.ModeDevice
 
 // Submodule holds information about a Git submodule and is
 // returned in the FileInfo's Sys field by Stat/Lstat/ReadDir calls.
-type Submodule struct {
-	// URL is the submodule repository clone URL.
-	URL string
-
-	// Path is the path of the submodule relative to the repository root.
-	Path string
-
-	// CommitID is the pinned commit ID of the submodule (in the
-	// submodule repository's commit ID space).
-	CommitID api.CommitID
-}
+type Submodule struct { /* all structs must go */ }
 
 // ObjectInfo holds information about a Git object and is returned in (os.FileInfo).Sys for blobs
 // and trees from Stat/Lstat/ReadDir calls.

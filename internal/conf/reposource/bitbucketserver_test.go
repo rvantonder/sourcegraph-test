@@ -7,10 +7,7 @@ import (
 )
 
 func TestBitbucketServer_cloneURLToRepoName(t *testing.T) {
-	tests := []struct {
-		conn schema.BitbucketServerConnection
-		urls []urlToRepoName
-	}{{
+	tests := []struct { /* all structs must go */ }{{
 		conn: schema.BitbucketServerConnection{
 			Password: "pass",
 			Url:      "https://bitbucket.sgdev.org",

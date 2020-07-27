@@ -9,10 +9,7 @@ import (
 )
 
 func TestErrorsInterface(t *testing.T) {
-	cases := []struct {
-		Err       error
-		Predicate func(error) bool
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{&RepoNotFoundErr{}, errcode.IsNotFound},
 		{userNotFoundErr{}, errcode.IsNotFound},
 	}

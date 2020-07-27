@@ -45,35 +45,7 @@ func IsBinary(content []byte) bool {
 
 // Params defines mandatory and optional parameters to use when highlighting
 // code.
-type Params struct {
-	// Content is the file content.
-	Content []byte
-
-	// Filepath is used to detect the language, it must contain at least the
-	// file name + extension.
-	Filepath string
-
-	// DisableTimeout indicates whether or not a user has requested to wait as
-	// long as needed to get highlighted results (this should never be on by
-	// default, as some files can take a very long time to highlight).
-	DisableTimeout bool
-
-	// Whether or not the light theme should be used to highlight the code.
-	IsLightTheme bool
-
-	// HighlightLongLines, if true, highlighting lines which are greater than
-	// 2000 bytes is enabled. This may produce a significant amount of HTML
-	// which some browsers (such as Chrome, but not Firefox) may have trouble
-	// rendering efficiently.
-	HighlightLongLines bool
-
-	// Whether or not to simulate the syntax highlighter taking too long to
-	// respond.
-	SimulateTimeout bool
-
-	// Metadata provides optional metadata about the code we're highlighting.
-	Metadata Metadata
-}
+type Params struct { /* all structs must go */ }
 
 // Metadata contains metadata about a request to highlight code. It is used to
 // ensure that when syntax highlighting takes a long time or errors out, we
@@ -81,10 +53,7 @@ type Params struct {
 // trying to highlight was.
 //
 // All fields are optional.
-type Metadata struct {
-	RepoName string
-	Revision string
-}
+type Metadata struct { /* all structs must go */ }
 
 // ErrBinary is returned when a binary file was attempted to be highlighted.
 var ErrBinary = errors.New("cannot render binary file")

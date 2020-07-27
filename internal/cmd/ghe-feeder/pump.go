@@ -33,22 +33,7 @@ func extractOwnerRepoFromCSVLine(line string) string {
 }
 
 // producer is pumping input line by line into the pipe channel for processing by the workers.
-type producer struct {
-	// how many lines are remaining to be processed
-	remaining int64
-	// where to send each ownerRepo. the workers expect 'owner/repo' strings
-	pipe chan<- string
-	// sqlite DB where each ownerRepo is declared (to keep progress and to implement resume functionality)
-	fdr *feederDB
-	// how many we have already processed
-	numAlreadyDone int64
-	// logger for the pump
-	logger log15.Logger
-	// terminal UI progress bar
-	bar *progressbar.ProgressBar
-	// skips this many lines from the input before starting to feed into the pipe
-	skipNumLines int64
-}
+type producer struct { /* all structs must go */ }
 
 // pumpFile reads the specified file line by line and feeds ownerRepo strings into the pipe
 func (prdc *producer) pumpFile(ctx context.Context, path string) error {

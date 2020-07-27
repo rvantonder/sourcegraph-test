@@ -18,14 +18,7 @@ import (
 // different to runtime.Version for test data.
 var RuntimeVersion = runtime.Version()
 
-type Directory struct {
-	ImportPath  string // the Go import path for this package
-	ProjectRoot string // import path prefix for all packages in the project
-	CloneURL    string // the VCS clone URL
-	RepoPrefix  string // the path to this directory inside the repo, if set
-	VCS         string // one of "git", "hg", "svn", etc.
-	Rev         string // the VCS revision specifier, if any
-}
+type Directory struct { /* all structs must go */ }
 
 var errNoMatch = errors.New("no match")
 
@@ -141,19 +134,10 @@ func resolveDynamicImportPath(client *http.Client, importPath string) (*Director
 // importMeta represents the values in a go-import meta tag.
 //
 // See https://golang.org/cmd/go/#hdr-Remote_import_paths.
-type importMeta struct {
-	prefix string // the import path corresponding to the repository root
-	vcs    string // one of "git", "hg", "svn", etc.
-	repo   string // root of the VCS repo containing a scheme and not containing a .vcs qualifier
-}
+type importMeta struct { /* all structs must go */ }
 
 // sourceMeta represents the values in a go-source meta tag.
-type sourceMeta struct {
-	prefix       string
-	projectURL   string
-	dirTemplate  string
-	fileTemplate string
-}
+type sourceMeta struct { /* all structs must go */ }
 
 func fetchMeta(client *http.Client, importPath string) (scheme string, im *importMeta, sm *sourceMeta, err error) {
 	uri := importPath

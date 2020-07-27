@@ -25,21 +25,7 @@ import (
 
 type RepositoryResolverCache map[api.RepoName]*RepositoryResolver
 
-type RepositoryResolver struct {
-	hydration sync.Once
-	err       error
-
-	repo    *types.Repo
-	icon    string
-	matches []*searchResultMatchResolver
-
-	defaultBranchOnce sync.Once
-	defaultBranch     *GitRefResolver
-	defaultBranchErr  error
-
-	// rev optionally specifies a revision to go to for search results.
-	rev string
-}
+type RepositoryResolver struct { /* all structs must go */ }
 
 func NewRepositoryResolver(repo *types.Repo) *RepositoryResolver {
 	return &RepositoryResolver{repo: repo}
@@ -142,10 +128,7 @@ func (r *RepositoryResolver) CloneInProgress(ctx context.Context) (bool, error) 
 	return r.MirrorInfo().CloneInProgress(ctx)
 }
 
-type RepositoryCommitArgs struct {
-	Rev          string
-	InputRevspec *string
-}
+type RepositoryCommitArgs struct { /* all structs must go */ }
 
 func (r *RepositoryResolver) Commit(ctx context.Context, args *RepositoryCommitArgs) (*GitCommitResolver, error) {
 	commitID, err := backend.Repos.ResolveRev(ctx, r.repo, args.Rev)
@@ -327,17 +310,9 @@ func (r *RepositoryResolver) LSIFIndexes(ctx context.Context, args *LSIFIndexesQ
 	})
 }
 
-type AuthorizedUserArgs struct {
-	RepositoryID graphql.ID
-	Permission   string
-	First        int32
-	After        *string
-}
+type AuthorizedUserArgs struct { /* all structs must go */ }
 
-type RepoAuthorizedUserArgs struct {
-	RepositoryID graphql.ID
-	*AuthorizedUserArgs
-}
+type RepoAuthorizedUserArgs struct { /* all structs must go */ }
 
 func (r *RepositoryResolver) AuthorizedUsers(ctx context.Context, args *AuthorizedUserArgs) (UserConnectionResolver, error) {
 	return EnterpriseResolvers.authzResolver.AuthorizedUsers(ctx, &RepoAuthorizedUserArgs{
@@ -350,13 +325,7 @@ func (r *RepositoryResolver) PermissionsInfo(ctx context.Context) (PermissionsIn
 	return EnterpriseResolvers.authzResolver.RepositoryPermissionsInfo(ctx, r.ID())
 }
 
-func (*schemaResolver) AddPhabricatorRepo(ctx context.Context, args *struct {
-	Callsign string
-	Name     *string
-	// TODO(chris): Remove URI in favor of Name.
-	URI *string
-	URL string
-}) (*EmptyResponse, error) {
+func (*schemaResolver) AddPhabricatorRepo(ctx context.Context, args *struct { /* all structs must go */ }) (*EmptyResponse, error) {
 	if args.Name != nil {
 		args.URI = args.Name
 	}
@@ -368,16 +337,7 @@ func (*schemaResolver) AddPhabricatorRepo(ctx context.Context, args *struct {
 	return nil, err
 }
 
-func (*schemaResolver) ResolvePhabricatorDiff(ctx context.Context, args *struct {
-	RepoName    string
-	DiffID      int32
-	BaseRev     string
-	Patch       *string
-	AuthorName  *string
-	AuthorEmail *string
-	Description *string
-	Date        *string
-}) (*GitCommitResolver, error) {
+func (*schemaResolver) ResolvePhabricatorDiff(ctx context.Context, args *struct { /* all structs must go */ }) (*GitCommitResolver, error) {
 	repo, err := db.Repos.GetByName(ctx, api.RepoName(args.RepoName))
 	if err != nil {
 		return nil, err

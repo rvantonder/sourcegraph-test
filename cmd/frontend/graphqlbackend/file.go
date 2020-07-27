@@ -36,23 +36,13 @@ func richHTML(content, ext string) (string, error) {
 	return markdown.Render(content), nil
 }
 
-type markdownOptions struct {
-	AlwaysNil *string
-}
+type markdownOptions struct { /* all structs must go */ }
 
-func (*schemaResolver) RenderMarkdown(args *struct {
-	Markdown string
-	Options  *markdownOptions
-}) string {
+func (*schemaResolver) RenderMarkdown(args *struct { /* all structs must go */ }) string {
 	return markdown.Render(args.Markdown)
 }
 
-func (*schemaResolver) HighlightCode(ctx context.Context, args *struct {
-	Code           string
-	FuzzyLanguage  string
-	DisableTimeout bool
-	IsLightTheme   bool
-}) (string, error) {
+func (*schemaResolver) HighlightCode(ctx context.Context, args *struct { /* all structs must go */ }) (string, error) {
 	language := highlight.SyntectLanguageMap[strings.ToLower(args.FuzzyLanguage)]
 	filePath := "file." + language
 	html, _, err := highlight.Code(ctx, highlight.Params{

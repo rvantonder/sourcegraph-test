@@ -9,18 +9,13 @@ import (
 	"github.com/sourcegraph/sourcegraph/schema"
 )
 
-type urlMismatchErr struct {
-	cloneURL string
-	hostURL  string
-}
+type urlMismatchErr struct { /* all structs must go */ }
 
 func (e urlMismatchErr) Error() string {
 	return fmt.Sprintf("cloneURL %q did not match git host %q", e.cloneURL, e.hostURL)
 }
 
-type Other struct {
-	*schema.OtherExternalServiceConnection
-}
+type Other struct { /* all structs must go */ }
 
 var _ RepoSource = Other{}
 

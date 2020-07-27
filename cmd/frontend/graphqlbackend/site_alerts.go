@@ -26,11 +26,7 @@ import (
 )
 
 // Alert implements the GraphQL type Alert.
-type Alert struct {
-	TypeValue                 string
-	MessageValue              string
-	IsDismissibleWithKeyValue string
-}
+type Alert struct { /* all structs must go */ }
 
 func (r *Alert) Type() string    { return r.TypeValue }
 func (r *Alert) Message() string { return r.MessageValue }
@@ -57,11 +53,7 @@ var AlertFuncs []func(AlertFuncArgs) []*Alert
 // AlertFuncArgs are the arguments provided to functions in AlertFuncs used to populate the GraphQL
 // Site.alerts value. They allow the functions to customize the returned alerts based on the
 // identity of the viewer (without needing to query for that on their own, which would be slow).
-type AlertFuncArgs struct {
-	IsAuthenticated     bool             // whether the viewer is authenticated
-	IsSiteAdmin         bool             // whether the viewer is a site admin
-	ViewerFinalSettings *schema.Settings // the viewer's final user/org/global settings
-}
+type AlertFuncArgs struct { /* all structs must go */ }
 
 func (r *siteResolver) Alerts(ctx context.Context) ([]*Alert, error) {
 	settings, err := decodedViewerFinalSettings(ctx)

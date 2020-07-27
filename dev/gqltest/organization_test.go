@@ -44,9 +44,7 @@ func TestOrganization(t *testing.T) {
 				t.Fatal(err)
 			}
 
-			var got struct {
-				QuickLinks []schema.QuickLink `json:"quicklinks"`
-			}
+			var got struct { /* all structs must go */ }
 			err = jsoniter.UnmarshalFromString(contents, &got)
 			if err != nil {
 				t.Fatal(err)
@@ -76,9 +74,7 @@ func TestOrganization(t *testing.T) {
 				t.Fatal(err)
 			}
 
-			var got struct {
-				QuickLinks []schema.QuickLink `json:"quicklinks"`
-			}
+			var got struct { /* all structs must go */ }
 			err = jsoniter.UnmarshalFromString(contents, &got)
 			if err != nil {
 				t.Fatal(err)

@@ -8,10 +8,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/resolvers"
 )
 
-type IndexConnectionResolver struct {
-	resolver         *resolvers.IndexesResolver
-	locationResolver *CachedLocationResolver
-}
+type IndexConnectionResolver struct { /* all structs must go */ }
 
 func NewIndexConnectionResolver(resolver *resolvers.IndexesResolver, locationResolver *CachedLocationResolver) gql.LSIFIndexConnectionResolver {
 	return &IndexConnectionResolver{

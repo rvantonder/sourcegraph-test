@@ -13,18 +13,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/httpcli"
 )
 
-type changesetEventsConnectionResolver struct {
-	store       *ee.Store
-	httpFactory *httpcli.Factory
-	changeset   *campaigns.Changeset
-	opts        ee.ListChangesetEventsOpts
-
-	// cache results because they are used by multiple fields
-	once            sync.Once
-	changesetEvents []*campaigns.ChangesetEvent
-	next            int64
-	err             error
-}
+type changesetEventsConnectionResolver struct { /* all structs must go */ }
 
 func (r *changesetEventsConnectionResolver) Nodes(ctx context.Context) ([]graphqlbackend.ChangesetEventResolver, error) {
 	changesetEvents, _, err := r.compute(ctx)
@@ -64,12 +53,7 @@ func (r *changesetEventsConnectionResolver) compute(ctx context.Context) ([]*cam
 	return r.changesetEvents, r.next, r.err
 }
 
-type changesetEventResolver struct {
-	store       *ee.Store
-	httpFactory *httpcli.Factory
-	changeset   *campaigns.Changeset
-	*campaigns.ChangesetEvent
-}
+type changesetEventResolver struct { /* all structs must go */ }
 
 const changesetEventIDKind = "ChangesetEvent"
 
@@ -94,9 +78,7 @@ func (r *changesetEventResolver) Changeset(ctx context.Context) (graphqlbackend.
 	}, nil
 }
 
-type changesetCountsResolver struct {
-	counts *ee.ChangesetCounts
-}
+type changesetCountsResolver struct { /* all structs must go */ }
 
 func (r *changesetCountsResolver) Date() graphqlbackend.DateTime {
 	return graphqlbackend.DateTime{Time: r.counts.Time}

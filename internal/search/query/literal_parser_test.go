@@ -26,12 +26,7 @@ func heuristicLabels(nodes []Node) string {
 }
 
 func TestParseAndOrLiteral(t *testing.T) {
-	cases := []struct {
-		Input      string
-		Want       string
-		WantLabels string
-		WantError  string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			Input:      "()",
 			Want:       `"()"`,

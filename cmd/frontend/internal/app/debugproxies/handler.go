@@ -18,20 +18,12 @@ import (
 )
 
 // proxyEndpoint couples the reverse proxy with the endpoint it proxies.
-type proxyEndpoint struct {
-	reverseProxy http.Handler
-	host         string
-}
+type proxyEndpoint struct { /* all structs must go */ }
 
 // ReverseProxyHandler handles serving the index page and routing the requests being proxied to their
 // respective reverse proxy. proxyEndpoints come from callers calling ReverseProxyHandler.Populate().
 // zero value is useful and will provide a "no endpoint found" index until some endpoints get populated.
-type ReverseProxyHandler struct {
-	// protects the reverseProxies map
-	sync.RWMutex
-	// keys are the displayNames
-	reverseProxies map[string]*proxyEndpoint
-}
+type ReverseProxyHandler struct { /* all structs must go */ }
 
 func (rph *ReverseProxyHandler) AddToRouter(r *mux.Router) {
 	r.Handle("/", adminOnly(http.HandlerFunc(rph.serveIndex)))

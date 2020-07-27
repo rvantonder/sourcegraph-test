@@ -162,9 +162,7 @@ DELETE FROM changeset_specs WHERE id = %s
 
 // CountChangesetSpecsOpts captures the query options needed for counting
 // ChangesetSpecs.
-type CountChangesetSpecsOpts struct {
-	CampaignSpecID int64
-}
+type CountChangesetSpecsOpts struct { /* all structs must go */ }
 
 // CountChangesetSpecs returns the number of changeset specs in the database.
 func (s *Store) CountChangesetSpecs(ctx context.Context, opts CountChangesetSpecsOpts) (count int64, _ error) {
@@ -201,10 +199,7 @@ func countChangesetSpecsQuery(opts *CountChangesetSpecsOpts) *sqlf.Query {
 }
 
 // GetChangesetSpecOpts captures the query options needed for getting a ChangesetSpec
-type GetChangesetSpecOpts struct {
-	ID     int64
-	RandID string
-}
+type GetChangesetSpecOpts struct { /* all structs must go */ }
 
 // GetChangesetSpec gets a code mod matching the given options.
 func (s *Store) GetChangesetSpec(ctx context.Context, opts GetChangesetSpecOpts) (*campaigns.ChangesetSpec, error) {
@@ -256,13 +251,7 @@ func getChangesetSpecQuery(opts *GetChangesetSpecOpts) *sqlf.Query {
 
 // ListChangesetSpecsOpts captures the query options needed for
 // listing code mods.
-type ListChangesetSpecsOpts struct {
-	Cursor int64
-	Limit  int
-
-	CampaignSpecID int64
-	RandIDs        []string
-}
+type ListChangesetSpecsOpts struct { /* all structs must go */ }
 
 // ListChangesetSpecs lists ChangesetSpecs with the given filters.
 func (s *Store) ListChangesetSpecs(ctx context.Context, opts ListChangesetSpecsOpts) (cs []*campaigns.ChangesetSpec, next int64, err error) {

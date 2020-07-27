@@ -6,14 +6,9 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/conf"
 )
 
-type clientConfigurationResolver struct {
-	contentScriptUrls []string
-	parentSourcegraph *parentSourcegraphResolver
-}
+type clientConfigurationResolver struct { /* all structs must go */ }
 
-type parentSourcegraphResolver struct {
-	url string
-}
+type parentSourcegraphResolver struct { /* all structs must go */ }
 
 func (r *clientConfigurationResolver) ContentScriptURLs() []string {
 	return r.contentScriptUrls

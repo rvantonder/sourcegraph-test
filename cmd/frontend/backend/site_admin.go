@@ -52,9 +52,7 @@ func CheckUserIsSiteAdmin(ctx context.Context, userID int32) error {
 // InsufficientAuthorizationError is an error that occurs when the authentication is technically valid
 // (e.g., the token is not expired) but does not yield a user with privileges to perform a certain
 // action.
-type InsufficientAuthorizationError struct {
-	Message string
-}
+type InsufficientAuthorizationError struct { /* all structs must go */ }
 
 func (e *InsufficientAuthorizationError) Error() string      { return e.Message }
 func (e *InsufficientAuthorizationError) Unauthorized() bool { return true }

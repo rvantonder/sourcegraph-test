@@ -47,15 +47,7 @@ func (c *Client) GetMergeRequestPipelines(ctx context.Context, project *Project,
 	}
 }
 
-type Pipeline struct {
-	ID        ID             `json:"id"`
-	SHA       string         `json:"sha"`
-	Ref       string         `json:"ref"`
-	Status    PipelineStatus `json:"status"`
-	WebURL    string         `json:"web_url"`
-	CreatedAt time.Time      `json:"created_at"`
-	UpdatedAt time.Time      `json:"updated_at"`
-}
+type Pipeline struct { /* all structs must go */ }
 
 type PipelineStatus string
 

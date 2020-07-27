@@ -15,15 +15,7 @@ import (
 // GroupedBundleData is a view of a correlation State that sorts data by it containing document
 // and shared data into shareded result chunks. The fields of this type are what is written to
 // persistent storage and what is read in the query path.
-type GroupedBundleData struct {
-	Meta              types.MetaData
-	Documents         map[string]types.DocumentData
-	ResultChunks      map[int]types.ResultChunkData
-	Definitions       []types.MonikerLocations
-	References        []types.MonikerLocations
-	Packages          []types.Package
-	PackageReferences []types.PackageReference
-}
+type GroupedBundleData struct { /* all structs must go */ }
 
 const MaxNumResultChunks = 1000
 const ResultsPerResultChunk = 500
@@ -295,12 +287,7 @@ func gatherPackages(state *State, dumpID int) []types.Package {
 }
 
 func gatherPackageReferences(state *State, dumpID int) ([]types.PackageReference, error) {
-	type ExpandedPackageReference struct {
-		Scheme      string
-		Name        string
-		Version     string
-		Identifiers []string
-	}
+	type ExpandedPackageReference struct { /* all structs must go */ }
 
 	uniques := make(map[string]ExpandedPackageReference, state.ImportedMonikers.Len())
 	state.ImportedMonikers.Each(func(id int) {

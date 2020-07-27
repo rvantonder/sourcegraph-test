@@ -17,11 +17,7 @@ func TestUserEmail_NeedsVerificationCoolDown(t *testing.T) {
 		return &t
 	}
 
-	tests := []struct {
-		name                   string
-		lastVerificationSentAt *time.Time
-		needsCoolDown          bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:                   "nil",
 			lastVerificationSentAt: nil,

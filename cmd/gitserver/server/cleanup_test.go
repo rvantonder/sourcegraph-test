@@ -361,12 +361,7 @@ func TestHowManyBytesToFree(t *testing.T) {
 		DesiredPercentFree: 10,
 	}
 
-	tcs := []struct {
-		name      string
-		diskSize  uint64
-		bytesFree uint64
-		want      int64
-	}{
+	tcs := []struct { /* all structs must go */ }{
 		{
 			name:      "if there is already enough space, no space is freed",
 			diskSize:  10 * G,
@@ -404,10 +399,7 @@ func TestHowManyBytesToFree(t *testing.T) {
 	}
 }
 
-type fakeDiskSizer struct {
-	bytesFree uint64
-	diskSize  uint64
-}
+type fakeDiskSizer struct { /* all structs must go */ }
 
 func (f *fakeDiskSizer) BytesFreeOnDisk(mountPoint string) (uint64, error) {
 	return f.bytesFree, nil

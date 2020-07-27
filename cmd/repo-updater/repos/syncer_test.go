@@ -31,12 +31,7 @@ func TestSyncer_Sync(t *testing.T) {
 	github := repos.ExternalService{ID: 1, Kind: extsvc.KindGitHub}
 	gitlab := repos.ExternalService{ID: 2, Kind: extsvc.KindGitLab}
 
-	for _, tc := range []struct {
-		name    string
-		sourcer repos.Sourcer
-		store   repos.Store
-		err     string
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{
 			name:    "sourcer error aborts sync",
 			sourcer: repos.NewFakeSourcer(errors.New("boom")),
@@ -210,22 +205,10 @@ func testSyncerSync(s repos.Store) func(*testing.T) {
 
 	clock := repos.NewFakeClock(time.Now(), 0)
 
-	type testCase struct {
-		name    string
-		sourcer repos.Sourcer
-		store   repos.Store
-		stored  repos.Repos
-		ctx     context.Context
-		now     func() time.Time
-		diff    repos.Diff
-		err     string
-	}
+	type testCase struct { /* all structs must go */ }
 
 	var testCases []testCase
-	for _, tc := range []struct {
-		repo *repos.Repo
-		svc  *repos.ExternalService
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{repo: githubRepo, svc: githubService},
 		{repo: gitlabRepo, svc: gitlabService},
 		{repo: bitbucketServerRepo, svc: bitbucketServerService},
@@ -616,12 +599,7 @@ func testSyncSubset(s repos.Store) func(*testing.T) {
 		},
 	}
 
-	testCases := []struct {
-		name    string
-		sourced repos.Repos
-		stored  repos.Repos
-		assert  repos.ReposAssertion
-	}{{
+	testCases := []struct { /* all structs must go */ }{{
 		name:   "no sourced",
 		stored: repos.Repos{repo.With(repos.Opt.RepoCreatedAt(clock.Time(2)))},
 		assert: repos.Assert.ReposEqual(repo.With(repos.Opt.RepoCreatedAt(clock.Time(2)))),
@@ -725,12 +703,7 @@ func TestDiff(t *testing.T) {
 	}
 	now := time.Now()
 
-	type testCase struct {
-		name   string
-		store  repos.Repos
-		source repos.Repos
-		diff   repos.Diff
-	}
+	type testCase struct { /* all structs must go */ }
 
 	cases := []testCase{
 		{

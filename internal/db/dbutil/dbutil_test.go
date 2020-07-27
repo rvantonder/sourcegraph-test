@@ -3,11 +3,7 @@ package dbutil
 import "testing"
 
 func TestPostgresDSN(t *testing.T) {
-	cases := []struct {
-		name string
-		env  map[string]string
-		dsn  string
-	}{{
+	cases := []struct { /* all structs must go */ }{{
 		name: "default",
 		env:  map[string]string{},
 		dsn:  "postgres://testuser@127.0.0.1:5432",

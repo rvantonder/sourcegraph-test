@@ -11,20 +11,7 @@ import (
 
 // Index is a subset of the lsif_indexes table and stores both processed and unprocessed
 // records.
-type Index struct {
-	ID             int        `json:"id"`
-	Commit         string     `json:"commit"`
-	QueuedAt       time.Time  `json:"queuedAt"`
-	State          string     `json:"state"`
-	FailureMessage *string    `json:"failureMessage"`
-	StartedAt      *time.Time `json:"startedAt"`
-	FinishedAt     *time.Time `json:"finishedAt"`
-	ProcessAfter   *time.Time `json:"processAfter"`
-	NumResets      int        `json:"numResets"`
-	RepositoryID   int        `json:"repositoryId"`
-	RepositoryName string     `json:"repositoryName"`
-	Rank           *int       `json:"placeInQueue"`
-}
+type Index struct { /* all structs must go */ }
 
 func (i Index) RecordID() int {
 	return i.ID
@@ -109,13 +96,7 @@ func (s *store) GetIndexByID(ctx context.Context, id int) (Index, bool, error) {
 	`, id)))
 }
 
-type GetIndexesOptions struct {
-	RepositoryID int
-	State        string
-	Term         string
-	Limit        int
-	Offset       int
-}
+type GetIndexesOptions struct { /* all structs must go */ }
 
 // GetIndexes returns a list of indexes and the total count of records matching the given conditions.
 func (s *store) GetIndexes(ctx context.Context, opts GetIndexesOptions) (_ []Index, _ int, err error) {

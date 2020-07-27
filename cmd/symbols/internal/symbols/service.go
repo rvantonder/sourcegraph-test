@@ -16,40 +16,7 @@ import (
 )
 
 // Service is the symbols service.
-type Service struct {
-	// FetchTar returns an io.ReadCloser to a tar archive of a repository at the specified Git
-	// remote URL and commit ID. If the error implements "BadRequest() bool", it will be used to
-	// determine if the error is a bad request (eg invalid repo).
-	FetchTar func(context.Context, gitserver.Repo, api.CommitID) (io.ReadCloser, error)
-
-	// MaxConcurrentFetchTar is the maximum number of concurrent calls allowed
-	// to FetchTar. It defaults to 15.
-	MaxConcurrentFetchTar int
-
-	NewParser func() (ctags.Parser, error)
-
-	// NumParserProcesses is the maximum number of ctags parser child processes to run.
-	NumParserProcesses int
-
-	// Path is the directory in which to store the cache.
-	Path string
-
-	// MaxCacheSizeBytes is the maximum size of the cache in bytes. Note:
-	// We can temporarily be larger than MaxCacheSizeBytes. When we go
-	// over MaxCacheSizeBytes we trigger delete files until we get below
-	// MaxCacheSizeBytes.
-	MaxCacheSizeBytes int64
-
-	// cache is the disk backed cache.
-	cache *diskcache.Store
-
-	// fetchSem is a semaphore to limit concurrent calls to FetchTar. The
-	// semaphore size is controlled by MaxConcurrentFetchTar
-	fetchSem chan int
-
-	// pool of ctags parser child processes
-	parsers chan ctags.Parser
-}
+type Service struct { /* all structs must go */ }
 
 // Start must be called before any requests are handled.
 func (s *Service) Start() error {

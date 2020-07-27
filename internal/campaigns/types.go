@@ -53,20 +53,7 @@ func IsKindSupported(extSvcKind string) bool {
 }
 
 // A Campaign of changesets over multiple Repos over time.
-type Campaign struct {
-	ID              int64
-	Name            string
-	Description     string
-	Branch          string
-	AuthorID        int32
-	NamespaceUserID int32
-	NamespaceOrgID  int32
-	CreatedAt       time.Time
-	UpdatedAt       time.Time
-	ChangesetIDs    []int64
-	ClosedAt        time.Time
-	CampaignSpecID  int64
-}
+type Campaign struct { /* all structs must go */ }
 
 // Clone returns a clone of a Campaign.
 func (c *Campaign) Clone() *Campaign {
@@ -143,11 +130,7 @@ func (s ChangesetExternalState) Valid() bool {
 }
 
 // ChangesetLabel represents a label applied to a changeset
-type ChangesetLabel struct {
-	Name        string
-	Color       string
-	Description string
-}
+type ChangesetLabel struct { /* all structs must go */ }
 
 // CampaignState defines the possible states of a Campaign
 type CampaignState string
@@ -209,28 +192,7 @@ func (s ChangesetCheckState) Valid() bool {
 
 // A Changeset is a changeset on a code host belonging to a Repository and many
 // Campaigns.
-type Changeset struct {
-	ID                  int64
-	RepoID              api.RepoID
-	CreatedAt           time.Time
-	UpdatedAt           time.Time
-	Metadata            interface{}
-	CampaignIDs         []int64
-	ExternalID          string
-	ExternalServiceType string
-	ExternalBranch      string
-	ExternalDeletedAt   time.Time
-	ExternalUpdatedAt   time.Time
-	ExternalState       ChangesetExternalState
-	ExternalReviewState ChangesetReviewState
-	ExternalCheckState  ChangesetCheckState
-	CreatedByCampaign   bool
-	AddedToCampaign     bool
-	DiffStatAdded       *int32
-	DiffStatChanged     *int32
-	DiffStatDeleted     *int32
-	SyncState           ChangesetSyncState
-}
+type Changeset struct { /* all structs must go */ }
 
 // Clone returns a clone of a Changeset.
 func (c *Changeset) Clone() *Changeset {
@@ -642,15 +604,7 @@ func (c *Changeset) Labels() []ChangesetLabel {
 	}
 }
 
-type ChangesetSyncState struct {
-	BaseRefOid string
-	HeadRefOid string
-
-	// This is essentially the result of c.ExternalState != CampaignStateOpen
-	// the last time a sync occured. We use this to short circuit computing the
-	// sync state if the changeset remains closed.
-	IsComplete bool
-}
+type ChangesetSyncState struct { /* all structs must go */ }
 
 func (state *ChangesetSyncState) Equals(old *ChangesetSyncState) bool {
 	return state.BaseRefOid == old.BaseRefOid && state.HeadRefOid == old.HeadRefOid && state.IsComplete == old.IsComplete
@@ -658,15 +612,7 @@ func (state *ChangesetSyncState) Equals(old *ChangesetSyncState) bool {
 
 // A ChangesetEvent is an event that happened in the lifetime
 // and context of a Changeset.
-type ChangesetEvent struct {
-	ID          int64
-	ChangesetID int64
-	Kind        ChangesetEventKind
-	Key         string // Deduplication key
-	CreatedAt   time.Time
-	UpdatedAt   time.Time
-	Metadata    interface{}
-}
+type ChangesetEvent struct { /* all structs must go */ }
 
 // Clone returns a clone of a ChangesetEvent.
 func (e *ChangesetEvent) Clone() *ChangesetEvent {
@@ -1458,18 +1404,7 @@ const (
 )
 
 // ChangesetSyncData represents data about the sync status of a changeset
-type ChangesetSyncData struct {
-	ChangesetID int64
-	// UpdatedAt is the time we last updated / synced the changeset in our DB
-	UpdatedAt time.Time
-	// LatestEvent is the time we received the most recent changeset event
-	LatestEvent time.Time
-	// ExternalUpdatedAt is the time the external changeset last changed
-	ExternalUpdatedAt time.Time
-	// RepoExternalServiceID is the external_service_id in the repo table, usually
-	// represented by the code host URL
-	RepoExternalServiceID string
-}
+type ChangesetSyncData struct { /* all structs must go */ }
 
 func MarshalCampaignID(id int64) graphql.ID {
 	return relay.MarshalID("Campaign", id)
@@ -1494,21 +1429,7 @@ func NewCampaignSpecFromRaw(rawSpec string) (*CampaignSpec, error) {
 	return c, c.UnmarshalValidate()
 }
 
-type CampaignSpec struct {
-	ID     int64
-	RandID string
-
-	RawSpec string
-	Spec    CampaignSpecFields
-
-	NamespaceUserID int32
-	NamespaceOrgID  int32
-
-	UserID int32
-
-	CreatedAt time.Time
-	UpdatedAt time.Time
-}
+type CampaignSpec struct { /* all structs must go */ }
 
 // Clone returns a clone of a CampaignSpec.
 func (cs *CampaignSpec) Clone() *CampaignSpec {
@@ -1532,36 +1453,15 @@ func (cs *CampaignSpec) ExpiresAt() time.Time {
 	return cs.CreatedAt.Add(CampaignSpecTTL)
 }
 
-type CampaignSpecFields struct {
-	Name              string             `json:"name"`
-	Description       string             `json:"description"`
-	On                []CampaignSpecOn   `json:"on"`
-	Steps             []CampaignSpecStep `json:"steps"`
-	ChangesetTemplate ChangesetTemplate  `json:"changesetTemplate"`
-}
+type CampaignSpecFields struct { /* all structs must go */ }
 
-type CampaignSpecOn struct {
-	RepositoriesMatchingQuery string `json:"repositoriesMatchingQuery,omitempty"`
-	Repository                string `json:"repository,omitempty"`
-}
+type CampaignSpecOn struct { /* all structs must go */ }
 
-type CampaignSpecStep struct {
-	Run       string            `json:"run"`
-	Container string            `json:"container"`
-	Env       map[string]string `json:"env"`
-}
+type CampaignSpecStep struct { /* all structs must go */ }
 
-type ChangesetTemplate struct {
-	Title     string         `json:"title"`
-	Body      string         `json:"body"`
-	Branch    string         `json:"branch"`
-	Commit    CommitTemplate `json:"commit"`
-	Published bool           `json:"published"`
-}
+type ChangesetTemplate struct { /* all structs must go */ }
 
-type CommitTemplate struct {
-	Message string `json:"message"`
-}
+type CommitTemplate struct { /* all structs must go */ }
 
 func NewChangesetSpecFromRaw(rawSpec string) (*ChangesetSpec, error) {
 	c := &ChangesetSpec{RawSpec: rawSpec}
@@ -1575,25 +1475,7 @@ func NewChangesetSpecFromRaw(rawSpec string) (*ChangesetSpec, error) {
 	return c, nil
 }
 
-type ChangesetSpec struct {
-	ID     int64
-	RandID string
-
-	RawSpec string
-	// TODO(mrnugget): should we rename the "spec" column to "description"?
-	Spec ChangesetSpecDescription
-
-	DiffStatAdded   int32
-	DiffStatChanged int32
-	DiffStatDeleted int32
-
-	CampaignSpecID int64
-	RepoID         api.RepoID
-	UserID         int32
-
-	CreatedAt time.Time
-	UpdatedAt time.Time
-}
+type ChangesetSpec struct { /* all structs must go */ }
 
 // Clone returns a clone of a ChangesetSpec.
 func (cs *ChangesetSpec) Clone() *ChangesetSpec {
@@ -1683,27 +1565,7 @@ func (cs *ChangesetSpec) ExpiresAt() time.Time {
 // yet).
 var ErrHeadBaseMismatch = errors.New("headRepository does not match baseRepository")
 
-type ChangesetSpecDescription struct {
-	BaseRepository graphql.ID `json:"baseRepository,omitempty"`
-
-	// If this is not empty, the description is a reference to an existing
-	// changeset and the rest of these fields are empty.
-	// TODO(mrnugget): Id or ID, that is the question?
-	ExternalID string `json:"externalId,omitempty"`
-
-	BaseRev string `json:"baseRev,omitempty"`
-	BaseRef string `json:"baseRef,omitempty"`
-
-	HeadRepository graphql.ID `json:"headRepository,omitempty"`
-	HeadRef        string     `json:"headRef,omitempty"`
-
-	Title string `json:"title,omitempty"`
-	Body  string `json:"body,omitempty"`
-
-	Commits []GitCommitDescription `json:"commits,omitempty"`
-
-	Published bool `json:"published,omitempty"`
-}
+type ChangesetSpecDescription struct { /* all structs must go */ }
 
 // Type returns the ChangesetSpecDescriptionType of the ChangesetSpecDescription.
 func (d *ChangesetSpecDescription) Type() ChangesetSpecDescriptionType {
@@ -1752,10 +1614,7 @@ func (d *ChangesetSpecDescription) Diff() (string, error) {
 	return d.Commits[0].Diff, nil
 }
 
-type GitCommitDescription struct {
-	Message string `json:"message,omitempty"`
-	Diff    string `json:"diff,omitempty"`
-}
+type GitCommitDescription struct { /* all structs must go */ }
 
 // unmarshalValidate validates the input, which can be YAML or JSON, against
 // the provided JSON schema. If the validation is successful is unmarshals the

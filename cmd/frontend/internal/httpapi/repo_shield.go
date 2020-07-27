@@ -38,11 +38,7 @@ func serveRepoShield(w http.ResponseWriter, r *http.Request) error {
 	if err != nil {
 		return err
 	}
-	return writeJSON(w, &struct {
-		// Note: Named lowercase because the JSON is consumed by shields.io JS
-		// code.
-		Value string `json:"value"`
-	}{
+	return writeJSON(w, &struct { /* all structs must go */ }{
 		Value: badgeValueFmt(value),
 	})
 }

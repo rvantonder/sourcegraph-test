@@ -17,9 +17,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/schema"
 )
 
-type fakeSlackClient struct {
-	payloads []*slack.Payload
-}
+type fakeSlackClient struct { /* all structs must go */ }
 
 func (c *fakeSlackClient) Post(ctx context.Context, payload *slack.Payload) error {
 	c.payloads = append(c.payloads, payload)

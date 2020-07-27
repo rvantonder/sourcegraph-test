@@ -2,9 +2,7 @@ package graphqlbackend
 
 import "github.com/sourcegraph/sourcegraph/cmd/frontend/types"
 
-type phabricatorRepoResolver struct {
-	*types.PhabricatorRepo
-}
+type phabricatorRepoResolver struct { /* all structs must go */ }
 
 func (p *phabricatorRepoResolver) Callsign() string {
 	return p.PhabricatorRepo.Callsign

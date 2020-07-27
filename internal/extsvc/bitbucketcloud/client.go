@@ -39,20 +39,7 @@ const (
 )
 
 // Client access a Bitbucket Cloud via the REST API 2.0.
-type Client struct {
-	// HTTP Client used to communicate with the API
-	httpClient httpcli.Doer
-
-	// URL is the base URL of Bitbucket Cloud.
-	URL *url.URL
-
-	// The username and app password credentials for accessing the server.
-	Username, AppPassword string
-
-	// RateLimit is the self-imposed rate limiter (since Bitbucket does not have a concept
-	// of rate limiting in HTTP response headers).
-	RateLimit *rate.Limiter
-}
+type Client struct { /* all structs must go */ }
 
 // NewClient creates a new Bitbucket Cloud API client with given apiURL. If a nil httpClient
 // is provided, http.DefaultClient will be used. Both Username and AppPassword fields are
@@ -128,10 +115,7 @@ func (c *Client) reqPage(ctx context.Context, url string, results interface{}) (
 	}
 
 	var next PageToken
-	err = c.do(ctx, req, &struct {
-		*PageToken
-		Values interface{} `json:"values"`
-	}{
+	err = c.do(ctx, req, &struct { /* all structs must go */ }{
 		PageToken: &next,
 		Values:    results,
 	})
@@ -198,12 +182,7 @@ func (c *Client) authenticate(req *http.Request) error {
 	return nil
 }
 
-type PageToken struct {
-	Size    int    `json:"size"`
-	Page    int    `json:"page"`
-	Pagelen int    `json:"pagelen"`
-	Next    string `json:"next"`
-}
+type PageToken struct { /* all structs must go */ }
 
 func (t *PageToken) HasMore() bool {
 	if t == nil {
@@ -223,31 +202,13 @@ func (t *PageToken) Values() url.Values {
 	return v
 }
 
-type Repo struct {
-	Slug        string `json:"slug"`
-	Name        string `json:"name"`
-	FullName    string `json:"full_name"`
-	UUID        string `json:"uuid"`
-	SCM         string `json:"scm"`
-	Description string `json:"description"`
-	Parent      *Repo  `json:"parent"`
-	IsPrivate   bool   `json:"is_private"`
-	Links       Links  `json:"links"`
-}
+type Repo struct { /* all structs must go */ }
 
-type Links struct {
-	Clone CloneLinks `json:"clone"`
-	HTML  Link       `json:"html"`
-}
+type Links struct { /* all structs must go */ }
 
-type CloneLinks []struct {
-	Href string `json:"href"`
-	Name string `json:"name"`
-}
+type CloneLinks []struct { /* all structs must go */ }
 
-type Link struct {
-	Href string `json:"href"`
-}
+type Link struct { /* all structs must go */ }
 
 // HTTPS returns clone link named "https", it returns an error if not found.
 func (cl CloneLinks) HTTPS() (string, error) {
@@ -259,11 +220,7 @@ func (cl CloneLinks) HTTPS() (string, error) {
 	return "", errors.New("HTTPS clone link not found")
 }
 
-type httpError struct {
-	StatusCode int
-	URL        *url.URL
-	Body       []byte
-}
+type httpError struct { /* all structs must go */ }
 
 func (e *httpError) Error() string {
 	return fmt.Sprintf("Bitbucket Cloud API HTTP error: code=%d url=%q body=%q", e.StatusCode, e.URL, e.Body)

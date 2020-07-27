@@ -13,7 +13,4 @@ func init() {
 }
 
 // dotcomResolver implements the GraphQL types DotcomMutation and DotcomQuery.
-type dotcomResolver struct {
-	productsubscription.ProductSubscriptionLicensingResolver
-	billing.BillingResolver
-}
+type dotcomResolver struct { /* all structs must go */ }

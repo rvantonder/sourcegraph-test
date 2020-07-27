@@ -14,11 +14,7 @@ import (
 )
 
 func TestParseIncludePattern(t *testing.T) {
-	tests := map[string]struct {
-		exact  []string
-		like   []string
-		regexp string
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		`^$`:              {exact: []string{""}},
 		`(^$)`:            {exact: []string{""}},
 		`((^$))`:          {exact: []string{""}},

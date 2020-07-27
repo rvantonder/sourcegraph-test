@@ -18,13 +18,7 @@ mutation CreateOrganization($name: String!, $displayName: String) {
 		"name":        name,
 		"displayName": displayName,
 	}
-	var resp struct {
-		Data struct {
-			CreateOrganization struct {
-				ID string `json:"id"`
-			} `json:"createOrganization"`
-		} `json:"data"`
-	}
+	var resp struct { /* all structs must go */ }
 	err := c.GraphQL("", query, variables, &resp)
 	if err != nil {
 		return "", errors.Wrap(err, "request GraphQL")

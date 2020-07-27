@@ -19,10 +19,7 @@ const MaxDisplayWidth = 80
 
 // ParallelFn groups an error-returning function with a description that can be displayed
 // by runParallel.
-type ParallelFn struct {
-	Fn          func(ctx context.Context) error
-	Description string
-}
+type ParallelFn struct { /* all structs must go */ }
 
 // braille is an animated spinner based off of the characters used by yarn.
 var braille = pentimento.NewAnimatedString([]string{"⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"}, pentimento.DefaultInterval)
@@ -66,10 +63,7 @@ func RunParallel(ctx context.Context, concurrency int, fns []ParallelFn) error {
 }
 
 // errPair bundles an error value with the function index from which it was produced.
-type errPair struct {
-	i   int
-	err error
-}
+type errPair struct { /* all structs must go */ }
 
 // runFunctions is the worker body. It will pull an index off of the work queue,
 // mark that index as pending, then send the index and the value resulting from

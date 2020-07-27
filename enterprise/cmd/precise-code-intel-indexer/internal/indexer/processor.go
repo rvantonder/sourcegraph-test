@@ -17,11 +17,7 @@ type Processor interface {
 	Process(ctx context.Context, index store.Index) error
 }
 
-type processor struct {
-	store           store.Store
-	gitserverClient gitserver.Client
-	frontendURL     string
-}
+type processor struct { /* all structs must go */ }
 
 func (p *processor) Process(ctx context.Context, index store.Index) error {
 	repoDir, err := fetchRepository(ctx, p.store, p.gitserverClient, index.RepositoryID, index.Commit)

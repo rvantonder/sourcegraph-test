@@ -10,10 +10,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/api"
 )
 
-type UploadResolver struct {
-	upload           store.Upload
-	locationResolver *CachedLocationResolver
-}
+type UploadResolver struct { /* all structs must go */ }
 
 func NewUploadResolver(upload store.Upload, locationResolver *CachedLocationResolver) gql.LSIFUploadResolver {
 	return &UploadResolver{

@@ -27,11 +27,7 @@ import (
 // were generated with the old fields must still work until all customers have added the new
 // license. Increment (encodedInfo).Version and formatVersion when you make backward-incompatbile
 // changes.
-type Info struct {
-	Tags      []string  `json:"t"` // tags that denote features/restrictions (e.g., "starter" or "dev")
-	UserCount uint      `json:"u"` // the number of users that this license is valid for
-	ExpiresAt time.Time `json:"e"` // the date when this license expires
-}
+type Info struct { /* all structs must go */ }
 
 // IsExpired reports whether the license has expired.
 func (l Info) IsExpired() bool {
@@ -74,11 +70,7 @@ func ParseTagsInput(tagsStr string) []string {
 	return tags
 }
 
-type encodedInfo struct {
-	Version int     `json:"v"` // version number of the license key info format (not Sourcegraph product/build version)
-	Nonce   [8]byte `json:"n"` // random nonce so that licenses with identical Info values
-	Info
-}
+type encodedInfo struct { /* all structs must go */ }
 
 const formatVersion = 1 // (encodedInfo).Version value
 
@@ -102,10 +94,7 @@ func (l *Info) decode(data []byte) error {
 	return nil
 }
 
-type signedKey struct {
-	Signature   *ssh.Signature `json:"sig"`
-	EncodedInfo []byte         `json:"info"`
-}
+type signedKey struct { /* all structs must go */ }
 
 // GenerateSignedKey generates a new signed license key with the given license information, using
 // the private key for the signature.

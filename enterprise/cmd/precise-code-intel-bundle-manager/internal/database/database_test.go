@@ -21,10 +21,7 @@ func init() {
 }
 
 func TestDatabaseExists(t *testing.T) {
-	testCases := []struct {
-		path     string
-		expected bool
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{"cmd/lsif-go/main.go", true},
 		{"internal/index/indexer.go", true},
 		{"missing.go", false},
@@ -307,15 +304,7 @@ func TestDatabaseMonikerResults(t *testing.T) {
 		},
 	}
 
-	testCases := []struct {
-		tableName          string
-		scheme             string
-		identifier         string
-		skip               int
-		take               int
-		expectedLocations  []bundles.Location
-		expectedTotalCount int
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{"definitions", "gomod", "github.com/sourcegraph/lsif-go/protocol:Edge", 0, 100, edgeLocations, 10},
 		{"definitions", "gomod", "github.com/sourcegraph/lsif-go/protocol:Edge", 3, 4, edgeLocations[3:7], 10},
 		{"references", "gomod", "github.com/slimsag/godocmd:ToMarkdown", 0, 100, markdownLocations, 1},

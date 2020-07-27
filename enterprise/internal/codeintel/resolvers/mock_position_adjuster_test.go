@@ -12,17 +12,7 @@ import (
 // interface (from the package
 // github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/resolvers)
 // used for unit testing.
-type MockPositionAdjuster struct {
-	// AdjustPathFunc is an instance of a mock function object controlling
-	// the behavior of the method AdjustPath.
-	AdjustPathFunc *PositionAdjusterAdjustPathFunc
-	// AdjustPositionFunc is an instance of a mock function object
-	// controlling the behavior of the method AdjustPosition.
-	AdjustPositionFunc *PositionAdjusterAdjustPositionFunc
-	// AdjustRangeFunc is an instance of a mock function object controlling
-	// the behavior of the method AdjustRange.
-	AdjustRangeFunc *PositionAdjusterAdjustRangeFunc
-}
+type MockPositionAdjuster struct { /* all structs must go */ }
 
 // NewMockPositionAdjuster creates a new mock of the PositionAdjuster
 // interface. All methods return zero values for all results, unless
@@ -66,12 +56,7 @@ func NewMockPositionAdjusterFrom(i PositionAdjuster) *MockPositionAdjuster {
 
 // PositionAdjusterAdjustPathFunc describes the behavior when the AdjustPath
 // method of the parent MockPositionAdjuster instance is invoked.
-type PositionAdjusterAdjustPathFunc struct {
-	defaultHook func(context.Context, string, string, bool) (string, bool, error)
-	hooks       []func(context.Context, string, string, bool) (string, bool, error)
-	history     []PositionAdjusterAdjustPathFuncCall
-	mutex       sync.Mutex
-}
+type PositionAdjusterAdjustPathFunc struct { /* all structs must go */ }
 
 // AdjustPath delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -146,29 +131,7 @@ func (f *PositionAdjusterAdjustPathFunc) History() []PositionAdjusterAdjustPathF
 
 // PositionAdjusterAdjustPathFuncCall is an object that describes an
 // invocation of method AdjustPath on an instance of MockPositionAdjuster.
-type PositionAdjusterAdjustPathFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 bool
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 string
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 bool
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type PositionAdjusterAdjustPathFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -185,12 +148,7 @@ func (c PositionAdjusterAdjustPathFuncCall) Results() []interface{} {
 // PositionAdjusterAdjustPositionFunc describes the behavior when the
 // AdjustPosition method of the parent MockPositionAdjuster instance is
 // invoked.
-type PositionAdjusterAdjustPositionFunc struct {
-	defaultHook func(context.Context, string, string, client.Position, bool) (string, client.Position, bool, error)
-	hooks       []func(context.Context, string, string, client.Position, bool) (string, client.Position, bool, error)
-	history     []PositionAdjusterAdjustPositionFuncCall
-	mutex       sync.Mutex
-}
+type PositionAdjusterAdjustPositionFunc struct { /* all structs must go */ }
 
 // AdjustPosition delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -266,35 +224,7 @@ func (f *PositionAdjusterAdjustPositionFunc) History() []PositionAdjusterAdjustP
 // PositionAdjusterAdjustPositionFuncCall is an object that describes an
 // invocation of method AdjustPosition on an instance of
 // MockPositionAdjuster.
-type PositionAdjusterAdjustPositionFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 client.Position
-	// Arg4 is the value of the 5th argument passed to this method
-	// invocation.
-	Arg4 bool
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 string
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 client.Position
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 bool
-	// Result3 is the value of the 4th result returned from this method
-	// invocation.
-	Result3 error
-}
+type PositionAdjusterAdjustPositionFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -311,12 +241,7 @@ func (c PositionAdjusterAdjustPositionFuncCall) Results() []interface{} {
 // PositionAdjusterAdjustRangeFunc describes the behavior when the
 // AdjustRange method of the parent MockPositionAdjuster instance is
 // invoked.
-type PositionAdjusterAdjustRangeFunc struct {
-	defaultHook func(context.Context, string, string, client.Range, bool) (string, client.Range, bool, error)
-	hooks       []func(context.Context, string, string, client.Range, bool) (string, client.Range, bool, error)
-	history     []PositionAdjusterAdjustRangeFuncCall
-	mutex       sync.Mutex
-}
+type PositionAdjusterAdjustRangeFunc struct { /* all structs must go */ }
 
 // AdjustRange delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -391,35 +316,7 @@ func (f *PositionAdjusterAdjustRangeFunc) History() []PositionAdjusterAdjustRang
 
 // PositionAdjusterAdjustRangeFuncCall is an object that describes an
 // invocation of method AdjustRange on an instance of MockPositionAdjuster.
-type PositionAdjusterAdjustRangeFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 string
-	// Arg3 is the value of the 4th argument passed to this method
-	// invocation.
-	Arg3 client.Range
-	// Arg4 is the value of the 5th argument passed to this method
-	// invocation.
-	Arg4 bool
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 string
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 client.Range
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 bool
-	// Result3 is the value of the 4th result returned from this method
-	// invocation.
-	Result3 error
-}
+type PositionAdjusterAdjustRangeFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.

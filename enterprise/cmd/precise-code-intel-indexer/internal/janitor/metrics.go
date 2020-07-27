@@ -2,10 +2,7 @@ package janitor
 
 import "github.com/prometheus/client_golang/prometheus"
 
-type JanitorMetrics struct {
-	IndexRecordsRemoved prometheus.Counter
-	Errors              prometheus.Counter
-}
+type JanitorMetrics struct { /* all structs must go */ }
 
 func NewJanitorMetrics(r prometheus.Registerer) JanitorMetrics {
 	indexRecordsRemoved := prometheus.NewCounter(prometheus.CounterOpts{

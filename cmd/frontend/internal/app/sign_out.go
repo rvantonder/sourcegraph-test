@@ -9,11 +9,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/cmd/frontend/internal/session"
 )
 
-type SignOutURL struct {
-	ProviderDisplayName string
-	ProviderServiceType string
-	URL                 string
-}
+type SignOutURL struct { /* all structs must go */ }
 
 var ssoSignOutHandler func(w http.ResponseWriter, r *http.Request) []SignOutURL
 
@@ -45,9 +41,7 @@ func serveSignOut(w http.ResponseWriter, r *http.Request) {
 }
 
 func renderSignoutPageTemplate(w http.ResponseWriter, r *http.Request, signoutURLs []SignOutURL) {
-	data := struct {
-		SignoutURLs []SignOutURL
-	}{
+	data := struct { /* all structs must go */ }{
 		SignoutURLs: signoutURLs,
 	}
 

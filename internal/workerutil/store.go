@@ -56,81 +56,12 @@ type Record interface {
 	RecordID() int
 }
 
-type store struct {
-	*basestore.Store
-	options        StoreOptions
-	columnReplacer *strings.Replacer
-}
+type store struct { /* all structs must go */ }
 
 var _ Store = &store{}
 
 // StoreOptions configure the behavior of Store over a particular set of tables, columns, and expressions.
-type StoreOptions struct {
-	// TableName is the name of the table containing work records.
-	//
-	// The target table (and the target view referenced by `ViewName`) must have the following columns
-	// and types:
-	//
-	//   - id: integer primary key
-	//   - state: an enum type containing at least `queued`, `processing`, and `errored`
-	//   - failure_message: text
-	//   - started_at: timestamp with time zone
-	//   - finished_at: timestamp with time zone
-	//   - process_after: timestamp with time zone
-	//   - num_resets: integer not null
-	//
-	// The names of these columns may be customized based on the table name by adding a replacement
-	// pair in the AlternateColumnNames mapping.
-	//
-	// It's recommended to put an index or (or partial index) on the state column for more efficient
-	// dequeue operations.
-	TableName string
-
-	// AlternateColumnNames is a map from expected column names to actual column names in the target
-	// table. This allows existing tables to be more easily retrofitted into the expected record
-	// shape.
-	AlternateColumnNames map[string]string
-
-	// ViewName is an optional name of a view on top of the table containing work records to query when
-	// selecting a candidate and when selecting the record after it has been locked. If this value is
-	// not supplied, `TableName` will be used. The value supplied may also indicate a table alias, which
-	// can be referenced in `OrderByExpression`, `ColumnExpressions`, and the conditions suplied to
-	// `Dequeue`.
-	//
-	// The target of this column must be a view on top of the configured table with the same column
-	// requirements as the base table descried above.
-	//
-	// Example use case:
-	// The processor for LSIF uploads supplies `lsif_uploads_with_repository_name`, a view on top of the
-	// `lsif_uploads` table that joins work records with the `repo` table and adds an additional repository
-	// name column. This allows `Dequeue` to return a record with additional data so that a second query
-	// is not necessary by the caller.
-	ViewName string
-
-	// Scan is the function used to convert a rows object into a record of the expected shape.
-	Scan RecordScanFn
-
-	// OrderByExpression is the SQL expression used to order candidate records when selecting the next
-	// batch of work to perform. This expression may use the alias provided in `ViewName`, if one was
-	// supplied.
-	OrderByExpression *sqlf.Query
-
-	// ColumnExpressions are the target columns provided to the query when selecting a locked record.
-	// These expressions may use the alias provided in `ViewName`, if one was supplied.
-	ColumnExpressions []*sqlf.Query
-
-	// StalledMaxAge is the maximum allow duration between updating the state of a record as "processing"
-	// and locking the record row during processing. An unlocked row that is marked as processing likely
-	// indicates that the worker that dequeued the record has died. There should be a nearly-zero delay
-	// between these states during normal operation.
-	StalledMaxAge time.Duration
-
-	// MaxNumResets is the maximum number of times a record can be implicitly reset back to the queued
-	// state (via `ResetStalled`). If a record's failed attempts counter reaches this threshold, it will
-	// be moved into the errored state rather than queued on its next reset to prevent an infinite retry
-	// cycle of the same input.
-	MaxNumResets int
-}
+type StoreOptions struct { /* all structs must go */ }
 
 // RecordScanFn is a function that interprets row values as a particular record. This function should
 // return a false-valued flag if the given result set was empty. This function must close the rows

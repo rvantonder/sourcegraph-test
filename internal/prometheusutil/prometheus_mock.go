@@ -13,11 +13,7 @@ import (
 // interface (from the package
 // github.com/sourcegraph/sourcegraph/internal/prometheusutil) used for unit
 // testing.
-type MockPrometheusQuerier struct {
-	// QueryRangeFunc is an instance of a mock function object controlling
-	// the behavior of the method QueryRange.
-	QueryRangeFunc *PrometheusQuerierQueryRangeFunc
-}
+type MockPrometheusQuerier struct { /* all structs must go */ }
 
 // NewMockPrometheusQuerier creates a new mock of the PrometheusQuerier
 // interface. All methods return zero values for all results, unless
@@ -46,12 +42,7 @@ func NewMockPrometheusQuerierFrom(i PrometheusQuerier) *MockPrometheusQuerier {
 // PrometheusQuerierQueryRangeFunc describes the behavior when the
 // QueryRange method of the parent MockPrometheusQuerier instance is
 // invoked.
-type PrometheusQuerierQueryRangeFunc struct {
-	defaultHook func(context.Context, string, v1.Range) (model.Value, v1.Warnings, error)
-	hooks       []func(context.Context, string, v1.Range) (model.Value, v1.Warnings, error)
-	history     []PrometheusQuerierQueryRangeFuncCall
-	mutex       sync.Mutex
-}
+type PrometheusQuerierQueryRangeFunc struct { /* all structs must go */ }
 
 // QueryRange delegates to the next hook function in the queue and stores
 // the parameter and result values of this invocation.
@@ -126,26 +117,7 @@ func (f *PrometheusQuerierQueryRangeFunc) History() []PrometheusQuerierQueryRang
 
 // PrometheusQuerierQueryRangeFuncCall is an object that describes an
 // invocation of method QueryRange on an instance of MockPrometheusQuerier.
-type PrometheusQuerierQueryRangeFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 context.Context
-	// Arg1 is the value of the 2nd argument passed to this method
-	// invocation.
-	Arg1 string
-	// Arg2 is the value of the 3rd argument passed to this method
-	// invocation.
-	Arg2 v1.Range
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 model.Value
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 v1.Warnings
-	// Result2 is the value of the 3rd result returned from this method
-	// invocation.
-	Result2 error
-}
+type PrometheusQuerierQueryRangeFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.

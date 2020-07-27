@@ -21,13 +21,7 @@ import (
 // ErrNoMetadata occurs when there are no rows in the meta table.
 var ErrNoMetadata = errors.New("no rows in meta table")
 
-type sqliteReader struct {
-	filename   string
-	cache      cache.DataCache
-	store      *store.Store
-	closer     func() error
-	serializer serialization.Serializer
-}
+type sqliteReader struct { /* all structs must go */ }
 
 var _ persistence.Reader = &sqliteReader{}
 

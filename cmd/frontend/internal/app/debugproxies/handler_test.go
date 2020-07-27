@@ -99,10 +99,7 @@ func TestIndexLinks(t *testing.T) {
 }
 
 func TestDisplayNameFromEndpoint(t *testing.T) {
-	cases := []struct {
-		Service, Addr, Hostname string
-		Want                    string
-	}{{
+	cases := []struct { /* all structs must go */ }{{
 		Service:  "gitserver",
 		Addr:     "192.168.10.0:2323",
 		Hostname: "gitserver-0",

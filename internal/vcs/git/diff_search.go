@@ -17,20 +17,11 @@ import (
 )
 
 // TextSearchOptions contains common options for text search commands.
-type TextSearchOptions struct {
-	Pattern         string // the pattern to look for
-	IsRegExp        bool   // whether the pattern is a regexp (if false, treated as exact string)
-	IsCaseSensitive bool   // whether the pattern should be matched case-sensitively
-}
+type TextSearchOptions struct { /* all structs must go */ }
 
 // PathOptions contains common options for commands that can be limited
 // to only certain paths.
-type PathOptions struct {
-	IncludePatterns []string // include paths matching all of these patterns
-	ExcludePattern  string   // exclude paths matching any of these patterns
-	IsRegExp        bool     // whether the pattern is a regexp (if false, treated as exact string)
-	IsCaseSensitive bool     // whether the pattern should be matched case-sensitively
-}
+type PathOptions struct { /* all structs must go */ }
 
 // CompilePathMatcher compiles the path options into a PathMatcher.
 func CompilePathMatcher(options PathOptions) (pathmatch.PathMatcher, error) {
@@ -41,71 +32,16 @@ func CompilePathMatcher(options PathOptions) (pathmatch.PathMatcher, error) {
 }
 
 // RawLogDiffSearchOptions specifies options to (Repository).RawLogDiffSearch.
-type RawLogDiffSearchOptions struct {
-	// Query specifies the search query to find.
-	Query TextSearchOptions
-
-	// MatchChangedOccurrenceCount makes the operation run `git log -S` not `git log -G`.
-	// See `git log --help` for more information.
-	MatchChangedOccurrenceCount bool
-
-	// Diff is whether the diff should be computed and returned.
-	Diff bool
-
-	// OnlyMatchingHunks makes the diff only include hunks that match the query. If false,
-	// all hunks from files that match the query are included.
-	OnlyMatchingHunks bool
-
-	// Paths specifies the paths to include/exclude.
-	Paths PathOptions
-
-	// FormatArgs is a list of format args that are passed to the `git log` command.
-	// Because the output is parsed, it is expected to be in a known format. If the
-	// FormatArgs does not match one of the server's expected values, the operation
-	// will fail.
-	//
-	// If nil, the default format args are used.
-	FormatArgs []string
-
-	// RawArgs is a list of non-format args that are passed to the `git log` command.
-	// It should not contain any "--" elements; those should be passed using the Paths
-	// field.
-	//
-	// No arguments that affect the format of the output should be present in this
-	// slice.
-	Args []string
-}
+type RawLogDiffSearchOptions struct { /* all structs must go */ }
 
 // LogCommitSearchResult describes a matching diff from (Repository).RawLogDiffSearch.
-type LogCommitSearchResult struct {
-	Commit         Commit      // the commit whose diff was matched
-	Diff           *RawDiff    // the diff, with non-matching/irrelevant portions deleted (respecting diff syntax)
-	DiffHighlights []Highlight // highlighted query matches in the diff
-
-	// Refs is the list of ref names of this commit (from `git log --decorate`).
-	Refs []string
-
-	// SourceRefs is the list of ref names by which this commit was reached. (See
-	// `git log --help` documentation on the `--source` flag.)
-	SourceRefs []string
-
-	// Incomplete indicates that this result may represent a subset of the actual data.
-	// This can occur when the underlying command returns early due to an impending
-	// timeout.
-	Incomplete bool
-}
+type LogCommitSearchResult struct { /* all structs must go */ }
 
 // A RawDiff represents changes between two commits.
-type RawDiff struct {
-	Raw string // the raw diff output
-}
+type RawDiff struct { /* all structs must go */ }
 
 // Highlight represents a highlighted region in a string.
-type Highlight struct {
-	Line      int // the 1-indexed line number
-	Character int // the 1-indexed character on the line
-	Length    int // the length of the highlight, in characters (on the same line)
-}
+type Highlight struct { /* all structs must go */ }
 
 var validRawLogDiffSearchFormatArgs = [][]string{
 	{"--no-merges", "-z", "--decorate=full", "--patch", logFormatWithRefs},
@@ -437,13 +373,7 @@ func RawLogDiffSearch(ctx context.Context, repo gitserver.Repo, opt RawLogDiffSe
 
 // cachedRefResolver is a short-lived cache for ref resolutions. Only use it for the lifetime of a
 // single request and for a single repo.
-type refResolveCache struct {
-	mu      sync.Mutex
-	results map[string]struct {
-		target string
-		err    error
-	}
-}
+type refResolveCache struct { /* all structs must go */ }
 
 func (r *refResolveCache) resolveHEADSymbolicRef(ctx context.Context, repo gitserver.Repo) (target string, err error) {
 	resolve := func() (string, error) {
@@ -457,10 +387,7 @@ func (r *refResolveCache) resolveHEADSymbolicRef(ctx context.Context, repo gitse
 	defer r.mu.Unlock()
 
 	if r.results == nil {
-		r.results = map[string]struct {
-			target string
-			err    error
-		}{}
+		r.results = map[string]struct { /* all structs must go */ }{}
 	}
 	const name = "HEAD" // only needed for HEAD right now
 	e, ok := r.results[name]

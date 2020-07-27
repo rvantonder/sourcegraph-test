@@ -16,12 +16,7 @@ import (
 )
 
 func TestExternalServicesListOptions_sqlConditions(t *testing.T) {
-	tests := []struct {
-		name      string
-		kinds     []string
-		wantQuery string
-		wantArgs  []interface{}
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:      "no kind",
 			wantQuery: "deleted_at IS NULL",
@@ -55,13 +50,7 @@ func TestExternalServicesListOptions_sqlConditions(t *testing.T) {
 }
 
 func TestExternalServicesStore_ValidateConfig(t *testing.T) {
-	tests := []struct {
-		name    string
-		kind    string
-		config  string
-		setup   func(t *testing.T)
-		wantErr string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:    "0 errors",
 			kind:    extsvc.KindGitHub,

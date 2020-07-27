@@ -7,12 +7,7 @@ import (
 )
 
 func TestDecodeRepos(t *testing.T) {
-	tests := []struct {
-		name         string
-		host         string
-		gitoliteInfo string
-		expRepos     []*Repo
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "with SCP host format",
 			host: "git@gitolite.example.com",

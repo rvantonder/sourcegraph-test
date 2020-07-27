@@ -268,12 +268,7 @@ func Main(enterpriseSetupHook func() enterprise.Services) error {
 	return nil
 }
 
-type httpServers struct {
-	mu      sync.Mutex
-	wg      sync.WaitGroup
-	servers []*http.Server
-	wrapper func(http.Handler) http.Handler
-}
+type httpServers struct { /* all structs must go */ }
 
 // SetWrapper will set the wrapper for serve. All handlers served by are
 // passed through w.

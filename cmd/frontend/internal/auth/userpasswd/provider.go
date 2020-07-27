@@ -9,9 +9,7 @@ import (
 
 const providerType = "builtin"
 
-type provider struct {
-	c *schema.BuiltinAuthProvider
-}
+type provider struct { /* all structs must go */ }
 
 // ConfigID implements providers.Provider.
 func (provider) ConfigID() providers.ConfigID {

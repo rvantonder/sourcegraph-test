@@ -19,12 +19,7 @@ import (
 	querytypes "github.com/sourcegraph/sourcegraph/internal/search/query/types"
 )
 
-type searchAlert struct {
-	prometheusType  string
-	title           string
-	description     string
-	proposedQueries []*searchQueryDescription
-}
+type searchAlert struct { /* all structs must go */ }
 
 func (a searchAlert) Title() string { return a.title }
 

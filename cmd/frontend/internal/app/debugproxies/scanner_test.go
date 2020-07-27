@@ -12,10 +12,7 @@ import (
 	"github.com/google/go-cmp/cmp"
 )
 
-type k8sTestClient struct {
-	listResponse *corev1.ServiceList
-	getResponses map[string]*corev1.Endpoints
-}
+type k8sTestClient struct { /* all structs must go */ }
 
 func (ktc *k8sTestClient) Watch(ctx context.Context, namespace string, r k8s.Resource, options ...k8s.Option) (*k8s.Watcher, error) {
 	// we don't use it for tests yet, once we do we need to mock the returned watcher too

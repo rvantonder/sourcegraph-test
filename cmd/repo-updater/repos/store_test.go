@@ -32,10 +32,7 @@ func TestFakeStore(t *testing.T) {
 	lg := log15.New()
 	lg.SetHandler(log15.DiscardHandler())
 
-	for _, tc := range []struct {
-		name string
-		test func(repos.Store) func(*testing.T)
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{"ListExternalServices", testStoreListExternalServices},
 		{"UpsertExternalServices", testStoreUpsertExternalServices},
 		{"ListRepos", testStoreListRepos},
@@ -207,13 +204,7 @@ func testStoreListExternalServices(store repos.Store) func(*testing.T) {
 		&phabricatorService,
 	}
 
-	type testCase struct {
-		name   string
-		args   func(stored repos.ExternalServices) repos.StoreListExternalServicesArgs
-		stored repos.ExternalServices
-		assert repos.ExternalServicesAssertion
-		err    error
-	}
+	type testCase struct { /* all structs must go */ }
 
 	var testCases []testCase
 	testCases = append(testCases,
@@ -1128,13 +1119,7 @@ func testStoreListRepos(store repos.Store) func(*testing.T) {
 		extsvc.KindGitolite,
 	}
 
-	type testCase struct {
-		name   string
-		args   func(stored repos.Repos) repos.StoreListReposArgs
-		stored repos.Repos
-		repos  repos.ReposAssertion
-		err    error
-	}
+	type testCase struct { /* all structs must go */ }
 
 	var testCases []testCase
 	{
@@ -1444,11 +1429,7 @@ func transact(ctx context.Context, s repos.Store, test func(testing.TB, repos.St
 	}
 }
 
-type noopTxStore struct {
-	testing.TB
-	repos.Store
-	count int
-}
+type noopTxStore struct { /* all structs must go */ }
 
 func (tx *noopTxStore) Transact(context.Context) (repos.TxStore, error) {
 	if tx.count != 0 {

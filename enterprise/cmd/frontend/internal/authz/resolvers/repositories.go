@@ -17,18 +17,7 @@ import (
 var _ graphqlbackend.RepositoryConnectionResolver = &repositoryConnectionResolver{}
 
 // repositoryConnectionResolver resolves a list of repositories from the roaring bitmap with pagination.
-type repositoryConnectionResolver struct {
-	ids *roaring.Bitmap
-
-	first int32
-	after *string
-
-	// cache results because they are used by multiple fields
-	once     sync.Once
-	repos    []*types.Repo
-	pageInfo *graphqlutil.PageInfo
-	err      error
-}
+type repositoryConnectionResolver struct { /* all structs must go */ }
 
 // 🚨 SECURITY: It is the caller's responsibility to ensure the current authenticated user
 // is the site admin because this method computes data from all available information in

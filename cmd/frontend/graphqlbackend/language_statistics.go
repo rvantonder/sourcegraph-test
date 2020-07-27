@@ -2,9 +2,7 @@ package graphqlbackend
 
 import "github.com/sourcegraph/sourcegraph/cmd/frontend/internal/inventory"
 
-type languageStatisticsResolver struct {
-	l inventory.Lang
-}
+type languageStatisticsResolver struct { /* all structs must go */ }
 
 func (l *languageStatisticsResolver) Name() string {
 	return l.l.Name

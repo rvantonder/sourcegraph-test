@@ -164,26 +164,7 @@ func canUpdateDate(clientVersionString string) (bool, error) {
 // supplied via query string or by a JSON body (when the request method is POST).
 // We need to maintain backwards compatibility with the GET-only update checks
 // while expanding the payload size for newer instance versions (via HTTP body).
-type pingRequest struct {
-	ClientSiteID         string `json:"site"`
-	LicenseKey           string
-	DeployType           string          `json:"deployType"`
-	ClientVersionString  string          `json:"version"`
-	AuthProviders        []string        `json:"auth"`
-	ExternalServices     []string        `json:"extsvcs"`
-	BuiltinSignupAllowed bool            `json:"signup"`
-	HasExtURL            bool            `json:"hasExtURL"`
-	UniqueUsers          int32           `json:"u"`
-	Activity             json.RawMessage `json:"act"`
-	CampaignsUsage       json.RawMessage `json:"automationUsage"`
-	CodeIntelUsage       json.RawMessage `json:"codeIntelUsage"`
-	SearchUsage          json.RawMessage `json:"searchUsage"`
-	InitialAdminEmail    string          `json:"initAdmin"`
-	TotalUsers           int32           `json:"totalUsers"`
-	HasRepos             bool            `json:"repos"`
-	EverSearched         bool            `json:"searched"`
-	EverFindRefs         bool            `json:"refs"`
-}
+type pingRequest struct { /* all structs must go */ }
 
 // readPingRequest reads the ping request payload from the request. If the
 // request method is GET, it will read all parameters from the query string.
@@ -254,29 +235,7 @@ func toRawMessage(val string) json.RawMessage {
 	return payload
 }
 
-type pingPayload struct {
-	RemoteIP             string          `json:"remote_ip"`
-	RemoteSiteVersion    string          `json:"remote_site_version"`
-	RemoteSiteID         string          `json:"remote_site_id"`
-	LicenseKey           string          `json:"license_key"`
-	HasUpdate            string          `json:"has_update"`
-	UniqueUsersToday     string          `json:"unique_users_today"`
-	SiteActivity         json.RawMessage `json:"site_activity"`
-	CampaignsUsage       json.RawMessage `json:"automation_usage"`
-	CodeIntelUsage       json.RawMessage `json:"code_intel_usage"`
-	SearchUsage          json.RawMessage `json:"search_usage"`
-	InstallerEmail       string          `json:"installer_email"`
-	AuthProviders        string          `json:"auth_providers"`
-	ExtServices          string          `json:"ext_services"`
-	BuiltinSignupAllowed string          `json:"builtin_signup_allowed"`
-	DeployType           string          `json:"deploy_type"`
-	TotalUserAccounts    string          `json:"total_user_accounts"`
-	HasExternalURL       string          `json:"has_external_url"`
-	HasRepos             string          `json:"has_repos"`
-	EverSearched         string          `json:"ever_searched"`
-	EverFindRefs         string          `json:"ever_find_refs"`
-	Timestamp            string          `json:"timestamp"`
-}
+type pingPayload struct { /* all structs must go */ }
 
 func logPing(r *http.Request, pr *pingRequest, hasUpdate bool) {
 	defer func() {
@@ -370,11 +329,7 @@ func reserializeCodeIntelUsage(payload json.RawMessage) (json.RawMessage, error)
 		return nil, nil
 	}
 
-	singlePeriodUsage := struct {
-		Daily   *types.CodeIntelUsagePeriod
-		Weekly  *types.CodeIntelUsagePeriod
-		Monthly *types.CodeIntelUsagePeriod
-	}{}
+	singlePeriodUsage := struct { /* all structs must go */ }{}
 
 	if len(codeIntelUsage.Daily) > 0 {
 		singlePeriodUsage.Daily = codeIntelUsage.Daily[0]
@@ -406,11 +361,7 @@ func reserializeSearchUsage(payload json.RawMessage) (json.RawMessage, error) {
 		return nil, nil
 	}
 
-	singlePeriodUsage := struct {
-		Daily   *types.SearchUsagePeriod
-		Weekly  *types.SearchUsagePeriod
-		Monthly *types.SearchUsagePeriod
-	}{}
+	singlePeriodUsage := struct { /* all structs must go */ }{}
 
 	if len(searchUsage.Daily) > 0 {
 		singlePeriodUsage.Daily = searchUsage.Daily[0]

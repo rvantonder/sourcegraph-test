@@ -239,11 +239,7 @@ func testStoreCampaignSpecs(t *testing.T, ctx context.Context, s *Store, _ repos
 		underTTL := clock.now().Add(-cmpgn.CampaignSpecTTL + 1*time.Minute)
 		overTTL := clock.now().Add(-cmpgn.CampaignSpecTTL - 1*time.Minute)
 
-		tests := []struct {
-			createdAt   time.Time
-			hasCampaign bool
-			wantDeleted bool
-		}{
+		tests := []struct { /* all structs must go */ }{
 			{hasCampaign: false, createdAt: underTTL, wantDeleted: false},
 			{hasCampaign: false, createdAt: overTTL, wantDeleted: true},
 			{hasCampaign: true, createdAt: underTTL, wantDeleted: false},

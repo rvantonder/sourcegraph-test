@@ -6,14 +6,7 @@ import (
 
 // UploadMeta contains the subset of fields from the lsif_uploads table that are used
 // to determine visibility of an upload from a particular commit.
-type UploadMeta struct {
-	UploadID int
-	Root     string
-	Indexer  string
-
-	// Distance is the number of commits between the reference to definition commits.
-	Distance int
-}
+type UploadMeta struct { /* all structs must go */ }
 
 // calculateVisibleUploads transforms the given commit graph and the set of LSIF uploads
 // defined on each commit with LSIF upload into a map from a commit to the set of uploads

@@ -5,10 +5,7 @@ import (
 	gql "github.com/sourcegraph/sourcegraph/cmd/frontend/graphqlbackend"
 )
 
-type HoverResolver struct {
-	text     string
-	lspRange lsp.Range
-}
+type HoverResolver struct { /* all structs must go */ }
 
 func NewHoverResolver(text string, lspRange lsp.Range) gql.HoverResolver {
 	return &HoverResolver{

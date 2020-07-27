@@ -14,9 +14,7 @@ func (r *RepositoryResolver) ExternalRepository() *externalRepositoryResolver {
 	return &externalRepositoryResolver{repository: r}
 }
 
-type externalRepositoryResolver struct {
-	repository *RepositoryResolver
-}
+type externalRepositoryResolver struct { /* all structs must go */ }
 
 func (r *externalRepositoryResolver) ID() string { return r.repository.repo.ExternalRepo.ID }
 func (r *externalRepositoryResolver) ServiceType() string {
@@ -27,9 +25,7 @@ func (r *externalRepositoryResolver) ServiceID() string {
 	return r.repository.repo.ExternalRepo.ServiceID
 }
 
-func (r *RepositoryResolver) ExternalServices(ctx context.Context, args *struct {
-	graphqlutil.ConnectionArgs
-}) (*computedExternalServiceConnectionResolver, error) {
+func (r *RepositoryResolver) ExternalServices(ctx context.Context, args *struct { /* all structs must go */ }) (*computedExternalServiceConnectionResolver, error) {
 	// 🚨 SECURITY: Only site admins may read external services (they have secrets).
 	if err := backend.CheckCurrentUserIsSiteAdmin(ctx); err != nil {
 		return nil, err

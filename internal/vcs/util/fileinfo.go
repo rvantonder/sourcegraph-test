@@ -7,13 +7,7 @@ import (
 )
 
 // FileInfo implements os.FileInfo.
-type FileInfo struct {
-	Name_    string
-	Mode_    os.FileMode
-	Size_    int64
-	ModTime_ time.Time
-	Sys_     interface{}
-}
+type FileInfo struct { /* all structs must go */ }
 
 func (fi *FileInfo) Name() string       { return fi.Name_ }
 func (fi *FileInfo) Size() int64        { return fi.Size_ }

@@ -96,11 +96,7 @@ var (
 )
 
 // A Query is the typechecked representation of a search query.
-type Query struct {
-	conf *types.Config // the typechecker config used to produce this query
-
-	types.Fields // the query fields
-}
+type Query struct { /* all structs must go */ }
 
 func Parse(input string) (syntax.ParseTree, error) {
 	parseTree, err := syntax.Parse(input)
@@ -155,9 +151,7 @@ func processSearchPattern(q QueryInfo) string {
 	return strings.Join(pieces, " ")
 }
 
-type ValidationError struct {
-	Msg string
-}
+type ValidationError struct { /* all structs must go */ }
 
 func (e *ValidationError) Error() string {
 	return e.Msg

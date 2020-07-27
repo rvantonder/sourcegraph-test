@@ -19,10 +19,7 @@ import (
 )
 
 // usernamesForTests is a list of test cases containing valid and invalid usernames and org names.
-var usernamesForTests = []struct {
-	name      string
-	wantValid bool
-}{
+var usernamesForTests = []struct { /* all structs must go */ }{
 	{"nick", true},
 	{"n1ck", true},
 	{"Nick2", true},
@@ -100,13 +97,7 @@ func TestUsers_Create_checkPasswordLength(t *testing.T) {
 
 	minPasswordRunes := conf.AuthMinPasswordLength()
 	expErr := fmt.Sprintf("Passwords may not be less than %d or be more than %d characters.", minPasswordRunes, maxPasswordRunes)
-	tests := []struct {
-		name     string
-		username string
-		password string
-		enforce  bool
-		expErr   string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name:     "below minimum",
 			username: "user1",

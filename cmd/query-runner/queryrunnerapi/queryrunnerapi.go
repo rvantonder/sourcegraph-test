@@ -27,14 +27,9 @@ var (
 	}
 )
 
-type SubjectAndConfig struct {
-	Subject api.SettingsSubject
-	Config  api.PartialConfigSavedQueries
-}
+type SubjectAndConfig struct { /* all structs must go */ }
 
-type ErrorResponse struct {
-	Message string
-}
+type ErrorResponse struct { /* all structs must go */ }
 
 const (
 	PathSavedQueryWasCreatedOrUpdated = "/saved-query-was-created-or-updated"
@@ -42,14 +37,9 @@ const (
 	PathTestNotification              = "/test-notification"
 )
 
-type client struct {
-	client *http.Client
-}
+type client struct { /* all structs must go */ }
 
-type SavedQueryWasCreatedOrUpdatedArgs struct {
-	SubjectAndConfig                 *SubjectAndConfig
-	DisableSubscriptionNotifications bool
-}
+type SavedQueryWasCreatedOrUpdatedArgs struct { /* all structs must go */ }
 
 // SavedQueryWasCreated should be called whenever a saved query was created
 // or updated after the server has started.
@@ -63,10 +53,7 @@ func (c *client) SavedQueryWasCreatedOrUpdated(ctx context.Context, subject api.
 	})
 }
 
-type SavedQueryWasDeletedArgs struct {
-	Spec                             api.SavedQueryIDSpec
-	DisableSubscriptionNotifications bool
-}
+type SavedQueryWasDeletedArgs struct { /* all structs must go */ }
 
 // SavedQueryWasDeleted should be called whenever a saved query was deleted
 // after the server has started.
@@ -77,9 +64,7 @@ func (c *client) SavedQueryWasDeleted(ctx context.Context, spec api.SavedQueryID
 	})
 }
 
-type TestNotificationArgs struct {
-	SavedSearch api.SavedQuerySpecAndConfig
-}
+type TestNotificationArgs struct { /* all structs must go */ }
 
 // TestNotification is called to send a test notification for a saved search. Users may perform this
 // action to test that the configured notifications are working.

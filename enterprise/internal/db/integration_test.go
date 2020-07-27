@@ -18,10 +18,7 @@ func TestIntegration_PermsStore(t *testing.T) {
 
 	db := dbtest.NewDB(t, *dsn)
 
-	for _, tc := range []struct {
-		name string
-		test func(*testing.T)
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{"PermsStore/LoadUserPermissions", testPermsStore_LoadUserPermissions(db)},
 		{"PermsStore/LoadRepoPermissions", testPermsStore_LoadRepoPermissions(db)},
 		{"PermsStore/SetUserPermissions", testPermsStore_SetUserPermissions(db)},

@@ -118,9 +118,7 @@ type ChangesetSource interface {
 
 // ChangesetsNotFoundError is returned by LoadChangesets if any of the passed
 // Changesets could not be found on the codehost.
-type ChangesetsNotFoundError struct {
-	Changesets []*Changeset
-}
+type ChangesetsNotFoundError struct { /* all structs must go */ }
 
 func (e ChangesetsNotFoundError) Error() string {
 	if len(e.Changesets) == 1 {
@@ -140,19 +138,9 @@ func (e ChangesetsNotFoundError) Error() string {
 
 // A SourceResult is sent by a Source over a channel for each repository it
 // yields when listing repositories
-type SourceResult struct {
-	// Source points to the Source that produced this result
-	Source Source
-	// Repo is the repository that was listed by the Source
-	Repo *Repo
-	// Err is only set in case the Source ran into an error when listing repositories
-	Err error
-}
+type SourceResult struct { /* all structs must go */ }
 
-type SourceError struct {
-	Err    error
-	ExtSvc *ExternalService
-}
+type SourceError struct { /* all structs must go */ }
 
 func (s *SourceError) Error() string {
 	if multiErr, ok := s.Err.(*multierror.Error); ok {

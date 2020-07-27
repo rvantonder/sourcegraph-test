@@ -19,11 +19,7 @@ import (
 
 // A OtherSource yields repositories from a single Other connection configured
 // in Sourcegraph via the external services configuration.
-type OtherSource struct {
-	svc    *ExternalService
-	conn   *schema.OtherExternalServiceConnection
-	client httpcli.Doer
-}
+type OtherSource struct { /* all structs must go */ }
 
 // NewOtherSource returns a new OtherSource from the given external service.
 func NewOtherSource(svc *ExternalService, cf *httpcli.Factory) (*OtherSource, error) {
@@ -159,9 +155,7 @@ func (s OtherSource) srcExpose(ctx context.Context) ([]*Repo, error) {
 		return nil, errors.Wrap(err, "failed to read response from src-expose")
 	}
 
-	var data struct {
-		Items []*Repo
-	}
+	var data struct { /* all structs must go */ }
 	err = json.Unmarshal(b, &data)
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to decode response from src-expose: %s", string(b))

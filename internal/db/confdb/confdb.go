@@ -16,12 +16,7 @@ import (
 )
 
 // SiteConfig contains the contents of a site config along with associated metadata.
-type SiteConfig struct {
-	ID        int32     // the unique ID of this config
-	Contents  string    // the raw JSON content (with comments and trailing commas allowed)
-	CreatedAt time.Time // the date when this config was created
-	UpdatedAt time.Time // the date when this config was updated
-}
+type SiteConfig struct { /* all structs must go */ }
 
 // ErrNewerEdit is returned by SiteCreateIfUpToDate when a newer edit has already been applied and
 // the edit has been rejected.

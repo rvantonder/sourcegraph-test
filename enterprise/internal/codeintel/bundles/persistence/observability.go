@@ -9,15 +9,7 @@ import (
 )
 
 // An ObservedReader wraps another Reader with error logging, Prometheus metrics, and tracing.
-type ObservedReader struct {
-	reader                   Reader
-	readMetaOperation        *observation.Operation
-	pathsWithPrefixOperation *observation.Operation
-	readDocumentOperation    *observation.Operation
-	readResultChunkOperation *observation.Operation
-	readDefinitionsOperation *observation.Operation
-	readReferencesOperation  *observation.Operation
-}
+type ObservedReader struct { /* all structs must go */ }
 
 var _ Reader = &ObservedReader{}
 

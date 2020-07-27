@@ -29,12 +29,7 @@ import (
 )
 
 // searchSymbolResult is a result from symbol search.
-type searchSymbolResult struct {
-	symbol  protocol.Symbol
-	baseURI *gituri.URI
-	lang    string
-	commit  *GitCommitResolver // TODO: change to utility type we create to remove git resolvers from search.
-}
+type searchSymbolResult struct { /* all structs must go */ }
 
 func (s *searchSymbolResult) uri() *gituri.URI {
 	return s.baseURI.WithFilePath(s.symbol.Path)

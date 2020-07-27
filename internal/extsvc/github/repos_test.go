@@ -32,11 +32,7 @@ func TestSplitRepositoryNameWithOwner(t *testing.T) {
 	}
 }
 
-type mockHTTPResponseBody struct {
-	count        int
-	responseBody string
-	status       int
-}
+type mockHTTPResponseBody struct { /* all structs must go */ }
 
 func newMockHTTPResponseBody(responseBody string, status int) *mockHTTPResponseBody {
 	return &mockHTTPResponseBody{
@@ -57,9 +53,7 @@ func (s *mockHTTPResponseBody) Do(req *http.Request) (*http.Response, error) {
 	}, nil
 }
 
-type mockHTTPEmptyResponse struct {
-	statusCode int
-}
+type mockHTTPEmptyResponse struct { /* all structs must go */ }
 
 func (s mockHTTPEmptyResponse) Do(req *http.Request) (*http.Response, error) {
 	return &http.Response{
@@ -134,11 +128,7 @@ func TestClient_GetRepository(t *testing.T) {
 }
 
 func TestClient_GetRepositoriesByNodeFromAPI(t *testing.T) {
-	tests := []struct {
-		responseBody string
-		want         map[string]*Repository
-		nodeIDs      []string
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			responseBody: `
 {
@@ -665,12 +655,7 @@ func TestClient_GetReposByNameWithOwner(t *testing.T) {
 		ViewerPermission: "ADMIN",
 	}
 
-	testCases := []struct {
-		name             string
-		mockResponseBody string
-		wantRepos        []*Repository
-		err              string
-	}{
+	testCases := []struct { /* all structs must go */ }{
 
 		{
 			name: "found",

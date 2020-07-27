@@ -204,11 +204,7 @@ func TestCookieMiddleware(t *testing.T) {
 		}
 	}
 
-	testcases := []struct {
-		req      *http.Request
-		expActor *actor.Actor
-		deleted  bool // whether the session was deleted
-	}{
+	testcases := []struct { /* all structs must go */ }{
 		{
 			req:      httptest.NewRequest("GET", "/", nil),
 			expActor: &actor.Actor{},

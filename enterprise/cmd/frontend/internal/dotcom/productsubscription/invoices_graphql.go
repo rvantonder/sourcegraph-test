@@ -15,12 +15,7 @@ import (
 	"github.com/stripe/stripe-go/sub"
 )
 
-type productSubscriptionPreviewInvoice struct {
-	price         int32
-	amountDue     int32
-	prorationDate *int64
-	before, after *productSubscriptionInvoiceItem
-}
+type productSubscriptionPreviewInvoice struct { /* all structs must go */ }
 
 func (r *productSubscriptionPreviewInvoice) Price() int32     { return r.price }
 func (r *productSubscriptionPreviewInvoice) AmountDue() int32 { return r.amountDue }

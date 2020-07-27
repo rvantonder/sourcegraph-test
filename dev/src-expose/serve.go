@@ -18,16 +18,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-type Serve struct {
-	Addr  string
-	Root  string
-	Info  *log.Logger
-	Debug *log.Logger
-
-	// updatingServerInfo is used to ensure we only have 1 goroutine running
-	// git update-server-info.
-	updatingServerInfo uint64
-}
+type Serve struct { /* all structs must go */ }
 
 func (s *Serve) Start() error {
 	ln, err := net.Listen("tcp", s.Addr)
@@ -65,10 +56,7 @@ var indexHTML = template.Must(template.New("").Parse(`<html>
 </body>
 </html>`))
 
-type Repo struct {
-	Name string
-	URI  string
-}
+type Repo struct { /* all structs must go */ }
 
 func (s *Serve) handler() (http.Handler, error) {
 	s.Info.Printf("serving git repositories from %s", s.Root)
@@ -120,9 +108,7 @@ func (s *Serve) handler() (http.Handler, error) {
 			}
 		}
 
-		resp := struct {
-			Items []Repo
-		}{
+		resp := struct { /* all structs must go */ }{
 			Items: repos,
 		}
 
@@ -142,9 +128,7 @@ func (s *Serve) handler() (http.Handler, error) {
 	}), nil
 }
 
-type httpDir struct {
-	http.Dir
-}
+type httpDir struct { /* all structs must go */ }
 
 // Wraps the http.Dir to inject subdir "/.git" to the path.
 func (d httpDir) Open(name string) (http.File, error) {

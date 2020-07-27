@@ -1,13 +1,7 @@
 package main
 
 // Location specifies the first position in a source range.
-type Location struct {
-	Repo      string
-	Rev       string
-	Path      string
-	Line      int
-	Character int
-}
+type Location struct { /* all structs must go */ }
 
 // TEST DATA NOTES
 //
@@ -24,10 +18,7 @@ type Location struct {
 // symbol `zap.String`, a global function defined in fields.go
 // in both versions.
 
-var testCases = []struct {
-	Definition Location   // Symbol definition
-	References []Location // All xrepo references of definition in test repository set
-}{
+var testCases = []struct { /* all structs must go */ }{
 	{
 		Definition: Location{
 			Repo:      "github.com/sourcegraph-testing/zap",

@@ -15,16 +15,10 @@ import (
 var NumWriterRoutines = runtime.NumCPU() * 2
 
 // KeyedDocument pairs a document with its path.
-type KeyedDocument struct {
-	Path     string
-	Document types.DocumentData
-}
+type KeyedDocument struct { /* all structs must go */ }
 
 // IndexedResultChunk pairs a result chunk with its index.
-type IndexedResultChunk struct {
-	Index       int
-	ResultChunk types.ResultChunkData
-}
+type IndexedResultChunk struct { /* all structs must go */ }
 
 // WriteDocuments serializes the given documents and writes them in batch to the given execable.
 func WriteDocuments(ctx context.Context, s sqliteutil.Execable, tableName string, serializer serialization.Serializer, documents map[string]types.DocumentData) error {

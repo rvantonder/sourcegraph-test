@@ -15,21 +15,11 @@ import (
 // Note: Each Limiter has an associated goroutine managing the semaphore
 // state. We do not expose a way to stop this goroutine, so ensure the number
 // of Limiters created is bounded.
-type Limiter struct {
-	adjustLimit chan int
-	acquire     chan acquireRequest
-	getLimit    chan struct{ cap, len int }
-}
+type Limiter struct { /* all structs must go */ }
 
-type acquireResponse struct {
-	ctx    context.Context
-	cancel context.CancelFunc
-}
+type acquireResponse struct { /* all structs must go */ }
 
-type acquireRequest struct {
-	ctx  context.Context
-	resp chan<- acquireResponse
-}
+type acquireRequest struct { /* all structs must go */ }
 
 // New returns a new Limiter (Semaphore).
 func New(limit int) *Limiter {

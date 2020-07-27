@@ -1,13 +1,6 @@
 package graphqlbackend
 
-type repositoryContributorResolver struct {
-	name  string
-	email string
-	count int32
-
-	repo *RepositoryResolver
-	args repositoryContributorsArgs
-}
+type repositoryContributorResolver struct { /* all structs must go */ }
 
 func (r *repositoryContributorResolver) Person() *personResolver {
 	return &personResolver{name: r.name, email: r.email}
@@ -17,9 +10,7 @@ func (r *repositoryContributorResolver) Count() int32 { return r.count }
 
 func (r *repositoryContributorResolver) Repository() *RepositoryResolver { return r.repo }
 
-func (r *repositoryContributorResolver) Commits(args *struct {
-	First *int32
-}) *gitCommitConnectionResolver {
+func (r *repositoryContributorResolver) Commits(args *struct { /* all structs must go */ }) *gitCommitConnectionResolver {
 	var revisionRange string
 	if r.args.RevisionRange != nil {
 		revisionRange = *r.args.RevisionRange

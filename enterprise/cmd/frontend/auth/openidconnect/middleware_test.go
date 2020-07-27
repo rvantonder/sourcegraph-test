@@ -24,13 +24,7 @@ import (
 )
 
 // providerJSON is the JSON structure the OIDC provider returns at its discovery endpoing
-type providerJSON struct {
-	Issuer      string `json:"issuer"`
-	AuthURL     string `json:"authorization_endpoint"`
-	TokenURL    string `json:"token_endpoint"`
-	JWKSURL     string `json:"jwks_uri"`
-	UserInfoURL string `json:"userinfo_endpoint"`
-}
+type providerJSON struct { /* all structs must go */ }
 
 var (
 	testOIDCUser = "bob-test-user"

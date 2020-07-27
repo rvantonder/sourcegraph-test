@@ -6,10 +6,7 @@ import (
 )
 
 func TestParseRepositoryRevisions(t *testing.T) {
-	tests := map[string]struct {
-		repo string
-		revs []RevisionSpecifier
-	}{
+	tests := map[string]struct { /* all structs must go */ }{
 		"repo":           {repo: "repo", revs: []RevisionSpecifier{}},
 		"repo@":          {repo: "repo", revs: []RevisionSpecifier{{RevSpec: ""}}},
 		"repo@rev":       {repo: "repo", revs: []RevisionSpecifier{{RevSpec: "rev"}}},

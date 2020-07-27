@@ -3,11 +3,7 @@ package auth
 import "testing"
 
 func TestNormalizeUsername(t *testing.T) {
-	testCases := []struct {
-		in     string
-		out    string
-		hasErr bool
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{in: "username", out: "username"},
 		{in: "john@gmail.com", out: "john"},
 		{in: "john.appleseed@gmail.com", out: "john.appleseed"},

@@ -35,41 +35,18 @@ func (t1 requestType) higherPriorityThan(t2 requestType) bool {
 }
 
 // requestMeta contains metadata of a permissions syncing request.
-type requestMeta struct {
-	Priority   priority
-	Type       requestType
-	ID         int32
-	NextSyncAt time.Time
-	NoPerms    bool
-}
+type requestMeta struct { /* all structs must go */ }
 
 // syncRequest is a permissions syncing request with its current status in the queue.
-type syncRequest struct {
-	*requestMeta
-
-	acquired bool // Whether the request has been acquired
-	index    int  // The index in the heap
-}
+type syncRequest struct { /* all structs must go */ }
 
 // requestQueueKey is the key type for index in a requestQueue.
-type requestQueueKey struct {
-	typ requestType
-	id  int32
-}
+type requestQueueKey struct { /* all structs must go */ }
 
 // requestQueue is a priority queue of permissions syncing requests.
 // Requests with same requestType and id are guaranteed to only have
 // one instance in the queue.
-type requestQueue struct {
-	mu    sync.RWMutex
-	heap  []*syncRequest
-	index map[requestQueueKey]*syncRequest
-
-	// The queue performs a non-blocking send on this channel
-	// when a new value is enqueued so that the update loop
-	// can wake up if it is idle.
-	notifyEnqueue chan struct{}
-}
+type requestQueue struct { /* all structs must go */ }
 
 func newRequestQueue() *requestQueue {
 	return &requestQueue{

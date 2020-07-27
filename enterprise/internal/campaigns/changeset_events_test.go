@@ -27,11 +27,7 @@ func TestFindMergeCommitID(t *testing.T) {
 		return event
 	}
 
-	for _, tc := range []struct {
-		name   string
-		events ChangesetEvents
-		want   string
-	}{
+	for _, tc := range []struct { /* all structs must go */ }{
 		{
 			name:   "nil events",
 			events: nil,

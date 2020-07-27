@@ -63,20 +63,7 @@ var (
 // that we can unmarshal the result directly into graphql resolvers.
 
 // FileMatchResolver is a resolver for the GraphQL type `FileMatch`
-type FileMatchResolver struct {
-	JPath        string       `json:"Path"`
-	JLineMatches []*lineMatch `json:"LineMatches"`
-	JLimitHit    bool         `json:"LimitHit"`
-	MatchCount   int          // Number of matches. Different from len(JLineMatches), as multiple lines may correspond to one logical match.
-	symbols      []*searchSymbolResult
-	uri          string
-	Repo         *RepositoryResolver
-	CommitID     api.CommitID
-	// InputRev is the Git revspec that the user originally requested to search. It is used to
-	// preserve the original revision specifier from the user instead of navigating them to the
-	// absolute commit ID when they select a result.
-	InputRev *string
-}
+type FileMatchResolver struct { /* all structs must go */ }
 
 func (fm *FileMatchResolver) Equal(other *FileMatchResolver) bool {
 	return reflect.DeepEqual(fm, other)
@@ -156,12 +143,7 @@ func (fm *FileMatchResolver) resultCount() int32 {
 }
 
 // lineMatch is the struct used by vscode to receive search results for a line
-type lineMatch struct {
-	JPreview          string     `json:"Preview"`
-	JOffsetAndLengths [][2]int32 `json:"OffsetAndLengths"`
-	JLineNumber       int32      `json:"LineNumber"`
-	JLimitHit         bool       `json:"LimitHit"`
-}
+type lineMatch struct { /* all structs must go */ }
 
 func (lm *lineMatch) Preview() string {
 	return lm.JPreview
@@ -325,11 +307,7 @@ func textSearchURL(ctx context.Context, url string) ([]*FileMatchResolver, bool,
 		return nil, false, errors.WithStack(&searcherError{StatusCode: resp.StatusCode, Message: string(body)})
 	}
 
-	r := struct {
-		Matches     []*FileMatchResolver
-		LimitHit    bool
-		DeadlineHit bool
-	}{}
+	r := struct { /* all structs must go */ }{}
 	err = json.NewDecoder(resp.Body).Decode(&r)
 	if err != nil {
 		return nil, false, errors.Wrap(err, "searcher response invalid")
@@ -340,10 +318,7 @@ func textSearchURL(ctx context.Context, url string) ([]*FileMatchResolver, bool,
 	return r.Matches, r.LimitHit, err
 }
 
-type searcherError struct {
-	StatusCode int
-	Message    string
-}
+type searcherError struct { /* all structs must go */ }
 
 func (e *searcherError) BadRequest() bool {
 	return e.StatusCode == http.StatusBadRequest

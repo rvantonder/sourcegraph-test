@@ -53,18 +53,7 @@ query ViewerSettings {
 	}
 }
 `
-	var resp struct {
-		Data struct {
-			ViewerSettings struct {
-				Subjects []struct {
-					ID             string `json:"id"`
-					LatestSettings *struct {
-						ID int
-					} `json:"latestSettings"`
-				} `json:"subjects"`
-			} `json:"viewerSettings"`
-		} `json:"data"`
-	}
+	var resp struct { /* all structs must go */ }
 	err := c.GraphQL("", query, nil, &resp)
 	if err != nil {
 		return 0, errors.Wrap(err, "request GraphQL")
@@ -94,13 +83,7 @@ query ViewerSettings {
 	}
 }
 `
-	var resp struct {
-		Data struct {
-			ViewerSettings struct {
-				Final string `json:"final"`
-			} `json:"viewerSettings"`
-		} `json:"data"`
-	}
+	var resp struct { /* all structs must go */ }
 	err := c.GraphQL("", query, nil, &resp)
 	if err != nil {
 		return "", errors.Wrap(err, "request GraphQL")
@@ -122,15 +105,7 @@ query Site {
 }
 `
 
-	var resp struct {
-		Data struct {
-			Site struct {
-				Configuration struct {
-					EffectiveContents string `json:"effectiveContents"`
-				} `json:"configuration"`
-			} `json:"site"`
-		} `json:"data"`
-	}
+	var resp struct { /* all structs must go */ }
 	err := c.GraphQL("", query, nil, &resp)
 	if err != nil {
 		return nil, errors.Wrap(err, "request GraphQL")

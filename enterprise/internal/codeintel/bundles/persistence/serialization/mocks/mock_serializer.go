@@ -12,26 +12,7 @@ import (
 // the package
 // github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/bundles/persistence/serialization)
 // used for unit testing.
-type MockSerializer struct {
-	// MarshalDocumentDataFunc is an instance of a mock function object
-	// controlling the behavior of the method MarshalDocumentData.
-	MarshalDocumentDataFunc *SerializerMarshalDocumentDataFunc
-	// MarshalLocationsFunc is an instance of a mock function object
-	// controlling the behavior of the method MarshalLocations.
-	MarshalLocationsFunc *SerializerMarshalLocationsFunc
-	// MarshalResultChunkDataFunc is an instance of a mock function object
-	// controlling the behavior of the method MarshalResultChunkData.
-	MarshalResultChunkDataFunc *SerializerMarshalResultChunkDataFunc
-	// UnmarshalDocumentDataFunc is an instance of a mock function object
-	// controlling the behavior of the method UnmarshalDocumentData.
-	UnmarshalDocumentDataFunc *SerializerUnmarshalDocumentDataFunc
-	// UnmarshalLocationsFunc is an instance of a mock function object
-	// controlling the behavior of the method UnmarshalLocations.
-	UnmarshalLocationsFunc *SerializerUnmarshalLocationsFunc
-	// UnmarshalResultChunkDataFunc is an instance of a mock function object
-	// controlling the behavior of the method UnmarshalResultChunkData.
-	UnmarshalResultChunkDataFunc *SerializerUnmarshalResultChunkDataFunc
-}
+type MockSerializer struct { /* all structs must go */ }
 
 // NewMockSerializer creates a new mock of the Serializer interface. All
 // methods return zero values for all results, unless overwritten.
@@ -98,12 +79,7 @@ func NewMockSerializerFrom(i serialization.Serializer) *MockSerializer {
 // SerializerMarshalDocumentDataFunc describes the behavior when the
 // MarshalDocumentData method of the parent MockSerializer instance is
 // invoked.
-type SerializerMarshalDocumentDataFunc struct {
-	defaultHook func(types.DocumentData) ([]byte, error)
-	hooks       []func(types.DocumentData) ([]byte, error)
-	history     []SerializerMarshalDocumentDataFuncCall
-	mutex       sync.Mutex
-}
+type SerializerMarshalDocumentDataFunc struct { /* all structs must go */ }
 
 // MarshalDocumentData delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -179,17 +155,7 @@ func (f *SerializerMarshalDocumentDataFunc) History() []SerializerMarshalDocumen
 // SerializerMarshalDocumentDataFuncCall is an object that describes an
 // invocation of method MarshalDocumentData on an instance of
 // MockSerializer.
-type SerializerMarshalDocumentDataFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 types.DocumentData
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []byte
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type SerializerMarshalDocumentDataFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -205,12 +171,7 @@ func (c SerializerMarshalDocumentDataFuncCall) Results() []interface{} {
 
 // SerializerMarshalLocationsFunc describes the behavior when the
 // MarshalLocations method of the parent MockSerializer instance is invoked.
-type SerializerMarshalLocationsFunc struct {
-	defaultHook func([]types.Location) ([]byte, error)
-	hooks       []func([]types.Location) ([]byte, error)
-	history     []SerializerMarshalLocationsFuncCall
-	mutex       sync.Mutex
-}
+type SerializerMarshalLocationsFunc struct { /* all structs must go */ }
 
 // MarshalLocations delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -285,17 +246,7 @@ func (f *SerializerMarshalLocationsFunc) History() []SerializerMarshalLocationsF
 
 // SerializerMarshalLocationsFuncCall is an object that describes an
 // invocation of method MarshalLocations on an instance of MockSerializer.
-type SerializerMarshalLocationsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 []types.Location
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []byte
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type SerializerMarshalLocationsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -312,12 +263,7 @@ func (c SerializerMarshalLocationsFuncCall) Results() []interface{} {
 // SerializerMarshalResultChunkDataFunc describes the behavior when the
 // MarshalResultChunkData method of the parent MockSerializer instance is
 // invoked.
-type SerializerMarshalResultChunkDataFunc struct {
-	defaultHook func(types.ResultChunkData) ([]byte, error)
-	hooks       []func(types.ResultChunkData) ([]byte, error)
-	history     []SerializerMarshalResultChunkDataFuncCall
-	mutex       sync.Mutex
-}
+type SerializerMarshalResultChunkDataFunc struct { /* all structs must go */ }
 
 // MarshalResultChunkData delegates to the next hook function in the queue
 // and stores the parameter and result values of this invocation.
@@ -394,17 +340,7 @@ func (f *SerializerMarshalResultChunkDataFunc) History() []SerializerMarshalResu
 // SerializerMarshalResultChunkDataFuncCall is an object that describes an
 // invocation of method MarshalResultChunkData on an instance of
 // MockSerializer.
-type SerializerMarshalResultChunkDataFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 types.ResultChunkData
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []byte
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type SerializerMarshalResultChunkDataFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -421,12 +357,7 @@ func (c SerializerMarshalResultChunkDataFuncCall) Results() []interface{} {
 // SerializerUnmarshalDocumentDataFunc describes the behavior when the
 // UnmarshalDocumentData method of the parent MockSerializer instance is
 // invoked.
-type SerializerUnmarshalDocumentDataFunc struct {
-	defaultHook func([]byte) (types.DocumentData, error)
-	hooks       []func([]byte) (types.DocumentData, error)
-	history     []SerializerUnmarshalDocumentDataFuncCall
-	mutex       sync.Mutex
-}
+type SerializerUnmarshalDocumentDataFunc struct { /* all structs must go */ }
 
 // UnmarshalDocumentData delegates to the next hook function in the queue
 // and stores the parameter and result values of this invocation.
@@ -503,17 +434,7 @@ func (f *SerializerUnmarshalDocumentDataFunc) History() []SerializerUnmarshalDoc
 // SerializerUnmarshalDocumentDataFuncCall is an object that describes an
 // invocation of method UnmarshalDocumentData on an instance of
 // MockSerializer.
-type SerializerUnmarshalDocumentDataFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 []byte
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 types.DocumentData
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type SerializerUnmarshalDocumentDataFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -530,12 +451,7 @@ func (c SerializerUnmarshalDocumentDataFuncCall) Results() []interface{} {
 // SerializerUnmarshalLocationsFunc describes the behavior when the
 // UnmarshalLocations method of the parent MockSerializer instance is
 // invoked.
-type SerializerUnmarshalLocationsFunc struct {
-	defaultHook func([]byte) ([]types.Location, error)
-	hooks       []func([]byte) ([]types.Location, error)
-	history     []SerializerUnmarshalLocationsFuncCall
-	mutex       sync.Mutex
-}
+type SerializerUnmarshalLocationsFunc struct { /* all structs must go */ }
 
 // UnmarshalLocations delegates to the next hook function in the queue and
 // stores the parameter and result values of this invocation.
@@ -610,17 +526,7 @@ func (f *SerializerUnmarshalLocationsFunc) History() []SerializerUnmarshalLocati
 
 // SerializerUnmarshalLocationsFuncCall is an object that describes an
 // invocation of method UnmarshalLocations on an instance of MockSerializer.
-type SerializerUnmarshalLocationsFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 []byte
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 []types.Location
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type SerializerUnmarshalLocationsFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.
@@ -637,12 +543,7 @@ func (c SerializerUnmarshalLocationsFuncCall) Results() []interface{} {
 // SerializerUnmarshalResultChunkDataFunc describes the behavior when the
 // UnmarshalResultChunkData method of the parent MockSerializer instance is
 // invoked.
-type SerializerUnmarshalResultChunkDataFunc struct {
-	defaultHook func([]byte) (types.ResultChunkData, error)
-	hooks       []func([]byte) (types.ResultChunkData, error)
-	history     []SerializerUnmarshalResultChunkDataFuncCall
-	mutex       sync.Mutex
-}
+type SerializerUnmarshalResultChunkDataFunc struct { /* all structs must go */ }
 
 // UnmarshalResultChunkData delegates to the next hook function in the queue
 // and stores the parameter and result values of this invocation.
@@ -719,17 +620,7 @@ func (f *SerializerUnmarshalResultChunkDataFunc) History() []SerializerUnmarshal
 // SerializerUnmarshalResultChunkDataFuncCall is an object that describes an
 // invocation of method UnmarshalResultChunkData on an instance of
 // MockSerializer.
-type SerializerUnmarshalResultChunkDataFuncCall struct {
-	// Arg0 is the value of the 1st argument passed to this method
-	// invocation.
-	Arg0 []byte
-	// Result0 is the value of the 1st result returned from this method
-	// invocation.
-	Result0 types.ResultChunkData
-	// Result1 is the value of the 2nd result returned from this method
-	// invocation.
-	Result1 error
-}
+type SerializerUnmarshalResultChunkDataFuncCall struct { /* all structs must go */ }
 
 // Args returns an interface slice containing the arguments of this
 // invocation.

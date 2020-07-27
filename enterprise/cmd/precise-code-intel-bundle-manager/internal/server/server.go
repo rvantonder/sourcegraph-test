@@ -17,13 +17,7 @@ import (
 
 const Port = 3187
 
-type Server struct {
-	bundleDir          string
-	readerCache        cache.ReaderCache
-	observationContext *observation.Context
-	server             *http.Server
-	once               sync.Once
-}
+type Server struct { /* all structs must go */ }
 
 func New(
 	bundleDir string,

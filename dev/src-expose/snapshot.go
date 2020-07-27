@@ -93,13 +93,7 @@ func run(logger *log.Logger, name string, cmd *exec.Cmd) (int, error) {
 	return outW.lines, err
 }
 
-type lineCountWriter struct {
-	w      io.Writer
-	prefix []byte
-
-	inline bool
-	lines  int
-}
+type lineCountWriter struct { /* all structs must go */ }
 
 func (w *lineCountWriter) Write(b []byte) (int, error) {
 	n := 0
@@ -144,51 +138,10 @@ func (w *lineCountWriter) Close() error {
 }
 
 // SyncDir creates a commit of Dir into the bare git repo Destination.
-type SyncDir struct {
-	// Before if non-empty is a command run before syncing.
-	Before string `yaml:",omitempty"`
-
-	// Dir is the directory to treat as the git working directory.
-	Dir string `yaml:",omitempty"`
-
-	// Destination is the directory containing the bare git repo.
-	Destination string `yaml:",omitempty"`
-
-	// MinDuration defines the minimum wait between syncs for Dir.
-	MinDuration time.Duration `yaml:",omitempty"`
-
-	// last stores the time of the last sync. Compared against MinDuration to
-	// determine if we should run.
-	last time.Time
-}
+type SyncDir struct { /* all structs must go */ }
 
 // Snapshotter manages the running over several syncs.
-type Snapshotter struct {
-	// Root is the directory Before is run from. If a SyncDir's Dir is
-	// relative, it will be resolved relative to this directory. Defaults to
-	// PWD.
-	Root string
-
-	// If a SyncDir's Destination is relative, it will be resolved relative to
-	// Destination. Defaults to ~/.sourcegraph/src-expose-repos
-	Destination string
-
-	// Before is a command run before sync. Before is run from Dir.
-	Before string
-
-	// Dirs is a list of directories to sync.
-	Dirs []*SyncDir
-
-	// DirMode defines what behaviour to use if Dir is missing.
-	//
-	//  - fail (default)
-	//  - ignore
-	//  - remove_dest
-	DirMode string
-
-	// Duration defines how often sync should run.
-	Duration time.Duration
-}
+type Snapshotter struct { /* all structs must go */ }
 
 func (o *Snapshotter) SetDefaults() error {
 	if o.Root == "" {

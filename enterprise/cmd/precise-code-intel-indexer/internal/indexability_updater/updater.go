@@ -12,14 +12,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/vcs"
 )
 
-type Updater struct {
-	store           store.Store
-	gitserverClient gitserver.Client
-	interval        time.Duration
-	metrics         UpdaterMetrics
-	done            chan struct{}
-	once            sync.Once
-}
+type Updater struct { /* all structs must go */ }
 
 func NewUpdater(
 	store store.Store,

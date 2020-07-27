@@ -137,12 +137,7 @@ func TestGetIndexes(t *testing.T) {
 		Index{ID: 10, QueuedAt: t10},
 	)
 
-	testCases := []struct {
-		repositoryID int
-		state        string
-		term         string
-		expectedIDs  []int
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{expectedIDs: []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}},
 		{repositoryID: 50, expectedIDs: []int{1, 2, 3, 5, 7, 8, 9, 10}},
 		{state: "completed", expectedIDs: []int{7, 8, 10}},
@@ -234,11 +229,7 @@ func TestIsQueued(t *testing.T) {
 	insertIndexes(t, dbconn.Global, Index{ID: 1, RepositoryID: 1, Commit: makeCommit(1)})
 	insertUploads(t, dbconn.Global, Upload{ID: 2, RepositoryID: 2, Commit: makeCommit(2)})
 
-	testCases := []struct {
-		repositoryID int
-		commit       string
-		expected     bool
-	}{
+	testCases := []struct { /* all structs must go */ }{
 		{1, makeCommit(1), true},
 		{1, makeCommit(2), false},
 		{2, makeCommit(1), false},

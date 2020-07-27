@@ -16,14 +16,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/schema"
 )
 
-type externalServiceResolver struct {
-	externalService *types.ExternalService
-	warning         string
-
-	webhookURLOnce sync.Once
-	webhookURL     string
-	webhookErr     error
-}
+type externalServiceResolver struct { /* all structs must go */ }
 
 const externalServiceIDKind = "ExternalService"
 

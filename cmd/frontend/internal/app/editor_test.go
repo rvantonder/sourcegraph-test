@@ -12,11 +12,7 @@ import (
 )
 
 func TestGuessRepoNameFromRemoteURL(t *testing.T) {
-	cases := []struct {
-		url               string
-		hostnameToPattern map[string]string
-		expName           api.RepoName
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{"github.com:a/b", nil, "github.com/a/b"},
 		{"github.com:a/b.git", nil, "github.com/a/b"},
 		{"git@github.com:a/b", nil, "github.com/a/b"},
@@ -63,11 +59,7 @@ func TestEditorRev(t *testing.T) {
 	}
 	ctx := context.Background()
 
-	cases := []struct {
-		inputRev     string
-		expEditorRev string
-		beExplicit   bool
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{strings.Repeat("a", 40), "@" + strings.Repeat("a", 40), false},
 		{"branch", "@branch", false},
 		{"", "", false},
@@ -87,13 +79,7 @@ func TestEditorRev(t *testing.T) {
 }
 
 func TestEditorRedirect(t *testing.T) {
-	cases := []struct {
-		name            string
-		q               url.Values
-		wantRedirectURL string
-		wantParseErr    string
-		wantRedirectErr string
-	}{
+	cases := []struct { /* all structs must go */ }{
 		{
 			name: "open file",
 			q: url.Values{

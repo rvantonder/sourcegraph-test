@@ -45,12 +45,7 @@ func randomOrgNameAndSize() (string, int) {
 
 // feederError is an error while processing an ownerRepo line. errType partitions the errors in 4 major categories
 // to use in metrics in logging: api, clone, push and unknown.
-type feederError struct {
-	// one of: api, clone, push, unknown
-	errType string
-	// underlying error
-	err error
-}
+type feederError struct { /* all structs must go */ }
 
 func (e *feederError) Error() string {
 	return fmt.Sprintf("%v: %v", e.errType, e.err)
@@ -64,55 +59,7 @@ func (e *feederError) Unwrap() error {
 // github.com, adds GHE as a remote, declares repo in GHE through API and does a git push to the GHE.
 // there's many workers working at the same time, taking work from a work channel fed by a pump that reads lines
 // from the input.
-type worker struct {
-	// used in logs and metrics
-	name string
-	// index of the worker (which one in range [0, numWorkers)
-	index int
-	// directory to use for cloning from github.com
-	scratchDir string
-
-	// GHE API client
-	client *github.Client
-	admin  string
-	token  string
-
-	// gets the lines of work from this channel (each line has a owner/repo string in some format)
-	work <-chan string
-	// wait group to decrement when this worker is done working
-	wg *sync.WaitGroup
-	// terminal UI progress bar
-	bar *progressbar.ProgressBar
-
-	// some stats
-	numFailed    int64
-	numSucceeded int64
-
-	// feeder DB is a sqlite DB, worker marks processed ownerRepos as successfully processed or failed
-	fdr *feederDB
-	// keeps track of org to which to add repos
-	// (when currentNumRepos reaches currentMaxRepos, it generates a new random triple of these)
-	currentOrg      string
-	currentNumRepos int
-	currentMaxRepos int
-
-	// logger has worker name inprinted
-	logger log15.Logger
-
-	// rate limiter for the GHE API calls
-	rateLimiter *rate.Limiter
-	// how many simultaneous `git push` operations to the GHE
-	pushSem chan struct{}
-	// how many simultaneous `git clone` operations from github.com
-	cloneSem chan struct{}
-	// how many times to try to clone from github.com
-	numCloningAttempts int
-	// how long to wait before cutting short a cloning from github.com
-	cloneRepoTimeout time.Duration
-
-	// host to add as a remote to a cloned repo pointing to GHE instance
-	host string
-}
+type worker struct { /* all structs must go */ }
 
 // run spins until work channel closes or context cancels
 func (wkr *worker) run(ctx context.Context) {

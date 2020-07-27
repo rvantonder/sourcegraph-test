@@ -9,9 +9,7 @@ import (
 )
 
 // organizationInvitationResolver implements the GraphQL type OrganizationInvitation.
-type organizationInvitationResolver struct {
-	v *db.OrgInvitation
-}
+type organizationInvitationResolver struct { /* all structs must go */ }
 
 func orgInvitationByID(ctx context.Context, id graphql.ID) (*organizationInvitationResolver, error) {
 	orgInvitationID, err := unmarshalOrgInvitationID(id)

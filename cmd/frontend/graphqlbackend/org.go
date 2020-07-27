@@ -26,9 +26,7 @@ func (r *schemaResolver) Organization(ctx context.Context, args struct{ Name str
 
 // Deprecated: Org is only in use by sourcegraph/src. Use Node to look up an
 // org by its graphql.ID instead.
-func (r *schemaResolver) Org(ctx context.Context, args *struct {
-	ID graphql.ID
-}) (*OrgResolver, error) {
+func (r *schemaResolver) Org(ctx context.Context, args *struct { /* all structs must go */ }) (*OrgResolver, error) {
 	return OrgByID(ctx, args.ID)
 }
 
@@ -48,9 +46,7 @@ func OrgByIDInt32(ctx context.Context, orgID int32) (*OrgResolver, error) {
 	return &OrgResolver{org}, nil
 }
 
-type OrgResolver struct {
-	org *types.Org
-}
+type OrgResolver struct { /* all structs must go */ }
 
 func NewOrg(org *types.Org) *OrgResolver { return &OrgResolver{org: org} }
 
@@ -171,10 +167,7 @@ func (o *OrgResolver) ViewerIsMember(ctx context.Context) (bool, error) {
 
 func (o *OrgResolver) NamespaceName() string { return o.org.Name }
 
-func (*schemaResolver) CreateOrganization(ctx context.Context, args *struct {
-	Name        string
-	DisplayName *string
-}) (*OrgResolver, error) {
+func (*schemaResolver) CreateOrganization(ctx context.Context, args *struct { /* all structs must go */ }) (*OrgResolver, error) {
 	currentUser, err := CurrentUser(ctx)
 	if err != nil {
 		return nil, err
@@ -200,10 +193,7 @@ func (*schemaResolver) CreateOrganization(ctx context.Context, args *struct {
 	return &OrgResolver{org: newOrg}, nil
 }
 
-func (*schemaResolver) UpdateOrganization(ctx context.Context, args *struct {
-	ID          graphql.ID
-	DisplayName *string
-}) (*OrgResolver, error) {
+func (*schemaResolver) UpdateOrganization(ctx context.Context, args *struct { /* all structs must go */ }) (*OrgResolver, error) {
 	var orgID int32
 	if err := relay.UnmarshalSpec(args.ID, &orgID); err != nil {
 		return nil, err
@@ -223,10 +213,7 @@ func (*schemaResolver) UpdateOrganization(ctx context.Context, args *struct {
 	return &OrgResolver{org: updatedOrg}, nil
 }
 
-func (*schemaResolver) RemoveUserFromOrganization(ctx context.Context, args *struct {
-	User         graphql.ID
-	Organization graphql.ID
-}) (*EmptyResponse, error) {
+func (*schemaResolver) RemoveUserFromOrganization(ctx context.Context, args *struct { /* all structs must go */ }) (*EmptyResponse, error) {
 	orgID, err := UnmarshalOrgID(args.Organization)
 	if err != nil {
 		return nil, err
@@ -246,10 +233,7 @@ func (*schemaResolver) RemoveUserFromOrganization(ctx context.Context, args *str
 	return nil, db.OrgMembers.Remove(ctx, orgID, userID)
 }
 
-func (*schemaResolver) AddUserToOrganization(ctx context.Context, args *struct {
-	Organization graphql.ID
-	Username     string
-}) (*EmptyResponse, error) {
+func (*schemaResolver) AddUserToOrganization(ctx context.Context, args *struct { /* all structs must go */ }) (*EmptyResponse, error) {
 	// 🚨 SECURITY: Must be a site admin to immediately add a user to an organization (bypassing the
 	// invitation step).
 	if err := backend.CheckCurrentUserIsSiteAdmin(ctx); err != nil {

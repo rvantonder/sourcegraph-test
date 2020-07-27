@@ -7,9 +7,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/schema"
 )
 
-type GitHub struct {
-	*schema.GitHubConnection
-}
+type GitHub struct { /* all structs must go */ }
 
 var _ RepoSource = GitHub{}
 

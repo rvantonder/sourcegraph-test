@@ -1,10 +1,7 @@
 package graphqlutil
 
 // PageInfo implements the GraphQL type PageInfo.
-type PageInfo struct {
-	endCursor   *string
-	hasNextPage bool
-}
+type PageInfo struct { /* all structs must go */ }
 
 // HasNextPage returns a new PageInfo with the given hasNextPage value.
 func HasNextPage(hasNextPage bool) *PageInfo {

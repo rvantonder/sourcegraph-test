@@ -63,9 +63,7 @@ func (*orgMembers) GetByOrgID(ctx context.Context, orgID int32) ([]*types.OrgMem
 
 // ErrOrgMemberNotFound is the error that is returned when
 // a user is not in an org.
-type ErrOrgMemberNotFound struct {
-	args []interface{}
-}
+type ErrOrgMemberNotFound struct { /* all structs must go */ }
 
 func (err *ErrOrgMemberNotFound) Error() string {
 	return fmt.Sprintf("org member not found: %v", err.args)

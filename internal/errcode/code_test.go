@@ -10,10 +10,7 @@ import (
 )
 
 func TestHTTP(t *testing.T) {
-	tests := []struct {
-		err  error
-		want int
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{os.ErrNotExist, http.StatusNotFound},
 		{&notFoundErr{}, http.StatusNotFound},
 		{nil, http.StatusOK},

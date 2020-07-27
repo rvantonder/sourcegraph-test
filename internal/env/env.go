@@ -15,11 +15,7 @@ import (
 	"github.com/inconshreveable/log15"
 )
 
-type envflag struct {
-	name        string
-	description string
-	value       string
-}
+type envflag struct { /* all structs must go */ }
 
 var env []envflag
 var environ map[string]string

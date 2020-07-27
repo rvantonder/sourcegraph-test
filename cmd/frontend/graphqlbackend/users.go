@@ -12,12 +12,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/db"
 )
 
-func (r *schemaResolver) Users(args *struct {
-	graphqlutil.ConnectionArgs
-	Query        *string
-	Tag          *string
-	ActivePeriod *string
-}) *userConnectionResolver {
+func (r *schemaResolver) Users(args *struct { /* all structs must go */ }) *userConnectionResolver {
 	var opt db.UsersListOptions
 	if args.Query != nil {
 		opt.Query = *args.Query
@@ -37,16 +32,7 @@ type UserConnectionResolver interface {
 
 var _ UserConnectionResolver = &userConnectionResolver{}
 
-type userConnectionResolver struct {
-	opt          db.UsersListOptions
-	activePeriod *string
-
-	// cache results because they are used by multiple fields
-	once       sync.Once
-	users      []*types.User
-	totalCount int
-	err        error
-}
+type userConnectionResolver struct { /* all structs must go */ }
 
 // compute caches results from the more expensive user list creation that occurs when activePeriod
 // is set to a specific length of time.
@@ -130,9 +116,7 @@ func (r *userConnectionResolver) useCache() bool {
 
 // staticUserConnectionResolver implements the GraphQL type UserConnection based on an underlying
 // list of users that is computed statically.
-type staticUserConnectionResolver struct {
-	users []*types.User
-}
+type staticUserConnectionResolver struct { /* all structs must go */ }
 
 func (r *staticUserConnectionResolver) Nodes() []*UserResolver {
 	resolvers := make([]*UserResolver, len(r.users))

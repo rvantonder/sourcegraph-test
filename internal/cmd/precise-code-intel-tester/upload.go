@@ -30,11 +30,7 @@ func uploadCommand() error {
 }
 
 // Upload represents a fully uploaded (but possibly unprocessed) LSIF index.
-type Upload struct {
-	Name     string
-	Rev      string
-	UploadID string
-}
+type Upload struct { /* all structs must go */ }
 
 // uploadIndexes uploads each file in the index directory and blocks until each upload has
 // been successfully processed.
@@ -177,11 +173,7 @@ func uploadStates(ctx context.Context, ids []string) (map[string]string, error) 
 	}
 	query := fmt.Sprintf("{%s}", strings.Join(fragments, "\n"))
 
-	payload := struct {
-		Data map[string]struct {
-			State string `json:"state"`
-		} `json:"data"`
-	}{}
+	payload := struct { /* all structs must go */ }{}
 	if err := util.QueryGraphQL(ctx, endpoint, token, query, nil, &payload); err != nil {
 		return nil, err
 	}

@@ -11,13 +11,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/extsvc"
 )
 
-func (r *siteResolver) ExternalAccounts(ctx context.Context, args *struct {
-	graphqlutil.ConnectionArgs
-	User        *graphql.ID
-	ServiceType *string
-	ServiceID   *string
-	ClientID    *string
-}) (*externalAccountConnectionResolver, error) {
+func (r *siteResolver) ExternalAccounts(ctx context.Context, args *struct { /* all structs must go */ }) (*externalAccountConnectionResolver, error) {
 	// 🚨 SECURITY: Only site admins can list all external accounts.
 	if err := backend.CheckCurrentUserIsSiteAdmin(ctx); err != nil {
 		return nil, err
@@ -44,9 +38,7 @@ func (r *siteResolver) ExternalAccounts(ctx context.Context, args *struct {
 	return &externalAccountConnectionResolver{opt: opt}, nil
 }
 
-func (r *UserResolver) ExternalAccounts(ctx context.Context, args *struct {
-	graphqlutil.ConnectionArgs
-}) (*externalAccountConnectionResolver, error) {
+func (r *UserResolver) ExternalAccounts(ctx context.Context, args *struct { /* all structs must go */ }) (*externalAccountConnectionResolver, error) {
 	// 🚨 SECURITY: Only site admins and the user can list a user's external accounts.
 	if err := backend.CheckSiteAdminOrSameUser(ctx, r.user.ID); err != nil {
 		return nil, err
@@ -63,14 +55,7 @@ func (r *UserResolver) ExternalAccounts(ctx context.Context, args *struct {
 //
 // 🚨 SECURITY: When instantiating an externalAccountConnectionResolver value, the caller MUST check
 // permissions.
-type externalAccountConnectionResolver struct {
-	opt db.ExternalAccountsListOptions
-
-	// cache results because they are used by multiple fields
-	once             sync.Once
-	externalAccounts []*extsvc.Account
-	err              error
-}
+type externalAccountConnectionResolver struct { /* all structs must go */ }
 
 func (r *externalAccountConnectionResolver) compute(ctx context.Context) ([]*extsvc.Account, error) {
 	r.once.Do(func() {
@@ -112,9 +97,7 @@ func (r *externalAccountConnectionResolver) PageInfo(ctx context.Context) (*grap
 	return graphqlutil.HasNextPage(r.opt.LimitOffset != nil && len(externalAccounts) > r.opt.Limit), nil
 }
 
-func (r *schemaResolver) DeleteExternalAccount(ctx context.Context, args *struct {
-	ExternalAccount graphql.ID
-}) (*EmptyResponse, error) {
+func (r *schemaResolver) DeleteExternalAccount(ctx context.Context, args *struct { /* all structs must go */ }) (*EmptyResponse, error) {
 	id, err := unmarshalExternalAccountID(args.ExternalAccount)
 	if err != nil {
 		return nil, err

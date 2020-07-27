@@ -16,23 +16,10 @@ import (
 
 // Inventory summarizes a tree's contents (e.g., which programming
 // languages are used).
-type Inventory struct {
-	// Languages are the programming languages used in the tree.
-	Languages []Lang `json:"Languages,omitempty"`
-}
+type Inventory struct { /* all structs must go */ }
 
 // Lang represents a programming language used in a directory tree.
-type Lang struct {
-	// Name is the name of a programming language (e.g., "Go" or
-	// "Java").
-	Name string `json:"Name,omitempty"`
-	// TotalBytes is the total number of bytes of code written in the
-	// programming language.
-	TotalBytes uint64 `json:"TotalBytes,omitempty"`
-	// TotalLines is the total number of lines of code written in the
-	// programming language.
-	TotalLines uint64 `json:"TotalLines,omitempty"`
-}
+type Lang struct { /* all structs must go */ }
 
 var newLine = []byte{'\n'}
 

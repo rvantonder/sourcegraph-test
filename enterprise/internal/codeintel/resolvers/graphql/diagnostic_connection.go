@@ -8,11 +8,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/resolvers"
 )
 
-type DiagnosticConnectionResolver struct {
-	diagnostics      []resolvers.AdjustedDiagnostic
-	totalCount       int
-	locationResolver *CachedLocationResolver
-}
+type DiagnosticConnectionResolver struct { /* all structs must go */ }
 
 func NewDiagnosticConnectionResolver(diagnostics []resolvers.AdjustedDiagnostic, totalCount int, locationResolver *CachedLocationResolver) gql.DiagnosticConnectionResolver {
 	return &DiagnosticConnectionResolver{

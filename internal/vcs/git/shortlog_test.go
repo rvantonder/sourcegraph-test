@@ -6,12 +6,7 @@ import (
 )
 
 func TestParseShortLog(t *testing.T) {
-	tests := []struct {
-		name    string
-		input   string // in the format of `git shortlog -sne`
-		want    []*PersonCount
-		wantErr error
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			name: "basic",
 			input: `

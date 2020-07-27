@@ -8,11 +8,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/enterprise/internal/codeintel/resolvers"
 )
 
-type LocationConnectionResolver struct {
-	locations        []resolvers.AdjustedLocation
-	cursor           *string
-	locationResolver *CachedLocationResolver
-}
+type LocationConnectionResolver struct { /* all structs must go */ }
 
 func NewLocationConnectionResolver(locations []resolvers.AdjustedLocation, cursor *string, locationResolver *CachedLocationResolver) gql.LocationConnectionResolver {
 	return &LocationConnectionResolver{

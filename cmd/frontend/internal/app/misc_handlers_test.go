@@ -9,10 +9,7 @@ import (
 )
 
 func TestRobotsTxt(t *testing.T) {
-	tests := []struct {
-		url  string
-		want bool
-	}{
+	tests := []struct { /* all structs must go */ }{
 		{
 			"/",
 			true,

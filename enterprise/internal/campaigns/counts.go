@@ -10,16 +10,7 @@ import (
 
 // ChangesetCounts represents the states in which a given set of Changesets was
 // at a given point in time
-type ChangesetCounts struct {
-	Time                 time.Time
-	Total                int32
-	Merged               int32
-	Closed               int32
-	Open                 int32
-	OpenApproved         int32
-	OpenChangesRequested int32
-	OpenPending          int32
-}
+type ChangesetCounts struct { /* all structs must go */ }
 
 func (cc *ChangesetCounts) String() string {
 	return fmt.Sprintf("%s (Total: %d, Merged: %d, Closed: %d, Open: %d, OpenApproved: %d, OpenChangesRequested: %d, OpenPending: %d)",
