@@ -1,7 +1,7 @@
 name: Comby
 on: 
   schedule:
-    - cron '*/3 * * * *'
+    - cron: '*/3 * * * *'
 jobs:
   build:
     name: Comby test
