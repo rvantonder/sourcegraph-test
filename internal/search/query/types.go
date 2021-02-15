@@ -57,6 +57,10 @@ type AndOrQuery struct {
 	Query []Node
 }
 
+type Derp struct {
+  Check
+}
+
 func (q OrdinaryQuery) RegexpPatterns(field string) (values, negatedValues []string) {
 	return q.Query.RegexpPatterns(field)
 }
